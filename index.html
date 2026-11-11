@@ -219,25 +219,45 @@ function motivo(x){
   return partes.join(" · ");
 }
 
+function avaliarLinhaReal(projecao, desvio, linha, riscos, jogos) {
+  // Classificação estatística exploratória; NÃO é probabilidade de acerto nem EV.
+  if (!Number.isFinite(linha) || linha < 0) {
+    return {status:"negative", texto:"Digite uma linha válida (zero ou maior)."};
+  }
+  const diferenca = projecao - linha;
+  const lado = diferenca >= 0 ? "Over" : "Under";
+  const distancia = Math.abs(diferenca);
+  const padronizada = distancia / Math.max(desvio, 0.75);
+  if (riscos.length || jogos < 12) {
+    return {status:"negative", texto:lado+" "+f1(linha)+" · diferença de "+f1(distancia)+". Em observação: "+(riscos.join("; ") || "amostra curta")+". Não selecionar sem revisão."};
+  }
+  if (padronizada < 0.5) {
+    return {status:"negative", texto:"Sem diferença estatística suficiente para a linha "+f1(linha)+" (distância "+f1(distancia)+"). Melhor passar."};
+  }
+  return {status:"positive", texto:lado+" "+f1(linha)+" · distância "+f1(distancia)+" ("+f1(padronizada)+" desvios estimados). Candidato à revisão de odds, lesões e minutos — não é uma aposta garantida."};
+}
 function pickHtml(x,prefixo){
-  const id=prefixo+"|"+x.p.nome+"|"+x.chave+"|"+x.r.j.horario_utc;
-  const status=x.apta?"Pré-seleção com critérios mínimos":"Em observação";
-  const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos identificados; ainda requer verificação da linha e escalação.";
-  return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir '+(x.dir==="Over"?"ov":"un")+'">'+x.dir+'</span></div>'+
+  const id=x.t.sigla+"|"+x.p.nome+"|"+x.chave+"|"+x.r.j.horario_utc;
+  const uid=prefixo+"-"+id.replace(/[^a-zA-Z0-9]/g,"-");
+  const status=x.apta?"Passou na triagem inicial":"Em observação";
+  const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos. Confira escalação, minutos e odds.";
+  return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir '+(x.dir==="Over"?"ov":"un")+'">'+x.dir+' estimado</span></div>'+
     '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
-    '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção do modelo</span></div><div class="pick-stat"><strong>'+f1(x.ref)+'</strong><span>Linha estimada, NÃO cotação real</span></div></div>'+
+    '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção do modelo</span></div><div class="pick-stat"><strong>'+f1(x.ref)+'</strong><span>Linha sintética · não é cotação real</span></div></div>'+
+    '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Média '+f1(x.d.media)+'</span><span>Últ. 5 '+f1(x.d.ultimos5)+'</span></div>'+
     '<div class="quality'+(x.apta?'':' warn')+'">'+esc(status)+'</div>'+
     '<p class="reason">'+esc(risco)+'</p>'+
-    '<div class="lin"><label for="l-'+esc(id.replace(/[^a-zA-Z0-9]/g,"-"))+'">Informe a linha real da casa</label><input id="l-'+esc(id.replace(/[^a-zA-Z0-9]/g,"-"))+'" aria-label="Linha real para '+esc(x.p.nome)+'" data-k="'+esc(id)+'" data-proj="'+x.proj+'" data-sd="'+x.sd+'" type="number" step="0.5" placeholder="Ex.: 22.5" value="'+esc(LINHAS[id]==null?"":LINHAS[id])+'"><span class="res"></span></div>'+
-    '<details><summary>Entenda a projeção</summary><p>'+esc(motivo(x))+'</p><p>Sem probabilidade calibrada: a avaliação é exploratória e não considera odds ou retorno esperado.</p></details></article>';
+    '<div class="lin"><label for="'+esc(uid)+'">Linha real da casa</label><input id="'+esc(uid)+'" aria-label="Linha real para '+esc(x.p.nome)+'" data-k="'+esc(id)+'" data-proj="'+x.proj+'" data-sd="'+x.sd+'" data-riscos="'+esc(JSON.stringify(x.risco))+'" data-jogos="'+x.d.jogos+'" type="number" min="0" step="0.5" placeholder="Ex.: 22.5" value="'+esc(LINHAS[id]==null?"":LINHAS[id])+'"><span class="res" role="status" aria-live="polite"></span></div>'+
+    '<details><summary>Justificativa e limitações</summary><p>'+esc(motivo(x))+'</p><p>Este é um filtro exploratório, sem probabilidade calibrada ou análise de valor esperado com odds reais. O ranking usa uma linha de referência sintética.</p></details></article>';
 }
-
 function atualizarLinha(el){
-  const alvo = el.parentElement.querySelector(".res");
-  const linha = parseFloat(el.value);
-  if (isNaN(linha)) { alvo.textContent = ""; return; }
-  const proj = parseFloat(el.dataset.proj), po = cdf((proj - linha) / parseFloat(el.dataset.sd));
-  alvo.textContent = (po >= 0.5 ? "Tendência: Over " : "Tendência: Under ") + f1(linha) + " · projeção " + f1(proj) + ". Probabilidade não calibrada; confira odds, lesões e minutos.";
+  const alvo=el.parentElement.querySelector(".res");
+  if(!el.value.trim()){alvo.textContent="";alvo.removeAttribute("data-status");return;}
+  let riscos=[];
+  try{riscos=JSON.parse(el.dataset.riscos||"[]");}catch(e){riscos=["Falha ao ler alertas"];}
+  const resultado=avaliarLinhaReal(Number(el.dataset.proj),Number(el.dataset.sd),Number(el.value),riscos,Number(el.dataset.jogos));
+  alvo.textContent=resultado.texto;
+  alvo.dataset.status=resultado.status;
 }
 
 
@@ -332,7 +352,7 @@ function destaques(lista){
   const aptas=todas.filter(x=>x.apta && x.score>0).slice(0,6);
   const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,3);
   const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' pré-seleções · '+observacao.length+' em observação</p></div>';
-  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. A posição no radar é um escore heurístico de prioridade, NÃO uma probabilidade calibrada. As linhas exibidas são estimadas, não linhas reais de casas de apostas. Para decisão final, verifique linha, odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
+  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. A posição no radar é um escore heurístico de prioridade, NÃO uma probabilidade calibrada. As linhas exibidas são estimadas, não linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
   const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma oportunidade passou por todos os filtros mínimos hoje. Melhor não forçar palpites.</div>';
   const vigiar=observacao.length?'<section style="margin-top:25px"><div class="spotlight-head"><h2>Em observação</h2><p>Dados insuficientes ou alertas ativos</p></div><div class="picks-grid">'+observacao.map(x=>pickHtml(x,"g")).join("")+'</div></section>':'';
   return cab+principais+vigiar+aviso;
