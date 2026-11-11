@@ -31,3 +31,10 @@ O teste avalia o erro das projeções estatísticas individuais. Ainda não inco
 adversário, mando de quadra, lesões ou escalações históricas, nem linhas reais de
 casas de apostas. Portanto, não deve ser interpretado como taxa de acerto de apostas
 ou retorno financeiro.
+
+## Painel visual
+
+Depois de gerar `backtest_resultados.json`, abra `backtest.html` no navegador
+e selecione esse arquivo. O painel lê o JSON localmente, sem enviar os dados
+para um servidor. É possível filtrar as previsões por categoria e nome do jogador.
+
