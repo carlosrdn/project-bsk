@@ -1,0 +1,27 @@
+name: Testes do backtesting
+
+on:
+  push:
+    branches:
+      - melhorias-modelo-nba
+  pull_request:
+    branches:
+      - melhorias-modelo-nba
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verificar sintaxe
+        run: python -m py_compile backtest.py test_backtest.py
+      - name: Executar testes offline
+        run: python -m unittest -v test_backtest.py
