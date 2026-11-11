@@ -159,7 +159,7 @@ function projetar(chave, d, t, o, r, ehCasa, bump){
 function elegibilidade(q){
   const alertas=[];
   const situacao=statusEfetivo(q.t,q.p);
-  if(situacao==="Sem confirmação de titularidade") alertas.push("Titularidade pendente; sem alerta de lesão na última coleta");
+  // Titularidade ainda pendente é informativa, não bloqueio automático para pré-seleção pré-jogo.
   if(!["Sem confirmação de titularidade","Disponível","Titular confirmado","Disponível confirmado","Banco confirmado"].includes(situacao)) alertas.push("Situação do jogador: "+situacao);
   if(q.d.jogos < 8) alertas.push("Amostra pequena (" + q.d.jogos + " jogos)");
   if(q.d.jogos >= 8 && q.d.jogos < 12) alertas.push("Histórico ainda curto");
@@ -240,14 +240,15 @@ function pickHtml(x,prefixo){
   const id=x.t.sigla+"|"+x.p.nome+"|"+x.chave+"|"+x.r.j.horario_utc;
   const uid=prefixo+"-"+id.replace(/[^a-zA-Z0-9]/g,"-");
   const status=x.apta?"Passou na triagem inicial":"Em observação";
-  const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos. Confira escalação, minutos e odds.";
+  const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos críticos; confira escalação, minutos e odds.";
+  const pendente=statusEfetivo(x.t,x.p)==="Sem confirmação de titularidade";
   return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir '+(x.dir==="Over"?"ov":"un")+'">'+x.dir+' estimado</span></div>'+
     '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
     '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção do modelo</span></div><div class="pick-stat"><strong>'+f1(x.ref)+'</strong><span>Linha sintética · não é cotação real</span></div></div>'+
     '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Média '+f1(x.d.media)+'</span><span>Últ. 5 '+f1(x.d.ultimos5)+'</span></div>'+
     '<div class="live-stat" data-live-player="'+esc(x.p.nome)+'" data-live-team="'+esc(x.t.sigla)+'" data-live-stat="'+esc(x.chave)+'"></div>'+
     '<div class="quality'+(x.apta?'':' warn')+'">'+esc(status)+'</div>'+
-    '<p class="reason">'+esc(risco)+'</p>'+
+    '<p class="reason">'+esc(risco)+(pendente?' · Titularidade ainda não confirmada.':'')+'</p>'+
     '<div class="lin"><label for="'+esc(uid)+'">Linha real da casa</label><input id="'+esc(uid)+'" aria-label="Linha real para '+esc(x.p.nome)+'" data-k="'+esc(id)+'" data-proj="'+x.proj+'" data-sd="'+x.sd+'" data-riscos="'+esc(JSON.stringify(x.risco))+'" data-jogos="'+x.d.jogos+'" type="number" min="0" step="0.5" placeholder="Ex.: 22.5" value="'+esc(LINHAS[id]==null?"":LINHAS[id])+'"><span class="res" role="status" aria-live="polite"></span></div>'+
     '<details><summary>Justificativa e limitações</summary><p>'+esc(motivo(x))+'</p><p>Este é um filtro exploratório, sem probabilidade calibrada ou análise de valor esperado com odds reais. O ranking usa uma linha de referência sintética.</p></details></article>';
 }
