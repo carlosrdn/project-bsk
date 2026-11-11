@@ -316,6 +316,23 @@ function dadosCategoria(p,chave){
   if(["blk","stl"].includes(chave)&&Number.isFinite(p[chave]))return {media:p[chave],ultimos5:null,jogos:p.jogos||0,desvio:null,comHistorico:false};
   return null;
 }
+function projetarCategoria(r,t,o,p,d,chave){
+  const ehCasa=t===r.j.casa;
+  if(d.comHistorico){
+    const bumps=bumpsTime(t);
+    const top3=(t.jogadores||[]).slice().sort((a,b)=>b.pts-a.pts).slice(0,3).map(x=>x.nome);
+    const lider=top3.includes(p.nome);
+    const bump=lider?(chave==="pts"?bumps.pts:chave==="ast"?bumps.ast:0):0;
+    return {valor:Math.max(0,projetar(chave,d,t,o,r,ehCasa,bump).proj),metodo:"Modelo BSK · confronto e contexto",provisorio:["blk","stl"].includes(chave)};
+  }
+  // Arquivos antigos não possuem histórico jogo a jogo de roubos e bloqueios.
+  // Estimativa contextual, conservadora e explicitamente provisória.
+  const ritmo=(t.ritmo+o.ritmo)/2;
+  const fator=clamp(ritmo/Math.max(t.ritmo,1),0.92,1.08);
+  const favorito=ehCasa?r.margem>0:r.margem<0;
+  const minutos=favorito?1-clamp((Math.abs(r.margem)-10)/10,0,1)*0.08:1;
+  return {valor:Math.max(0,d.media*fator*minutos),metodo:"Estimativa provisória · ritmo e minutos",provisorio:true};
+}
 function cardsCategoria(r,chave,filtroTime){
   const equipes=[[r.j.visitante,r.j.casa],[r.j.casa,r.j.visitante]];
   const candidatos=[];
@@ -326,21 +343,24 @@ function cardsCategoria(r,chave,filtroTime){
       if(!d)continue;
       const status=statusEfetivo(t,p);
       const fora=jogadorIndisponivel(t,p);
-      candidatos.push({t,o,p,d,status,fora});
+      const estimativa=projetarCategoria(r,t,o,p,d,chave);
+      candidatos.push({t,o,p,d,status,fora,estimativa});
     }
   }
-  // Ranking por média da temporada e minutos; não confundir com chance de Over.
-  candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.d.media-a.d.media||(b.p.minutos||0)-(a.p.minutos||0));
+  // Exibe a projeção deste confronto; classificação por volume esperado,
+  // NÃO por probabilidade de over, confiança ou valor esperado.
+  candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.estimativa.valor-a.estimativa.valor||(b.p.minutos||0)-(a.p.minutos||0));
   const visiveis=candidatos.slice(0,18);
   if(!visiveis.length)return '<div class="empty">Sem dados suficientes para esta categoria nesta coleta.</div>';
-  const info='<p class="category-desc">Jogadores ordenados pela média da temporada 2026–27. Isto é uma lista de análise, não uma recomendação de aposta. '+(chave==="blk"||chave==="stl"?'Bloqueios e roubos usam a média geral quando o histórico individual ainda não consta no arquivo.':'Compare a média e a forma recente antes de escolher uma linha real.')+'</p>';
-  const cards=visiveis.map(({t,p,d,status,fora})=>{
+  const info='<p class="category-desc">O número em destaque é a projeção do BSK para este confronto, não a média nem uma linha oferecida por casa de apostas. Ordenação por produção estimada, sem garantia de acerto.</p>';
+  const cards=visiveis.map(({t,p,d,status,fora,estimativa})=>{
     const pendente=status==="Sem confirmação de titularidade";
-    const linha='Média '+f1(d.media);
-    return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div><strong class="category-average">'+f1(d.media)+'</strong></div>'+
-      '<div class="category-meta"><span>'+linha+'</span><span>'+d.jogos+' jogos</span>'+(d.ultimos5!=null?'<span>Últimos 5: '+f1(d.ultimos5)+'</span>':'<span>Últimos 5: indisponível</span>')+'</div>'+
+    const referencia=Math.floor(Math.max(0,estimativa.valor))+0.5;
+    return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div><div class="category-projection"><strong class="category-average">'+f1(estimativa.valor)+'</strong><span>Projeção BSK</span></div></div>'+
+      '<div class="category-meta"><span>Média temporada: '+f1(d.media)+'</span><span>'+d.jogos+' jogos</span>'+(d.ultimos5!=null?'<span>Últimos 5: '+f1(d.ultimos5)+'</span>':'<span>Últimos 5: indisponível</span>')+'</div>'+
+      '<p class="category-reference">Linha indicativa: <strong>'+f1(referencia)+'</strong> <small>(sintética, não é cotação)</small></p>'+
       '<p class="category-status">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+
-      (!d.comHistorico?'<p class="category-note">Média agregada; histórico detalhado será incluído na próxima coleta.</p>':'')+
+      '<p class="category-note">'+esc(estimativa.metodo)+(estimativa.provisorio?' · Sem validação específica desta categoria.':'')+'</p>'+
       '</article>';
   }).join("");
   return info+'<div class="category-grid">'+cards+'</div>';
