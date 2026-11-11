@@ -13,7 +13,6 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-from nba_api.stats.endpoints import leaguegamelog
 
 TEMPORADA = "2026-27"
 MINUTOS_MINIMOS = 12
@@ -72,6 +71,9 @@ def projetar(valores):
 
 
 def carregar_jogos():
+    # Importação tardia: permite executar os testes offline sem instalar nba_api.
+    from nba_api.stats.endpoints import leaguegamelog
+
     resposta = leaguegamelog.LeagueGameLog(
         season=TEMPORADA,
         player_or_team_abbreviation="P",
