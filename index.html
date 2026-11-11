@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prognóstico NBA do dia</title>
+<style>
+:root{--bg:#eef1f4;--panel:#fff;--ink:#14202b;--mute:#5d6b78;--line:#d5dce3;--a:#1f5fbf;--b:#d2461f}
+@media (prefers-color-scheme:dark){:root{--bg:#0f161d;--panel:#18222c;--ink:#e8eef3;--mute:#93a2af;--line:#2b3946;--a:#5b9bff;--b:#ff7a52;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+h1{font:700 32px/1.1 "Arial Narrow",system-ui,sans-serif;margin:8px 0 4px}
+.sub{color:var(--mute);margin:0 0 16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+label{display:block;font-size:14px;color:var(--mute);margin-bottom:4px}
+input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+input:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+.top{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.top span:last-child{color:var(--mute);font-weight:400}
+.vs{display:flex;justify-content:space-between;font:700 26px/1.1 "Arial Narrow",system-ui,sans-serif;margin-top:6px}
+.pc{color:var(--a)}.pv{color:var(--b)}
+.bar{display:flex;height:16px;border-radius:5px;overflow:hidden;margin:8px 0}
+.bar i{display:block}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--mute)}
+.meta b{color:var(--ink)}
+.msg{color:var(--mute)}
+.wrap{overflow-x:auto}
+details{margin-top:8px}summary{cursor:pointer}
+table.pl{width:100%;border-collapse:collapse;font-size:14px;min-width:540px;margin-top:8px}
+table.pl th,table.pl td{text-align:right;padding:5px 6px;border-bottom:1px solid var(--line)}
+table.pl th:first-child,table.pl td:first-child{text-align:left}
+.tg{padding:1px 8px;border-radius:10px;font-size:12px;font-weight:600;white-space:nowrap}
+.t-out{background:#fbe0da;color:#8f2a12}.t-q{background:#fcefc7;color:#7a5a00}
+@media (prefers-color-scheme:dark){.t-out{background:#4a211a;color:#ffb4a0}.t-q{background:#4a3a12;color:#ffd978}}
+table.pl td.l,table.pl th.l{text-align:left}
+.pick{border-top:1px solid var(--line);padding:10px 0}
+.ph{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.dir{padding:1px 10px;border-radius:10px;font-weight:700;font-size:13px}
+.ov{background:#d8efe0;color:#14602f}.un{background:#fbe0da;color:#8f2a12}
+@media (prefers-color-scheme:dark){.ov{background:#173a27;color:#8fe0b0}.un{background:#4a211a;color:#ffb4a0}}
+.conf{margin-left:auto;font-size:13px;color:var(--mute)}
+.why{font-size:14px;color:var(--mute);margin:4px 0}
+.lin{margin-top:6px;font-size:14px;color:var(--mute)}
+.lin input{width:90px;display:inline-block;padding:4px 6px}
+.note{font-size:14px;color:var(--mute);margin:4px 0 6px}
+</style>
+</head>
+<body>
+<main>
+<h1>Prognóstico NBA do dia</h1>
+<p class="sub" id="sub"></p>
+
+<section class="card">
+  <div class="row">
+    <div><label for="wHome">Vantagem de mando (pts)</label><input id="wHome" type="number" step="0.1" value="2.5"></div>
+    <div><label for="wForm">Peso da forma recente (pts)</label><input id="wForm" type="number" step="0.1" value="1.5"></div>
+    <div><label for="K">Cautela com poucos jogos (0 = nenhuma)</label><input id="K" type="number" step="1" min="0" value="12"></div>
+    <div><label for="sd">Desvio padrão do jogo (pts)</label><input id="sd" type="number" step="0.1" value="12"></div>
+    <div><label for="kInj">Peso das ausências (0 = ignorar)</label><input id="kInj" type="number" step="0.01" min="0" value="0.12"></div>
+  </div>
+</section>
+
+<div id="dest"></div>
+<div id="out"></div>
+</main>
+
+<script src="dados.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const num = id => { const v = parseFloat($(id).value); return isNaN(v) ? 0 : v; };
+const f1 = x => x.toFixed(1).replace(".", ",");
+const pct = x => (x * 100).toFixed(1).replace(".", ",") + "%";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function erf(x){const s=x<0?-1:1;x=Math.abs(x);const t=1/(1+0.3275911*x);
+  const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
+const cdf = z => 0.5 * (1 + erf(z / Math.SQRT2));
+
+function taxaRecente(t){ const n = Math.min(t.jogos, 10); return n > 0 ? t.vitorias_ultimos_10 / n : 0.5; }
+
+// Com poucos jogos, aproxima o rating da média da liga (evita exagero no começo da temporada)
+function encolher(rating, jogos, lg){ const K = num("K"); return K > 0 ? lg + (rating - lg) * jogos / (jogos + K) : rating; }
+
+const PESO_SITUACAO = {"Fora": 1, "Provável ausência": 0.75, "Dúvida": 0.25};
+
+// Pontos de margem perdidos pelo time com as ausências. Quem já faltou à maior parte dos jogos
+// pesa menos, porque os ratings do time já refletem essa falta.
+function impactoAusencias(t){
+  const k = num("kInj");
+  if (k <= 0) return 0;
+  let total = 0;
+  (t.ausencias || []).forEach(a => {
+    if (!a.jogos || a.minutos < 15 || !t.jogos) return;
+    const producao = a.pts + a.reb + a.ast;
+    total += (PESO_SITUACAO[a.situacao] || 0) * Math.max(0, producao - 15) * k * Math.min(1, a.jogos / t.jogos);
+  });
+  return Math.min(total, 8);
+}
+
+function analisar(j, lg){
+  const c = j.casa, v = j.visitante;
+  const posse = (c.ritmo + v.ritmo) / 2;
+  const ac = encolher(c.ataque, c.jogos, lg.ataque), dc = encolher(c.defesa, c.jogos, lg.ataque);
+  const av = encolher(v.ataque, v.jogos, lg.ataque), dv = encolher(v.defesa, v.jogos, lg.ataque);
+  let sc = (ac + dv - lg.ataque) * posse / 100;
+  let sv = (av + dc - lg.ataque) * posse / 100;
+  const impC = impactoAusencias(c), impV = impactoAusencias(v);
+  const ajuste = num("wHome") + num("wForm") * (taxaRecente(c) - taxaRecente(v)) + (impV - impC);
+  sc += ajuste / 2; sv -= ajuste / 2;
+  const margem = sc - sv;
+  const pc = cdf(margem / Math.max(num("sd"), 1));
+  return {j, sc, sv, margem, pc, pv: 1 - pc, impC, impV, fav: pc >= 0.5 ? c : v, pf: Math.max(pc, 1 - pc)};
+}
+
+function hora(iso){ try { return new Date(iso).toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"}); } catch (e) { return ""; } }
+
+function tag(s){
+  if (!s || s === "Disponível") return '<span class="msg">Disponível</span>';
+  return '<span class="tg ' + (s === "Fora" ? "t-out" : "t-q") + '">' + esc(s) + '</span>';
+}
+
+function dataCurta(iso){ return iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) : "-"; }
+
+function ausenciasHtml(t, imp){
+  const as = t.ausencias || [];
+  if (!as.length) return "";
+  const linhas = as.map(a =>
+    '<tr><td title="' + esc(a.comentario || "") + '">' + esc(a.nome) + '</td><td class="l">' + tag(a.situacao) +
+    '</td><td class="l">' + esc(a.motivo || "-") + '</td><td>' + esc(a.retorno || "-") +
+    '</td><td>' + (a.minutos >= 15 ? f1(a.pts) + "/" + f1(a.reb) + "/" + f1(a.ast) : "-") +
+    '</td><td>' + dataCurta(a.atualizado) + '</td></tr>').join("");
+  return '<details open><summary>Ausências e dúvidas: ' + esc(t.nome) +
+    (imp > 0.05 ? " (impacto estimado: -" + f1(imp) + " pts)" : "") +
+    '</summary><div class="wrap"><table class="pl"><thead><tr><th>Jogador</th><th class="l">Situação</th><th class="l">Motivo</th>' +
+    '<th>Retorno previsto</th><th>PTS/REB/AST</th><th>Notícia</th></tr></thead><tbody>' + linhas + '</tbody></table></div></details>';
+}
+
+function seta(ult, media){
+  if (ult == null) return "";
+  const d = ult - media;
+  return d >= 2 ? " ▲" : d <= -2 ? " ▼" : "";
+}
+
+function jogadoresHtml(t){
+  const ps = t.jogadores || [];
+  if (!ps.length) return "";
+  const linhas = ps.map(p =>
+    "<tr><td>" + esc(p.nome) + "</td><td>" + p.jogos + "/" + t.jogos + "</td><td>" + f1(p.minutos) +
+    "</td><td>" + f1(p.pts) + "</td><td>" + f1(p.reb) + "</td><td>" + f1(p.ast) +
+    "</td><td>" + f1(p.stl) + "</td><td>" + f1(p.blk) + "</td><td>" + f1(p.fg) + "</td><td>" + f1(p.tres) +
+    "</td><td>" + (p.pts_5 == null ? "-" : f1(p.pts_5) + seta(p.pts_5, p.pts)) + "</td><td class=\"l\">" + tag(p.situacao) + "</td></tr>").join("");
+  return "<details><summary>Melhores jogadores: " + esc(t.nome) + "</summary><div class=\"wrap\"><table class=\"pl\">" +
+    "<thead><tr><th>Jogador</th><th>Jogos</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>ROU</th><th>TOC</th><th>FG%</th><th>3P%</th><th>PTS últ. 5</th><th class=\"l\">Situação</th></tr></thead>" +
+    "<tbody>" + linhas + "</tbody></table></div></details>";
+}
+
+const ROTULO = {pts: "pontos", reb: "rebotes", ast: "assistências", tres: "bolas de 3"};
+const NIVEL_TXT = {forte: "mais fortes", media: "do mesmo nível", fraca: "mais fracos"};
+const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
+const LINHAS = {};
+const MIN_MEDIA = {pts: 8, reb: 3.5, ast: 2.5, tres: 1.5};  // ignora estatísticas de baixo volume
+
+function desvioPrior(chave, m){
+  return chave === "pts" ? 0.3 * m + 1.2 : chave === "reb" ? 0.36 * m + 0.5 :
+         chave === "ast" ? 0.45 * m + 0.5 : Math.sqrt(Math.max(m, 0)) + 0.2;
+}
+
+// Aumento de bola para os principais jogadores quando companheiros importantes estão fora
+function bumpsTime(t){
+  let pts = 0, ast = 0;
+  (t.ausencias || []).forEach(a => {
+    if (!a.jogos || a.minutos < 15 || !t.jogos) return;
+    const w = (PESO_SITUACAO[a.situacao] || 0) * Math.min(1, a.jogos / t.jogos);
+    pts += w * a.pts * 0.15; ast += w * a.ast * 0.10;
+  });
+  return {pts: Math.min(pts, 3), ast: Math.min(ast, 1.5)};
+}
+
+function projetar(chave, d, t, o, r, ehCasa, bump){
+  const wRec = 0.35 * Math.min(5, d.jogos) / 5;
+  const base = d.media * (1 - wRec) + d.ultimos5 * wRec;
+  const projTime = ehCasa ? r.sc : r.sv;
+  const fPts = clamp(projTime / (t.ataque * t.ritmo / 100), 0.85, 1.15);
+  const fRit = clamp(((t.ritmo + o.ritmo) / 2) / t.ritmo, 0.9, 1.1);
+  const fator = chave === "pts" ? fPts : chave === "reb" ? fRit : Math.pow(fPts, 0.5);
+  const favorito = ehCasa ? r.margem > 0 : r.margem < 0;
+  const fMin = favorito ? 1 - clamp((Math.abs(r.margem) - 10) / 10, 0, 1) * 0.08 : 1;  // jogo decidido: menos minutos
+  const modelo = base * fator * fMin + bump;
+  const nv = d.por_nivel ? d.por_nivel[o.nivel] : null;
+  const temNv = nv && nv.media != null;
+  const wN = temNv ? Math.min(0.4, nv.jogos / (nv.jogos + 6)) : 0;
+  const proj = temNv ? modelo * (1 - wN) + (nv.media * fMin + bump) * wN : modelo;
+  const prior = desvioPrior(chave, base);
+  const sd = d.desvio == null ? prior : (d.jogos * d.desvio + 6 * prior) / (d.jogos + 6);
+  const ref = Math.floor(0.7 * d.media + 0.3 * d.ultimos5 + 1e-9) + 0.5;  // linha provável: o mercado costuma ficar perto da média
+  return {proj, sd: Math.max(sd, 0.5), ref, nv: temNv ? nv : null, bump, fMin, favorito};
+}
+
+function opcoesDoJogo(r){
+  const todas = [];
+  [[r.j.casa, r.j.visitante, true], [r.j.visitante, r.j.casa, false]].forEach(([t, o, ehCasa]) => {
+    const bumps = bumpsTime(t);
+    const top3 = (t.jogadores || []).slice().sort((a, b) => b.pts - a.pts).slice(0, 3).map(p => p.nome);
+    (t.jogadores || []).forEach(p => {
+      if (!p.props || p.situacao === "Fora" || p.situacao === "Provável ausência") return;
+      ["pts", "reb", "ast", "tres"].forEach(chave => {
+        const d = p.props[chave];
+        if (!d || d.jogos < 4 || d.media < MIN_MEDIA[chave]) return;
+        const bump = top3.includes(p.nome) ? (chave === "pts" ? bumps.pts : chave === "ast" ? bumps.ast : 0) : 0;
+        const x = projetar(chave, d, t, o, r, ehCasa, bump);
+        const forca = (x.proj - x.ref) / x.sd;
+        todas.push(Object.assign({r, t, o, p, d, chave, forca, dir: forca >= 0 ? "Over" : "Under"}, x));
+      });
+    });
+  });
+  const melhor = {};  // um palpite por jogador: o de maior força
+  todas.forEach(q => { const k = q.p.nome; if (!melhor[k] || Math.abs(q.forca) > Math.abs(melhor[k].forca)) melhor[k] = q; });
+  return Object.values(melhor).filter(q => Math.abs(q.forca) >= 0.2).sort((a, b) => Math.abs(b.forca) - Math.abs(a.forca));
+}
+
+function motivo(x){
+  const t = x.t, o = x.o, r = x.r, d = x.d, partes = [];
+  const projTime = t === r.j.casa ? r.sc : r.sv;
+  partes.push(t.sigla + (x.favorito ? " favorito por " : " azarão por ") + f1(Math.abs(r.margem)) +
+    " pts, projetado para " + Math.round(projTime) + " pontos (média " + Math.round(t.ataque * t.ritmo / 100) + ")");
+  if (x.nv) partes.push("contra times " + NIVEL_TXT[o.nivel] + ": " + f1(x.nv.media) + " " + ROTULO[x.chave] + " em " + x.nv.jogos + (x.nv.jogos === 1 ? " jogo" : " jogos"));
+  if (Math.abs(d.ultimos5 - d.media) >= Math.max(1, d.media * 0.1)) partes.push("últimos 5 jogos: " + f1(d.ultimos5) + " (média " + f1(d.media) + ")");
+  const tx = taxaRecente(t), n = Math.min(t.jogos, 10);
+  if (tx >= 0.7) partes.push(t.sigla + " em boa fase (" + t.vitorias_ultimos_10 + "-" + (n - t.vitorias_ultimos_10) + " nos últimos " + n + ")");
+  else if (tx <= 0.3) partes.push(t.sigla + " em má fase (" + t.vitorias_ultimos_10 + "-" + (n - t.vitorias_ultimos_10) + " nos últimos " + n + ")");
+  if (x.bump > 0.3) partes.push("mais bola com desfalques no elenco");
+  if (x.favorito && Math.abs(r.margem) >= 12) partes.push("risco de minutos reduzidos se o jogo ficar decidido");
+  return partes.join(" · ");
+}
+
+function pickHtml(x, prefixo){
+  const id = prefixo + "|" + x.p.nome + "|" + x.chave + "|" + x.r.j.horario_utc;
+  const af = Math.abs(x.forca);
+  const conf = af >= 0.4 && x.p.situacao !== "Dúvida" ? "Alta" : af >= 0.25 ? "Média" : "Baixa";
+  return '<div class="pick"><div class="ph"><span class="dir ' + (x.dir === "Over" ? "ov" : "un") + '">' + x.dir + '</span> <b>' + esc(x.p.nome) +
+    '</b> <span class="msg">' + esc(x.t.sigla) + ' x ' + esc(x.o.sigla) + ' · ' + ROTULO[x.chave] + '</span><span class="conf">Confiança ' + conf + '</span></div>' +
+    '<div class="meta"><span>Projeção: <b>' + f1(x.proj) + '</b></span><span>Linha de referência: <b>' + f1(x.ref) + '</b> (' + pct(cdf(af)) + ' de ' + x.dir + ')</span>' +
+    (x.p.situacao === "Dúvida" ? '<span class="tg t-q">Dúvida: confirme antes</span>' : "") + '</div>' +
+    '<div class="why">' + esc(motivo(x)) + '</div>' +
+    '<div class="lin">Sua linha: <input data-k="' + esc(id) + '" data-proj="' + x.proj + '" data-sd="' + x.sd + '" type="number" step="0.5" value="' + esc(LINHAS[id] == null ? "" : LINHAS[id]) + '"> <span class="res"></span></div></div>';
+}
+
+function atualizarLinha(el){
+  const alvo = el.parentElement.querySelector(".res");
+  const linha = parseFloat(el.value);
+  if (isNaN(linha)) { alvo.textContent = ""; return; }
+  const proj = parseFloat(el.dataset.proj), po = cdf((proj - linha) / parseFloat(el.dataset.sd));
+  alvo.innerHTML = (po >= 0.5 ? "<b>Over " + f1(linha) + "</b>: " + pct(po) : "<b>Under " + f1(linha) + "</b>: " + pct(1 - po)) + " (projeção " + f1(proj) + ")";
+}
+
+function opcoesHtml(r){
+  const ops = opcoesDoJogo(r).slice(0, 4);
+  if (!ops.length) return "";
+  return '<details open><summary>Melhores opções de jogadores neste jogo</summary>' + ops.map(x => pickHtml(x, "j")).join("") + '</details>';
+}
+
+function destaques(lista){
+  const todas = [];
+  lista.forEach(r => opcoesDoJogo(r).forEach(x => todas.push(x)));
+  const aviso = '<p class="note">Projeção própria a partir da média e da forma recente do jogador, do nível do adversário, da disparidade do jogo e dos desfalques. A linha de referência é uma estimativa (a casa de apostas pode usar outra): digite a linha real para ver a probabilidade.</p>';
+  if (!todas.length) return '<section class="card"><b>Melhores oportunidades do dia</b>' + aviso + '<p class="msg">Sem histórico de jogadores suficiente. Rode python gerar_dados.py de novo.</p></section>';
+  todas.sort((a, b) => Math.abs(b.forca) - Math.abs(a.forca));
+  return '<section class="card"><b>Melhores oportunidades do dia</b>' + aviso + todas.slice(0, 8).map(x => pickHtml(x, "g")).join("") + '</section>';
+}
+
+function render(){
+  const out = $("out");
+  if (typeof DADOS === "undefined") {
+    out.innerHTML = '<p class="msg">Arquivo dados.js não encontrado. Rode <b>python gerar_dados.py</b> na mesma pasta desta página e recarregue.</p>';
+    return;
+  }
+  $("sub").textContent = "Jogos de " + DADOS.data_jogos + " · dados atualizados em " + DADOS.atualizado_em.replace("T", " ") + (DADOS.lesoes_ok ? "" : " · sem dados de lesões");
+  if (!DADOS.jogos.length) { out.innerHTML = '<p class="msg">Nenhum jogo encontrado para hoje.</p>'; return; }
+  const lista = DADOS.jogos.map(j => analisar(j, DADOS.media_liga)).sort((a, b) => b.pf - a.pf);
+  $("dest").innerHTML = destaques(lista);
+  out.innerHTML = lista.map((r, i) => {
+    const c = r.j.casa, v = r.j.visitante;
+    const verd = r.pf < 0.55 ? "Jogo equilibrado." : "Favorito: <b>" + esc(r.fav.nome) + "</b>, com margem de " + f1(Math.abs(r.margem)) + " pts.";
+    return '<section class="card">' +
+      '<div class="top"><span>' + (i === 0 ? "Favorito mais forte do dia" : "#" + (i + 1)) + '</span><span>' + hora(r.j.horario_utc) + '</span></div>' +
+      '<div class="vs"><span class="pv">' + esc(v.sigla) + ' ' + pct(r.pv) + '</span><span class="pc">' + pct(r.pc) + ' ' + esc(c.sigla) + '</span></div>' +
+      '<div class="bar"><i style="width:' + (r.pv * 100) + '%;background:var(--b)"></i><i style="width:' + (r.pc * 100) + '%;background:var(--a)"></i></div>' +
+      '<p style="margin:4px 0 8px">' + esc(v.nome) + ' (visitante) x ' + esc(c.nome) + ' (casa). ' + verd + '</p>' +
+      '<div class="meta"><span>Placar projetado: <b>' + Math.round(r.sv) + ' x ' + Math.round(r.sc) + '</b></span>' +
+      '<span>Total: <b>' + f1(r.sv + r.sc) + '</b></span>' +
+      '<span>' + esc(v.sigla) + ': ataque ' + f1(v.ataque) + ', defesa ' + f1(v.defesa) + ', ' + v.vitorias + '-' + v.derrotas + '</span>' +
+      '<span>' + esc(c.sigla) + ': ataque ' + f1(c.ataque) + ', defesa ' + f1(c.defesa) + ', ' + c.vitorias + '-' + c.derrotas + '</span></div>' +
+      opcoesHtml(r) + ausenciasHtml(v, r.impV) + ausenciasHtml(c, r.impC) + jogadoresHtml(v) + jogadoresHtml(c) +
+      '</section>';
+  }).join("");
+  document.querySelectorAll("input[data-k]").forEach(el => { if (el.value) atualizarLinha(el); });
+}
+
+document.addEventListener("input", e => {
+  const el = e.target;
+  if (el && el.dataset && el.dataset.k) { LINHAS[el.dataset.k] = el.value; atualizarLinha(el); }
+});
+
+["wHome", "wForm", "K", "sd", "kInj"].forEach(id => $(id).addEventListener("input", render));
+render();
+</script>
+</body>
+</html>
