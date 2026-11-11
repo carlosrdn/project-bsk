@@ -351,12 +351,14 @@ function painelJogo(r, i){
 function destaques(lista){
   const todas=lista.flatMap(r=>opcoesDoJogo(r)).sort((a,b)=>b.score-a.score);
   const aptas=todas.filter(x=>x.apta && x.score>0).slice(0,6);
-  const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,3);
+  const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,5);
   const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' pré-seleções · '+observacao.length+' em observação</p></div>';
   const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. A posição no radar é um escore heurístico de prioridade, NÃO uma probabilidade calibrada. As linhas exibidas são estimadas, não linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
-  const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma oportunidade passou por todos os filtros mínimos hoje. Melhor não forçar palpites.</div>';
+  const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma pré-seleção passou por todos os filtros de risco e amostra nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
+  const listaMotivos=[...new Set(todas.flatMap(x=>x.risco))].slice(0,5);
+  const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta ou sinal insuficiente em relação à referência sintética")+'</p>';
   const vigiar=observacao.length?'<section style="margin-top:25px"><div class="spotlight-head"><h2>Em observação</h2><p>Dados insuficientes ou alertas ativos</p></div><div class="picks-grid">'+observacao.map(x=>pickHtml(x,"g")).join("")+'</div></section>':'';
-  return cab+principais+vigiar+aviso;
+  return cab+principais+motivos+vigiar+aviso;
 }
 
 function renderJogos(){
@@ -436,68 +438,82 @@ document.addEventListener("input", e => {
 
 /* Atualização experimental via feed público NBA CDN.
    Sem dados fabricados: falhas de rede/CORS são exibidas explicitamente. */
-const LIVE_SCOREBOARD="https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json";
+
+const LIVE_SCOREBOARD="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard";
 let liveEmCurso=false;
 let ultimaLive=null;
-const estatisticaLive={pts:"points",reb:"reboundsTotal",ast:"assists",tres:"threePointersMade"};
-function nomeNormalizado(s){
-  return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();
+const estatisticaLive={pts:"PTS",reb:"REB",ast:"AST",tres:"3PT"};
+function nomeNormalizado(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
+function atualizarMensagemLive(msg){const el=$("live-status");if(el)el.textContent=msg;}
+function statusJogoESPN(jogo){
+  const s=jogo.status?.type?.state;
+  return s==="post"?"Final":s==="in"?"Ao vivo":"Pré-jogo";
 }
-function atualizarMensagemLive(msg){
-  const el=$("live-status"); if(el)el.textContent=msg;
+function valorEstatisticaESPN(player, chave){
+  const category=(player.statistics||[])[0];
+  if(!category)return null;
+  const nomes=category.labels||category.names||[];
+  const estatisticas=category.athletes||[];
+  if(!Array.isArray(estatisticas))return null;
+  const linha=estatisticas.find(a=>nomeNormalizado(a.athlete?.displayName)===nomeNormalizado(chave.nome));
+  if(!linha)return null;
+  const nomeEstat=estatisticaLive[chave.categoria];
+  const index=nomes.indexOf(nomeEstat);
+  if(index<0)return null;
+  const raw=linha.stats?.[index];
+  if(raw==null||raw==="")return null;
+  // ESPN 3PT tem formato acertos-tentativas, ex.: "2-6".
+  const valor=Number(nomeEstat==="3PT"?String(raw).split("-")[0]:raw);
+  return Number.isFinite(valor)?valor:null;
 }
 async function atualizarAoVivo(){
   if(PAGINA!=="melhores"||liveEmCurso||typeof DADOS==="undefined")return;
   liveEmCurso=true;
-  atualizarMensagemLive("Consultando placar e box scores da NBA...");
+  atualizarMensagemLive("Consultando placar e estatísticas da ESPN...");
+  const elementos=[...document.querySelectorAll("[data-live-player]")];
   try{
-    const resposta=await fetch(LIVE_SCOREBOARD,{cache:"no-store",signal:AbortSignal.timeout(11000)});
-    if(!resposta.ok)throw Error("Placar HTTP "+resposta.status);
-    const dados=await resposta.json();
-    const board=dados.scoreboard||{};
-    if(board.gameDate!==DADOS.data_jogos) {
-      atualizarMensagemLive("Feed NBA em "+(board.gameDate||"data desconhecida")+"; dados BSK da rodada "+DADOS.data_jogos+". Acompanhamento suspenso para evitar misturar datas.");
-      return;
+    const data=String(DADOS.data_jogos||"").replace(/-/g,"");
+    const r=await fetch(LIVE_SCOREBOARD+"?dates="+encodeURIComponent(data),{cache:"no-store",signal:AbortSignal.timeout(12000)});
+    if(!r.ok)throw Error("Placar HTTP "+r.status);
+    const board=await r.json(),jogos=board.events||[];
+    const ids=new Set();
+    const mapa=new Map();
+    for(const el of elementos){
+      const t=el.dataset.liveTeam;
+      const jogo=jogos.find(ev=>(ev.competitions?.[0]?.competitors||[]).some(c=>(c.team?.abbreviation||"").toUpperCase()===t));
+      if(!jogo){el.textContent="Partida não localizada no placar ESPN.";el.classList.add("error");continue;}
+      mapa.set(el,jogo);if(jogo.id&&jogo.status?.type?.state!=="pre")ids.add(jogo.id);
     }
-    const games=board.games||[];
-    const identificadores=new Set();
-    document.querySelectorAll("[data-live-player]").forEach(el=>{
-      const team=el.dataset.liveTeam;
-      const jogo=games.find(g=>(g.homeTeam?.teamTricode===team||g.awayTeam?.teamTricode===team));
-      if(jogo?.gameId)identificadores.add(jogo.gameId);
-      else {el.textContent="Partida não encontrada no feed ao vivo.";el.classList.add("error");}
-    });
-    const boxes=new Map();
-    await Promise.all([...identificadores].map(async id=>{
+    const resumos=new Map();
+    await Promise.all([...ids].map(async id=>{
       try{
-        const r=await fetch("https://cdn.nba.com/static/json/liveData/boxscore/boxscore_"+encodeURIComponent(id)+".json",{cache:"no-store",signal:AbortSignal.timeout(11000)});
-        if(!r.ok)throw Error("HTTP "+r.status);
-        const j=await r.json(); boxes.set(id,j.game);
-      }catch(e){boxes.set(id,null);}
+        const resp=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event="+encodeURIComponent(id),{cache:"no-store",signal:AbortSignal.timeout(12000)});
+        if(resp.ok)resumos.set(id,await resp.json());
+      }catch(e){}
     }));
-    document.querySelectorAll("[data-live-player]").forEach(el=>{
-      const jogo=games.find(g=>g.homeTeam?.teamTricode===el.dataset.liveTeam||g.awayTeam?.teamTricode===el.dataset.liveTeam);
-      if(!jogo)return;
-      const box=boxes.get(jogo.gameId);
-      const time=box&&(box.homeTeam?.teamTricode===el.dataset.liveTeam?box.homeTeam:box.awayTeam);
-      const player=(time?.players||[]).find(p=>nomeNormalizado(p.name)===nomeNormalizado(el.dataset.livePlayer));
-      const valor=player?.statistics?.[estatisticaLive[el.dataset.liveStat]];
-      el.classList.toggle("error",!Number.isFinite(valor));
-      if(Number.isFinite(valor)){
-        const status=jogo.gameStatus===3?"Final":jogo.gameStatus===2?"Ao vivo":"Pré-jogo";
-        el.textContent="NBA "+status+" · "+valor+" "+ROTULO[el.dataset.liveStat]+" registrados";
-      }else if(jogo.gameStatus===1) el.textContent="Pré-jogo · estatística ainda não disponível";
-      else el.textContent="Estatística ao vivo indisponível (box score ou jogador sem correspondência).";
-    });
+    let encontrados=0;
+    for(const el of elementos){
+      const jogo=mapa.get(el);if(!jogo)continue;
+      const status=statusJogoESPN(jogo);
+      if(status==="Pré-jogo"){el.textContent="Pré-jogo · aguardando estatísticas oficiais";el.classList.remove("error");continue;}
+      const resumo=resumos.get(jogo.id);
+      const groups=resumo?.boxscore?.players||[];
+      const team=groups.find(g=>(g.team?.abbreviation||"").toUpperCase()===el.dataset.liveTeam);
+      const valor=team?valorEstatisticaESPN(team,{nome:el.dataset.livePlayer,categoria:el.dataset.liveStat}):null;
+      if(valor!==null){
+        encontrados++;
+        el.textContent="ESPN "+status+" · "+valor+" "+ROTULO[el.dataset.liveStat]+" registrados";
+        el.classList.remove("error");
+      }else{el.textContent="Estatística não disponível ou jogador não localizado na ESPN.";el.classList.add("error");}
+    }
     ultimaLive=new Date();
-    atualizarMensagemLive("Fonte: NBA Live CDN · consulta "+ultimaLive.toLocaleTimeString("pt-BR")+" · atualização automática a cada 60 segundos, se disponível.");
+    atualizarMensagemLive("Fonte: ESPN · "+jogos.length+" jogos encontrados · "+encontrados+" estatísticas carregadas · consulta "+ultimaLive.toLocaleTimeString("pt-BR")+" · atualização a cada 60 segundos.");
   }catch(e){
-    atualizarMensagemLive("Não foi possível acessar o feed NBA deste navegador (rede/CORS ou indisponibilidade). Nenhum dado ao vivo foi estimado.");
-    document.querySelectorAll("[data-live-player]").forEach(el=>{el.textContent="Acompanhamento ao vivo indisponível";el.classList.add("error");});
+    atualizarMensagemLive("Não foi possível consultar o placar ESPN neste navegador. Sem dados ao vivo nesta atualização; nenhum resultado foi inventado.");
+    elementos.forEach(el=>{el.textContent="Dados ao vivo temporariamente indisponíveis";el.classList.add("error");});
   }finally{liveEmCurso=false;}
 }
 if(PAGINA==="melhores")setInterval(atualizarAoVivo,60000);
-
 
 async function consultarLesoesESPN(){
   try{
