@@ -117,7 +117,7 @@ def ausencias_do_time(time, lesoes, elenco):
 
 # Histórico jogo a jogo, preenchido no main (usado para analisar cada jogador)
 CONTEXTO = {"jogos": {}, "nivel_sigla": {}, "niveis_id": {}}
-ESTATISTICAS = {"pts": "PTS", "reb": "REB", "ast": "AST", "tres": "FG3M"}
+ESTATISTICAS = {"pts": "PTS", "reb": "REB", "ast": "AST", "tres": "FG3M", "blk": "BLK", "stl": "STL"}
 
 
 def media(valores):
@@ -218,13 +218,13 @@ def jogadores(ultimos_jogos=0):
     ).get_normalized_dict()["LeagueDashPlayerStats"]
 
 
-def melhores_jogadores(team_id, elenco, elenco5, quantidade=5):
-    """Os jogadores mais produtivos do time (pontos + rebotes + assistências)."""
+def melhores_jogadores(team_id, elenco, elenco5, quantidade=12):
+    """Elenco de rotação: amplia a amostra para categorias defensivas e bolas de três."""
     do_time = [
         j for j in elenco
-        if j["TEAM_ID"] == team_id and j["GP"] >= 3 and j["MIN"] >= 15
+        if j["TEAM_ID"] == team_id and j["GP"] >= 2 and j["MIN"] >= 10
     ]
-    do_time.sort(key=lambda j: j["PTS"] + j["REB"] + j["AST"], reverse=True)
+    do_time.sort(key=lambda j: (j["MIN"], j["PTS"] + j["REB"] + j["AST"]), reverse=True)
     recentes = {j["PLAYER_ID"]: j for j in elenco5}
 
     lista = []
