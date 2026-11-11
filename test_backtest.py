@@ -23,6 +23,29 @@ def linha(data, pts, game_id, minutos="30:00"):
 
 
 class TestBacktest(unittest.TestCase):
+    def test_peso_recente_usa_ultimos_cinco(self):
+        valores = [100, 100, 100, 100, 100, 0, 0, 0, 0, 0]
+        self.assertEqual(backtest.projetar(valores, 1), 0)
+        self.assertEqual(backtest.projetar(valores, 0), 50)
+        self.assertEqual(backtest.projetar_legado(valores), 67.5)
+
+    def test_comparacao_mesma_amostra_sem_antecipar_resultado(self):
+        linhas = [
+            linha(f"NOV {dia:02d}, 2026", 10 if dia <= 5 else 40, dia)
+            for dia in range(1, 8)
+        ]
+        comparacao = backtest.avaliar_comparacao(linhas)
+        modelos = comparacao["por_estatistica"]["pts"]
+        self.assertEqual(len(set(v["previsoes"] for v in modelos.values())), 1)
+        self.assertEqual(modelos["legado"]["previsoes"], 2)
+        self.assertEqual(modelos["peso_0.35"]["previsoes"], 2)
+
+    def test_faixa_minutos_usa_apenas_historico(self):
+        anteriores = [linha(f"NOV {d:02d}, 2026", 10, d, "30:00") for d in range(1, 6)]
+        self.assertEqual(backtest.faixa_minutos_anteriores(anteriores), "estavel")
+        anteriores[-1]["MIN"] = "40:00"
+        self.assertEqual(backtest.faixa_minutos_anteriores(anteriores), "variavel")
+
     def test_converte_data_da_nba_e_iso(self):
         self.assertEqual(
             backtest.data_ordenavel("NOV 11, 2026").strftime("%Y-%m-%d"),
