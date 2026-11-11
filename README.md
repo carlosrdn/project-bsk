@@ -38,3 +38,11 @@ Depois de gerar `backtest_resultados.json`, abra `backtest.html` no navegador
 e selecione esse arquivo. O painel lê o JSON localmente, sem enviar os dados
 para um servidor. É possível filtrar as previsões por categoria e nome do jogador.
 
+## Testes offline
+
+Para validar conversões de data/minutos e as regras walk-forward sem consultar a API:
+
+```bash
+python -m unittest test_backtest.py
+```
+
