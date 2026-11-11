@@ -446,6 +446,25 @@ let ultimaLive=null;
 const estatisticaLive={pts:"PTS",reb:"REB",ast:"AST",tres:"3PT"};
 function nomeNormalizado(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
 function atualizarMensagemLive(msg){const el=$("live-status");if(el)el.textContent=msg;}
+const SIGLAS_ESPN={GS:"GSW",NO:"NOP",NY:"NYK",SA:"SAS",WSH:"WAS",UTAH:"UTA"};
+function siglaESPN(t){const a=String(t||"").toUpperCase();return SIGLAS_ESPN[a]||a;}
+function horaInicioESPN(jogo){
+  const v=jogo.date;
+  if(!v)return "Horário não informado";
+  try{return new Date(v).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",timeZone:"America/Sao_Paulo"});}catch(e){return "Horário não informado";}
+}
+function resumoRodadaESPN(jogos){
+  const el=$("live-games");if(!el)return;
+  if(!jogos.length){el.textContent="A ESPN não retornou partidas para esta rodada.";return;}
+  el.innerHTML=jogos.map(j=>{
+    const c=j.competitions?.[0]?.competitors||[];
+    const casa=c.find(t=>t.homeAway==="home"),fora=c.find(t=>t.homeAway==="away");
+    const status=statusJogoESPN(j);
+    const team=t=>esc(siglaESPN(t?.team?.abbreviation)||"?");
+    const placar=status==="Pré-jogo"?"Início "+horaInicioESPN(j):[fora?.score,casa?.score].every(x=>x!==undefined)?esc(fora.score)+" × "+esc(casa.score):"Placar não disponível";
+    return '<div class="live-game"><strong>'+team(fora)+' × '+team(casa)+'</strong><span>'+esc(status)+' · '+placar+'</span></div>';
+  }).join("");
+}
 function statusJogoESPN(jogo){
   const s=jogo.status?.type?.state;
   return s==="post"?"Final":s==="in"?"Ao vivo":"Pré-jogo";
@@ -477,11 +496,13 @@ async function atualizarAoVivo(){
     const r=await fetch(LIVE_SCOREBOARD+"?dates="+encodeURIComponent(data),{cache:"no-store",signal:AbortSignal.timeout(12000)});
     if(!r.ok)throw Error("Placar HTTP "+r.status);
     const board=await r.json(),jogos=board.events||[];
+    resumoRodadaESPN(jogos);
     const ids=new Set();
+    let naoIniciados=0;
     const mapa=new Map();
     for(const el of elementos){
       const t=el.dataset.liveTeam;
-      const jogo=jogos.find(ev=>(ev.competitions?.[0]?.competitors||[]).some(c=>(c.team?.abbreviation||"").toUpperCase()===t));
+      const jogo=jogos.find(ev=>(ev.competitions?.[0]?.competitors||[]).some(c=>siglaESPN(c.team?.abbreviation)===t));
       if(!jogo){el.textContent="Partida não localizada no placar ESPN.";el.classList.add("error");continue;}
       mapa.set(el,jogo);if(jogo.id&&jogo.status?.type?.state!=="pre")ids.add(jogo.id);
     }
@@ -496,10 +517,10 @@ async function atualizarAoVivo(){
     for(const el of elementos){
       const jogo=mapa.get(el);if(!jogo)continue;
       const status=statusJogoESPN(jogo);
-      if(status==="Pré-jogo"){el.textContent="Pré-jogo · aguardando estatísticas oficiais";el.classList.remove("error");continue;}
+      if(status==="Pré-jogo"){naoIniciados++;el.textContent="Pré-jogo · início "+horaInicioESPN(jogo)+" · estatística ainda não começou";el.classList.remove("error");continue;}
       const resumo=resumos.get(jogo.id);
       const groups=resumo?.boxscore?.players||[];
-      const team=groups.find(g=>(g.team?.abbreviation||"").toUpperCase()===el.dataset.liveTeam);
+      const team=groups.find(g=>siglaESPN(g.team?.abbreviation)===el.dataset.liveTeam);
       const valor=team?valorEstatisticaESPN(team,{nome:el.dataset.livePlayer,categoria:el.dataset.liveStat}):null;
       if(valor!==null){
         encontrados++;
@@ -508,9 +529,9 @@ async function atualizarAoVivo(){
       }else{el.textContent="Estatística não disponível ou jogador não localizado na ESPN.";el.classList.add("error");}
     }
     ultimaLive=new Date();
-    atualizarMensagemLive("Fonte: ESPN · "+jogos.length+" jogos encontrados · "+encontrados+" estatísticas carregadas · consulta "+ultimaLive.toLocaleTimeString("pt-BR")+" · atualização a cada 60 segundos.");
+    atualizarMensagemLive("ESPN · "+jogos.length+" jogos · "+ids.size+" iniciados · "+encontrados+" estatísticas de candidatos encontradas"+(ids.size===0?" · aguardando o início dos jogos":"")+" · atualizado "+ultimaLive.toLocaleTimeString("pt-BR")+" · consulta a cada 60 segundos.");
   }catch(e){
-    atualizarMensagemLive("Não foi possível consultar o placar ESPN neste navegador. Sem dados ao vivo nesta atualização; nenhum resultado foi inventado.");
+    atualizarMensagemLive("Não foi possível consultar a ESPN. O painel mantém os dados estáticos da última coleta, sem inventar estatísticas ao vivo.");
     elementos.forEach(el=>{el.textContent="Dados ao vivo temporariamente indisponíveis";el.classList.add("error");});
   }finally{liveEmCurso=false;}
 }
