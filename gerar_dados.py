@@ -160,9 +160,34 @@ def carregar_contexto_props(geral):
     CONTEXTO.update({"jogos": por_jogador, "nivel_sigla": nivel_sigla, "niveis_id": niveis_id})
 
 
+def minutos_em_decimal(valor):
+    """Converte minutos da NBA (ex.: '34:12') para minutos decimais."""
+    if valor is None:
+        return 0.0
+    if isinstance(valor, (int, float)):
+        return float(valor)
+    texto = str(valor).strip()
+    if not texto:
+        return 0.0
+    if ":" in texto:
+        try:
+            minutos, segundos = texto.split(":", 1)
+            return int(minutos) + int(segundos) / 60
+        except (ValueError, TypeError):
+            return 0.0
+    try:
+        return float(texto)
+    except (ValueError, TypeError):
+        return 0.0
+
+
 def props_do_jogador(player_id):
     """Média, últimos 5, oscilação e rendimento contra times fortes, médios e fracos."""
-    jogos = [j for j in CONTEXTO["jogos"].get(player_id, []) if j["MIN"] and j["MIN"] >= 12]
+    # LeagueGameLog pode entregar MIN como texto no formato MM:SS.
+    jogos = [
+        j for j in CONTEXTO["jogos"].get(player_id, [])
+        if minutos_em_decimal(j.get("MIN")) >= 12
+    ]
     resultado = {}
     for chave, campo in ESTATISTICAS.items():
         valores = [j[campo] for j in jogos]
