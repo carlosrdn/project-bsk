@@ -67,11 +67,14 @@ function chaveEscalacao(t,p){
 }
 
 const STATUS_AUTOMATICOS = new Map();
+const LESOES_AO_VIVO = new Map();
 let statusColetaAutomatica="Aguardando consulta ao feed NBA";
 let escalacaoConsultando=false;
 function automatico(t,p){
   const aoVivo=STATUS_AUTOMATICOS.get(chaveEscalacao(t,p));
   if(aoVivo)return {valor:aoVivo,origem:"NBA · box score"};
+  const lesao=LESOES_AO_VIVO.get(chaveEscalacao(t,p));
+  if(lesao)return {valor:lesao,origem:"ESPN · consulta de lesões recente"};
   const situacao=p.situacao||"Desconhecido";
   // 'Disponível' vem da ausência de alertas no boletim de lesões, não prova escalação.
   if(situacao==="Disponível")return {valor:"Sem confirmação de titularidade",origem:"ESPN · sem alerta de lesão na coleta"};
@@ -496,6 +499,32 @@ async function atualizarAoVivo(){
 if(PAGINA==="melhores")setInterval(atualizarAoVivo,60000);
 
 
+async function consultarLesoesESPN(){
+  try{
+    const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries",{cache:"no-store",signal:AbortSignal.timeout(12000)});
+    if(!r.ok)throw Error("HTTP "+r.status);
+    const dados=await r.json();
+    if(!Array.isArray(dados.injuries))throw Error("Formato de lesões desconhecido");
+    LESOES_AO_VIVO.clear();
+    const apelidos={GS:"GSW",NO:"NOP",NY:"NYK",SA:"SAS",UTAH:"UTA",WSH:"WAS"};
+    for(const time of dados.injuries){
+      for(const item of time.injuries||[]){
+        const a=item.athlete||{}, comentario=(item.shortComment||"").toLowerCase();
+        const cod=a.team?.abbreviation||time.team?.abbreviation||"";
+        const team=apelidos[cod]||cod;
+        const ref=LISTA.flatMap(j=>[j.j.casa,j.j.visitante]).find(t=>t.sigla===team);
+        const jogador=(ref?.jogadores||[]).find(p=>limparNomeNBA(p.nome)===limparNomeNBA(a.displayName));
+        if(!ref||!jogador)continue;
+        let st="Dúvida";
+        if(item.status==="Out"||/ruled out|listed as out|downgraded to out|will not play|won't play/.test(comentario))st="Fora";
+        else if(/doubtful/.test(comentario))st="Provável ausência";
+        else if(/probable/.test(comentario)||item.status==="Probable")st="Provável";
+        LESOES_AO_VIVO.set(chaveEscalacao(ref,jogador),st);
+      }
+    }
+    return true;
+  }catch(e){return false;}
+}
 function limparNomeNBA(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
 async function atualizarEscalacoesAuto(){
   if(escalacaoConsultando||typeof DADOS==="undefined"||!["escalacoes","melhores"].includes(PAGINA))return;
@@ -503,6 +532,7 @@ async function atualizarEscalacoesAuto(){
   statusColetaAutomatica="Consultando box scores da NBA...";
   const el=document.getElementById("auto-status");if(el)el.textContent=statusColetaAutomatica;
   try{
+    const lesoesOk=await consultarLesoesESPN();
     const res=await fetch("https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",{cache:"no-store",signal:AbortSignal.timeout(12000)});
     if(!res.ok)throw Error("HTTP "+res.status);
     const dados=await res.json(),board=dados.scoreboard||{};
@@ -536,11 +566,11 @@ async function atualizarEscalacoesAuto(){
         }
       }catch(e){}
     }));
-    statusColetaAutomatica=jogos.length?
+    statusColetaAutomatica=(lesoesOk?"Lesões ESPN consultadas · ":"Lesões ESPN indisponíveis (usando coleta local) · ")+(jogos.length?
       "NBA: "+confirmados+" jogadores localizados em box scores de "+jogos.length+" partidas iniciadas/finalizadas · consulta "+new Date().toLocaleTimeString("pt-BR")+". Jogadores não localizados mantêm o status da coleta ESPN.":
-      "NBA: partidas ainda não iniciadas, sem titulares confirmados via box score. Lesões seguem a última coleta ESPN.";
+      "NBA: partidas ainda não iniciadas, sem titulares confirmados via box score.");
   }catch(e){
-    statusColetaAutomatica="Feed NBA indisponível nesta conexão. Mantidos os status de lesões do snapshot ESPN; nenhuma escalação inventada.";
+    statusColetaAutomatica="Box score NBA indisponível. Informações de lesões ESPN consultadas quando permitido; demais status permanecem conforme a última coleta. Nenhuma escalação inventada.";
   }finally{
     escalacaoConsultando=false;
     if(PAGINA==="escalacoes")$("central").innerHTML=centralEscalacoes(LISTA);
