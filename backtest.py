@@ -186,7 +186,7 @@ def avaliar(linhas):
                 total_jogos += 1
                 for chave, campo in ESTATISTICAS.items():
                     valores = [float(h[campo] or 0) for h in anteriores]
-                    previsao = projetar(valores)
+                    previsao = projetar_legado(valores)
                     if previsao is None:
                         continue
                     real = float(jogo[campo] or 0)
