@@ -255,3 +255,35 @@ table.pl tbody tr:hover{background:#ffffff05}
   .pick-stat strong{font-size:18px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* Seletor de mercados por confronto: compacto e responsivo */
+.category-browser{border:1px solid var(--line);border-radius:9px;background:#151d26;padding:15px;margin:6px 0 0}
+.category-title{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:5px 14px;margin:0 0 13px}
+.category-title h3{font-size:15px;font-weight:700;letter-spacing:-.2px;margin:0}
+.category-title p{font-size:11px;color:var(--mute);margin:0}
+.category-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch;padding:0 0 10px;margin-bottom:11px}
+.category-tab{flex:0 0 auto;border:1px solid var(--line);background:transparent;color:#b0beca;border-radius:6px;padding:9px 12px;font-size:12px;font-weight:600;min-height:40px}
+.category-tab.on{background:#303e4d;border-color:#8094a7;color:#f8fafc}
+.category-tab:hover{background:#263340}
+.category-desc{font-size:12px;color:var(--mute);line-height:1.5;margin:0 0 13px}
+.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.category-card{min-width:0;padding:13px;border:1px solid var(--line);border-radius:7px;background:#1c2631}
+.category-card.inactive{opacity:.63}
+.category-card-head{display:flex;justify-content:space-between;align-items:start;gap:7px}
+.category-card-head>div{min-width:0}
+.category-card-head strong{display:block;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.category-card-head small{display:block;color:var(--mute);font-size:11px;margin-top:3px}
+.category-card-head .category-average{font-size:22px;font-weight:750;white-space:nowrap;letter-spacing:-.7px}
+.category-meta{display:flex;gap:5px 10px;flex-wrap:wrap;margin-top:11px;font-size:11px;color:#b7c5d2}
+.category-status{font-size:11px;color:#b4c1cd;margin:9px 0 0}
+.category-card.inactive .category-status{color:#dfa5a9}
+.category-note{font-size:11px;color:#c6b89b;margin:8px 0 0}
+@media(max-width:950px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){
+ .category-browser{padding:11px;margin:0 -5px}
+ .category-grid{grid-template-columns:minmax(0,1fr)}
+ .category-tabs{margin:0 -5px 10px;padding:0 5px 10px}
+ .category-tab{font-size:12px;padding:9px 11px}
+ .category-card{padding:12px}
+}
