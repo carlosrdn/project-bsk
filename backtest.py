@@ -47,6 +47,17 @@ def minutos_em_decimal(valor):
         return 0.0
 
 
+def data_ordenavel(valor):
+    """Converte formatos de data da NBA para datetime, sem ordenar texto."""
+    texto = str(valor or "").strip()
+    for formato in ("%b %d, %Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(texto, formato)
+        except ValueError:
+            pass
+    raise ValueError(f"Formato de GAME_DATE não reconhecido: {valor!r}")
+
+
 def media(valores):
     return sum(valores) / len(valores) if valores else None
 
@@ -79,16 +90,16 @@ def avaliar(linhas):
 
     for player_id, jogos in por_jogador.items():
         # Ordenação crescente para caminhar cronologicamente.
-        jogos.sort(key=lambda j: (j["GAME_DATE"], j["GAME_ID"]))
+        jogos.sort(key=lambda j: (data_ordenavel(j["GAME_DATE"]), j["GAME_ID"]))
         historico = []
 
         for jogo in jogos:
-            data_jogo = jogo["GAME_DATE"]
+            data_jogo = data_ordenavel(jogo["GAME_DATE"])
             # Só entram jogos anteriores em outra data. Isso evita que uma
             # segunda partida no mesmo dia contamine a previsão da primeira.
             anteriores = [
                 h for h in historico
-                if h["GAME_DATE"] < data_jogo
+                if data_ordenavel(h["GAME_DATE"]) < data_jogo
                 and minutos_em_decimal(h.get("MIN")) >= MINUTOS_MINIMOS
             ]
 
@@ -103,7 +114,7 @@ def avaliar(linhas):
                     resultados[chave].append({
                         "player_id": player_id,
                         "jogador": jogo.get("PLAYER_NAME", ""),
-                        "data": data_jogo,
+                        "data": data_jogo.strftime("%Y-%m-%d"),
                         "adversario": jogo.get("MATCHUP", ""),
                         "jogos_anteriores": len(valores),
                         "previsao": round(previsao, 2),
