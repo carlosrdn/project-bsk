@@ -264,7 +264,7 @@ function atualizarLinha(el){
 
 
 const NIVEL_NOME = {forte: "Forte", media: "Médio", fraca: "Fraco"};
-const estado = {jogo: 0, aba: "resumo", abertos: {}};
+const estado = {jogo: 0, aba: "resumo", categoria: "pts", abertos: {}};
 let LISTA = [];
 
 function aberta(id, padrao){ return id in estado.abertos ? estado.abertos[id] : padrao; }
@@ -304,6 +304,55 @@ function tabelaJogadores(t){
 const tile = (valor, rotulo) => '<div><b>' + valor + '</b><span>' + rotulo + '</span></div>';
 const picksHtml = (lista, prefixo, vazio) => lista.length ? '<div class="picks-grid">' + lista.map(x => pickHtml(x, prefixo)).join("") + '</div>' : '<p class="msg">' + vazio + '</p>';
 
+
+const CATEGORIAS_JOGADORES=[
+  ["pts","Pontos"],["ast","Assistências"],["reb","Rebotes"],
+  ["tres","Bolas de 3"],["blk","Bloqueios"],["stl","Roubos"]
+];
+function dadosCategoria(p,chave){
+  const d=p.props?.[chave];
+  if(d&&Number.isFinite(d.media)&&d.jogos>=2)return {media:d.media,ultimos5:d.ultimos5,jogos:d.jogos,desvio:d.desvio,comHistorico:true};
+  // Snapshots antigos só têm média de temporada para bloqueios e roubos.
+  if(["blk","stl"].includes(chave)&&Number.isFinite(p[chave]))return {media:p[chave],ultimos5:null,jogos:p.jogos||0,desvio:null,comHistorico:false};
+  return null;
+}
+function cardsCategoria(r,chave,filtroTime){
+  const equipes=[[r.j.visitante,r.j.casa],[r.j.casa,r.j.visitante]];
+  const candidatos=[];
+  for(const [t,o] of equipes){
+    if(filtroTime&&t!==filtroTime)continue;
+    for(const p of t.jogadores||[]){
+      const d=dadosCategoria(p,chave);
+      if(!d)continue;
+      const status=statusEfetivo(t,p);
+      const fora=jogadorIndisponivel(t,p);
+      candidatos.push({t,o,p,d,status,fora});
+    }
+  }
+  // Ranking por média da temporada e minutos; não confundir com chance de Over.
+  candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.d.media-a.d.media||(b.p.minutos||0)-(a.p.minutos||0));
+  const visiveis=candidatos.slice(0,18);
+  if(!visiveis.length)return '<div class="empty">Sem dados suficientes para esta categoria nesta coleta.</div>';
+  const info='<p class="category-desc">Jogadores ordenados pela média da temporada 2026–27. Isto é uma lista de análise, não uma recomendação de aposta. '+(chave==="blk"||chave==="stl"?'Bloqueios e roubos usam a média geral quando o histórico individual ainda não consta no arquivo.':'Compare a média e a forma recente antes de escolher uma linha real.')+'</p>';
+  const cards=visiveis.map(({t,p,d,status,fora})=>{
+    const pendente=status==="Sem confirmação de titularidade";
+    const linha='Média '+f1(d.media);
+    return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div><strong class="category-average">'+f1(d.media)+'</strong></div>'+
+      '<div class="category-meta"><span>'+linha+'</span><span>'+d.jogos+' jogos</span>'+(d.ultimos5!=null?'<span>Últimos 5: '+f1(d.ultimos5)+'</span>':'<span>Últimos 5: indisponível</span>')+'</div>'+
+      '<p class="category-status">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+
+      (!d.comHistorico?'<p class="category-note">Média agregada; histórico detalhado será incluído na próxima coleta.</p>':'')+
+      '</article>';
+  }).join("");
+  return info+'<div class="category-grid">'+cards+'</div>';
+}
+function painelCategorias(r, filtroTime){
+  const selecionada=estado.categoria;
+  const abas='<div class="category-tabs" role="tablist" aria-label="Escolher estatística do jogador">'+CATEGORIAS_JOGADORES.map(([chave,nome])=>
+    '<button type="button" role="tab" aria-selected="'+(selecionada===chave)+'" class="category-tab'+(selecionada===chave?' on':'')+'" data-categoria="'+chave+'">'+nome+'</button>'
+  ).join("")+'</div>';
+  const titulo=CATEGORIAS_JOGADORES.find(x=>x[0]===selecionada)?.[1]||"Pontos";
+  return '<div class="category-browser"><div class="category-title"><h3>Melhores opções de jogadores</h3><p>'+esc(filtroTime?filtroTime.sigla+" · ":"")+esc(titulo)+' · até 18 atletas por categoria</p></div>'+abas+cardsCategoria(r,selecionada,filtroTime)+'</div>';
+}
 function abaResumo(r, i){
   const c = r.j.casa, v = r.j.visitante, p = "j" + i + "-r-";
   const tiles = '<div class="nums">' + tile(Math.round(r.sv) + " x " + Math.round(r.sc), "Placar projetado (visitante x casa)") +
@@ -318,7 +367,7 @@ function abaResumo(r, i){
     lin("Nível do time", NIVEL_NOME[v.nivel] || "-", NIVEL_NOME[c.nivel] || "-") +
     lin("Impacto das ausências", imp(r.impV), imp(r.impC)) + '</tbody></table></div>';
   return tiles + secao(p + "comp", "Comparativo dos times", comp) +
-    secao(p + "op", "Candidatos do radar neste jogo", picksHtml(opcoesDoJogo(r).slice(0, 4), "j", "Sem candidatos suficientes neste jogo."));
+    secao(p + "op", "Opções por estatística", painelCategorias(r,null));
 }
 
 function abaTime(r, i, ehCasa){
@@ -329,8 +378,7 @@ function abaTime(r, i, ehCasa){
     tile(t.vitorias + "-" + t.derrotas, "Campanha") + tile(t.vitorias_ultimos_10 + " em " + Math.min(t.jogos, 10), "Vitórias nos últimos jogos") +
     tile(f1(t.ataque) + " / " + f1(t.defesa), "Ataque / defesa") + tile(NIVEL_NOME[t.nivel] || "-", "Nível do time") +
     (imp > 0.05 ? tile("-" + f1(imp) + " pts", "Impacto das ausências") : "") + '</div>';
-  const ops = opcoesDoJogo(r).filter(x => x.t === t).slice(0, 5);
-  let html = tiles + secao(p + "op", "Melhores opções de jogadores: " + esc(t.sigla), picksHtml(ops, "t", "Sem opções com vantagem clara para este time."));
+  let html = tiles + secao(p + "op", "Melhores opções de jogadores: " + esc(t.sigla), painelCategorias(r,t));
   if ((t.ausencias || []).length) html += secao(p + "au", "Ausências e dúvidas" + (imp > 0.05 ? " (impacto estimado: -" + f1(imp) + " pts)" : ""), tabelaAusencias(t));
   if ((t.jogadores || []).length) html += secao(p + "jg", "Estatísticas dos jogadores", tabelaJogadores(t), false);
   return html;
@@ -406,7 +454,12 @@ document.addEventListener("click", e => {
     return;
   }
   const jt = alvo.closest("[data-jogo]");
-  if (jt && PAGINA==="jogos") { estado.jogo = Number(jt.dataset.jogo); estado.aba = "resumo"; renderJogos(); return; }
+  if (jt && PAGINA==="jogos") { estado.jogo = Number(jt.dataset.jogo); estado.aba = "resumo"; estado.categoria="pts"; renderJogos(); return; }
+  const categoria=alvo.closest("[data-categoria]");
+  if(categoria && PAGINA==="jogos"){
+    estado.categoria=categoria.dataset.categoria;
+    renderJogos();return;
+  }
   const at = alvo.closest("[data-aba]");
   if (at && PAGINA==="jogos") { estado.aba = at.dataset.aba; renderJogos(); return; }
   const auto=alvo.closest("[data-auto-refresh]"); if(auto){atualizarEscalacoesAuto();return;}
