@@ -46,3 +46,9 @@ Para validar conversões de data/minutos e as regras walk-forward sem consultar 
 python -m unittest test_backtest.py
 ```
 
+
+## Comparação dos pesos recentes
+
+O backtest também gera `comparacao_modelos` no JSON, comparando pesos 0%, 20%, 35%, 50%, 75% e 100% para os cinco jogos anteriores mais recentes, sempre usando os mesmos jogos válidos. Inclui segmentação de jogadores conforme variação dos minutos nos últimos cinco jogos anteriores (estável: amplitude até cinco minutos; variável: acima disso).
+
+**Correção importante:** a primeira versão selecionava os cinco jogos *mais antigos* como recentes. Para não apagar essa referência, o campo `estatisticas` mantém as projeções legadas, e a seção `comparacao_modelos` apresenta tanto o legado quanto as variantes corrigidas. A correção fica no cálculo `projetar()`; o objetivo é comparar os resultados antes de mudar o painel principal. Os pesos explorados não foram validados num período independente. Não interpretar diferenças retrospectivas como garantia de retorno ou melhora futura.
