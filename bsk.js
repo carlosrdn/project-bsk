@@ -65,31 +65,48 @@ try { const raw=JSON.parse(localStorage.getItem(STATUS_KEY)||"{}"); if(raw && ty
 function chaveEscalacao(t,p){
   return (typeof DADOS==="undefined"?"":DADOS.data_jogos)+"|"+t.sigla+"|"+p.nome;
 }
+
+const STATUS_AUTOMATICOS = new Map();
+let statusColetaAutomatica="Aguardando consulta ao feed NBA";
+let escalacaoConsultando=false;
+function automatico(t,p){
+  const aoVivo=STATUS_AUTOMATICOS.get(chaveEscalacao(t,p));
+  if(aoVivo)return {valor:aoVivo,origem:"NBA · box score"};
+  const situacao=p.situacao||"Desconhecido";
+  // 'Disponível' vem da ausência de alertas no boletim de lesões, não prova escalação.
+  if(situacao==="Disponível")return {valor:"Sem confirmação de titularidade",origem:"ESPN · sem alerta de lesão na coleta"};
+  return {valor:situacao,origem:"ESPN · boletim de lesões da última coleta"};
+}
 function statusManual(t,p){
   return STATUS_MANUAIS.includes(STATUS_SALVOS[chaveEscalacao(t,p)])?STATUS_SALVOS[chaveEscalacao(t,p)]:"Não verificado";
 }
-function statusEfetivo(t,p){
+function statusInfo(t,p){
   const manual=statusManual(t,p);
-  return manual==="Não verificado" ? (p.situacao||"Desconhecido") : manual;
+  return manual!=="Não verificado"?{valor:manual,origem:"Ajuste manual"}:automatico(t,p);
 }
+function statusEfetivo(t,p){return statusInfo(t,p).valor;}
 function jogadorIndisponivel(t,p){
-  const s=statusEfetivo(t,p);
-  return ["Fora","Improvável","Provável ausência"].includes(s);
+  return ["Fora","Improvável","Provável ausência"].includes(statusEfetivo(t,p));
 }
 function centralEscalacoes(lista){
   const times=new Map();
   lista.forEach(r=>[r.j.visitante,r.j.casa].forEach(t=>times.set(t.sigla,t)));
-  const marcados=Array.from(times.values()).reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
-  const texto='<div class="central-top"><div><p class="eyebrow">Informações sob seu controle</p><h2>Central de escalações</h2><p class="sub">Marque manualmente a disponibilidade dos atletas listados. As informações são salvas apenas neste navegador e valem para a data desta rodada. Sem RotoWire ou coleta de sites externos.</p></div><span class="central-count">'+marcados+' status registrados</span></div>';
-  const equipes=Array.from(times.values()).map(t=>{
+  const todos=Array.from(times.values());
+  const verificados=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>STATUS_AUTOMATICOS.has(chaveEscalacao(t,p))).length,0);
+  const manuais=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
+  const texto='<div class="central-top"><div><p class="eyebrow">Fonte automática · ajustes opcionais</p><h2>Central de escalações</h2><p class="sub">O BSK identifica lesões no snapshot ESPN e tenta confirmar titulares pela NBA quando o box score estiver disponível. Você só precisa alterar manualmente se quiser corrigir algum status.</p></div><span class="central-count">'+verificados+' NBA · '+manuais+' manuais</span></div>';
+  const equipes=todos.map(t=>{
     const jogadores=(t.jogadores||[]).map(p=>{
-      const escolhido=statusManual(t,p);
-      const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(v===escolhido?' selected':'')+'>'+esc(v)+'</option>').join("");
-      return '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small>Dados importados: '+esc(p.situacao||"sem status")+' · '+f1(p.minutos||0)+' min/jogo</small></div><select aria-label="Status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></div>';
+      const escolhido=statusManual(t,p),inf=statusInfo(t,p);
+      const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(v===escolhido?' selected':'')+'>'+(v==="Não verificado"?"Automático (padrão)":esc(v))+'</option>').join("");
+      return '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small><strong>'+esc(inf.valor)+'</strong> · '+esc(inf.origem)+'</small></div><details class="override"><summary>Corrigir</summary><select aria-label="Correção do status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></details></div>';
     }).join("");
-    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+(jogadores||'<p class="sub">Sem jogadores disponíveis no resumo.</p>')+'</div>';
+    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+(jogadores||'<p class="sub">Sem atletas neste resumo.</p>')+'</div>';
   }).join("");
-  return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+texto+'<div class="central-tools" style="margin-top:12px"><button type="button" data-limpar-status>Limpar registros desta rodada</button></div><div class="central-grid">'+equipes+'</div><p class="central-info">A lista contém somente atletas já incluídos nos dados atuais do BSK; não é uma escalação completa ou oficial. Seleções com status não verificado exigem cautela. Alterar um status não recalcula automaticamente redistribuição de minutos ou produção de companheiros.</p></div></section>';
+  return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+texto+
+    '<div class="central-tools" style="margin-top:12px"><button type="button" data-auto-refresh>Atualizar NBA agora</button><button type="button" data-limpar-status>Limpar correções manuais</button></div>'+
+    '<p class="central-info" id="auto-status">'+esc(statusColetaAutomatica)+'</p>'+
+    '<div class="central-grid">'+equipes+'</div><p class="central-info">A lista contém somente os jogadores já incluídos nos dados do BSK — não o elenco completo. Antes do jogo, falta de alerta de lesão não significa titular confirmado. O feed NBA pode ser bloqueado no navegador; nesse caso, continua visível a última coleta ESPN. Nenhum ajuste de minutos é inferido automaticamente.</p></div></section>';
 }
 function salvarStatus(key,value){
   if(!STATUS_MANUAIS.includes(value))return;
@@ -139,8 +156,8 @@ function projetar(chave, d, t, o, r, ehCasa, bump){
 function elegibilidade(q){
   const alertas=[];
   const situacao=statusEfetivo(q.t,q.p);
-  if(statusManual(q.t,q.p)==="Não verificado") alertas.push("Escalação ainda não verificada manualmente");
-  if(!["Disponível","Titular confirmado","Disponível confirmado"].includes(situacao)) alertas.push("Situação do jogador: "+situacao);
+  if(situacao==="Sem confirmação de titularidade") alertas.push("Titularidade pendente; sem alerta de lesão na última coleta");
+  if(!["Sem confirmação de titularidade","Disponível","Titular confirmado","Disponível confirmado","Banco confirmado"].includes(situacao)) alertas.push("Situação do jogador: "+situacao);
   if(q.d.jogos < 8) alertas.push("Amostra pequena (" + q.d.jogos + " jogos)");
   if(q.d.jogos >= 8 && q.d.jogos < 12) alertas.push("Histórico ainda curto");
   if(q.r.j.casa.ausencias == null || q.r.j.visitante.ausencias == null) alertas.push("Desfalques não verificados");
@@ -386,6 +403,7 @@ document.addEventListener("click", e => {
   if (jt && PAGINA==="jogos") { estado.jogo = Number(jt.dataset.jogo); estado.aba = "resumo"; renderJogos(); return; }
   const at = alvo.closest("[data-aba]");
   if (at && PAGINA==="jogos") { estado.aba = at.dataset.aba; renderJogos(); return; }
+  const auto=alvo.closest("[data-auto-refresh]"); if(auto){atualizarEscalacoesAuto();return;}
   const atualizar=alvo.closest("[data-live-refresh]"); if(atualizar){atualizarAoVivo();return;}
   const tudo = alvo.closest("[data-tudo]");
   if (tudo) {
@@ -476,5 +494,62 @@ async function atualizarAoVivo(){
   }finally{liveEmCurso=false;}
 }
 if(PAGINA==="melhores")setInterval(atualizarAoVivo,60000);
+
+
+function limparNomeNBA(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
+async function atualizarEscalacoesAuto(){
+  if(escalacaoConsultando||typeof DADOS==="undefined"||!["escalacoes","melhores"].includes(PAGINA))return;
+  escalacaoConsultando=true;
+  statusColetaAutomatica="Consultando box scores da NBA...";
+  const el=document.getElementById("auto-status");if(el)el.textContent=statusColetaAutomatica;
+  try{
+    const res=await fetch("https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",{cache:"no-store",signal:AbortSignal.timeout(12000)});
+    if(!res.ok)throw Error("HTTP "+res.status);
+    const dados=await res.json(),board=dados.scoreboard||{};
+    if(board.gameDate!==DADOS.data_jogos) {
+      statusColetaAutomatica="O feed da NBA está em "+(board.gameDate||"outra data")+", mas esta coleta é de "+DADOS.data_jogos+". Não foram misturadas rodadas.";
+      return;
+    }
+    const jogos=(board.games||[]).filter(j=>[2,3].includes(Number(j.gameStatus)));
+    let confirmados=0;
+    // Buscamos apenas partidas em andamento/finalizadas. 'starter' não é inferido no pré-jogo.
+    await Promise.all(jogos.map(async jogo=>{
+      try{
+        const r=await fetch("https://cdn.nba.com/static/json/liveData/boxscore/boxscore_"+encodeURIComponent(jogo.gameId)+".json",{cache:"no-store",signal:AbortSignal.timeout(12000)});
+        if(!r.ok)return;
+        const game=(await r.json()).game||{};
+        for(const lado of ["homeTeam","awayTeam"]){
+          const team=game[lado];if(!team?.teamTricode)continue;
+          const referencia=LISTA.flatMap(x=>[x.j.casa,x.j.visitante]).find(t=>t.sigla===team.teamTricode);
+          if(!referencia)continue;
+          for(const p of referencia.jogadores||[]){
+            const jogador=(team.players||[]).find(x=>limparNomeNBA(x.name)===limparNomeNBA(p.nome));
+            if(!jogador)continue;
+            const val=jogador.starter===true||String(jogador.starter)==="1"?"Titular confirmado":"Banco confirmado";
+            STATUS_AUTOMATICOS.set(chaveEscalacao(referencia,p),val);
+            confirmados++;
+          }
+        }
+      }catch(e){}
+    }));
+    statusColetaAutomatica=jogos.length?
+      "NBA: "+confirmados+" jogadores localizados em box scores de "+jogos.length+" partidas iniciadas/finalizadas · consulta "+new Date().toLocaleTimeString("pt-BR")+". Jogadores não localizados mantêm o status da coleta ESPN.":
+      "NBA: partidas ainda não iniciadas, sem titulares confirmados via box score. Lesões seguem a última coleta ESPN.";
+  }catch(e){
+    statusColetaAutomatica="Feed NBA indisponível nesta conexão. Mantidos os status de lesões do snapshot ESPN; nenhuma escalação inventada.";
+  }finally{
+    escalacaoConsultando=false;
+    if(PAGINA==="escalacoes")$("central").innerHTML=centralEscalacoes(LISTA);
+    if(PAGINA==="melhores"){
+      $("dest").innerHTML=destaques(LISTA);
+      document.querySelectorAll("input[data-k]").forEach(el=>{if(el.value)atualizarLinha(el);});
+      atualizarAoVivo();
+    }
+  }
+}
+if(["escalacoes","melhores"].includes(PAGINA)){
+  setInterval(atualizarEscalacoesAuto,90000);
+  setTimeout(atualizarEscalacoesAuto,100);
+}
 
 render();
