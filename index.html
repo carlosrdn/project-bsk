@@ -32,6 +32,22 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}main{max-width:144
 #painel .pick{background:#17263c}#painel .pick h3{font-size:16px}
 #painel .pick .pick-stat strong{font-size:19px}
 @media(max-width:700px){#painel .picks-grid{grid-template-columns:1fr}.picks-grid>.pick:only-child{grid-column:auto}}
+
+/* Central de escalações manual, independente de sites de terceiros */
+.central-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.central-top h2{margin:0;font-size:20px}.central-top .sub{max-width:780px}
+.central-tools{display:flex;gap:8px;align-items:center}
+.central-tools button{border:1px solid #38536f;background:#1b3048;color:#d7e8ff;padding:7px 11px;border-radius:9px;font-size:12px}
+.central-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
+.central-team{border:1px solid #304660;border-radius:12px;background:#0e1b2d;padding:13px}
+.central-team h3{font-size:15px;margin:0 0 9px}
+.central-row{display:grid;grid-template-columns:minmax(0,1fr) 142px;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #23384e}
+.central-player{min-width:0}.central-player b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.central-player small{display:block;color:var(--mute);font-size:11px}
+.central-row select{width:100%;border:1px solid #3b536c;border-radius:8px;background:#172b42;color:var(--ink);padding:8px 6px;font:inherit;font-size:12px}
+.central-info{font-size:12px;color:#a9bdd6;margin:9px 0 0}
+.central-count{padding:3px 9px;border-radius:20px;border:1px solid #3b5672;font-size:11px;color:#afc9e9}
+@media(max-width:700px){.central-grid{grid-template-columns:1fr}.central-row{grid-template-columns:minmax(0,1fr) 133px}}
 </style>
 </head>
 <body>
@@ -53,6 +69,7 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}main{max-width:144
 </section>
 
 <section class="hero"><div><p class="eyebrow">Radar de oportunidades · Temporada atual</p><h2>Melhores do dia, com critério.</h2><p>Avaliação independente de jogadores, contexto dos confrontos e riscos. As linhas de referência são estimativas: confira a linha real antes de considerar qualquer seleção.</p></div><span class="hero-tag">● Dados + análise de risco</span></section>
+<div id="central"></div>
 <div id="dest"></div>
 <div class="games-head"><h2 class="section-title">Confrontos da rodada</h2><p>Selecione um jogo para explorar</p></div>
 <nav id="jogos" class="gts" role="tablist" aria-label="Jogos do dia"></nav>
@@ -120,6 +137,46 @@ const ROTULO = {pts: "pontos", reb: "rebotes", ast: "assistências", tres: "bola
 const NIVEL_TXT = {forte: "mais fortes", media: "do mesmo nível", fraca: "mais fracos"};
 const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
 const LINHAS = {};
+const STATUS_MANUAIS = ["Não verificado","Titular confirmado","Disponível confirmado","Provável","Questionável","Improvável","Fora"];
+const STATUS_KEY = "bsk-escalações-v1";
+let STATUS_SALVOS = {};
+try { const raw=JSON.parse(localStorage.getItem(STATUS_KEY)||"{}"); if(raw && typeof raw==="object" && !Array.isArray(raw)) STATUS_SALVOS=raw; } catch(e) {}
+function chaveEscalacao(t,p){
+  return (typeof DADOS==="undefined"?"":DADOS.data_jogos)+"|"+t.sigla+"|"+p.nome;
+}
+function statusManual(t,p){
+  return STATUS_MANUAIS.includes(STATUS_SALVOS[chaveEscalacao(t,p)])?STATUS_SALVOS[chaveEscalacao(t,p)]:"Não verificado";
+}
+function statusEfetivo(t,p){
+  const manual=statusManual(t,p);
+  return manual==="Não verificado" ? (p.situacao||"Desconhecido") : manual;
+}
+function jogadorIndisponivel(t,p){
+  const s=statusEfetivo(t,p);
+  return ["Fora","Improvável","Provável ausência"].includes(s);
+}
+function centralEscalacoes(lista){
+  const times=new Map();
+  lista.forEach(r=>[r.j.visitante,r.j.casa].forEach(t=>times.set(t.sigla,t)));
+  const marcados=Array.from(times.values()).reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
+  const texto='<div class="central-top"><div><p class="eyebrow">Informações sob seu controle</p><h2>Central de escalações</h2><p class="sub">Marque manualmente a disponibilidade dos atletas listados. As informações são salvas apenas neste navegador e valem para a data desta rodada. Sem RotoWire ou coleta de sites externos.</p></div><span class="central-count">'+marcados+' status registrados</span></div>';
+  const equipes=Array.from(times.values()).map(t=>{
+    const jogadores=(t.jogadores||[]).map(p=>{
+      const escolhido=statusManual(t,p);
+      const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(v===escolhido?' selected':'')+'>'+esc(v)+'</option>').join("");
+      return '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small>Dados importados: '+esc(p.situacao||"sem status")+' · '+f1(p.minutos||0)+' min/jogo</small></div><select aria-label="Status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></div>';
+    }).join("");
+    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+(jogadores||'<p class="sub">Sem jogadores disponíveis no resumo.</p>')+'</div>';
+  }).join("");
+  return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+texto+'<div class="central-tools" style="margin-top:12px"><button type="button" data-limpar-status>Limpar registros desta rodada</button></div><div class="central-grid">'+equipes+'</div><p class="central-info">A lista contém somente atletas já incluídos nos dados atuais do BSK; não é uma escalação completa ou oficial. Seleções com status não verificado exigem cautela. Alterar um status não recalcula automaticamente redistribuição de minutos ou produção de companheiros.</p></div></section>';
+}
+function salvarStatus(key,value){
+  if(!STATUS_MANUAIS.includes(value))return;
+  if(value==="Não verificado")delete STATUS_SALVOS[key];
+  else STATUS_SALVOS[key]=value;
+  try{localStorage.setItem(STATUS_KEY,JSON.stringify(STATUS_SALVOS));}catch(e){}
+}
+
 const MIN_MEDIA = {pts: 8, reb: 3.5, ast: 2.5, tres: 1.5};  // ignora estatísticas de baixo volume
 
 function desvioPrior(chave, m){
@@ -160,7 +217,9 @@ function projetar(chave, d, t, o, r, ehCasa, bump){
 
 function elegibilidade(q){
   const alertas=[];
-  if(q.p.situacao && q.p.situacao !== "Disponível") alertas.push("Situação do jogador: " + q.p.situacao);
+  const situacao=statusEfetivo(q.t,q.p);
+  if(statusManual(q.t,q.p)==="Não verificado") alertas.push("Escalação ainda não verificada manualmente");
+  if(!["Disponível","Titular confirmado","Disponível confirmado"].includes(situacao)) alertas.push("Situação do jogador: "+situacao);
   if(q.d.jogos < 8) alertas.push("Amostra pequena (" + q.d.jogos + " jogos)");
   if(q.d.jogos >= 8 && q.d.jogos < 12) alertas.push("Histórico ainda curto");
   if(q.r.j.casa.ausencias == null || q.r.j.visitante.ausencias == null) alertas.push("Desfalques não verificados");
@@ -184,7 +243,7 @@ function opcoesDoJogo(r){
     const bumps=bumpsTime(t);
     const top3=(t.jogadores||[]).slice().sort((a,b)=>b.pts-a.pts).slice(0,3).map(p=>p.nome);
     (t.jogadores||[]).forEach(p=>{
-      if(!p.props || p.situacao==="Fora" || p.situacao==="Provável ausência") return;
+      if(!p.props || jogadorIndisponivel(t,p)) return;
       ["pts","reb","ast","tres"].forEach(chave=>{
         const d=p.props[chave];
         if(!d || d.jogos<5 || d.media<MIN_MEDIA[chave]) return;
@@ -375,6 +434,7 @@ function render(){
   if (!DADOS.jogos.length) { $("painel").innerHTML = '<p class="msg">Nenhum jogo encontrado para hoje.</p>'; return; }
   LISTA = DADOS.jogos.map(j => analisar(j, DADOS.media_liga)).sort((a, b) => a.j.horario_utc < b.j.horario_utc ? -1 : a.j.horario_utc > b.j.horario_utc ? 1 : 0);
   if (estado.jogo >= LISTA.length) estado.jogo = 0;
+  $("central").innerHTML = centralEscalacoes(LISTA);
   $("dest").innerHTML = destaques(LISTA);
   renderJogos();
 }
@@ -382,6 +442,13 @@ function render(){
 document.addEventListener("click", e => {
   const alvo = e.target && e.target.closest ? e.target : null;
   if (!alvo) return;
+  const limpar=alvo.closest("[data-limpar-status]");
+  if(limpar){
+    const data=DADOS.data_jogos+"|";
+    Object.keys(STATUS_SALVOS).filter(k=>k.startsWith(data)).forEach(k=>delete STATUS_SALVOS[k]);
+    try{localStorage.setItem(STATUS_KEY,JSON.stringify(STATUS_SALVOS));}catch(e){}
+    render();return;
+  }
   const sh = alvo.closest(".sh");
   if (sh) {
     const sec = sh.parentElement, fechada = sec.classList.toggle("fechada");
@@ -401,6 +468,14 @@ document.addEventListener("click", e => {
       sec.querySelector(".sh").setAttribute("aria-expanded", String(abrir));
       estado.abertos[sec.dataset.id] = abrir;
     });
+  }
+});
+
+document.addEventListener("change",e=>{
+  const el=e.target;
+  if(el && el.matches && el.matches("[data-status-player]")){
+    salvarStatus(el.dataset.statusPlayer,el.value);
+    render();
   }
 });
 
