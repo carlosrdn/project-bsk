@@ -525,7 +525,11 @@ async function atualizarEscalacoesAuto(){
           for(const p of referencia.jogadores||[]){
             const jogador=(team.players||[]).find(x=>limparNomeNBA(x.name)===limparNomeNBA(p.nome));
             if(!jogador)continue;
-            const val=jogador.starter===true||String(jogador.starter)==="1"?"Titular confirmado":"Banco confirmado";
+            const titular=jogador.starter===true||String(jogador.starter)==="1";
+            const participou=jogador.played===true||String(jogador.played)==="1";
+            // Nem todo nome no box score jogou: DNP/inativo não comprova disponibilidade.
+            if(!titular&&!participou)continue;
+            const val=titular?"Titular confirmado":"Disponível confirmado";
             STATUS_AUTOMATICOS.set(chaveEscalacao(referencia,p),val);
             confirmados++;
           }
