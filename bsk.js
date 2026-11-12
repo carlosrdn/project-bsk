@@ -91,23 +91,69 @@ function statusEfetivo(t,p){return statusInfo(t,p).valor;}
 function jogadorIndisponivel(t,p){
   return ["Fora","Improvável","Provável ausência"].includes(statusEfetivo(t,p));
 }
+
+const POSICOES_ESPN=new Map(), AUSENCIAS_ESPN=new Map();
+function posicaoNormalizada(x){
+ const s=String(x||"").toUpperCase().trim();
+ return ({"POINT GUARD":"PG","SHOOTING GUARD":"SG","SMALL FORWARD":"SF","POWER FORWARD":"PF","CENTER":"C","GUARD":"G","FORWARD":"F"})[s]||s;
+}
+function posicaoJogador(t,p){return posicaoNormalizada(POSICOES_ESPN.get(chaveEscalacao(t,p))||p.posicao||"");}
+function posicoesCompativeis(a,b){
+ a=posicaoNormalizada(a);b=posicaoNormalizada(b);
+ return !!a&&!!b&&(a===b||(a==="G"&&["PG","SG"].includes(b))||(b==="G"&&["PG","SG"].includes(a))||(a==="F"&&["SF","PF"].includes(b))||(b==="F"&&["SF","PF"].includes(a)));
+}
+function ausenciasConfirmadas(t){
+ const lista=new Map();
+ (t.ausencias||[]).filter(x=>x.situacao==="Fora").forEach(a=>lista.set(nomeNormalizado(a.nome),{nome:a.nome,posicao:a.posicao||""}));
+ (t.jogadores||[]).forEach(p=>{
+  const key=nomeNormalizado(p.nome);
+  if(statusEfetivo(t,p)==="Fora")lista.set(key,{nome:p.nome,posicao:posicaoJogador(t,p)});
+  else if(statusManual(t,p)!=="Não verificado")lista.delete(key);
+ });
+ for(const [key,a] of AUSENCIAS_ESPN)if(key.startsWith(DADOS.data_jogos+"|"+t.sigla+"|")){
+  const jogador=(t.jogadores||[]).find(p=>nomeNormalizado(p.nome)===nomeNormalizado(a.nome));
+  if(!jogador||statusManual(t,jogador)==="Não verificado")lista.set(nomeNormalizado(a.nome),a);
+ }
+ return [...lista.values()];
+}
+function quadroSubstituicoes(t){
+ const ausentes=ausenciasConfirmadas(t);
+ if(!ausentes.length)return "";
+ const blocos=ausentes.map(a=>{
+  const elegiveis=(t.jogadores||[]).filter(p=>nomeNormalizado(p.nome)!==nomeNormalizado(a.nome)&&!jogadorIndisponivel(t,p));
+  const compat=a.posicao?elegiveis.filter(p=>posicoesCompativeis(a.posicao,posicaoJogador(t,p))):[];
+  const candidatas=(compat.length?compat:elegiveis).slice().sort((a,b)=>
+   Number(statusEfetivo(t,b)==="Titular confirmado")-Number(statusEfetivo(t,a)==="Titular confirmado")||
+   (b.minutos||0)-(a.minutos||0)).slice(0,3);
+  const jogadores=candidatas.map(p=>{
+   const titular=statusEfetivo(t,p)==="Titular confirmado";
+   return '<div class="replacement-player"><b>'+esc(p.nome)+'</b><small>'+
+    esc(titular?"Titular confirmado":compat.length?"Candidato por posição e minutos":"Alternativa de rotação · posição não verificada")+
+    ' · '+f1(p.minutos||0)+' min/jogo</small></div>';
+  }).join("");
+  return '<div class="replacement-block"><p><b>'+esc(a.nome)+'</b> · Fora'+(a.posicao?' · '+esc(a.posicao):'')+'</p>'+
+   (jogadores||'<p class="central-info">Sem substituto identificado nos dados disponíveis.</p>')+
+   '<small>Estimativa de rotação, não substituição oficial.</small></div>';
+ }).join("");
+ return '<div class="replacement-area"><h4>Desfalques e possíveis substitutos</h4>'+blocos+'</div>';
+}
 function centralEscalacoes(lista){
   const times=new Map();
   lista.forEach(r=>[r.j.visitante,r.j.casa].forEach(t=>times.set(t.sigla,t)));
   const todos=Array.from(times.values());
   const verificados=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>STATUS_AUTOMATICOS.has(chaveEscalacao(t,p))).length,0);
   const manuais=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
-  const texto='<div class="central-top"><div><p class="eyebrow">Fonte automática · ajustes opcionais</p><h2>Central de escalações</h2><p class="sub">O BSK identifica lesões no snapshot ESPN e tenta confirmar titulares pela NBA quando o box score estiver disponível. Você só precisa alterar manualmente se quiser corrigir algum status.</p></div><span class="central-count">'+verificados+' NBA · '+manuais+' manuais</span></div>';
+  const texto='<div class="central-top"><div><p class="eyebrow">Fonte automática · ajustes opcionais</p><h2>Central de escalações</h2><p class="sub">O BSK identifica lesões no snapshot ESPN e confirma titulares pela ESPN quando o box score estiver disponível. Você só precisa alterar manualmente se quiser corrigir algum status.</p></div><span class="central-count">'+verificados+' NBA · '+manuais+' manuais</span></div>';
   const equipes=todos.map(t=>{
     const jogadores=(t.jogadores||[]).map(p=>{
       const escolhido=statusManual(t,p),inf=statusInfo(t,p);
       const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(v===escolhido?' selected':'')+'>'+(v==="Não verificado"?"Automático (padrão)":esc(v))+'</option>').join("");
       return '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small><strong>'+esc(inf.valor)+'</strong> · '+esc(inf.origem)+'</small></div><details class="override"><summary>Corrigir</summary><select aria-label="Correção do status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></details></div>';
     }).join("");
-    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+(jogadores||'<p class="sub">Sem atletas neste resumo.</p>')+'</div>';
+    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+quadroSubstituicoes(t)+(jogadores||'<p class="sub">Sem atletas neste resumo.</p>')+'</div>';
   }).join("");
   return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+texto+
-    '<div class="central-tools" style="margin-top:12px"><button type="button" data-auto-refresh>Atualizar NBA agora</button><button type="button" data-limpar-status>Limpar correções manuais</button></div>'+
+    '<div class="central-tools" style="margin-top:12px"><button type="button" data-auto-refresh>Atualizar ESPN agora</button><button type="button" data-limpar-status>Limpar correções manuais</button></div>'+
     '<p class="central-info" id="auto-status">'+esc(statusColetaAutomatica)+'</p>'+
     '<div class="central-grid">'+equipes+'</div><p class="central-info">A lista contém somente os jogadores já incluídos nos dados do BSK — não o elenco completo. Antes do jogo, falta de alerta de lesão não significa titular confirmado. O feed NBA pode ser bloqueado no navegador; nesse caso, continua visível a última coleta ESPN. Nenhum ajuste de minutos é inferido automaticamente.</p></div></section>';
 }
