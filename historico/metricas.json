@@ -10,6 +10,15 @@
     "taxa_acerto": null,
     "erro_absoluto_medio": null
   },
+  "jogos": {
+    "total": 0,
+    "vencedor_acertado": 0,
+    "vencedor_errado": 0,
+    "taxa_acerto_vencedor": null,
+    "limites_atingidos": 0,
+    "limites_nao_atingidos": 0,
+    "mae_pontos_equipes": null
+  },
   "mercados": {},
   "contextos": {}
 }
