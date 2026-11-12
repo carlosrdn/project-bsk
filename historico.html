@@ -115,6 +115,12 @@ async function json(url){
 const GAME_VIEWS=new Map();
 const GAME_OPEN=new Set();
 function gameKey(g){return [g.date,g.start_utc,g.away,g.home].join("|");}
+function statusLimite(alvo,acertou,concluido){
+ if(!alvo||alvo.direction!=="acima_de"||!Number.isFinite(alvo.threshold))return "";
+ const status=!concluido?"Aguardando final":acertou===true?"ACERTOU":acertou===false?"NÃO ACERTOU":"Sem apuração";
+ return '<p class="history-note"><strong>Previsão: mais de '+numero(alvo.threshold)+
+  ' · '+status+'</strong></p>';
+}
 function cardJogador(x){
  const r=x.result,finished=r?.status==="apurado";
  return '<article class="history-card"><div class="history-top"><div><strong>'+esc(x.player)+'</strong>'+
@@ -125,6 +131,7 @@ function cardJogador(x){
   '<div><span>Erro absoluto</span><b>'+numero(r?.absolute_error)+'</b></div></div>'+
   '<p class="history-note">Média: '+numero(x.season_mean)+' · últimos 5: '+numero(x.last5)+
   ' · '+numero(x.sample)+' jogos · oscilação: '+numero(x.sigma)+'</p>'+
+  statusLimite(x.target,r?.target_correct,finished)+
   '<p class="history-note">'+esc(x.summary||"Projeção pré-jogo")+'</p>'+
   '<details class="history-detail"><summary>Auditoria</summary><pre>Capturado: '+esc(x.captured_at)+
   '\nVersão: '+esc(x.model_hash)+'\nAlertas: '+esc((x.warnings||[]).join("; ")||"Nenhum")+
@@ -135,16 +142,17 @@ function analiseJogo(g){
  if(!p){
   return '<div class="history-empty">Esta partida foi arquivada antes da implementação das projeções de equipe. Há placar e horário, mas não é possível reconstruir uma previsão original após o início do jogo.</div>';
  }
- const linha=(label,prev,real,erro,unit="")=>
+ const linha=(label,prev,real,erro,alvo,acertou,unit="")=>
    '<div class="game-projection-row"><span>'+esc(label)+'</span><b>'+numero(prev)+esc(unit)+'</b>'+
-   '<small>Real: '+numero(final?real:null)+esc(unit)+(final&&erro!=null?' · erro: '+numero(Math.abs(erro))+esc(unit):'')+'</small></div>';
+   '<small>Real: '+numero(final?real:null)+esc(unit)+(final&&erro!=null?' · diferença: '+numero(Math.abs(erro))+esc(unit):'')+'</small>'+
+   statusLimite(alvo,acertou,final)+'</div>';
  const margemReal=final?r.home_score-r.away_score:null;
  const totalReal=final?r.home_score+r.away_score:null;
  return '<div class="game-projection-grid">'+
-   linha('Pontos previstos · '+g.away,p.away_points,r?.away_score,c?.away_points_error)+
-   linha('Pontos previstos · '+g.home,p.home_points,r?.home_score,c?.home_points_error)+
-   linha('Total de pontos previsto',p.total_points,totalReal,c?.total_points_error)+
-   linha('Margem prevista · mandante',p.home_margin,margemReal,c?.home_margin_error)+
+   linha('Pontos previstos · '+g.away,p.away_points,r?.away_score,c?.away_points_error,p.targets?.away_points,c?.targets_correct?.away_points)+
+   linha('Pontos previstos · '+g.home,p.home_points,r?.home_score,c?.home_points_error,p.targets?.home_points,c?.targets_correct?.home_points)+
+   linha('Total de pontos previsto',p.total_points,totalReal,c?.total_points_error,p.targets?.total_points,c?.targets_correct?.total_points)+
+   linha('Margem prevista · mandante',p.home_margin,margemReal,c?.home_margin_error,null,null)+
    '<div class="game-projection-row"><span>Favorito projetado</span><b>'+esc(p.favorite||"—")+'</b>'+
    '<small>'+(!final?"Resultado pendente":c?.winner_correct===null?"Vencedor indefinido":c?.winner_correct?"Vencedor previsto corretamente":"Vencedor diferente do previsto")+'</small></div>'+
    '<div class="game-projection-row"><span>Probabilidade pré-jogo · mandante</span><b>'+numero(p.home_win_probability==null?null:100*p.home_win_probability)+'%</b>'+
@@ -190,6 +198,11 @@ function compararPlacar(g,home,away){
   away_points_error:signed(p.away_points-away),
   total_points_error:signed(p.total_points-(home+away)),
   home_margin_error:signed(p.home_margin-margem),
+  targets_correct:{
+   home_points:p.targets?.home_points?.direction==="acima_de"?home>p.targets.home_points.threshold:null,
+   away_points:p.targets?.away_points?.direction==="acima_de"?away>p.targets.away_points.threshold:null,
+   total_points:p.targets?.total_points?.direction==="acima_de"?(home+away)>p.targets.total_points.threshold:null
+  },
   winner_correct:home===away?null:p.favorite===(home>away?g.home:g.away)
  };
 }
@@ -254,6 +267,8 @@ async function atualizarResultadosESPN(){
      if(resultado.status==="apurado"){
       resultado.signed_error=Number((pick.projection-resultado.actual).toFixed(3));
       resultado.absolute_error=Number(Math.abs(resultado.signed_error).toFixed(3));
+      resultado.target_correct=pick.target?.direction==="acima_de"&&Number.isFinite(pick.target?.threshold)?
+       resultado.actual>pick.target.threshold:null;
      }
      pick.result=resultado;
     }
