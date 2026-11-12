@@ -37,3 +37,15 @@ A partir do schema 2, cada confronto recebe, antes do início, as projeções da
 Na página Histórico, cada confronto aparece como um menu recolhível. Dentro dele há duas opções: **Histórico de acertos do jogo** e **Histórico dos jogadores**, com avaliações separadas.
 
 Snapshots anteriores ao schema 2 permanecem imutáveis e não possuem previsões do placar. A página deve sinalizar expressamente a ausência dessas projeções em vez de inferi-las após o jogo.
+
+## Monitoramento automático de desempenho (schema 3+)
+
+A partir dos próximos snapshots pré-jogo, o BSK salva em cada jogo projeções, limite direcional e contexto de desfalques conhecidos. Para cada jogador acompanhado, salva a projeção, limite inteiro pré-jogo, referência de minutos, ausências da equipe e do adversário e risco de placar desequilibrado. O registro inclui projeções destacadas, observações e **monitoramento automático**. Os monitorados não devem ser exibidos como recomendações aprovadas.
+
+Após a partida, a consulta ESPN fornece pontuação real, minutagem do atleta e placar. O apurador compara o resultado ao limite guardado, registra acerto ou erro e a diferença absoluta, e classifica eventos observáveis: minutos pelo menos 6 abaixo/acima da referência, margem final pelo menos 20 pontos, desfalques pré-jogo e risco estimado de blowout. Esses são **fatores associados**, não diagnósticos causais; blowout não pode ser inferido apenas da margem sem a dinâmica por período.
+
+O módulo `metricas_bsk.js` consolida os registros fechados em `historico/metricas.json`, somando acertos/erros, amostra avaliada, MAE e frequência de cada contexto, separadamente por mercado. Sem limite originalmente registrado, não se atribui acerto ou erro. O reprocessamento de box scores pode atualizar os resultados, mas nunca modifica o snapshot pré-jogo.
+
+**Limitações da automação:** o navegador consegue consultar a ESPN e mostrar resultados imediatamente, mas GitHub Pages não tem permissão de escrita no repositório. A persistência de novas métricas depende de o workflow rodar. Push em arquivos do motor/dados dispara workflow na branch de testes, mas um cron diário nativo exigiria configuração na branch padrão. Não há aprendizado de pesos/ajuste automático do modelo sem validação fora da amostra: por enquanto as métricas são usadas para auditoria e identificação de padrões, não para alterar cegamente as projeções.
+
+**Legado:** a captura de 11/11/2026 foi feita antes dessas funcionalidades, com três partidas e nenhuma projeção individual; esses dados não podem ser completados retroativamente.
