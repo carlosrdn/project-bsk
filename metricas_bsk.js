@@ -23,6 +23,12 @@ function avaliarContexto(pick,resultado,jogo){
   quantidade:pre.team_absences.length,texto:pre.team_absences.length+" ausência(s) registrada(s) na equipe antes do jogo"});
  if(pre.opponent_absences?.length)fatores.push({id:"desfalques_adversario",tipo:"contexto_pre_jogo",
   quantidade:pre.opponent_absences.length,texto:pre.opponent_absences.length+" ausência(s) no adversário antes do jogo"});
+ if(pre.team_key_rotation_absences?.length)fatores.push({id:"desfalque_rotacao_importante",tipo:"contexto_pre_jogo",
+  quantidade:pre.team_key_rotation_absences.length,
+  texto:pre.team_key_rotation_absences.length+" atleta(s) fora com média pré-jogo de ≥25 minutos"});
+ if(pre.opponent_key_rotation_absences?.length)fatores.push({id:"desfalque_rotacao_adversaria",tipo:"contexto_pre_jogo",
+  quantidade:pre.opponent_key_rotation_absences.length,
+  texto:pre.opponent_key_rotation_absences.length+" ausência(s) de ≥25 min/jogo no adversário"});
  if(pre.projected_blowout_risk)fatores.push({id:"risco_blowout_pre",tipo:"contexto_pre_jogo",
   texto:"Modelo indicava possível jogo desequilibrado antes da partida"});
  return {fatores,resumo:fatores.length?
