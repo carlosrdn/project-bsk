@@ -230,7 +230,7 @@ def metricas(registros):
 
 
 # v2: avaliação principal usando holdout cronológico e sem censurar jogos curtos.
-PESOS_TREINO = (0.0, 0.2, 0.35, 0.5, 0.75, 1.0)
+PESOS_TREINO = (0.0, 0.2, 0.30, 0.35, 0.5, 0.75, 1.0)
 
 def previsoes_walk_forward(linhas):
     por_jogador = defaultdict(list)
@@ -271,7 +271,7 @@ def avaliar_holdout(linhas, frac_treino=0.70):
                 "teste_desde":None}
     corte = max(1,min(len(datas)-1,int(len(datas)*frac_treino)))
     inicio_teste = datas[corte]
-    estatisticas,escolhidos,baselines,condicionais = {},{},{},{}
+    estatisticas,escolhidos,baselines,condicionais,modelo_site = {},{},{},{},{}
     for chave,registros in amostras.items():
         treino = [r for r in registros if r["data"] < inicio_teste]
         teste = [r for r in registros if r["data"] >= inicio_teste]
@@ -280,6 +280,7 @@ def avaliar_holdout(linhas, frac_treino=0.70):
             escolhidos[chave] = None
             baselines[chave] = metricas([])
             condicionais[chave] = metricas([])
+            modelo_site[chave] = metricas([])
             continue
         # Escolha do hiperparâmetro SEM examinar o holdout.
         peso = min(PESOS_TREINO,key=lambda p:(
@@ -296,10 +297,12 @@ def avaliar_holdout(linhas, frac_treino=0.70):
         estatisticas[chave] = {**metricas(previsoes),"resultados":previsoes}
         baselines[chave] = metricas([{"previsao":round(r["previsao_0.00"],2),"real":r["real"]} for r in teste])
         condicionais[chave] = metricas([r for r in previsoes if r["minutos_reais"] >= MINUTOS_MINIMOS])
+        modelo_site[chave] = metricas([{"previsao":round(r["previsao_0.30"],2),"real":r["real"]} for r in teste])
     return {"status":"holdout_temporal","treino_ate":datas[corte-1],"teste_desde":inicio_teste,
         "datas_treino":corte,"datas_teste":len(datas)-corte,
         "peso_escolhido":escolhidos,"estatisticas":estatisticas,
         "baseline_media_temporada":baselines,
+        "modelo_recencia_030_sem_contexto":modelo_site,
         "avaliacao_condicional_12_min":condicionais,
         "observacao":"Jogos com 1-11 minutos contam nos erros principais. DNP não entram. Não valida ajustes de adversário ou lesões do navegador."
     }
@@ -333,7 +336,8 @@ def main():
             "Não incorpora adversário, mando, lesões ou escalações históricas.",
             "Não usa linhas reais de casas de apostas; não mede ROI.",
             "A seção estatisticas mede holdout temporal; o modelo legado está separado.",
-            "O peso recente é escolhido exclusivamente em datas de treino.",
+            "O peso recente ótimo é escolhido exclusivamente em datas de treino.",
+            "O relatório compara a base 30% recente utilizada na versão atual do site contra média simples no mesmo holdout; a parte contextual ainda não é validada.",
             "O backtest não valida ajustes de adversário, mando e lesões do navegador.",
             "DNP não entram; jogos de 1-11 minutos entram no erro principal.",
             "Sem odds e linhas históricas não se mede taxa de vitória ou ROI.",
