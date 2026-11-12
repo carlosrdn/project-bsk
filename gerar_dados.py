@@ -43,8 +43,10 @@ def classificar(status, comentario):
     termos_fora = ("ruled out", "listed as out", "downgraded to out", "is out", "will not play", "won't play")
     if status == "Out" or any(t in texto for t in termos_fora):
         return "Fora"
-    if "doubtful" in texto:
+    if "doubtful" in texto or status == "Doubtful":
         return "Provável ausência"
+    if "probable" in texto or status == "Probable":
+        return "Provável"
     return "Dúvida"
 
 
@@ -77,9 +79,11 @@ def buscar_lesoes():
     return lesoes
 
 
-def marcar_situacao(jogadores_time, lesoes):
+def marcar_situacao(jogadores_time, lesoes, sigla):
     """Marca cada jogador da tabela como Disponível, Dúvida, Provável ausência ou Fora."""
-    por_nome = {normalizar(l["nome"]): l["situacao"] for l in lesoes}
+    # Correspondência por TIME + nome: evita contaminar status de homônimos
+    # presentes em equipes diferentes.
+    por_nome = {normalizar(l["nome"]): l["situacao"] for l in lesoes if l.get("sigla") == sigla}
     for jogador in jogadores_time:
         jogador["situacao"] = por_nome.get(normalizar(jogador["nome"]), "Disponível")
     return jogadores_time
@@ -261,7 +265,7 @@ def montar_perfil(time, geral, recente, elenco, elenco5, lesoes):
         "ritmo": g["PACE"],
         "vitorias_ultimos_10": r["W"],
         "nivel": CONTEXTO["niveis_id"].get(time["teamId"], "media"),
-        "jogadores": marcar_situacao(melhores_jogadores(time["teamId"], elenco, elenco5), lesoes),
+        "jogadores": marcar_situacao(melhores_jogadores(time["teamId"], elenco, elenco5), lesoes, time["teamTricode"]),
         "ausencias": ausencias_do_time(time, lesoes, elenco),
     }
 
