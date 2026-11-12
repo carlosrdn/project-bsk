@@ -16,9 +16,9 @@ const dateLabel = (value: string) => value.split('-').reverse().join('/')
 const percent = (value?: number | null) => value == null ? '—' : number(value * 100) + '%'
 const normalize = (value: string) => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim()
 
-function Limit({ target, correct, finished }: { target?: Target; correct?: boolean | null; finished: boolean }) {
+function Limit({ target, correct, finished, unavailable }: { target?: Target; correct?: boolean | null; finished: boolean; unavailable?: boolean }) {
   if (target?.direction !== 'acima_de' || !Number.isFinite(target.threshold)) return null
-  const status = correct === true && finished ? 'Acertou' : correct === false && finished ? 'Não acertou' : finished ? 'Sem apuração' : 'Pendente'
+  const status = correct === true && finished ? 'Acertou' : correct === false && finished ? 'Não acertou' : finished || unavailable ? 'Sem apuração' : 'Pendente'
   return <p>Acima de {number(target.threshold)} · <strong>{status}</strong></p>
 }
 
@@ -34,7 +34,7 @@ function PlayerCard({ player }: { player: HistoryPlayer }) {
     <h4>{player.player}</h4>
     <p>{player.team} · {markets[player.market] || player.market} · {classes[player.classificacao] || player.classificacao}</p>
     <Values values={[[ 'Projeção', number(player.projection)], ['Real', number(r?.actual)], ['Erro absoluto', number(r?.absolute_error)]]}/>
-    <Limit target={player.target} correct={r?.target_correct} finished={r?.status === 'apurado'}/>
+    <Limit target={player.target} correct={r?.target_correct} finished={r?.status === 'apurado'} unavailable={r?.status === 'nao_atuou' || r?.status === 'estatistica_indisponivel'}/>
     <p>{statuses[r?.status || ''] || 'Resultado não publicado'} · {number(player.sample)} jogos na amostra</p>
     {(player.context?.expected_minutes != null || r?.context?.actual_minutes != null) &&
       <p>Minutos de referência {number(player.context?.expected_minutes)} · reais {number(r?.context?.actual_minutes)}</p>}

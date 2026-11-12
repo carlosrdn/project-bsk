@@ -28,7 +28,7 @@ export interface RadarPick {
   margin: number
 }
 
-function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, opponent: Team, points: number, margin: number) {
+export function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, opponent: Team, points: number, margin: number) {
   const recent = finite(sample.ultimos5) ? sample.ultimos5 : sample.media
   const weight = sample.jogos < 6 ? 0 : sample.jogos < 10 ? 0.18 : 0.30
   const base = sample.media * (1 - weight) + recent * weight
@@ -41,9 +41,9 @@ function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, opponent
     tres: clamp(Math.pow(relative, 0.45), 0.95, 1.05),
     reb: clamp(pace, 0.94, 1.06)
   }[stat]
-  const usualMinutes = Number(sample.minutos_media)
-  const recentMinutes = Number(sample.minutos_ultimos5)
-  const rotation = sample.jogos >= 8 && finite(usualMinutes) && usualMinutes > 0 && finite(recentMinutes)
+  const usualMinutes = sample.minutos_media
+  const recentMinutes = sample.minutos_ultimos5
+  const rotation = sample.jogos >= 8 && finite(usualMinutes) && usualMinutes > 0 && finite(recentMinutes) && recentMinutes > 0
     ? clamp(Math.pow(recentMinutes / usualMinutes, 0.5), 0.92, 1.08) : 1
   const blowout = margin > 0 ? 1 - Math.min(0.045, Math.max(0, margin - 12) * 0.003) : 1
   const prior = {
@@ -89,7 +89,7 @@ export function rankRadar(
           const variation = deviation / Math.max(sample.media, 1)
           const score = Math.min(1, sample.jogos / 18) / (1 + variation) - Math.min(0.8, alerts.length * 0.17)
           const eligible = alerts.length === 0 && sample.jogos >= 12 && variation <= (stat === 'tres' ? 0.95 : 0.75)
-          if (!best || score > best.score) {
+          if (!best || (eligible === best.eligible ? score > best.score : eligible)) {
             best = { game, player: player.nome, team, opponent, stat, sample, projected, deviation, score, eligible, alerts, teamPoints, margin }
           }
         }

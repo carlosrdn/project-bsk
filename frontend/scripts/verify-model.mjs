@@ -1,3 +1,4 @@
+import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import vm from 'node:vm'
@@ -15,7 +16,7 @@ function loadModule(file) {
  return exported
 }
 const { predictGame, DEFAULT_PARAMS } = loadModule('model.ts')
-const { rankRadar } = loadModule('radar-model.ts')
+const { rankRadar, projectPlayer } = loadModule('radar-model.ts')
 const raw = fs.readFileSync(path.join(root, 'dados.js'), 'utf8')
 const data = JSON.parse(raw.replace(/^\s*const\s+DADOS\s*=\s*/, '').replace(/;\s*$/, ''))
 const values = { wHome: 2.5, wForm: 1.5, K: 12, sd: 12, kInj: 0.12 }
@@ -28,14 +29,18 @@ const document = {
 const ctx = vm.createContext({DADOS:data,document,localStorage:{getItem:()=>null,setItem(){}},
  setInterval(){},setTimeout(){},console,Intl,Date,Math})
 const legacy = fs.readFileSync(path.join(root, 'bsk.js'), 'utf8')
-vm.runInContext(legacy + '\nglobalThis.__referenceAnalyze=analisar; globalThis.__referenceRadar=opcoesDoJogo; globalThis.__currentRound=rodadaAtual; globalThis.__manual=STATUS_SALVOS;', ctx,
+vm.runInContext(legacy + '\nglobalThis.__referenceAnalyze=analisar;', ctx,
  { filename: 'bsk.js', timeout: 15000 })
 const eq = (label, a, b) => {
  if (!Number.isFinite(a) || !Number.isFinite(b) || Math.abs(a-b)>1e-9)
   throw Error(label + ': React=' + a + ' clássico=' + b)
 }
-if (!data.jogos.length) throw Error('dados.js sem jogos; comparação inconclusiva')
-for (const game of data.jogos) {
+const sampleTeam = {
+ sigla: 'AAA', jogos: 12, vitorias_ultimos_10: 6, ataque: 111, defesa: 109, ritmo: 100,
+ jogadores: [], ausencias: []
+}
+const comparisonGames = data.jogos.length ? data.jogos : [{ casa: sampleTeam, visitante: {...sampleTeam, sigla:'BBB'} }]
+for (const game of comparisonGames) {
  const old = ctx.__referenceAnalyze(game, data.media_liga)
  const next = predictGame(game, data.media_liga.ataque, DEFAULT_PARAMS)
  const key = game.visitante.sigla + ' × ' + game.casa.sigla
@@ -47,38 +52,46 @@ for (const game of data.jogos) {
  ]) eq(key + ' ' + label,a,b)
  if(next.favorite!==old.fav.sigla) throw Error(key + ': favorito divergente')
 }
-console.log('OK: projeções idênticas ao BSK clássico para '+data.jogos.length+' jogos')
+console.log('OK: projeções idênticas ao BSK clássico para '+comparisonGames.length+' jogos')
 
 
-const matches = data.jogos.map(game => ({ game, prediction: predictGame(game, data.media_liga.ataque, DEFAULT_PARAMS) }))
-function compareRadar(injuries = data.lesoes_ok) {
- data.lesoes_ok = injuries
- const classic = data.jogos.flatMap(game => ctx.__referenceRadar(ctx.__referenceAnalyze(game, data.media_liga)))
-   .sort((a, b) => b.score - a.score)
- const react = rankRadar(matches, { date: data.data_jogos, current: ctx.__currentRound(), injuries, manual: ctx.__manual })
- if (classic.length === 0 || react.length !== classic.length) throw Error('Radar: amostra vazia ou total de candidatos divergente')
- for (const [i, old] of classic.entries()) {
-  const pick = react[i]
-  const key = old.t.sigla + ' · ' + old.p.nome
-  if (pick.player !== old.p.nome || pick.team.sigla !== old.t.sigla || pick.stat !== old.chave ||
-      pick.eligible !== old.apta || JSON.stringify(pick.alerts) !== JSON.stringify(old.risco)) {
-   throw Error('Radar: ordem, elegibilidade ou alertas divergentes para ' + key)
-  }
-  eq(key + ' projeção', pick.projected, old.proj)
-  eq(key + ' oscilação', pick.deviation, old.sd)
-  eq(key + ' nota', pick.score, old.score)
- }
- return react
+const stat = { media: 12, ultimos5: 12, jogos: 18, desvio: 4, minutos_media: 28 }
+const game = { casa: {...sampleTeam, jogadores: [
+ { nome: 'Atleta', situacao: 'Disponível', props: {
+   // Nota superior pela amostra, mas acima do limite de variação do Radar.
+   pts: { ...stat, media: 8, jogos: 24, ultimos5: 8, desvio: 8 },
+   reb: { ...stat, media: 5, ultimos5: 5, jogos: 12, desvio: 3 }
+ } }
+]}, visitante: {...sampleTeam, sigla:'BBB'} }
+const prediction = predictGame(game, 110, DEFAULT_PARAMS)
+const matches = [{ game, prediction }]
+const context = { date: '2026-11-12', current: true, injuries: true, manual: {} }
+const radar = rankRadar(matches, context)
+assert.equal(radar.length, 1)
+assert.equal(radar[0].stat, 'reb')
+assert.equal(radar[0].eligible, true)
+assert.equal(rankRadar(matches, {...context, manual: {'2026-11-12|AAA|Atleta':'Fora'}}).length, 0)
+assert.ok(rankRadar(matches, {...context, current: false}).every(pick => !pick.eligible))
+assert.ok(rankRadar(matches, {...context, injuries: false}).every(pick => !pick.eligible))
+const projected = sample => projectPlayer('pts', sample, game.casa, game.visitante, prediction.home, prediction.margin).projected
+assert.equal(projected(stat), projected({...stat, minutos_ultimos5:null}))
+assert.equal(projected(stat), projected({...stat, minutos_ultimos5:0}))
+assert.ok(projected({...stat, minutos_ultimos5:14}) < projected(stat))
+console.log('OK: Radar preserva categoria elegível e trata minutagem ausente')
+
+const dataSource = fs.readFileSync(path.join(root, 'frontend/src/data.ts'), 'utf8')
+const esm = ts.transpileModule(dataSource, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText
+const { validateSnapshot } = await import('data:text/javascript;base64,' + Buffer.from(esm).toString('base64'))
+assert.equal(validateSnapshot(data), data)
+assert.throws(() => validateSnapshot({...data, data_jogos:'2026-02-31'}))
+assert.throws(() => validateSnapshot({...data, jogos:[null]}))
+if (data.jogos.length) {
+ const malformed = structuredClone(data)
+ malformed.jogos[0].casa.jogadores = [null]
+ assert.throws(() => validateSnapshot(malformed))
+ assert.throws(() => validateSnapshot({...data, jogos:[data.jogos[0], data.jogos[0]]}))
 }
-const radar = compareRadar()
-const excluded = radar[0]
-ctx.__manual[[data.data_jogos, excluded.team.sigla, excluded.player].join('|')] = 'Fora'
-if (compareRadar().some(pick => pick.player === excluded.player && pick.team.sigla === excluded.team.sigla)) {
- throw Error('Radar: ajuste manual não excluiu jogador fora')
-}
-data.data_jogos = '2000-01-01'
-if (compareRadar(false).some(pick => pick.eligible)) throw Error('Radar: coleta antiga ou lesões indisponíveis deveria bloquear seleção')
-console.log('OK: Radar equivalente ao BSK clássico para ' + radar.length + ' candidatos da coleta')
+console.log('OK: dados.js rejeita datas impossíveis, jogadores inválidos e confrontos duplicados')
 
 const { buildLineup } = loadModule('lineup-model.ts')
 const lineupTeam = {

@@ -17,8 +17,8 @@ const positions: Record<string, string> = {
   'POWER FORWARD': 'PF', CENTER: 'C', GUARD: 'G', FORWARD: 'F'
 }
 
-export function positionCode(value = '') {
-  const code = value.toUpperCase().trim()
+export function positionCode(value?: string | null) {
+  const code = (value ?? '').toUpperCase().trim()
   return positions[code] || code
 }
 

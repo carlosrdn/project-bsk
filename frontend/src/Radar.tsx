@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { rankRadar, radarLabels } from './radar-model'
 import type { RadarPick } from './radar-model'
 import type { DataSnapshot, Game, GamePrediction } from './types'
@@ -33,7 +34,13 @@ export default function Radar({ snapshot, current, matches }: {
 }) {
   const { manual } = useManualStatuses()
 
-  const ranked = rankRadar(matches, { date: snapshot.data_jogos, current, injuries: snapshot.lesoes_ok, manual })
+  const [clock, setClock] = useState(Date.now)
+  useEffect(() => {
+    const timer = window.setInterval(() => setClock(Date.now()), 60000)
+    return () => window.clearInterval(timer)
+  }, [])
+  const pending = current ? matches.filter(match => Date.parse(match.game.horario_utc) > clock) : matches
+  const ranked = rankRadar(pending, { date: snapshot.data_jogos, current, injuries: snapshot.lesoes_ok, manual })
   const selected = ranked.filter(pick => pick.eligible && pick.score > 0).slice(0, 6)
   const watching = ranked.filter(pick => !pick.eligible && pick.score > 0).slice(0, 5)
   const alerts = [...new Set(ranked.flatMap(pick => pick.alerts))].slice(0, 5)
@@ -42,13 +49,13 @@ export default function Radar({ snapshot, current, matches }: {
   )}</div>
 
   return <div className="radar">
-    <section aria-labelledby="radar-selected">
+    {!pending.length && current && matches.length > 0 ? <p>Todos os jogos da coleta passaram do horário previsto de início.</p> : <section aria-labelledby="radar-selected">
       <div className="section-head"><h2 id="radar-selected">Projeções selecionadas</h2><span className="count-label">{selected.length}</span></div>
       {selected.length ? cards(selected) : <div className="empty-state">
         <strong>{ranked.length ? 'Nenhuma projeção passou pelos filtros' : 'Nenhum jogador com dados suficientes nesta coleta'}</strong>
         {ranked.length > 0 && <span>{alerts.length ? alerts.join(' · ') : 'Amostra curta ou variação histórica elevada.'}</span>}
       </div>}
-    </section>
+    </section>}
     {watching.length > 0 && <section aria-labelledby="radar-watching">
       <div className="section-head"><h2 id="radar-watching">Em observação</h2><span className="count-label">{watching.length}</span></div>
       {cards(watching)}

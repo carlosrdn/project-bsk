@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "source": "ESPN",
+  "from": "2026-10-30",
+  "to": "2026-11-11",
+  "games": 92,
+  "dates": 12,
+  "modelSha256": "182321fdbb6e3c5db4443739f393a3b12f7f6fd9ce84e9e404243098d5594c79",
+  "radarSha256": "e95041b4fc311fe60794e8eac5790f5aa1419c34c2c59db714867328fe79e89e",
+  "team": {
+    "mae": 9.425,
+    "baseMae": 9.47,
+    "total": 13.976,
+    "baseTotal": 14.35,
+    "winner": 0.663,
+    "baseWinner": 0.663,
+    "brier": 0.207,
+    "homeBrier": 0.25
+  },
+  "players": {
+    "pts": {
+      "n": 1402,
+      "model": 4.992,
+      "baseline": 4.964
+    },
+    "reb": {
+      "n": 1402,
+      "model": 1.97,
+      "baseline": 1.969
+    },
+    "ast": {
+      "n": 1402,
+      "model": 1.479,
+      "baseline": 1.475
+    },
+    "tres": {
+      "n": 1402,
+      "model": 0.986,
+      "baseline": 0.977
+    }
+  },
+  "shortMinutes": {
+    "pts": {
+      "n": 72,
+      "model": 6.025,
+      "baseline": 6.052
+    },
+    "reb": {
+      "n": 72,
+      "model": 2.327,
+      "baseline": 2.315
+    },
+    "ast": {
+      "n": 72,
+      "model": 1.403,
+      "baseline": 1.387
+    },
+    "tres": {
+      "n": 72,
+      "model": 1.009,
+      "baseline": 0.999
+    }
+  }
+}

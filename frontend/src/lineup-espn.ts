@@ -17,7 +17,12 @@ type Group = {
   athletes?: { athlete?: Athlete; displayName?: string; starter?: boolean | number | string; stats?: string[]; didNotPlay?: boolean }[]
 }
 type Summary = { boxscore?: { players?: { team?: TeamRef; statistics?: Group[] }[] } }
-type Scoreboard = { events?: { id?: string; competitions?: { competitors?: { team?: TeamRef }[] }[] }[] }
+type Scoreboard = { events?: {
+  id?: string; date?: string; status?: { type?: { state?: string; name?: string } }
+  competitions?: { competitors?: { team?: TeamRef; homeAway?: string }[] }[]
+}[] }
+
+export interface ScheduledMatch { id: string; start: string; home: string; away: string; status: string }
 type InjuryReport = { injuries?: { team?: TeamRef; injuries?: { athlete?: Athlete; status?: string; shortComment?: string }[] }[] }
 
 async function request<T>(path: string, signal: AbortSignal): Promise<T> {
@@ -49,10 +54,35 @@ export function parseBox(groups: Group[] = []): LineupPlayer[] {
   return [...roster.values()]
 }
 
-export async function loadBoxScores(date: string, teams: Set<string>, signal: AbortSignal) {
+async function scoreboard(date: string, signal: AbortSignal) {
   const board = await request<Scoreboard>('scoreboard?dates=' + date.replaceAll('-', ''), signal)
   if (!Array.isArray(board.events)) throw new Error('Rodada ESPN inválida')
-  const events = board.events.filter(event => event.id &&
+  return board.events
+}
+
+export async function loadSchedule(date: string, signal: AbortSignal): Promise<ScheduledMatch[]> {
+  const dayFormat = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' })
+  const events = await scoreboard(date, signal)
+  return events.map(event => {
+    const sides = event.competitions?.[0]?.competitors ?? []
+    const home = teamCode(sides.find(side => side.homeAway === 'home')?.team?.abbreviation)
+    const away = teamCode(sides.find(side => side.homeAway === 'away')?.team?.abbreviation)
+    if (!event.id || !event.date || !Number.isFinite(Date.parse(event.date)) || !home || !away) {
+      throw new Error('Partida ESPN em formato inesperado')
+    }
+    const state = event.status?.type?.state
+    const name = event.status?.type?.name
+    const status = name === 'STATUS_POSTPONED' ? 'Adiado' : name === 'STATUS_CANCELED' ? 'Cancelado' :
+      state === 'in' ? 'Em andamento' : state === 'post' ? 'Finalizado' : state === 'pre' ? 'Pré-jogo' : 'Status indisponível'
+    return { id: event.id, start: event.date, home, away, status }
+  }).filter(game => {
+    const parts = Object.fromEntries(dayFormat.formatToParts(new Date(game.start)).map(part => [part.type, part.value]))
+    return [parts.year, parts.month, parts.day].join('-') === date
+  }).sort((a, b) => Date.parse(a.start) - Date.parse(b.start))
+}
+
+export async function loadBoxScores(date: string, teams: Set<string>, signal: AbortSignal) {
+  const events = (await scoreboard(date, signal)).filter(event => event.id &&
     event.competitions?.[0]?.competitors?.some(entry => teams.has(teamCode(entry.team?.abbreviation))))
   const results = await Promise.allSettled(events.map(event => request<Summary>('summary?event=' + encodeURIComponent(event.id!), signal)))
   const box = new Map<string, LineupPlayer[]>()

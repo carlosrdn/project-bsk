@@ -6,6 +6,8 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import Backtest from './Backtest'
+import RoundSchedule from './RoundSchedule'
 import HistoryView from './History'
 import Lineups from './Lineups'
 import { loadSnapshot, nbaToday } from './data'
@@ -31,16 +33,14 @@ interface MatchView {
  prediction: GamePrediction
  key: string
 }
-type View = 'overview' | 'games' | 'radar' | 'lineups' | 'history'
+type View = 'overview' | 'games' | 'radar' | 'lineups' | 'history' | 'backtest'
 const links = [
  { label: 'Visão geral', icon: LayoutDashboard, view: 'overview' as View },
  { label: 'Jogos da rodada', icon: CalendarDays, view: 'games' as View },
  { label: 'Radar', icon: TrendingUp, view: 'radar' as View },
  { label: 'Escalações', icon: Users, view: 'lineups' as View },
- { label: 'Histórico', icon: History, view: 'history' as View }
-]
-const shortcuts = [
- { label: 'Backtest', icon: BarChart3, file: 'backtest.html' }
+ { label: 'Histórico', icon: History, view: 'history' as View },
+ { label: 'Backtest', icon: BarChart3, view: 'backtest' as View }
 ]
 function MiniBrand({ name }: { name: string }) {
  return <span className="mini-brand" aria-hidden="true">{name.slice(0, 3)}</span>
@@ -84,7 +84,7 @@ function ExpandableMatch({ match }: { match: MatchView }) {
 function Detail({ match }: { match: MatchView }) {
  const { game, prediction: p } = match
  const [expanded, setExpanded] = useState(false)
- useEffect(() => setExpanded(false), [match.key])
+ const contextId = useId()
  const absentHome = (game.casa.ausencias || []).filter(a => a.situacao === 'Fora')
  const absentAway = (game.visitante.ausencias || []).filter(a => a.situacao === 'Fora')
  return <div className="detail-content">
@@ -108,23 +108,24 @@ function Detail({ match }: { match: MatchView }) {
   </div>
   <p className="detail-explain">Probabilidades estimadas para o confronto. Ainda não são probabilidades calibradas por backtest.</p>
   <div className="prob-label"><span>{game.visitante.sigla} · {percent(p.awayChance)}</span><span>{game.casa.sigla} · {percent(p.homeChance)}</span></div>
-  <div className="prob-track"><div style={{width: percent(p.awayChance)}} /></div>
-  <button type="button" className="expand-button" onClick={() => setExpanded(!expanded)}>
+  <div className="prob-track"><div style={{width: p.awayChance * 100 + '%'}} /></div>
+  <button type="button" className="expand-button" aria-expanded={expanded} aria-controls={contextId} onClick={() => setExpanded(open => !open)}>
    <span><SlidersHorizontal size={16}/> Contexto e desfalques</span><ChevronDown size={16} className={expanded ? 'rotated' : ''}/>
   </button>
-  {expanded && <div className="context-panel">
+  <div id={contextId} className="context-panel" hidden={!expanded}>
    <div><b>Desfalques confirmados · {game.visitante.sigla}</b>{absentAway.length ?
-    <ul>{absentAway.map(x => <li key={x.nome}>{x.nome}</li>)}</ul> : <p>Nenhum registrado nesta coleta</p>}</div>
+    <ul>{absentAway.map(x => <li key={x.nome}>{x.nome}</li>)}</ul> : <p>{game.visitante.ausencias === null ? 'Dados indisponíveis' : 'Nenhum registrado nesta coleta'}</p>}</div>
    <div><b>Desfalques confirmados · {game.casa.sigla}</b>{absentHome.length ?
-    <ul>{absentHome.map(x => <li key={x.nome}>{x.nome}</li>)}</ul> : <p>Nenhum registrado nesta coleta</p>}</div>
+    <ul>{absentHome.map(x => <li key={x.nome}>{x.nome}</li>)}</ul> : <p>{game.casa.ausencias === null ? 'Dados indisponíveis' : 'Nenhum registrado nesta coleta'}</p>}</div>
    <p className="small-note">Situações registradas no arquivo, não confirmadas em tempo real. Ajuste estimado por ausências: {n(p.injuryAway)} visitante · {n(p.injuryHome)} mandante.</p>
-  </div>}
+  </div>
  </div>
 }
 export default function App() {
  const [snapshot, setSnapshot] = useState<DataSnapshot | null>(null)
  const [error, setError] = useState<string | null>(null)
  const [loading, setLoading] = useState(true)
+ const [today, setToday] = useState(nbaToday)
  const [view, setView] = useState<View>('overview')
  const [search, setSearch] = useState('')
  const [sidebar, setSidebar] = useState(false)
@@ -134,7 +135,11 @@ export default function App() {
   try { setSnapshot(await loadSnapshot()) } catch (e) { setSnapshot(null); setError(e instanceof Error ? e.message : 'Falha inesperada') }
   finally { setLoading(false) }
  }
- useEffect(() => { void reload() }, [])
+ useEffect(() => {
+  const timer = window.setInterval(() => setToday(nbaToday()), 60000)
+  return () => window.clearInterval(timer)
+ }, [])
+ useEffect(() => { void reload() }, [today])
  const matches = useMemo(() => snapshot?.jogos.map(game => ({
   game,
   prediction: predictGame(game, snapshot.media_liga.ataque, DEFAULT_PARAMS),
@@ -146,7 +151,8 @@ export default function App() {
   return !onlyAbsences || [...(m.game.casa.ausencias || []), ...(m.game.visitante.ausencias || [])]
    .some(a => a.situacao === 'Fora')
  })
- const stale = !!snapshot && snapshot.data_jogos !== nbaToday()
+ const stale = !!snapshot && snapshot.data_jogos !== today
+ const scheduleOnly = (view === 'overview' || view === 'games') && (stale || (!snapshot && !loading))
  const missingInjuryData = !!snapshot && !snapshot.lesoes_ok
  const totalGames = matches.length
  const favoriteHome = matches.filter(m => m.prediction.favorite === m.game.casa.sigla).length
@@ -159,18 +165,20 @@ export default function App() {
    <div className="nav-stack">{links.map(l => <button type="button" key={l.view}
     className={'nav-item ' + (view === l.view ? 'nav-active' : '')}
     onClick={() => {setView(l.view);setSidebar(false)}}><l.icon size={18}/>{l.label}{view === l.view && <span className="nav-dot"/>}</button>)}</div>
-   <div className="side-section-label tools-label">FERRAMENTAS DO SITE ATUAL</div>
-   <div className="nav-stack">{shortcuts.map(l => <a className="nav-item" key={l.label} href={outside(l.file)}><l.icon size={18}/>{l.label}<ArrowUpRight size={14} className="nav-external"/></a>)}</div>
    <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Prévia em React</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
   </aside>
   <div className="main-column">
-   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
+   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
    <main className="content">
-    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27. Sem odds, sem cálculos financeiros.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
-    {view === 'history' ? <HistoryView legacyUrl={outside('historico.html')}/> : <>
+    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27. Sem odds, sem cálculos financeiros.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
+    {view === 'backtest' ? <Backtest/> : view === 'history' ? <HistoryView legacyUrl={outside('historico.html')}/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
-    {snapshot && <>
+    {scheduleOnly && <>
+     {stale && <section className="notice caution"><CircleAlert size={19}/><div><b>Projeções da rodada pendentes</b><p>A última coleta é de {date(snapshot.data_jogos)}.</p></div></section>}
+     <RoundSchedule key={today} day={today}/>
+    </>}
+    {snapshot && !scheduleOnly && <>
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span><span><Clock3 size={15}/> Coleta: {snapshot.atualizado_em.replace('T', ' ')}</span><span><ShieldCheck size={15}/> Fonte: dados.js existente</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
@@ -189,11 +197,11 @@ export default function App() {
      {view === 'games' && <div className="section-head"><div><span className="eyebrow">TODOS OS CONFRONTOS</span><h2>Jogos da rodada</h2><p>Abra um confronto para ver a projeção e os desfalques.</p></div><span className="count-label">{shown.length} partidas</span></div>}
      <div className="game-toolbar"><div className="search-box"><Search size={18}/><input aria-label="Buscar equipe" placeholder="Buscar equipe ou sigla…" value={search} onChange={e => setSearch(e.target.value)}/>{search && <button onClick={() => setSearch('')} aria-label="Limpar busca"><X size={16}/></button>}</div><label className="checkbox-filter"><input type="checkbox" checked={onlyAbsences} onChange={e => setOnlyAbsences(e.target.checked)}/> Com desfalques confirmados</label></div>
      {!shown.length ?
-      <div className="empty-state"><Search size={25}/><strong>Nenhum confronto encontrado</strong><span>Altere a busca ou remova os filtros.</span></div> :
+      <div className="empty-state"><Search size={25}/><strong>{matches.length ? 'Nenhum confronto encontrado' : 'Nenhum confronto nesta rodada'}</strong>{matches.length > 0 && <span>Altere a busca ou remova os filtros.</span>}</div> :
       <div className="matches-column">{shown.map(match =>
        <ExpandableMatch key={match.key} match={match}/>
       )}</div>}
-     <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os cálculos de pontos, total, favorito e contexto são uma porta da função <code>analisar()</code> do BSK clássico, com parâmetros padrão. Esta fase não altera o motor Python, os snapshots de histórico ou os ajustes manuais do site atual. A equivalência numérica é verificada automaticamente no pipeline.</p></div></div>
+     <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os pontos, o total e o favorito usam médias de equipe, ritmo e contexto disponível. O Backtest compara as estimativas com os resultados de partidas anteriores.</p></div></div>
      </>}
     </>}
     </>}

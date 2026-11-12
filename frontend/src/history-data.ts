@@ -140,9 +140,18 @@ export async function loadHistory(signal: AbortSignal): Promise<HistoryArchive> 
       if (snapshot.status === 'rejected' || !Array.isArray(snapshot.value?.games)) {
         return { games: [], warning: 'Projeções indisponíveis para ' + day.date }
       }
-      return {
-        games: mergeHistory(snapshot.value, results.status === 'fulfilled' ? results.value : undefined),
-        warning: results.status === 'rejected' ? 'Resultados indisponíveis para ' + day.date : undefined
+      const result = results.status === 'fulfilled' ? results.value : undefined
+      const resultValid = result == null || (
+        (result.games == null || Array.isArray(result.games) && result.games.every(game => game && typeof game.start_utc === 'string')) &&
+        (result.results == null || Array.isArray(result.results) && result.results.every(player => player && typeof player.id === 'string'))
+      )
+      try {
+        return {
+          games: mergeHistory(snapshot.value, resultValid ? result : undefined),
+          warning: results.status === 'rejected' || !resultValid ? 'Resultados indisponíveis para ' + day.date : undefined
+        }
+      } catch {
+        return { games: [], warning: 'Projeções indisponíveis para ' + day.date }
       }
     }))
     for (const day of batch) {
