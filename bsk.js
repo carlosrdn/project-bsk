@@ -70,11 +70,11 @@ function chaveEscalacao(t,p){
 
 const STATUS_AUTOMATICOS = new Map();
 const LESOES_AO_VIVO = new Map();
-let statusColetaAutomatica="Aguardando consulta ao feed NBA";
+let statusColetaAutomatica="Aguardando consulta à ESPN";
 let escalacaoConsultando=false;
 function automatico(t,p){
   const aoVivo=STATUS_AUTOMATICOS.get(chaveEscalacao(t,p));
-  if(aoVivo)return {valor:aoVivo,origem:"NBA · box score"};
+  if(aoVivo)return {valor:aoVivo,origem:"ESPN · box score"};
   const lesao=LESOES_AO_VIVO.get(chaveEscalacao(t,p));
   if(lesao)return {valor:lesao,origem:"ESPN · consulta de lesões recente"};
   const situacao=p.situacao||"Desconhecido";
