@@ -31,4 +31,15 @@ assert.equal(ctx.statusAtletaESPN(w),"Disponível confirmado");
 assert.equal(ctx.statusAtletaESPN(ctx.dadosAtletaESPN(equipe,"Jogador DNP")),null,
  "Estar no box score não significa ter jogado");
 assert.equal(ctx.dadosAtletaESPN(equipe,"Outro Jogador"),null);
-console.log("OK: parsers ESPN, seis estatísticas, titulares, banco e DNP");
+const groupStarters={statistics:[{name:"Starters",names:["MIN","PTS"],athletes:[
+ {athlete:{displayName:"Armador A"},stats:["0:00","0"]},
+ {athlete:{displayName:"Ala B"},stats:["0:00","0"]}
+ ]},{name:"Bench",names:["MIN","PTS"],athletes:[
+ {athlete:{displayName:"Reserva C"},stats:["0:00","0"]}
+ ]}]};
+assert.equal(ctx.listaAtletasESPN(groupStarters).length,3,"Ler elenco inteiro");
+assert.equal(ctx.statusAtletaESPN(ctx.dadosAtletaESPN(groupStarters,"Armador A")),"Titular confirmado",
+ "Grupo explícito Starters confirma titularidade mesmo sem minutos");
+assert.equal(ctx.statusAtletaESPN(ctx.dadosAtletaESPN(groupStarters,"Reserva C")),null,
+ "Reserva no pré-jogo não deve ser marcado em quadra");
+console.log("OK: ESPN roster completo, titulares declarados, banco, DNP e estatísticas");
