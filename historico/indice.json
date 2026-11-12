@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "season": "2026-27",
-  "note": "Sinais do BSK são projeções, não apostas de linha real",
+  "note": "Arquivo de projeções pré-jogo do BSK e resultados reais ESPN",
   "days": [
     {
       "date": "2026-11-11",
@@ -14,5 +14,5 @@
       "results": "historico/resultados/2026-11-11.json"
     }
   ],
-  "updated_at": "2026-11-12T01:12:34.501Z"
+  "updated_at": "2026-11-12T01:25:57.315Z"
 }
