@@ -158,8 +158,19 @@ function projetar(chave,d,t,o,r,ehCasa,bump){
   const ref=Math.floor(Math.max(0,0.7*base+0.3*ult5)+1e-9)+0.5;
   return {proj,sd:Math.max(sd,0.5),ref,nv:null,bump:0,fMin,favorito,ajusteContexto:proj-base};
 }
+function rodadaAtual(){
+  if(typeof DADOS==="undefined"||!DADOS.data_jogos)return false;
+  // Data de calendário da liga; não usar fuso UTC ou do visitante.
+  try{
+    const partes=new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",
+      year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+    const campos=Object.fromEntries(partes.map(p=>[p.type,p.value]));
+    return [campos.year,campos.month,campos.day].join("-")===DADOS.data_jogos;
+  }catch(e){return false;}
+}
 function elegibilidade(q){
   const alertas=[];
+  if(!rodadaAtual())alertas.push('Coleta de outra rodada ou data não verificável');
   const situacao=statusEfetivo(q.t,q.p);
   // Titularidade ainda pendente é informativa, não bloqueio automático para pré-seleção pré-jogo.
   if(!["Sem confirmação de titularidade","Disponível","Titular confirmado","Disponível confirmado","Banco confirmado"].includes(situacao)) alertas.push("Situação do jogador: "+situacao);
