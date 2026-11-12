@@ -59,7 +59,7 @@ function abrirMotor(){
   DADOS:dados,document:mockDocument(),localStorage:{getItem:()=>null,setItem(){}},
   setInterval(){},setTimeout(){},console,Intl,Date,Math
  });
- vm.runInContext(script+"\nglobalThis.__bsk={LISTA,opcoesDoJogo,sugestaoCondicional};",ctx,
+ vm.runInContext(script+"\nglobalThis.__bsk={LISTA,opcoesDoJogo,resumoProjecao};",ctx,
   {filename:"bsk.js",timeout:15000});
  return {dados,motor:ctx.__bsk,
   code_hash:crypto.createHash("sha256").update(script).digest("hex").slice(0,16),
@@ -76,7 +76,7 @@ function selecionarSinais(lista){
  return marcados;
 }
 function serializar(q,classe,motor){
- const sinal=motor.sugestaoCondicional(q.proj,q.sd,q.d.media,q.d.jogos,q.risco);
+ const resumo=motor.resumoProjecao(q.proj,q.d.media,q.d.ultimos5,q.sd,q.d.jogos,q.risco);
  return {
   id:[q.r.j.horario_utc,q.t.sigla,norm(q.p.nome),q.chave].join("|"),
   jogo_utc:q.r.j.horario_utc,team:q.t.sigla,opponent:q.o.sigla,
@@ -84,12 +84,7 @@ function serializar(q,classe,motor){
   projection:Number(q.proj.toFixed(3)),season_mean:q.d.media,
   last5:q.d.ultimos5,sigma:Number(q.sd.toFixed(3)),sample:q.d.jogos,
   score:Number(q.score.toFixed(5)),warnings:[...q.risco],
-  signal:sinal.texto,
-  exploratory_line:Number.isFinite(sinal.linha)?sinal.linha:null,
-  exploratory_side:Number.isFinite(sinal.prob)&&sinal.prob>=0.60?
-    (q.proj>=sinal.linha?"Over":"Under"):null,
-  exploratory_probability:Number.isFinite(sinal.prob)?Number(sinal.prob.toFixed(4)):null,
-  market_line:null,market_odd:null,bet_registered:false
+  summary:resumo.texto
  };
 }
 function capturar({clock=now()}={}){
@@ -123,10 +118,9 @@ function capturar({clock=now()}={}){
  const snapshot={
   schema:1,date:day,season:cfg.season,captured_at:clock.toISOString(),
   model_hash:code_hash,data_hash,
-  fidelity:"Seleção automática reproduz Radar · Melhores do dia com os parâmetros padrão; status e odds inseridos no navegador não são persistidos",
-  notes:["Linhas de referência são sintéticas; não são apostas colocadas.",
-   "Somente partidas ainda não iniciadas no momento da captura.",
-   "Apostas com odds reais exigem um registro adicional pré-jogo."],
+  fidelity:"Seleção automática reproduz o ranking de projeções do radar com parâmetros padrão",
+  notes:["Apenas projeções pré-jogo, sem valores de cotação.",
+   "Somente partidas ainda não iniciadas no momento da captura."],
   games:jogos,recommendations:picks
  };
  putJSON(arquivo,snapshot);recriarIndice();
@@ -210,7 +204,7 @@ async function apurarDia(day){
     [j.home,j.away].includes(pick.team)&&[j.home,j.away].includes(pick.opponent));
   const event=partida?matching.get(partida.start_utc+"|"+partida.away+"|"+partida.home):null;
   const result={id:pick.id,status:"aguardando",actual:null,absolute_error:null,signed_error:null,
-   line_result:null,updated_at:now().toISOString()};
+   updated_at:now().toISOString()};
   if(!event){result.status="jogo_nao_localizado";results.push(result);continue;}
   if(!isFinal(event)){result.status="jogo_nao_finalizado";results.push(result);continue;}
   const resumo=summaries.get(event.id);
@@ -224,13 +218,6 @@ async function apurarDia(day){
   result.status="apurado";result.actual=real;
   result.signed_error=Number((pick.projection-real).toFixed(3));
   result.absolute_error=Number(Math.abs(pick.projection-real).toFixed(3));
-  // Comparação exploratória, sem alegar que essa cotação existiu no mercado.
-  if(Number.isFinite(pick.exploratory_line)&&
-      ["Over","Under"].includes(pick.exploratory_side)){
-    const passou=pick.exploratory_side==="Over"?
-      real>pick.exploratory_line:real<pick.exploratory_line;
-    result.line_result=passou?"sinal_teorico_atingido":"sinal_teorico_nao_atingido";
-  }
   results.push(result);
  }
  const prev=readJSON(path.join(RESULTS,day+".json"));
@@ -253,7 +240,7 @@ function recriarIndice(){
  }).sort((a,b)=>b.date.localeCompare(a.date));
  const anterior=readJSON(INDICE);
  const novaBase={schema:1,season:cfg.season,
-  note:"Sinais do BSK são projeções, não apostas de linha real",days};
+  note:"Arquivo de projeções pré-jogo do BSK e resultados reais ESPN",days};
  const semData=x=>JSON.stringify({schema:x?.schema,season:x?.season,note:x?.note,days:x?.days});
  if(semData(anterior)!==semData(novaBase)){
   putJSON(INDICE,{...novaBase,updated_at:now().toISOString()});
