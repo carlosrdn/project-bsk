@@ -45,4 +45,19 @@ vm.runInContext(script+"\nglobalThis.__history={LISTA,opcoesDoJogo};",contexto,
 assert.equal(contexto.__history.LISTA.length,dados.jogos.length,
  "Snapshot deve usar o mesmo radar que a página");
 assert(Array.isArray(contexto.__history.opcoesDoJogo(contexto.__history.LISTA[0])));
+// O mesmo analisar() usado na página deve preencher o registro da equipe.
+const teste=contexto.__history.LISTA[0];
+assert(Number.isFinite(teste.sc)&&Number.isFinite(teste.sv)&&Number.isFinite(teste.margem),
+ "Projeções de pontos e margem devem existir antes da captura");
+assert(Math.abs((teste.sc-teste.sv)-teste.margem)<0.001,"Margem consistente");
+const collector=fs.readFileSync("historico_bsk.js","utf8");
+assert(collector.includes("home_points:arred(r.sc)")&&collector.includes("away_points:arred(r.sv)"),
+ "Guardar pontos pré-jogo das duas equipes");
+assert(collector.includes("total_points_error")&&collector.includes("winner_correct"),
+ "Confrontar pontos totais, margem e vencedor com resultado final");
+const page=fs.readFileSync("historico.html","utf8");
+assert(page.includes('<details class="game-history"'),
+ "Cada confronto precisa de um menu recolhível");
+assert(page.includes("Histórico de acertos do jogo")&&page.includes("Histórico dos jogadores"),
+ "Menu precisa ter as duas opções solicitadas");
 console.log("OK: histórico BSK, feed ESPN, DNP, NBA timezone, seleção do radar");
