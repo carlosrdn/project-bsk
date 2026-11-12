@@ -7,7 +7,19 @@ export interface Absence {
   reb?: number
   ast?: number
 }
+export type RadarStat = 'pts' | 'reb' | 'ast' | 'tres'
+
+export interface PlayerStat {
+  media: number
+  jogos: number
+  ultimos5?: number | null
+  desvio?: number | null
+  minutos_media?: number | null
+  minutos_ultimos5?: number | null
+}
+
 export interface Player {
+  props?: Partial<Record<RadarStat, PlayerStat>>
   nome: string
   jogos: number
   minutos?: number
