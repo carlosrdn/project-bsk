@@ -41,6 +41,12 @@
 .history-detail summary{font-size:12px;cursor:pointer;color:#b8cbd9}
 .history-detail pre{white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.5 monospace;color:#a6bad0}
 .game-history{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.game-history>summary{list-style:none;cursor:pointer;display:block}
+.game-history>summary::-webkit-details-marker{display:none}
+.game-history>summary .game-expand{color:var(--mute);font-size:20px;transition:transform .15s}
+.game-history[open]>summary .game-expand{transform:rotate(180deg)}
+.game-history>summary:hover{background:#ffffff08}
+.game-history:focus-within>summary:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
 .game-history-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:15px 17px;border-bottom:1px solid var(--line)}
 .game-history-head h2{font-size:17px;margin:0}.game-history-head p{font-size:12px;color:var(--mute);margin:3px 0}
 .game-history-head strong{font-size:19px}
@@ -86,7 +92,7 @@
 <label>Jogador<input type="search" id="jogador" placeholder="Buscar por nome"></label></div>
 <p class="history-note" id="status">Lendo registros históricos...</p></section>
 <section class="history-panel"><h2 style="font-size:18px;margin:0">Jogos arquivados</h2>
-<p class="history-note">Abra um confronto e escolha entre análise do jogo e jogadores. Projeções pré-jogo permanecem congeladas.</p></section>
+<p class="history-note">Abra um confronto no menu recolhível e escolha o histórico de acertos do jogo ou dos jogadores. Projeções pré-jogo permanecem congeladas.</p></section>
 <div class="history-list" id="cards" aria-live="polite"></div>
 </main>
 <script>
@@ -107,6 +113,7 @@ async function json(url){
  return r.json();
 }
 const GAME_VIEWS=new Map();
+const GAME_OPEN=new Set();
 function gameKey(g){return [g.date,g.start_utc,g.away,g.home].join("|");}
 function cardJogador(x){
  const r=x.result,finished=r?.status==="apurado";
@@ -166,14 +173,14 @@ function render(){
     players.length?'<div class="game-players">'+players.map(cardJogador).join("")+'</div>':
      '<div class="history-empty">Nenhuma projeção individual selecionada para esta partida'+
      (market||classe||busca?" com os filtros atuais":" na coleta pré-jogo")+'.</div>';
-  return '<section class="game-history"><div class="game-history-head"><div><h2>'+esc(g.away)+' × '+esc(g.home)+'</h2>'+
+  return '<details class="game-history" data-history-game="'+esc(key)+'"'+(GAME_OPEN.has(key)?' open':'')+'><summary class="game-history-head"><div><h2>'+esc(g.away)+' × '+esc(g.home)+'</h2>'+
    '<p>'+esc(g.date)+' · '+(final?"Finalizado":"Pendente ou em andamento")+
    ' · '+g.numSinais+' projeção(ões) individuais</p></div><strong>'+
-   (final&&r?.away_score!=null&&r?.home_score!=null?esc(r.away_score+' – '+r.home_score):"— : —")+'</strong></div>'+
+   (final&&r?.away_score!=null&&r?.home_score!=null?esc(r.away_score+' – '+r.home_score):"— : —")+'</strong><span class="game-expand" aria-hidden="true">⌄</span></summary>'+
    '<div class="game-tabs" role="tablist" aria-label="Detalhes de '+esc(g.away)+' e '+esc(g.home)+'">'+
    '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogo" aria-selected="'+(selected==="jogo")+'">Análise do jogo</button>'+
    '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogadores" aria-selected="'+(selected==="jogadores")+'">Jogadores ('+players.length+')</button>'+
-   '</div><div class="game-body" role="tabpanel">'+body+'</div></section>';
+   '</div><div class="game-body" role="tabpanel">'+body+'</div></details>';
  }).join("");
 }
 async function carregar(){
@@ -211,9 +218,20 @@ async function carregar(){
 }
 ["data","mercado","classe","jogador"].forEach(id=>$(id).addEventListener("input",render));
 $("cards").addEventListener("click",e=>{
+ const summary=e.target.closest("summary.game-history-head");
+ if(summary){
+   const group=summary.closest("details[data-history-game]");
+   if(group){
+     const key=group.dataset.historyGame;
+     if(group.open)GAME_OPEN.delete(key);
+     else GAME_OPEN.add(key);
+   }
+   return;
+ }
  const btn=e.target.closest("button[data-game-key][data-game-view]");
  if(!btn)return;
  GAME_VIEWS.set(btn.dataset.gameKey,btn.dataset.gameView);
+ GAME_OPEN.add(btn.dataset.gameKey);
  render();
 });
 $("atualizar").addEventListener("click",carregar);
