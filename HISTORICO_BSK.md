@@ -29,3 +29,11 @@ O workflow exige permissões contents: write. O Pages só mostra a página nova 
 
 ## Auditoria
 Não sobrescrever snapshots antigos. Cada captura inclui captured_at, model_hash, data_hash, status de projeção, estatística prevista, desvio e avisos. Recalcular o resultado jamais recalcula a previsão.
+
+## Análise de equipes e organização da página
+
+A partir do schema 2, cada confronto recebe, antes do início, as projeções da mesma função `analisar()` usada em Jogos: pontos da equipe mandante, pontos da visitante, total, margem, favorito, probabilidade aproximada de vitória e ritmo. Após a partida, o arquivo de resultados recebe os pontos finais reais e os erros das projeções de equipe, além da indicação de acerto do vencedor (sem cotação/odds).
+
+Na página Histórico, cada confronto aparece como um menu recolhível. Dentro dele há duas opções: **Histórico de acertos do jogo** e **Histórico dos jogadores**, com avaliações separadas.
+
+Snapshots anteriores ao schema 2 permanecem imutáveis e não possuem previsões do placar. A página deve sinalizar expressamente a ausência dessas projeções em vez de inferi-las após o jogo.
