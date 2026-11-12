@@ -14,11 +14,13 @@ const fs=require("node:fs");
 const path=require("node:path");
 const crypto=require("node:crypto");
 const vm=require("node:vm");
+const {avaliarContexto,consolidar}=require("./metricas_bsk.js");
 
 const ROOT=path.join(__dirname,"historico");
 const SNAP=path.join(ROOT,"snapshots");
 const RESULTS=path.join(ROOT,"resultados");
 const INDICE=path.join(ROOT,"indice.json");
+const METRICAS=path.join(ROOT,"metricas.json");
 const MARKETS=["pts","reb","ast","tres","blk","stl"];
 const ESPN_MARKETS={pts:["PTS"],reb:["REB"],ast:["AST"],tres:["3PT","3PM","FG3M"],blk:["BLK"],stl:["STL"]};
 const cfg={version:1,season:"2026-27",policy:"snapshots pré-jogo de projeções estatísticas"};
@@ -85,6 +87,14 @@ function serializar(q,classe,motor){
   last5:q.d.ultimos5,sigma:Number(q.sd.toFixed(3)),sample:q.d.jogos,
   score:Number(q.score.toFixed(5)),warnings:[...q.risco],
   target:{direction:"acima_de",threshold:Math.floor(q.proj)},
+  context:{
+   expected_minutes:Number.isFinite(Number(q.d.minutos_ultimos5))&&Number(q.d.minutos_ultimos5)>0?
+    Number(q.d.minutos_ultimos5):Number.isFinite(Number(q.p.minutos))?Number(q.p.minutos):null,
+   team_absences:(q.t.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
+   opponent_absences:(q.o.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
+   projected_blowout_risk:Math.abs(q.r.margem)>=12,
+   projected_margin:Number(q.r.margem.toFixed(2))
+  },
   summary:resumo.texto
  };
 }
@@ -111,12 +121,24 @@ function capturar({clock=now()}={}){
   return {captured:false,reason:"jogos_iniciados"};
  }
  const ids=new Set(partidas.map(r=>r.j.horario_utc+"|"+r.j.visitante.sigla+"|"+r.j.casa.sigla));
- const picks=[...selecionadas].filter(([q])=>
-  ids.has(q.r.j.horario_utc+"|"+q.r.j.visitante.sigla+"|"+q.r.j.casa.sigla)
- ).map(([q,c])=>serializar(q,c,motor));
+ const monitorados=new Map();
+ // Arquiva também o conjunto de projeções observadas, sem chamá-las recomendações.
+ // Assim, há amostra de aprendizado mesmo quando nenhum jogador passou no Radar.
+ for(const r of partidas){
+  for(const q of r._opcoes){
+   if(!ids.has(q.r.j.horario_utc+"|"+q.r.j.visitante.sigla+"|"+q.r.j.casa.sigla))continue;
+   const classe=selecionadas.get(q)||"monitoramento";
+   const item=serializar(q,classe,motor);
+   monitorados.set(item.id,item);
+  }
+ }
+ const picks=[...monitorados.values()];
  const arred=x=>Number.isFinite(x)?Number(x.toFixed(3)):null;
  const jogos=partidas.map(r=>({start_utc:r.j.horario_utc,
    home:r.j.casa.sigla,away:r.j.visitante.sigla,
+   context:{home_absences:(r.j.casa.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
+     away_absences:(r.j.visitante.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
+     injuries_verified:!!dados.lesoes_ok},
    prediction:{
     home_points:arred(r.sc),away_points:arred(r.sv),
     total_points:arred(r.sc+r.sv),
@@ -248,10 +270,24 @@ async function apurarDia(day){
   const real=numericStat(row,pick.market);
   if(real===null){result.status="estatistica_indisponivel";results.push(result);continue;}
   result.status="apurado";result.actual=real;
+  result.context={actual_minutes:Number(minutes(row).toFixed(2))};
   result.signed_error=Number((pick.projection-real).toFixed(3));
   result.absolute_error=Number(Math.abs(pick.projection-real).toFixed(3));
   result.target_correct=pick.target?.direction==="acima_de"&&Number.isFinite(pick.target?.threshold)?real>pick.target.threshold:null;
+  const gameResult=partidas.find(g=>g.start_utc===pick.jogo_utc&&
+    [g.home,g.away].includes(pick.team)&&[g.home,g.away].includes(pick.opponent));
+  if(gameResult?.status==="finalizado"){
+   gameResult.actual_margin=gameResult.home_score-gameResult.away_score;
+   result.analysis=avaliarContexto(pick,result,gameResult);
+  }
   results.push(result);
+ }
+ // Registrar margem final também para confrontos sem jogadores monitorados.
+ for(const g of partidas){
+  if(g.status==="finalizado"&&Number.isFinite(g.home_score)&&Number.isFinite(g.away_score)){
+   g.actual_margin=g.home_score-g.away_score;
+   g.blowout=Math.abs(g.actual_margin)>=20;
+  }
  }
  const prev=readJSON(path.join(RESULTS,day+".json"));
  const payload={schema:1,date:day,updated_at:now().toISOString(),source:"ESPN",
@@ -260,6 +296,14 @@ async function apurarDia(day){
  const oldStable=JSON.stringify({games:prev?.games||[],results:(prev?.results||[]).map(({updated_at,...r})=>r)});
  if(stable!==oldStable)putJSON(path.join(RESULTS,day+".json"),payload);
  return {date:day,total:results.length,apurados:results.filter(r=>r.status==="apurado").length};
+}
+function atualizarMetricas(){
+ const names=fs.existsSync(SNAP)?fs.readdirSync(SNAP).filter(n=>/^\d{4}-\d{2}-\d{2}\.json$/.test(n)):[];
+ const dias=names.map(n=>({snapshot:readJSON(path.join(SNAP,n)),results:readJSON(path.join(RESULTS,n))}));
+ const m=consolidar(dias);
+ const prev=readJSON(METRICAS);
+ if(JSON.stringify(prev)!==JSON.stringify(m))putJSON(METRICAS,m);
+ return m;
 }
 function recriarIndice(){
  const names=fs.existsSync(SNAP)?fs.readdirSync(SNAP).filter(n=>/^\d{4}-\d{2}-\d{2}\.json$/.test(n)):[];
@@ -290,6 +334,7 @@ async function apurar(){
   console.log("Apuração:",res);
  }
  recriarIndice();
+ atualizarMetricas();
  console.log("Histórico:",relevant.length+" rodadas,",count+" projeções apuradas");
  return count;
 }
@@ -302,4 +347,4 @@ if(require.main===module){
  })().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
 }
 module.exports={capturar,apurar,apurarDia,recriarIndice,findRow,numericStat,minutes,isFinal,
- selecionarSinais,serializar,nyDay,norm};
+ selecionarSinais,serializar,nyDay,norm,atualizarMetricas};
