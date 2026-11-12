@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "date": "2026-11-11",
-  "updated_at": "2026-11-12T01:12:34.500Z",
+  "updated_at": "2026-11-12T01:36:47.096Z",
   "source": "ESPN",
   "games": [
     {
@@ -11,6 +11,7 @@
       "status": "pre",
       "home_score": 0,
       "away_score": 0,
+      "comparison": null,
       "espn_event_id": "401909973"
     },
     {
@@ -20,6 +21,7 @@
       "status": "pre",
       "home_score": 0,
       "away_score": 0,
+      "comparison": null,
       "espn_event_id": "401909974"
     },
     {
@@ -29,6 +31,7 @@
       "status": "pre",
       "home_score": 0,
       "away_score": 0,
+      "comparison": null,
       "espn_event_id": "401909975"
     }
   ],
