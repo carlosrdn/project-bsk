@@ -340,8 +340,8 @@ function sugestaoCondicional(projecao,sd,media,jogos,riscos){
  const analise=analiseMercado(projecao,sd,linha,NaN,jogos,riscos);
  if(jogos<12||riscos.length||!Number.isFinite(analise.prob)||analise.prob<0.60)
    return {texto:"Sem seleção preliminar · sinal ou histórico insuficiente",linha};
- const preco=1.05/analise.prob;
- return {texto:"Investigar "+analise.lado+" "+f1(linha)+" · odd mínima teórica "+f1(preco)+
+ const preco=Math.ceil((1.05/analise.prob)*100)/100;
+ return {texto:"Investigar "+analise.lado+" "+f1(linha)+" · odd mínima teórica "+preco.toFixed(2).replace(".",",")+
     " · chance aproximada "+pct(analise.prob),linha,prob:analise.prob};
 }
 function camposMercado(id,projecao,sd,jogos,riscos){
@@ -465,7 +465,7 @@ function cardsCategoria(r,chave,filtroTime){
  candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.estimativa.valor-a.estimativa.valor);
  const itens=candidatos.slice(0,18);
  if(!itens.length)return '<div class="empty">Sem dados desta categoria na coleta atual.</div>';
- const descricao='<p class="category-desc">Número principal: projeção para o confronto (não é a média). A recomendação depende da linha real, odd e qualidade do histórico. Probabilidades ainda não calibradas no backtest contextual.</p>';
+ const descricao='<p class="category-desc">Número principal: projeção pré-jogo para o confronto (não é a média). A recomendação depende da linha real, odd e qualidade do histórico. Probabilidades ainda não calibradas no backtest contextual.</p>';
  return descricao+'<div class="category-grid">'+itens.map(({t,p,d,fora,estimativa:x})=>{
   const id=chaveMercado(t,p,chave,r.j.horario_utc),status=statusEfetivo(t,p);
   const alertas=[];
