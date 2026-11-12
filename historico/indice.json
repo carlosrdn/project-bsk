@@ -9,9 +9,10 @@
       "games": 3,
       "recommendations": 0,
       "settled": 0,
+      "finished_games": 0,
       "snapshot": "historico/snapshots/2026-11-11.json",
-      "results": null
+      "results": "historico/resultados/2026-11-11.json"
     }
   ],
-  "updated_at": "2026-11-12T01:08:50.203Z"
+  "updated_at": "2026-11-12T01:12:34.501Z"
 }
