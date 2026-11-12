@@ -146,25 +146,46 @@ function quadroSubstituicoes(t){
  }).join("");
  return '<div class="replacement-area"><h4>Desfalques e possíveis substitutos</h4>'+blocos+'</div>';
 }
+
+function quadroElencoESPN(t){
+ const feed=ESCALACOES_FEED.get(t.sigla);
+ if(!feed)return '<p class="central-info">Escalação oficial ainda não recebida da ESPN para este confronto.</p>';
+ const titulares=feed.jogadores.filter(p=>p.status==="Titular confirmado");
+ const jogaram=feed.jogadores.filter(p=>p.status==="Disponível confirmado");
+ const extras=feed.jogadores.filter(p=>p.status==="Não confirmado");
+ const ordem=[...titulares,...jogaram,...extras];
+ const linhas=ordem.map(p=>
+  '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small>'+
+   esc(p.status)+(p.posicao?' · '+esc(p.posicao):'')+
+   (p.minutos>0?' · '+f1(p.minutos)+' min':'')+
+  '</small></div></div>').join("");
+ return '<div class="feed-roster"><p class="central-info"><strong>ESPN · '+titulares.length+
+   ' titulares indicados · '+jogaram.length+' jogadores com minutos · '+feed.jogadores.length+
+   ' atletas no box score.</strong> '+(titulares.length===5?
+   'Cinco titulares identificados.':'Ainda não há cinco titulares explicitamente identificados. Não completar por suposição.')+
+   '</p><details><summary>Ver elenco ESPN completo ('+feed.jogadores.length+')</summary>'+
+   (linhas||'<p class="central-info">Nenhum atleta publicado.</p>')+
+   '</details></div>';
+}
 function centralEscalacoes(lista){
   const times=new Map();
   lista.forEach(r=>[r.j.visitante,r.j.casa].forEach(t=>times.set(t.sigla,t)));
   const todos=Array.from(times.values());
   const verificados=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>STATUS_AUTOMATICOS.has(chaveEscalacao(t,p))).length,0);
   const manuais=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
-  const texto='<div class="central-top"><div><p class="eyebrow">Fonte automática · ajustes opcionais</p><h2>Central de escalações</h2><p class="sub">O BSK identifica lesões no snapshot ESPN e confirma titulares pela ESPN quando o box score estiver disponível. Você só precisa alterar manualmente se quiser corrigir algum status.</p></div><span class="central-count">'+verificados+' NBA · '+manuais+' manuais</span></div>';
+  const texto='<div class="central-top"><div><p class="eyebrow">Elenco ESPN e ajustes opcionais</p><h2>Central de escalações</h2><p class="sub">Titular confirmado somente quando o box score indica titularidade; jogar minutos confirma participação, não titularidade. A ESPN pode publicar dados depois do início.</p></div><span class="central-count">'+verificados+' automáticos · '+manuais+' manuais</span></div>';
   const equipes=todos.map(t=>{
     const jogadores=(t.jogadores||[]).map(p=>{
       const escolhido=statusManual(t,p),inf=statusInfo(t,p);
       const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(v===escolhido?' selected':'')+'>'+(v==="Não verificado"?"Automático (padrão)":esc(v))+'</option>').join("");
       return '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small><strong>'+esc(inf.valor)+'</strong> · '+esc(inf.origem)+'</small></div><details class="override"><summary>Corrigir</summary><select aria-label="Correção do status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></details></div>';
     }).join("");
-    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+quadroSubstituicoes(t)+(jogadores||'<p class="sub">Sem atletas neste resumo.</p>')+'</div>';
+    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+quadroSubstituicoes(t)+quadroElencoESPN(t)+(jogadores||'<p class="sub">Sem atletas neste resumo.</p>')+'</div>';
   }).join("");
   return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+texto+
     '<div class="central-tools" style="margin-top:12px"><button type="button" data-auto-refresh>Atualizar ESPN agora</button><button type="button" data-limpar-status>Limpar correções manuais</button></div>'+
     '<p class="central-info" id="auto-status">'+esc(statusColetaAutomatica)+'</p>'+
-    '<div class="central-grid">'+equipes+'</div><p class="central-info">A lista contém somente os jogadores já incluídos nos dados do BSK — não o elenco completo. Antes do jogo, falta de alerta de lesão não significa titular confirmado. O feed NBA pode ser bloqueado no navegador; nesse caso, continua visível a última coleta ESPN. Nenhum ajuste de minutos é inferido automaticamente.</p></div></section>';
+    '<div class="central-grid">'+equipes+'</div><p class="central-info">O bloco de monitoramento BSK contém somente jogadores da coleta. O elenco ESPN completo aparece acima quando o feed o disponibiliza. Antes do jogo, falta de alerta de lesão não significa titular confirmado. O feed NBA pode ser bloqueado no navegador; nesse caso, continua visível a última coleta ESPN. Nenhum ajuste de minutos é inferido automaticamente.</p></div></section>';
 }
 function salvarStatus(key,value){
   if(!STATUS_MANUAIS.includes(value))return;
