@@ -51,8 +51,8 @@ function carregar(obj){
 
  const all=Object.values(obj.estatisticas).reduce((n,x)=>n+(x.previsoes||0),0);
  $("geral").innerHTML=metric(all,"Previsões avaliadas")+metric(ho.status==="holdout_temporal"?ho.datas_teste:"—","Dias no holdout")+metric(obj.temporada,"Temporada")+metric(ho.status==="holdout_temporal"?"Holdout":"Legado","Validação");
- $("stats").innerHTML=Object.entries(obj.estatisticas).map(([k,v])=>'<div class="stat"><h3>'+nomes[k]+'</h3><div class="metrics">'+metric(fmt(v.mae),"MAE no teste")+metric(fmt(obj.holdout?.baseline_media_temporada?.[k]?.mae),"MAE da média histórica")+metric(fmt(v.rmse),"RMSE")+metric(fmt(v.vies),"Viés")+metric(v.dentro_1_ponto==null?"—":fmt(v.dentro_1_ponto)+"%","Dentro de 1")+'</div><div class="bar"><i style="width:'+Math.min(100,v.dentro_1_ponto||0)+'%"></i></div><small class="muted">'+v.previsoes+' previsões</small></div>').join("");
- $("limitacoes").textContent=(obj.limitacoes||[]).join(" ")+" Os resultados não constituem taxa de acerto em apostas: faltam linhas e odds históricas. O ajuste completo do radar por adversário ainda NÃO foi validado.";
+ $("stats").innerHTML=Object.entries(obj.estatisticas).map(([k,v])=>'<div class="stat"><h3>'+nomes[k]+'</h3><div class="metrics">'+metric(fmt(v.mae),"MAE no teste")+metric(fmt(obj.holdout?.baseline_media_temporada?.[k]?.mae),"MAE da média histórica")+metric(fmt(obj.holdout?.modelo_recencia_030_sem_contexto?.[k]?.mae),"MAE do BSK 30% recente (sem contexto)")+metric(fmt(v.rmse),"RMSE")+metric(fmt(v.vies),"Viés")+metric(v.dentro_1_ponto==null?"—":fmt(v.dentro_1_ponto)+"%","Dentro de 1")+'</div><div class="bar"><i style="width:'+Math.min(100,v.dentro_1_ponto||0)+'%"></i></div><small class="muted">'+v.previsoes+' previsões</small></div>').join("");
+ $("limitacoes").textContent=(obj.limitacoes||[]).join(" ")+" Os resultados não constituem taxa de acerto em apostas: faltam linhas e odds históricas. O ajuste completo do radar por adversário ainda NÃO foi validado. Compare a versão de 30% recente com a média histórica: MAE menor significa menos erro no holdout, não garantia de lucro.";
  renderTabela();
 }
 function renderTabela(){
