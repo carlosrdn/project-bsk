@@ -427,60 +427,56 @@ const CATEGORIAS_JOGADORES=[
 ];
 function dadosCategoria(p,chave){
   const d=p.props?.[chave];
-  if(d&&Number.isFinite(d.media)&&d.jogos>=2)return {media:d.media,ultimos5:d.ultimos5,jogos:d.jogos,desvio:d.desvio,comHistorico:true};
+  if(d&&Number.isFinite(d.media)&&d.jogos>=2)return {...d,comHistorico:true};
   // Snapshots antigos só têm média de temporada para bloqueios e roubos.
   if(["blk","stl"].includes(chave)&&Number.isFinite(p[chave]))return {media:p[chave],ultimos5:null,jogos:p.jogos||0,desvio:null,comHistorico:false};
   return null;
 }
 function projetarCategoria(r,t,o,p,d,chave){
-  const ehCasa=t===r.j.casa;
-  if(d.comHistorico){
-    const bumps=bumpsTime(t);
-    const top3=(t.jogadores||[]).slice().sort((a,b)=>b.pts-a.pts).slice(0,3).map(x=>x.nome);
-    const lider=top3.includes(p.nome);
-    const bump=lider?(chave==="pts"?bumps.pts:chave==="ast"?bumps.ast:0):0;
-    return {valor:Math.max(0,projetar(chave,d,t,o,r,ehCasa,bump).proj),metodo:"Modelo BSK · confronto e contexto",provisorio:["blk","stl"].includes(chave)};
-  }
-  // Arquivos antigos não possuem histórico jogo a jogo de roubos e bloqueios.
-  // Estimativa contextual, conservadora e explicitamente provisória.
-  const ritmo=(t.ritmo+o.ritmo)/2;
-  const fator=clamp(ritmo/Math.max(t.ritmo,1),0.92,1.08);
-  const favorito=ehCasa?r.margem>0:r.margem<0;
-  const minutos=favorito?1-clamp((Math.abs(r.margem)-10)/10,0,1)*0.08:1;
-  return {valor:Math.max(0,d.media*fator*minutos),metodo:"Estimativa provisória · ritmo e minutos",provisorio:true};
+ const ehCasa=t===r.j.casa;
+ if(d.comHistorico){
+  const x=projetar(chave,d,t,o,r,ehCasa,0);
+  return {valor:x.proj,sd:x.sd,metodo:"Média ponderada + ritmo + contexto de equipe",provisorio:true,
+    base:x.base,recente:x.recente};
+ }
+ const ritmo=(t.ritmo+o.ritmo)/2;
+ const fator=clamp(ritmo/Math.max(t.ritmo,1),0.94,1.06);
+ const valor=Math.max(0,d.media*fator);
+ return {valor,sd:Math.max(0.65,desvioPrior(chave,valor)),metodo:"Dados agregados · faltam jogos individuais",
+    provisorio:true,base:d.media,recente:null};
 }
 function cardsCategoria(r,chave,filtroTime){
-  const equipes=[[r.j.visitante,r.j.casa],[r.j.casa,r.j.visitante]];
-  const candidatos=[];
-  for(const [t,o] of equipes){
-    if(filtroTime&&t!==filtroTime)continue;
-    for(const p of t.jogadores||[]){
-      const d=dadosCategoria(p,chave);
-      if(!d)continue;
-      const status=statusEfetivo(t,p);
-      const fora=jogadorIndisponivel(t,p);
-      const estimativa=projetarCategoria(r,t,o,p,d,chave);
-      candidatos.push({t,o,p,d,status,fora,estimativa});
-    }
+ const equipes=[[r.j.visitante,r.j.casa],[r.j.casa,r.j.visitante]];
+ const candidatos=[];
+ for(const [t,o] of equipes){
+  if(filtroTime&&t!==filtroTime)continue;
+  for(const p of t.jogadores||[]){
+   const d=dadosCategoria(p,chave);if(!d)continue;
+   const fora=jogadorIndisponivel(t,p),estimativa=projetarCategoria(r,t,o,p,d,chave);
+   candidatos.push({t,o,p,d,fora,estimativa});
   }
-  // Exibe a projeção deste confronto; classificação por volume esperado,
-  // NÃO por probabilidade de over, confiança ou valor esperado.
-  candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.estimativa.valor-a.estimativa.valor||(b.p.minutos||0)-(a.p.minutos||0));
-  const visiveis=candidatos.slice(0,18);
-  if(!visiveis.length)return '<div class="empty">Sem dados suficientes para esta categoria nesta coleta.</div>';
-  const info='<p class="category-desc">O número em destaque é a projeção do BSK para este confronto, não a média nem uma linha oferecida por casa de apostas. Ordenação por produção estimada, sem garantia de acerto.</p>';
-  const cards=visiveis.map(({t,p,d,status,fora,estimativa})=>{
-    const pendente=status==="Sem confirmação de titularidade";
-    const referencia=Math.floor(Math.max(0,estimativa.valor))+0.5;
-    return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div><div class="category-projection"><strong class="category-average">'+f1(estimativa.valor)+'</strong><span>Projeção BSK</span></div></div>'+
-      '<div class="category-meta"><span>Média temporada: '+f1(d.media)+'</span><span>'+d.jogos+' jogos</span>'+(d.ultimos5!=null?'<span>Últimos 5: '+f1(d.ultimos5)+'</span>':'<span>Últimos 5: indisponível</span>')+'</div>'+
-      '<p class="category-reference">Linha indicativa: <strong>'+f1(referencia)+'</strong> <small>(sintética, não é cotação)</small></p>'+
-      '<p class="category-status" data-live-status-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+ 
-      '<div class="live-stat" data-live-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'" data-live-stat="'+esc(chave)+'">Aguardando ESPN...</div>'+
-      '<p class="category-note">'+esc(estimativa.metodo)+(estimativa.provisorio?' · Sem validação específica desta categoria.':'')+'</p>'+
-      '</article>';
-  }).join("");
-  return info+'<div class="category-grid">'+cards+'</div>';
+ }
+ candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.estimativa.valor-a.estimativa.valor);
+ const itens=candidatos.slice(0,18);
+ if(!itens.length)return '<div class="empty">Sem dados desta categoria na coleta atual.</div>';
+ const descricao='<p class="category-desc">Número principal: projeção para o confronto (não é a média). A recomendação depende da linha real, odd e qualidade do histórico. Probabilidades ainda não calibradas no backtest contextual.</p>';
+ return descricao+'<div class="category-grid">'+itens.map(({t,p,d,fora,estimativa:x})=>{
+  const id=chaveMercado(t,p,chave,r.j.horario_utc),status=statusEfetivo(t,p);
+  const alertas=[];
+  if(fora)alertas.push("Jogador indisponível");
+  if(!rodadaAtual())alertas.push("Dados de outra rodada");
+  if(!d.comHistorico)alertas.push("Sem histórico individual");
+  if(!DADOS.lesoes_ok)alertas.push("Lesões não verificadas");
+  const sugestao=sugestaoCondicional(x.valor,x.sd,d.media,d.jogos,alertas);
+  return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div>'+
+   '<div class="category-projection"><strong class="category-average">'+f1(x.valor)+'</strong><span>Projeção BSK</span></div></div>'+
+   '<div class="category-meta"><span>Média: '+f1(d.media)+'</span><span>Últ. 5: '+(d.ultimos5==null?"—":f1(d.ultimos5))+'</span><span>'+d.jogos+' jogos</span></div>'+
+   '<p class="market-hint">'+esc(sugestao.texto)+'</p>'+
+   '<p class="category-status" data-live-status-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'">'+esc(status)+'</p>'+
+   '<div class="live-stat" data-live-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'" data-live-stat="'+esc(chave)+'">Aguardando ESPN...</div>'+
+   camposMercado(id,x.valor,x.sd,d.jogos,alertas)+
+   '<p class="category-note">'+esc(x.metodo)+' · estimativa experimental</p></article>';
+ }).join("")+'</div>';
 }
 function painelCategorias(r, filtroTime){
   const selecionada=estado.categoria;
