@@ -294,12 +294,23 @@ async function apurarDia(day){
   }
  }
  const prev=readJSON(path.join(RESULTS,day+".json"));
- const payload={schema:1,date:day,updated_at:now().toISOString(),source:"ESPN",
-   games:partidas,results};
- const stable=JSON.stringify({games:partidas,results:results.map(({updated_at,...r})=>r)});
+ // Falha transitória no feed NÃO deve apagar um resultado já confirmado.
+ const previousGames=new Map((prev?.games||[]).map(g=>[[g.start_utc,g.away,g.home].join("|"),g]));
+ const previousResults=new Map((prev?.results||[]).map(r=>[r.id,r]));
+ const mergedGames=partidas.map(g=>{
+  const anterior=previousGames.get([g.start_utc,g.away,g.home].join("|"));
+  return anterior?.status==="finalizado"&&g.status!=="finalizado"?anterior:g;
+ });
+ const mergedResults=results.map(r=>{
+  const anterior=previousResults.get(r.id);
+  return anterior?.status==="apurado"&&r.status!=="apurado"?anterior:r;
+ });
+ const payload={schema:2,date:day,updated_at:now().toISOString(),source:"ESPN",
+   games:mergedGames,results:mergedResults};
+ const stable=JSON.stringify({games:mergedGames,results:mergedResults.map(({updated_at,...r})=>r)});
  const oldStable=JSON.stringify({games:prev?.games||[],results:(prev?.results||[]).map(({updated_at,...r})=>r)});
  if(stable!==oldStable)putJSON(path.join(RESULTS,day+".json"),payload);
- return {date:day,total:results.length,apurados:results.filter(r=>r.status==="apurado").length};
+ return {date:day,total:mergedResults.length,apurados:mergedResults.filter(r=>r.status==="apurado").length};
 }
 function atualizarMetricas(){
  const names=fs.existsSync(SNAP)?fs.readdirSync(SNAP).filter(n=>/^\d{4}-\d{2}-\d{2}\.json$/.test(n)):[];
