@@ -82,6 +82,9 @@
  <div class="history-metric"><b>—</b><span>Erro absoluto médio</span></div>
  <div class="history-metric"><b>—</b><span>Jogos arquivados</span></div>
 </div>
+<section class="history-panel"><h2 style="font-size:18px;margin:0 0 9px">Métricas do BSK</h2>
+<p class="history-note">Acertos e erros de limites congelados, separadamente da precisão numérica. Fatores contextuais indicam associações, não causas comprovadas.</p>
+<div class="history-metrics" id="metricas-modelo"></div><div id="metricas-contexto" class="history-note"></div></section>
 <section class="history-panel"><div class="history-filters">
 <label>Rodada<select id="data"><option value="">Todas disponíveis</option></select></label>
 <label>Mercado<select id="mercado"><option value="">Todas as estatísticas</option>
@@ -101,6 +104,23 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const numero=x=>x==null?"—":Number(x).toLocaleString("pt-BR",{maximumFractionDigits:2});
 const rotulo={pts:"Pontos",reb:"Rebotes",ast:"Assistências",tres:"Bolas de três",blk:"Bloqueios",stl:"Roubos"};
 let snapshots=[],partidas=[];
+let metricasPersistidas=null;
+function pintarMetricas(){
+ const m=metricasPersistidas;
+ if(!m){$("metricas-modelo").innerHTML='<p class="history-note">Aguardando a primeira apuração persistida no repositório.</p>';return;}
+ const g=m.geral||{},rate=g.taxa_acerto==null?"—":numero(g.taxa_acerto*100)+"%";
+ $("metricas-modelo").innerHTML=[
+  [g.total??0,"Projeções avaliadas"],[g.acertos??0,"Limites atingidos"],
+  [g.erros??0,"Limites não atingidos"],[rate,"Taxa de acerto dos limites"]
+ ].map(([n,label])=>'<div class="history-metric"><b>'+esc(n)+'</b><span>'+esc(label)+'</span></div>').join("");
+ const ctx=Object.entries(m.contextos||{}).sort((a,b)=>b[1].total-a[1].total).slice(0,5);
+ $("metricas-contexto").innerHTML=ctx.length?
+   '<strong>Contextos observados</strong><p>'+ctx.map(([k,v])=>esc(k.replace(/_/g," "))+
+   ': '+v.total+' ocorrência(s), '+v.acertos+' limite(s) atingido(s), '+v.erros+' não atingido(s)').join(' · ')+'</p>'+
+   '<p>Amostras pequenas e fatores simultâneos impedem atribuir causalidade.</p>':
+   'Ainda não há amostra contextual apurada.';
+}
+
 function statusRotulo(st){
  return ({apurado:"Apurado",aguardando:"Aguardando",jogo_nao_finalizado:"Jogo em andamento/pendente",
  jogo_nao_localizado:"Jogo não localizado",boxscore_indisponivel:"Box score indisponível",
@@ -133,6 +153,13 @@ function cardJogador(x){
   ' · '+numero(x.sample)+' jogos · oscilação: '+numero(x.sigma)+'</p>'+
   statusLimite(x.target,r?.target_correct,finished)+
   '<p class="history-note">'+esc(x.summary||"Projeção pré-jogo")+'</p>'+
+  (r?.context?.actual_minutes!=null?
+   '<p class="history-note">Minutos de referência: '+numero(x.context?.expected_minutes)+
+   ' · reais: '+numero(r.context.actual_minutes)+'</p>':'')+
+  ((r?.analysis?.fatores||[]).length?
+   '<p class="history-note"><strong>Fatores observados:</strong> '+
+    esc(r.analysis.fatores.map(f=>f.texto).join(" · "))+
+    ' · Associação, não causa comprovada.</p>':'')+
   '<details class="history-detail"><summary>Auditoria</summary><pre>Capturado: '+esc(x.captured_at)+
   '\nVersão: '+esc(x.model_hash)+'\nAlertas: '+esc((x.warnings||[]).join("; ")||"Nenhum")+
   '</pre></details></article>';
@@ -217,12 +244,14 @@ function estatisticaESPN(group,name,market){
   if(!athlete)continue;
   const minuteRaw=minute>=0?athlete.stats?.[minute]:null;
   const played=minuteRaw!=null&&minuteRaw!=="--"&&Number(String(minuteRaw).split(":")[0])>0;
+  const parts=String(minuteRaw||"").split(":").map(Number);
+  const actualMinutes=Number.isFinite(parts[0])?Number((parts[0]+(Number.isFinite(parts[1])?parts[1]/60:0)).toFixed(2)):null;
   if(!played)return {status:"nao_atuou",actual:null,absolute_error:null};
   const raw=athlete.stats?.[col];
   if(raw==null||raw===""||raw==="--")return {status:"estatistica_indisponivel",actual:null,absolute_error:null};
   const actual=Number(String(raw).split("-")[0]);
   if(!Number.isFinite(actual))return {status:"estatistica_indisponivel",actual:null,absolute_error:null};
-  return {status:"apurado",actual};
+  return {status:"apurado",actual,context:{actual_minutes:actualMinutes}};
  }
  return {status:"jogador_nao_localizado",actual:null,absolute_error:null};
 }
@@ -269,6 +298,20 @@ async function atualizarResultadosESPN(){
       resultado.absolute_error=Number(Math.abs(resultado.signed_error).toFixed(3));
       resultado.target_correct=pick.target?.direction==="acima_de"&&Number.isFinite(pick.target?.threshold)?
        resultado.actual>pick.target.threshold:null;
+     }
+     if(resultado.status==="apurado"){
+      const fatores=[];
+      const esperado=Number(pick.context?.expected_minutes),real=resultado.context?.actual_minutes;
+      if(esperado>0&&Number.isFinite(real)&&real-esperado<=-6)
+       fatores.push({id:"minutos_abaixo",texto:"Minutagem "+numero(real-esperado)+" min versus referência"});
+      else if(esperado>0&&Number.isFinite(real)&&real-esperado>=6)
+       fatores.push({id:"minutos_acima",texto:"Minutagem +"+numero(real-esperado)+" min versus referência"});
+      if(Math.abs(home-away)>=20)fatores.push({id:"placar_elastico",texto:"Diferença final de "+Math.abs(home-away)+" pontos"});
+      if(pick.context?.team_absences?.length)
+       fatores.push({id:"desfalques_time",texto:pick.context.team_absences.length+" ausência(s) pré-jogo na equipe"});
+      if(pick.context?.opponent_absences?.length)
+       fatores.push({id:"desfalques_adversario",texto:pick.context.opponent_absences.length+" ausência(s) pré-jogo no adversário"});
+      resultado.analysis={fatores,resumo:"Possíveis explicações associadas, sem relação causal demonstrada"};
      }
      pick.result=resultado;
     }
@@ -337,13 +380,16 @@ async function carregar(){
   }));
   snapshots=dados.flatMap(d=>d.sinais).sort((a,b)=>b.date.localeCompare(a.date)||a.classificacao.localeCompare(b.classificacao));
   partidas=dados.flatMap(d=>d.jogos).sort((a,b)=>b.date.localeCompare(a.date));
+  try{metricasPersistidas=await json("historico/metricas.json");}
+  catch(_){metricasPersistidas=null;}
+  pintarMetricas();
   render();
   const vazias=dias.filter(d=>d.recommendations===0).length;
   $("status").textContent=dias.length+" rodada(s) arquivada(s), "+partidas.length+" partida(s), "+snapshots.length+
     " projeção(ões), "+vazias+" rodada(s) sem projeções selecionadas. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
   await atualizarResultadosESPN();
  }catch(e){
-  snapshots=[];partidas=[];render();
+  snapshots=[];partidas=[];metricasPersistidas=null;pintarMetricas();render();
   $("status").textContent="Ainda não há dados históricos publicados ou ocorreu um erro ao carregar: "+e.message+
     ". A página só exibe rodadas realmente capturadas antes dos jogos.";
  }
