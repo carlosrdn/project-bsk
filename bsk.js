@@ -244,7 +244,7 @@ function pickHtml(x,prefixo){
   const status=x.apta?"Histórico consistente · conferir linha real":"Em observação";
   const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos críticos; confira escalação, minutos e odds.";
   const pendente=statusEfetivo(x.t,x.p)==="Sem confirmação de titularidade";
-  return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir '+(x.dir==="Over"?"ov":"un")+'">'+x.dir+' estimado</span></div>'+
+  return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Linha real pendente</span></div>'+
     '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
     '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção do modelo</span></div><div class="pick-stat"><strong>'+f1(x.ref)+'</strong><span>Linha sintética · não é cotação real</span></div></div>'+
     '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Média '+f1(x.d.media)+'</span><span>Últ. 5 '+f1(x.d.ultimos5)+'</span></div>'+
