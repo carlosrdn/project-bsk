@@ -32,4 +32,18 @@ const scoreB=riscoCtx.pontuar({...jogador,ref:2000});
 assert.equal(scoreA.score,scoreB.score,"Linha sintética não pode criar vantagem artificial");
 assert.equal(scoreA.apta,scoreB.apta,"Linha fictícia não pode mudar triagem");
 assert(!source.includes("Over</span>"),"Exibição não deve forçar Over sem linha real");
-console.log("OK: projeção, lesões, linha sintética e triagem");
+
+// Regressão Castle: nunca recomendar Under quando projeção está acima da linha.
+const direcaoContexto=vm.createContext({});
+vm.runInContext('const f1=x=>x.toFixed(1).replace(".",",");\n'+
+  trecho("function avaliarLinhaReal(","function pickHtml("),direcaoContexto);
+const castle=direcaoContexto.avaliarLinhaReal(6.3,1.0,5.5,[],12);
+const castleInverso=direcaoContexto.avaliarLinhaReal(4.7,1.0,5.5,[],12);
+assert(castle.texto.includes("Over 5,5"),"6,3 projetados contra linha real 5,5 devem indicar Over");
+assert(castleInverso.texto.includes("Under 5,5"),"4,7 projetados contra linha real 5,5 devem indicar Under");
+assert(!trecho("function opcoesDoJogo(","function motivo(").includes('dir:'),
+  "Radar não deve pré-definir Over/Under a partir de linha sintética");
+assert(!trecho("function pickHtml(","function atualizarLinha(").includes('x.ref)'),
+  "Radar não deve exibir linha sintética como se fosse uma linha utilizável");
+
+console.log("OK: projeção, lesões, direção Castle 6,3 vs 5,5 e triagem");
