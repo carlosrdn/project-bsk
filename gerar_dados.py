@@ -202,10 +202,13 @@ def props_do_jogador(player_id):
             v = [j[campo] for j in jogos if CONTEXTO["nivel_sigla"].get(j["MATCHUP"].split()[-1]) == nivel]
             por_nivel[nivel] = {"media": round(media(v), 1) if v else None, "jogos": len(v)}
         d = desvio(valores)
+        minutos_jogo = [minutos_em_decimal(j.get("MIN")) for j in jogos]
         resultado[chave] = {
             "media": round(media(valores), 2),
             "ultimos5": round(media(valores[:5]), 2),
             "desvio": round(d, 2) if d is not None else None,
+            "minutos_media": round(media(minutos_jogo), 2),
+            "minutos_ultimos5": round(media(minutos_jogo[:5]), 2),
             "jogos": len(valores),
             "por_nivel": por_nivel,
         }
