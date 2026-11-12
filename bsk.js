@@ -431,7 +431,7 @@ function pickHtml(x,prefixo){
   '<p>Combina histórico da temporada, forma recente e contexto do confronto. A oscilação é descritiva, não uma garantia nem um intervalo validado de acerto.</p></details></article>';
 }
 const NIVEL_NOME = {forte: "Forte", media: "Médio", fraca: "Fraco"};
-const estado = {jogo: 0, aba: "resumo", categoria: "pts", abertos: {}};
+const estado = {jogo: null, aba: "resumo", categoria: "pts", abertos: {}};
 let LISTA = [];
 
 function aberta(id, padrao){ return id in estado.abertos ? estado.abertos[id] : padrao; }
@@ -594,11 +594,17 @@ function destaques(lista){
 }
 
 function renderJogos(){
-  $("jogos").innerHTML = LISTA.map((r, i) =>
-    '<button type="button" role="tab" class="gt' + (i === estado.jogo ? " on" : "") + '" aria-selected="' + (i === estado.jogo) + '" data-jogo="' + i + '"><span>' +
-    esc(r.j.visitante.sigla) + ' @ ' + esc(r.j.casa.sigla) + '</span><small>' + hora(r.j.horario_utc) + '</small></button>').join("");
-  $("painel").innerHTML = painelJogo(LISTA[estado.jogo], estado.jogo);
-  if(liveCache.stamp)atualizarAoVivo();
+  $("jogos").innerHTML = LISTA.map((r, i) => {
+    const aberto = i === estado.jogo;
+    const id = "jogo-painel-" + i;
+    return '<article class="game-entry"><button type="button" id="jogo-botao-' + i +
+      '" class="gt' + (aberto ? " on" : "") + '" aria-expanded="' + aberto + '" aria-controls="' + id +
+      '" data-jogo="' + i + '"><span>' + esc(r.j.visitante.sigla) + ' @ ' + esc(r.j.casa.sigla) +
+      '</span><small>' + hora(r.j.horario_utc) + '</small><span class="game-entry-arrow" aria-hidden="true">▾</span></button>' +
+      '<div class="game-entry-panel" id="' + id + '"' + (aberto ? '>' + painelJogo(r, i) : ' hidden>') +
+      '</div></article>';
+  }).join("");
+  if(estado.jogo !== null && liveCache.stamp) atualizarAoVivo();
 }
 
 function render(){
@@ -610,7 +616,7 @@ function render(){
   $("sub").textContent = "Jogos de " + DADOS.data_jogos + " · dados atualizados em " + DADOS.atualizado_em.replace("T", " ") + (DADOS.lesoes_ok ? "" : " · sem dados de lesões");
   if (!DADOS.jogos.length) { const destino=$("painel")||$("dest")||$("central"); destino.innerHTML='<p class="msg">Nenhum jogo encontrado nesta coleta.</p>'; return; }
   LISTA = DADOS.jogos.map(j => analisar(j, DADOS.media_liga)).sort((a, b) => a.j.horario_utc < b.j.horario_utc ? -1 : a.j.horario_utc > b.j.horario_utc ? 1 : 0);
-  if (estado.jogo >= LISTA.length) estado.jogo = 0;
+  if (estado.jogo !== null && estado.jogo >= LISTA.length) estado.jogo = null;
   if(PAGINA==="jogos") renderJogos();
   if(PAGINA==="melhores") {
     $("dest").innerHTML=destaques(LISTA);
@@ -637,7 +643,15 @@ document.addEventListener("click", e => {
     return;
   }
   const jt = alvo.closest("[data-jogo]");
-  if (jt && PAGINA==="jogos") { estado.jogo = Number(jt.dataset.jogo); estado.aba = "resumo"; estado.categoria="pts"; renderJogos(); return; }
+  if (jt && PAGINA==="jogos") {
+    const jogo = Number(jt.dataset.jogo);
+    estado.jogo = estado.jogo === jogo ? null : jogo;
+    estado.aba = "resumo";
+    estado.categoria = "pts";
+    renderJogos();
+    $("jogo-botao-" + jogo)?.focus({ preventScroll: true });
+    return;
+  }
   const categoria=alvo.closest("[data-categoria]");
   if(categoria && PAGINA==="jogos"){
     estado.categoria=categoria.dataset.categoria;

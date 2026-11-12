@@ -54,11 +54,11 @@ function StatTile({ label, value, note, icon: Icon }: {
  </div>
 }
 function MatchCard({ match, selected, onClick, panelId }: {
- match: MatchView; selected: boolean; onClick: () => void; panelId?: string
+ match: MatchView; selected: boolean; onClick: () => void; panelId: string
 }) {
  const { game, prediction } = match
  return <button type="button" className={'match-card ' + (selected ? 'selected' : '')} onClick={onClick}
-  aria-expanded={panelId ? selected : undefined} aria-controls={panelId}>
+  aria-expanded={selected} aria-controls={panelId}>
   <span className="match-card-top"><span><Clock3 size={13}/>{time(game.horario_utc)} · Brasília</span><span className="projection-pill">PROJEÇÃO</span></span>
   <span className="score-row">
    <span className="team-name"><MiniBrand name={game.visitante.sigla}/><span><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></span></span>
@@ -68,7 +68,7 @@ function MatchCard({ match, selected, onClick, panelId }: {
    <span className="team-name"><MiniBrand name={game.casa.sigla}/><span><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></span></span>
    <strong className="score">{n(prediction.home, 0)}</strong>
   </span>
-  <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito {panelId ? <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/> : <ArrowRight size={14}/>}</span></span>
+  <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/></span></span>
  </button>
 }
 function ExpandableMatch({ match }: { match: MatchView }) {
@@ -127,7 +127,6 @@ export default function App() {
  const [loading, setLoading] = useState(true)
  const [view, setView] = useState<View>('overview')
  const [search, setSearch] = useState('')
- const [selected, setSelected] = useState<string | null>(null)
  const [sidebar, setSidebar] = useState(false)
  const [onlyAbsences, setOnlyAbsences] = useState(false)
  const reload = async () => {
@@ -147,7 +146,6 @@ export default function App() {
   return !onlyAbsences || [...(m.game.casa.ausencias || []), ...(m.game.visitante.ausencias || [])]
    .some(a => a.situacao === 'Fora')
  })
- const selectedMatch = shown.find(m => m.key === selected) || shown[0]
  const stale = !!snapshot && snapshot.data_jogos !== nbaToday()
  const missingInjuryData = !!snapshot && !snapshot.lesoes_ok
  const totalGames = matches.length
@@ -192,12 +190,9 @@ export default function App() {
      <div className="game-toolbar"><div className="search-box"><Search size={18}/><input aria-label="Buscar equipe" placeholder="Buscar equipe ou sigla…" value={search} onChange={e => setSearch(e.target.value)}/>{search && <button onClick={() => setSearch('')} aria-label="Limpar busca"><X size={16}/></button>}</div><label className="checkbox-filter"><input type="checkbox" checked={onlyAbsences} onChange={e => setOnlyAbsences(e.target.checked)}/> Com desfalques confirmados</label></div>
      {!shown.length ?
       <div className="empty-state"><Search size={25}/><strong>Nenhum confronto encontrado</strong><span>Altere a busca ou remova os filtros.</span></div> :
-      view === 'games' ? <div className="matches-column">{shown.map(match =>
+      <div className="matches-column">{shown.map(match =>
        <ExpandableMatch key={match.key} match={match}/>
-      )}</div> :
-      <div className="workspace-grid"><div className="matches-column">{shown.map(match =>
-       <MatchCard key={match.key} match={match} selected={selectedMatch.key === match.key} onClick={() => setSelected(match.key)}/>
-      )}</div><aside className="detail-panel" key={selectedMatch.key}><Detail match={selectedMatch}/></aside></div>}
+      )}</div>}
      <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os cálculos de pontos, total, favorito e contexto são uma porta da função <code>analisar()</code> do BSK clássico, com parâmetros padrão. Esta fase não altera o motor Python, os snapshots de histórico ou os ajustes manuais do site atual. A equivalência numérica é verificada automaticamente no pipeline.</p></div></div>
      </>}
     </>}

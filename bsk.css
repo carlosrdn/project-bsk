@@ -345,3 +345,11 @@ table.pl tbody tr:hover{background:#ffffff05}
  .lineup-correction{flex-wrap:wrap}
  .lineup-correction select{width:100%;max-width:180px}
 }
+
+.game-entries{display:grid;gap:9px}
+.game-entry{min-width:0}
+.game-entry>.gt{width:100%;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px}
+.game-entry>.gt[aria-expanded="true"]{border-radius:12px 12px 0 0}
+.game-entry-arrow{line-height:1;color:var(--mute)}
+.game-entry>.gt[aria-expanded="true"] .game-entry-arrow{transform:rotate(180deg)}
+.game-entry-panel:not([hidden]){padding:12px;border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px}
