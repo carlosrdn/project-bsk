@@ -228,35 +228,115 @@ def metricas(registros):
     }
 
 
+
+# v2: avaliação principal usando holdout cronológico e sem censurar jogos curtos.
+PESOS_TREINO = (0.0, 0.2, 0.35, 0.5, 0.75, 1.0)
+
+def previsoes_walk_forward(linhas):
+    por_jogador = defaultdict(list)
+    for linha in linhas:
+        por_jogador[linha["PLAYER_ID"]].append(linha)
+    resultado = {chave: [] for chave in ESTATISTICAS}
+    for player_id, jogos in por_jogador.items():
+        jogos.sort(key=lambda j:(data_ordenavel(j["GAME_DATE"]),str(j.get("GAME_ID",""))))
+        historico = []
+        for jogo in jogos:
+            data = data_ordenavel(jogo["GAME_DATE"])
+            anteriores = [h for h in historico if data_ordenavel(h["GAME_DATE"]) < data
+                          and minutos_em_decimal(h.get("MIN")) >= MINUTOS_MINIMOS]
+            minutos = minutos_em_decimal(jogo.get("MIN"))
+            if minutos > 0 and len(anteriores) >= JOGOS_MINIMOS:
+                for chave,campo in ESTATISTICAS.items():
+                    if campo not in jogo or any(campo not in h for h in anteriores):
+                        continue
+                    valores = [float(h[campo] or 0) for h in anteriores]
+                    registro = {"player_id":player_id,"jogador":jogo.get("PLAYER_NAME",""),
+                                "data":data.strftime("%Y-%m-%d"),"adversario":jogo.get("MATCHUP",""),
+                                "jogos_anteriores":len(valores),"minutos_reais":round(minutos,2),
+                                "real":float(jogo[campo] or 0)}
+                    for peso in PESOS_TREINO:
+                        registro[f"previsao_{peso:.2f}"] = projetar(valores,peso)
+                    resultado[chave].append(registro)
+            historico.append(jogo)
+    return resultado
+
+def avaliar_holdout(linhas, frac_treino=0.70):
+    """Seleciona peso apenas no treino; testa datas futuras nunca usadas na seleção."""
+    amostras = previsoes_walk_forward(linhas)
+    datas = sorted({x["data"] for regs in amostras.values() for x in regs})
+    vazio = {chave:{**metricas([]),"resultados":[]} for chave in ESTATISTICAS}
+    if len(datas) < 4:
+        return {"status":"amostra_insuficiente","datas_disponiveis":len(datas),
+                "estatisticas":vazio,"peso_escolhido":{},"treino_ate":None,
+                "teste_desde":None}
+    corte = max(1,min(len(datas)-1,int(len(datas)*frac_treino)))
+    inicio_teste = datas[corte]
+    estatisticas,escolhidos,baselines,condicionais = {},{},{},{}
+    for chave,registros in amostras.items():
+        treino = [r for r in registros if r["data"] < inicio_teste]
+        teste = [r for r in registros if r["data"] >= inicio_teste]
+        if not treino:
+            estatisticas[chave] = {**metricas([]),"resultados":[]}
+            escolhidos[chave] = None
+            baselines[chave] = metricas([])
+            condicionais[chave] = metricas([])
+            continue
+        # Escolha do hiperparâmetro SEM examinar o holdout.
+        peso = min(PESOS_TREINO,key=lambda p:(
+            sum(abs(r[f"previsao_{p:.2f}"]-r["real"]) for r in treino)/len(treino),p))
+        escolhidos[chave] = peso
+        previsoes = []
+        for r in teste:
+            pred = round(r[f"previsao_{peso:.2f}"],2)
+            previsoes.append({"player_id":r["player_id"],"jogador":r["jogador"],
+                "data":r["data"],"adversario":r["adversario"],
+                "jogos_anteriores":r["jogos_anteriores"],
+                "minutos_reais":r["minutos_reais"],
+                "previsao":pred,"real":r["real"],"erro":round(pred-r["real"],2)})
+        estatisticas[chave] = {**metricas(previsoes),"resultados":previsoes}
+        baselines[chave] = metricas([{"previsao":round(r["previsao_0.00"],2),"real":r["real"]} for r in teste])
+        condicionais[chave] = metricas([r for r in previsoes if r["minutos_reais"] >= MINUTOS_MINIMOS])
+    return {"status":"holdout_temporal","treino_ate":datas[corte-1],"teste_desde":inicio_teste,
+        "datas_treino":corte,"datas_teste":len(datas)-corte,
+        "peso_escolhido":escolhidos,"estatisticas":estatisticas,
+        "baseline_media_temporada":baselines,
+        "avaliacao_condicional_12_min":condicionais,
+        "observacao":"Jogos com 1-11 minutos contam nos erros principais. DNP não entram. Não valida ajustes de adversário ou lesões do navegador."
+    }
+
 def main():
     print(f"Buscando logs da temporada {TEMPORADA}...")
     linhas = carregar_jogos()
-    resultados, jogos_validos = avaliar(linhas)
+    resultados_legado, jogos_validos = avaliar(linhas)
     comparacao = avaliar_comparacao(linhas)
+    holdout = avaliar_holdout(linhas)
 
     resumo = {
         "temporada": TEMPORADA,
         "gerado_em": datetime.now().isoformat(timespec="seconds"),
-        "metodo": "walk-forward cronológico por jogador",
+        "metodo": "holdout temporal walk-forward (peso escolhido no treino)",
         "criterios": {
             "minutos_minimos": MINUTOS_MINIMOS,
             "jogos_anteriores_minimos": JOGOS_MINIMOS,
-            "peso_ultimos_5": 0.35,
+            "peso_ultimos_5": "selecionado no treino por mercado",
         },
         "jogos_com_minutos_suficientes": jogos_validos,
         "comparacao_modelos": comparacao,
-        "estatisticas": {
-            chave: {
-                **metricas(registros),
-                "resultados": registros,
-            }
-            for chave, registros in resultados.items()
+        "holdout": {k:v for k,v in holdout.items() if k != "estatisticas"},
+        "estatisticas": holdout["estatisticas"],
+        "estatisticas_legado": {
+            chave:{**metricas(registros),"resultados":registros}
+            for chave,registros in resultados_legado.items()
         },
         "limitacoes": [
             "Usa somente médias históricas do próprio jogador.",
             "Não incorpora adversário, mando, lesões ou escalações históricas.",
             "Não usa linhas reais de casas de apostas; não mede ROI.",
-            "A seção estatisticas preserva o modelo inicial (legado); comparacao_modelos testa a correção.",
+            "A seção estatisticas mede holdout temporal; o modelo legado está separado.",
+            "O peso recente é escolhido exclusivamente em datas de treino.",
+            "O backtest não valida ajustes de adversário, mando e lesões do navegador.",
+            "DNP não entram; jogos de 1-11 minutos entram no erro principal.",
+            "Sem odds e linhas históricas não se mede taxa de vitória ou ROI.",
             "Amostras com menos de 5 jogos anteriores elegíveis são ignoradas.",
         ],
     }
