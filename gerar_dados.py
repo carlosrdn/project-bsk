@@ -3,17 +3,14 @@ import re
 import unicodedata
 from datetime import datetime
 
-import requests
-
-from nba_api.live.nba.endpoints import scoreboard
-from nba_api.stats.endpoints import leaguedashplayerstats, leaguedashteamstats, leaguegamelog
-
 TEMPORADA = "2026-27"
 
 
 def estatisticas(ultimos_jogos=0):
     """Busca as estatísticas avançadas de todos os times.
     ultimos_jogos=0 significa a temporada inteira."""
+    from nba_api.stats.endpoints import leaguedashteamstats
+
     dados = leaguedashteamstats.LeagueDashTeamStats(
         season=TEMPORADA,
         measure_type_detailed_defense="Advanced",
@@ -52,6 +49,8 @@ def classificar(status, comentario):
 
 def buscar_lesoes():
     """Lê a lista de lesões da ESPN (fonte não oficial). Se falhar, o script segue sem ela."""
+    import requests
+
     try:
         resposta = requests.get(URL_LESOES, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
         resposta.raise_for_status()
@@ -158,6 +157,8 @@ def data_historica(valor):
 
 def carregar_contexto_props(geral):
     """Busca todos os jogos de todos os jogadores da temporada (uma chamada só)."""
+    from nba_api.stats.endpoints import leaguegamelog
+
     try:
         linhas = leaguegamelog.LeagueGameLog(
             season=TEMPORADA, player_or_team_abbreviation="P", timeout=60,
@@ -228,6 +229,8 @@ def props_do_jogador(player_id):
 
 def jogadores(ultimos_jogos=0):
     """Médias por jogo de todos os jogadores (0 = temporada inteira)."""
+    from nba_api.stats.endpoints import leaguedashplayerstats
+
     return leaguedashplayerstats.LeagueDashPlayerStats(
         season=TEMPORADA,
         per_mode_detailed="PerGame",
@@ -285,6 +288,8 @@ def montar_perfil(time, geral, recente, elenco, elenco5, lesoes):
 
 
 def main():
+    from nba_api.live.nba.endpoints import scoreboard
+
     print("Buscando estatísticas dos times...")
     geral = estatisticas()
     recente = estatisticas(10)
@@ -332,4 +337,5 @@ def main():
     print(f"Pronto! {len(jogos)} jogos salvos em jogos.json e dados.js")
 
 
-main()
+if __name__ == "__main__":
+    main()
