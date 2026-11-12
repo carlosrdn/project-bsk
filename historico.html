@@ -319,6 +319,10 @@ async function atualizarResultadosESPN(){
        fatores.push({id:"desfalques_time",texto:pick.context.team_absences.length+" ausência(s) pré-jogo na equipe"});
       if(pick.context?.opponent_absences?.length)
        fatores.push({id:"desfalques_adversario",texto:pick.context.opponent_absences.length+" ausência(s) pré-jogo no adversário"});
+      if(pick.context?.team_key_rotation_absences?.length)
+       fatores.push({id:"desfalque_rotacao_importante",texto:pick.context.team_key_rotation_absences.length+" ausência(s) de atletas com ≥25 min/jogo na equipe"});
+      if(pick.context?.opponent_key_rotation_absences?.length)
+       fatores.push({id:"desfalque_rotacao_adversaria",texto:pick.context.opponent_key_rotation_absences.length+" ausência(s) de atletas com ≥25 min/jogo no adversário"});
       resultado.analysis={fatores,resumo:"Possíveis explicações associadas, sem relação causal demonstrada"};
      }
      pick.result=resultado;
