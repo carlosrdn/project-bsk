@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "season": "2026-27",
+  "captured_at": "2026-11-12T01:08:50.135Z",
+  "model_hash": "6af030f0d8267d63",
+  "data_hash": "43196681f89161ab",
+  "fidelity": "Seleção automática reproduz Radar · Melhores do dia com os parâmetros padrão; status e odds inseridos no navegador não são persistidos",
+  "notes": [
+    "Linhas de referência são sintéticas; não são apostas colocadas.",
+    "Somente partidas ainda não iniciadas no momento da captura.",
+    "Apostas com odds reais exigem um registro adicional pré-jogo."
+  ],
+  "games": [
+    {
+      "start_utc": "2026-11-12T02:00:00Z",
+      "home": "UTA",
+      "away": "ORL"
+    },
+    {
+      "start_utc": "2026-11-12T02:30:00Z",
+      "home": "HOU",
+      "away": "GSW"
+    },
+    {
+      "start_utc": "2026-11-12T03:00:00Z",
+      "home": "POR",
+      "away": "OKC"
+    }
+  ],
+  "recommendations": []
+}

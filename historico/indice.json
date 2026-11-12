@@ -1,7 +1,17 @@
 {
   "schema": 1,
   "season": "2026-27",
-  "updated_at": null,
-  "note": "Nenhuma rodada capturada ainda; sinais não são apostas reais",
-  "days": []
+  "note": "Sinais do BSK são projeções, não apostas de linha real",
+  "days": [
+    {
+      "date": "2026-11-11",
+      "captured_at": "2026-11-12T01:08:50.135Z",
+      "games": 3,
+      "recommendations": 0,
+      "settled": 0,
+      "snapshot": "historico/snapshots/2026-11-11.json",
+      "results": null
+    }
+  ],
+  "updated_at": "2026-11-12T01:08:50.203Z"
 }
