@@ -342,7 +342,7 @@ function sugestaoCondicional(projecao,sd,media,jogos,riscos){
    return {texto:"Sem seleção preliminar · sinal ou histórico insuficiente",linha};
  const preco=1.05/analise.prob;
  return {texto:"Investigar "+analise.lado+" "+f1(linha)+" · odd mínima teórica "+f1(preco)+
-    " · chance aproximada "+pct(analise.prob),linha};
+    " · chance aproximada "+pct(analise.prob),linha,prob:analise.prob};
 }
 function camposMercado(id,projecao,sd,jogos,riscos){
  const uid="merc-"+id.replace(/[^a-zA-Z0-9]/g,"-");
