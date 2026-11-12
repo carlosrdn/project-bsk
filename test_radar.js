@@ -31,6 +31,9 @@ assert(!ctx.analiseMercado(6.3,1,5.5,NaN,15,[]).apta,"Sem odds não aprovar apos
 assert(!ctx.analiseMercado(6.3,1,5.5,1.05,15,[]).apta,"Odd sem valor não aprova");
 assert(!ctx.analiseMercado(6.3,1,5.5,1.90,6,[]).apta,"Amostra insuficiente");
 assert(!ctx.analiseMercado(6.3,1,5.5,1.90,15,["Fora"]).apta,"Desfalque impede aposta");
+const underPriced=ctx.analiseMercado(6.3,1,5.5,1.90,15,[],"Under");
+assert.equal(underPriced.lado,"Under","Respeitar lado real da odd, não trocar automaticamente para Over");
+assert(!underPriced.apta,"Odd de Under não pode ser usada para aprovar Over");
 vm.runInContext(trecho("function avaliarLinhaReal(","function pickHtml("),ctx);
 const sugestao=ctx.sugestaoCondicional(25.9,5,22,14,[]);
 assert(sugestao.prob>0.60,"Sinal tem que preservar probabilidade no ranking");
