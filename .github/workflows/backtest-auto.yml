@@ -6,6 +6,8 @@ on:
     paths:
       - "backtest.py"
       - "test_backtest.py"
+      - "dados.js"
+      - "jogos.json"
       - ".github/workflows/backtest-auto.yml"
   workflow_dispatch:
 
