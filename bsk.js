@@ -375,7 +375,8 @@ function cardsCategoria(r,chave,filtroTime){
     return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div><div class="category-projection"><strong class="category-average">'+f1(estimativa.valor)+'</strong><span>Projeção BSK</span></div></div>'+
       '<div class="category-meta"><span>Média temporada: '+f1(d.media)+'</span><span>'+d.jogos+' jogos</span>'+(d.ultimos5!=null?'<span>Últimos 5: '+f1(d.ultimos5)+'</span>':'<span>Últimos 5: indisponível</span>')+'</div>'+
       '<p class="category-reference">Linha indicativa: <strong>'+f1(referencia)+'</strong> <small>(sintética, não é cotação)</small></p>'+
-      '<p class="category-status">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+
+      '<p class="category-status">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+ 
+      '<div class="live-stat" data-live-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'" data-live-stat="'+esc(chave)+'">Aguardando ESPN...</div>'+
       '<p class="category-note">'+esc(estimativa.metodo)+(estimativa.provisorio?' · Sem validação específica desta categoria.':'')+'</p>'+
       '</article>';
   }).join("");
@@ -467,7 +468,7 @@ function render(){
   if(PAGINA==="jogos") renderJogos();
   if(PAGINA==="melhores") {
     $("dest").innerHTML=destaques(LISTA);
-    atualizarAoVivo();
+    // A coleta ao vivo ocorre após a inicialização de LISTA.
   }
   if(PAGINA==="escalacoes") $("central").innerHTML=centralEscalacoes(LISTA);
 }
@@ -530,11 +531,7 @@ document.addEventListener("input", e => {
    Sem dados fabricados: falhas de rede/CORS são exibidas explicitamente. */
 
 const LIVE_SCOREBOARD="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard";
-let liveEmCurso=false;
-let ultimaLive=null;
-const estatisticaLive={pts:"PTS",reb:"REB",ast:"AST",tres:"3PT"};
 function nomeNormalizado(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
-function atualizarMensagemLive(msg){const el=$("live-status");if(el)el.textContent=msg;}
 const SIGLAS_ESPN={GS:"GSW",NO:"NOP",NY:"NYK",SA:"SAS",WSH:"WAS",UTAH:"UTA"};
 function siglaESPN(t){const a=String(t||"").toUpperCase();return SIGLAS_ESPN[a]||a;}
 function horaInicioESPN(jogo){
@@ -558,74 +555,137 @@ function statusJogoESPN(jogo){
   const s=jogo.status?.type?.state;
   return s==="post"?"Final":s==="in"?"Ao vivo":"Pré-jogo";
 }
-function valorEstatisticaESPN(player, chave){
-  const category=(player.statistics||[])[0];
-  if(!category)return null;
-  const nomes=category.labels||category.names||[];
-  const estatisticas=category.athletes||[];
-  if(!Array.isArray(estatisticas))return null;
-  const linha=estatisticas.find(a=>nomeNormalizado(a.athlete?.displayName)===nomeNormalizado(chave.nome));
-  if(!linha)return null;
-  const nomeEstat=estatisticaLive[chave.categoria];
-  const index=nomes.indexOf(nomeEstat);
+
+const COLUNAS_ESPN={pts:["PTS","POINTS"],reb:["REB","REBOUNDS"],ast:["AST","ASSISTS"],
+  tres:["3PT","3PM","FG3M"],blk:["BLK","BLOCKS"],stl:["STL","STEALS"]};
+function mesmoJogadorESPN(a,b){
+  const normal=x=>nomeNormalizado(x).replace(/\b(jr|sr|ii|iii|iv)\b/g,"").replace(/\s+/g," ").trim();
+  return normal(a)===normal(b);
+}
+function estatisticaAtletaESPN(athlete,cabecalhos,chave){
+  const keys=COLUNAS_ESPN[chave]||[];
+  const nomes=(cabecalhos||[]).map(x=>String(x).toUpperCase().replace(/[^A-Z0-9]/g,""));
+  const index=nomes.findIndex(x=>keys.includes(x));
   if(index<0)return null;
-  const raw=linha.stats?.[index];
-  if(raw==null||raw==="")return null;
-  // ESPN 3PT tem formato acertos-tentativas, ex.: "2-6".
-  const valor=Number(nomeEstat==="3PT"?String(raw).split("-")[0]:raw);
+  const raw=athlete.stats?.[index];
+  if(raw==null||raw===""||raw==="--")return null;
+  // Three-point makes/attempts: "2-5" means 2 made.
+  const valor=Number(String(raw).split("-")[0]);
   return Number.isFinite(valor)?valor:null;
 }
-async function atualizarAoVivo(){
-  if(PAGINA!=="melhores"||liveEmCurso||typeof DADOS==="undefined")return;
+function dadosAtletaESPN(grupo,nome){
+  for(const cat of grupo?.statistics||[]){
+    const atleta=(cat.athletes||[]).find(a=>mesmoJogadorESPN(a.athlete?.displayName||a.athlete?.fullName||a.displayName,nome));
+    if(atleta)return {atleta,headers:cat.names||cat.labels||[]};
+  }
+  return null;
+}
+function minutosAtletaESPN(d){
+  if(!d)return 0;
+  const names=(d.headers||[]).map(n=>String(n).toUpperCase());
+  const ind=names.indexOf("MIN");
+  const raw=ind>=0?d.atleta.stats?.[ind]:null;
+  if(raw==null||raw===""||raw==="--")return 0;
+  const v=String(raw).split(":");
+  const min=Number(v[0]),secs=v.length>1?Number(v[1]):0;
+  return Number.isFinite(min)&&Number.isFinite(secs)?min+secs/60:0;
+}
+function statusAtletaESPN(d){
+  if(!d)return null;
+  const starter=d.atleta.starter===true||d.atleta.starter===1||d.atleta.starter==="true"||d.atleta.starter==="1";
+  if(starter)return "Titular confirmado";
+  if(minutosAtletaESPN(d)>0)return "Disponível confirmado";
+  // Presença no elenco do boxscore não prova participação.
+  return null;
+}
+let liveEmCurso=false;
+let ultimaLive=null;
+const liveCache={data:null,stamp:0,jogos:[],resumos:new Map()};
+function atualizarMensagemLive(msg){const el=$("live-status");if(el)el.textContent=msg;}
+async function atualizarAoVivo(force=false){
+  if(liveEmCurso||typeof DADOS==="undefined"||!["jogos","melhores","escalacoes"].includes(PAGINA))return;
   liveEmCurso=true;
-  atualizarMensagemLive("Consultando placar e estatísticas da ESPN...");
-  const elementos=[...document.querySelectorAll("[data-live-player]")];
+  atualizarMensagemLive("Consultando estatísticas e participações da ESPN...");
   try{
-    const data=String(DADOS.data_jogos||"").replace(/-/g,"");
-    const r=await fetch(LIVE_SCOREBOARD+"?dates="+encodeURIComponent(data),{cache:"no-store",signal:AbortSignal.timeout(12000)});
-    if(!r.ok)throw Error("Placar HTTP "+r.status);
-    const board=await r.json(),jogos=board.events||[];
+    let jogos,resumos;
+    if(!force&&liveCache.data===DADOS.data_jogos&&Date.now()-liveCache.stamp<45000){
+      jogos=liveCache.jogos;resumos=liveCache.resumos;
+    }else{
+      const data=String(DADOS.data_jogos||"").replace(/-/g,"");
+      const response=await fetch(LIVE_SCOREBOARD+"?dates="+encodeURIComponent(data),{cache:"no-store",signal:AbortSignal.timeout(15000)});
+      if(!response.ok)throw Error("Placar ESPN HTTP "+response.status);
+      const board=await response.json();
+      jogos=board.events||[];
+      resumos=new Map();
+      const ativos=jogos.filter(j=>j.id&&j.status?.type?.state!=="pre");
+      await Promise.all(ativos.map(async j=>{
+        try{
+          const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event="+encodeURIComponent(j.id),
+            {cache:"no-store",signal:AbortSignal.timeout(15000)});
+          if(r.ok)resumos.set(j.id,await r.json());
+        }catch(e){}
+      }));
+      liveCache.data=DADOS.data_jogos;liveCache.stamp=Date.now();liveCache.jogos=jogos;liveCache.resumos=resumos;
+    }
     resumoRodadaESPN(jogos);
-    const ids=new Set();
-    let naoIniciados=0;
-    const mapa=new Map();
-    for(const el of elementos){
-      const t=el.dataset.liveTeam;
-      const jogo=jogos.find(ev=>(ev.competitions?.[0]?.competitors||[]).some(c=>siglaESPN(c.team?.abbreviation)===t));
-      if(!jogo){el.textContent="Partida não localizada no placar ESPN.";el.classList.add("error");continue;}
-      mapa.set(el,jogo);if(jogo.id&&jogo.status?.type?.state!=="pre")ids.add(jogo.id);
+    const porTime=new Map();
+    for(const jogo of jogos){
+      const times=(jogo.competitions?.[0]?.competitors||[]).map(c=>siglaESPN(c.team?.abbreviation));
+      for(const sigla of times)porTime.set(sigla,jogo);
     }
-    const resumos=new Map();
-    await Promise.all([...ids].map(async id=>{
-      try{
-        const resp=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event="+encodeURIComponent(id),{cache:"no-store",signal:AbortSignal.timeout(12000)});
-        if(resp.ok)resumos.set(id,await resp.json());
-      }catch(e){}
-    }));
-    let encontrados=0;
-    for(const el of elementos){
-      const jogo=mapa.get(el);if(!jogo)continue;
-      const status=statusJogoESPN(jogo);
-      if(status==="Pré-jogo"){naoIniciados++;el.textContent="Pré-jogo · início "+horaInicioESPN(jogo)+" · estatística ainda não começou";el.classList.remove("error");continue;}
-      const resumo=resumos.get(jogo.id);
-      const groups=resumo?.boxscore?.players||[];
-      const team=groups.find(g=>siglaESPN(g.team?.abbreviation)===el.dataset.liveTeam);
-      const valor=team?valorEstatisticaESPN(team,{nome:el.dataset.livePlayer,categoria:el.dataset.liveStat}):null;
-      if(valor!==null){
-        encontrados++;
-        el.textContent="ESPN "+status+" · "+valor+" "+ROTULO[el.dataset.liveStat]+" registrados";
-        el.classList.remove("error");
-      }else{el.textContent="Estatística não disponível ou jogador não localizado na ESPN.";el.classList.add("error");}
+    let novas=0,confirmados=0;
+    const referencias=new Map();
+    LISTA.forEach(r=>[r.j.casa,r.j.visitante].forEach(t=>referencias.set(t.sigla,t)));
+    for(const [sigla,time] of referencias){
+      const jogo=porTime.get(sigla);
+      if(!jogo||jogo.status?.type?.state==="pre")continue;
+      const grupo=(resumos.get(jogo.id)?.boxscore?.players||[]).find(x=>siglaESPN(x.team?.abbreviation)===sigla);
+      if(!grupo)continue;
+      for(const p of time.jogadores||[]){
+        const d=dadosAtletaESPN(grupo,p.nome);
+        const st=statusAtletaESPN(d);
+        if(st){
+          const key=chaveEscalacao(time,p);
+          if(STATUS_AUTOMATICOS.get(key)!==st){STATUS_AUTOMATICOS.set(key,st);novas++;}
+          confirmados++;
+        }
+      }
     }
+    if(PAGINA==="escalacoes"&&$("central"))$("central").innerHTML=centralEscalacoes(LISTA);
+    if(PAGINA==="melhores"&&novas){
+      // Preserva linhas preenchidas pelo usuário em LINHAS.
+      $("dest").innerHTML=destaques(LISTA);
+      document.querySelectorAll("input[data-k]").forEach(el=>{if(el.value)atualizarLinha(el);});
+    }
+    let loaded=0,pending=0,unavailable=0;
+    document.querySelectorAll("[data-live-player]").forEach(el=>{
+      const sigla=el.dataset.liveTeam,jogo=porTime.get(sigla);
+      if(!jogo){el.textContent="Jogo não encontrado na ESPN";el.classList.add("error");unavailable++;return;}
+      if(jogo.status?.type?.state==="pre"){
+        el.textContent="Pré-jogo · início "+horaInicioESPN(jogo);el.classList.remove("error");pending++;return;
+      }
+      const grupo=(resumos.get(jogo.id)?.boxscore?.players||[]).find(x=>siglaESPN(x.team?.abbreviation)===sigla);
+      const d=dadosAtletaESPN(grupo,el.dataset.livePlayer);
+      const v=d?estatisticaAtletaESPN(d.atleta,d.headers,el.dataset.liveStat):null;
+      if(v!==null){
+        el.textContent=(jogo.status?.type?.state==="post"?"Final":"Ao vivo")+" · "+v+" "+(ROTULO[el.dataset.liveStat]||el.dataset.liveStat);
+        el.classList.remove("error");loaded++;
+      }else{
+        el.textContent=grupo?"Jogador sem estatística publicada / ainda não entrou":"Box score ainda não publicado";
+        el.classList.add("error");unavailable++;
+      }
+    });
     ultimaLive=new Date();
-    atualizarMensagemLive("ESPN · "+jogos.length+" jogos · "+ids.size+" iniciados · "+encontrados+" estatísticas de candidatos encontradas"+(ids.size===0?" · aguardando o início dos jogos":"")+" · atualizado "+ultimaLive.toLocaleTimeString("pt-BR")+" · consulta a cada 60 segundos.");
+    const iniciados=jogos.filter(j=>j.status?.type?.state!=="pre").length;
+    statusColetaAutomatica="ESPN · "+confirmados+" participações confirmadas · "+iniciados+" jogos iniciados · "+unavailable+" estatísticas indisponíveis";
+    const statusEl=$("auto-status");if(statusEl)statusEl.textContent=statusColetaAutomatica;
+    atualizarMensagemLive("ESPN · "+jogos.length+" jogos · "+iniciados+" iniciados · "+loaded+" estatísticas carregadas · "+pending+" aguardando início · atualizado "+ultimaLive.toLocaleTimeString("pt-BR")+".");
   }catch(e){
-    atualizarMensagemLive("Não foi possível consultar a ESPN. O painel mantém os dados estáticos da última coleta, sem inventar estatísticas ao vivo.");
-    elementos.forEach(el=>{el.textContent="Dados ao vivo temporariamente indisponíveis";el.classList.add("error");});
+    statusColetaAutomatica="ESPN indisponível: "+String(e.message||e)+". Sem confirmações ou resultados inventados.";
+    const el=$("auto-status");if(el)el.textContent=statusColetaAutomatica;
+    atualizarMensagemLive(statusColetaAutomatica);
   }finally{liveEmCurso=false;}
 }
-if(PAGINA==="melhores")setInterval(atualizarAoVivo,60000);
-
 async function consultarLesoesESPN(){
   try{
     const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries",{cache:"no-store",signal:AbortSignal.timeout(12000)});
@@ -654,63 +714,15 @@ async function consultarLesoesESPN(){
 }
 function limparNomeNBA(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
 async function atualizarEscalacoesAuto(){
-  if(escalacaoConsultando||typeof DADOS==="undefined"||!["escalacoes","melhores"].includes(PAGINA))return;
+  if(escalacaoConsultando)return;
   escalacaoConsultando=true;
-  statusColetaAutomatica="Consultando box scores da NBA...";
-  const el=document.getElementById("auto-status");if(el)el.textContent=statusColetaAutomatica;
-  try{
-    const lesoesOk=await consultarLesoesESPN();
-    const res=await fetch("https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",{cache:"no-store",signal:AbortSignal.timeout(12000)});
-    if(!res.ok)throw Error("HTTP "+res.status);
-    const dados=await res.json(),board=dados.scoreboard||{};
-    if(board.gameDate!==DADOS.data_jogos) {
-      statusColetaAutomatica="O feed da NBA está em "+(board.gameDate||"outra data")+", mas esta coleta é de "+DADOS.data_jogos+". Não foram misturadas rodadas.";
-      return;
-    }
-    const jogos=(board.games||[]).filter(j=>[2,3].includes(Number(j.gameStatus)));
-    let confirmados=0;
-    // Buscamos apenas partidas em andamento/finalizadas. 'starter' não é inferido no pré-jogo.
-    await Promise.all(jogos.map(async jogo=>{
-      try{
-        const r=await fetch("https://cdn.nba.com/static/json/liveData/boxscore/boxscore_"+encodeURIComponent(jogo.gameId)+".json",{cache:"no-store",signal:AbortSignal.timeout(12000)});
-        if(!r.ok)return;
-        const game=(await r.json()).game||{};
-        for(const lado of ["homeTeam","awayTeam"]){
-          const team=game[lado];if(!team?.teamTricode)continue;
-          const referencia=LISTA.flatMap(x=>[x.j.casa,x.j.visitante]).find(t=>t.sigla===team.teamTricode);
-          if(!referencia)continue;
-          for(const p of referencia.jogadores||[]){
-            const jogador=(team.players||[]).find(x=>limparNomeNBA(x.name)===limparNomeNBA(p.nome));
-            if(!jogador)continue;
-            const titular=jogador.starter===true||String(jogador.starter)==="1";
-            const participou=jogador.played===true||String(jogador.played)==="1";
-            // Nem todo nome no box score jogou: DNP/inativo não comprova disponibilidade.
-            if(!titular&&!participou)continue;
-            const val=titular?"Titular confirmado":"Disponível confirmado";
-            STATUS_AUTOMATICOS.set(chaveEscalacao(referencia,p),val);
-            confirmados++;
-          }
-        }
-      }catch(e){}
-    }));
-    statusColetaAutomatica=(lesoesOk?"Lesões ESPN consultadas · ":"Lesões ESPN indisponíveis (usando coleta local) · ")+(jogos.length?
-      "NBA: "+confirmados+" jogadores localizados em box scores de "+jogos.length+" partidas iniciadas/finalizadas · consulta "+new Date().toLocaleTimeString("pt-BR")+". Jogadores não localizados mantêm o status da coleta ESPN.":
-      "NBA: partidas ainda não iniciadas, sem titulares confirmados via box score.");
-  }catch(e){
-    statusColetaAutomatica="Box score NBA indisponível. Informações de lesões ESPN consultadas quando permitido; demais status permanecem conforme a última coleta. Nenhuma escalação inventada.";
-  }finally{
-    escalacaoConsultando=false;
-    if(PAGINA==="escalacoes")$("central").innerHTML=centralEscalacoes(LISTA);
-    if(PAGINA==="melhores"){
-      $("dest").innerHTML=destaques(LISTA);
-      document.querySelectorAll("input[data-k]").forEach(el=>{if(el.value)atualizarLinha(el);});
-      atualizarAoVivo();
-    }
-  }
+  try{await consultarLesoesESPN();await atualizarAoVivo(true);}
+  finally{escalacaoConsultando=false;}
 }
-if(["escalacoes","melhores"].includes(PAGINA)){
-  setInterval(atualizarEscalacoesAuto,90000);
-  setTimeout(atualizarEscalacoesAuto,100);
+if(["jogos","melhores","escalacoes"].includes(PAGINA)){
+  setInterval(()=>atualizarAoVivo(),60000);
+  setInterval(()=>consultarLesoesESPN(),180000);
+  setTimeout(()=>atualizarEscalacoesAuto(),150);
 }
 
 render();
