@@ -208,7 +208,13 @@ async function apurarDia(day){
   result.status="apurado";result.actual=real;
   result.signed_error=Number((pick.projection-real).toFixed(3));
   result.absolute_error=Number(Math.abs(pick.projection-real).toFixed(3));
-  // Sem aposta registrada, o resultado de linha sintética NÃO é win/loss.
+  // Comparação exploratória, sem alegar que essa cotação existiu no mercado.
+  if(Number.isFinite(pick.exploratory_line)&&
+      ["Over","Under"].includes(pick.exploratory_side)){
+    const passou=pick.exploratory_side==="Over"?
+      real>pick.exploratory_line:real<pick.exploratory_line;
+    result.line_result=passou?"sinal_teorico_atingido":"sinal_teorico_nao_atingido";
+  }
   results.push(result);
  }
  const prev=readJSON(path.join(RESULTS,day+".json"));
