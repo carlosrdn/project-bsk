@@ -104,15 +104,22 @@ function posicoesCompativeis(a,b){
 }
 function ausenciasConfirmadas(t){
  const lista=new Map();
- (t.ausencias||[]).filter(x=>x.situacao==="Fora").forEach(a=>lista.set(nomeNormalizado(a.nome),{nome:a.nome,posicao:a.posicao||""}));
+ (t.ausencias||[]).filter(a=>a.situacao==="Fora").forEach(a=>{
+  const jogador=(t.jogadores||[]).find(p=>nomeNormalizado(p.nome)===nomeNormalizado(a.nome));
+  if(jogador){
+   const info=statusInfo(t,jogador);
+   if(["Titular confirmado","Disponível confirmado","Disponível","Provável"].includes(info.valor))return;
+  }
+  lista.set(nomeNormalizado(a.nome),{nome:a.nome,posicao:a.posicao||""});
+ });
  (t.jogadores||[]).forEach(p=>{
-  const key=nomeNormalizado(p.nome);
-  if(statusEfetivo(t,p)==="Fora")lista.set(key,{nome:p.nome,posicao:posicaoJogador(t,p)});
-  else if(statusManual(t,p)!=="Não verificado")lista.delete(key);
+  const key=nomeNormalizado(p.nome),status=statusEfetivo(t,p);
+  if(status==="Fora")lista.set(key,{nome:p.nome,posicao:posicaoJogador(t,p)});
+  else if(statusManual(t,p)!=="Não verificado"||["Titular confirmado","Disponível confirmado"].includes(status))lista.delete(key);
  });
  for(const [key,a] of AUSENCIAS_ESPN)if(key.startsWith(DADOS.data_jogos+"|"+t.sigla+"|")){
   const jogador=(t.jogadores||[]).find(p=>nomeNormalizado(p.nome)===nomeNormalizado(a.nome));
-  if(!jogador||statusManual(t,jogador)==="Não verificado")lista.set(nomeNormalizado(a.nome),a);
+  if(!jogador||statusEfetivo(t,jogador)==="Fora")lista.set(nomeNormalizado(a.nome),a);
  }
  return [...lista.values()];
 }
