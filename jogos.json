@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-12T18:29:00+00:00",
+  "atualizado_em": "2026-11-12T21:51:18+00:00",
   "data_jogos": "2026-11-12",
   "lesoes_ok": true,
   "media_liga": {
@@ -12352,7 +12352,7 @@
                 }
               }
             },
-            "situacao": "Provável",
+            "situacao": "Disponível",
             "posicao": "F"
           },
           {
@@ -13563,19 +13563,6 @@
             "ast": 2.2
           },
           {
-            "nome": "Moussa Diabate",
-            "situacao": "Provável",
-            "motivo": "Quadriceps",
-            "retorno": "2026-11-12",
-            "atualizado": "2026-11-12",
-            "comentario": "Diabate (quadriceps) is listed as probable for Thursday's game against the Suns.",
-            "jogos": 9,
-            "minutos": 28.8,
-            "pts": 8.89,
-            "reb": 9.11,
-            "ast": 2.0
-          },
-          {
             "nome": "Dennis Schroder",
             "situacao": "Fora",
             "motivo": "Hamstring Strain",
@@ -13600,19 +13587,6 @@
             "pts": 3.0,
             "reb": 0.0,
             "ast": 0.0
-          },
-          {
-            "nome": "Grant Williams",
-            "situacao": "Fora",
-            "motivo": "Hamstring",
-            "retorno": "2026-11-12",
-            "atualizado": "2026-11-12",
-            "comentario": "Williams (hamstring) is listed as probable for Thursday's game against the Suns.",
-            "jogos": 0,
-            "minutos": 0,
-            "pts": 0,
-            "reb": 0,
-            "ast": 0
           }
         ]
       }
