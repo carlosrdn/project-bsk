@@ -690,6 +690,8 @@ async function atualizarAoVivo(force=false){
       if(!grupo)continue;
       for(const p of time.jogadores||[]){
         const d=dadosAtletaESPN(grupo,p.nome);
+        const pos=posicaoNormalizada(d?.atleta?.athlete?.position?.abbreviation||d?.atleta?.athlete?.position?.name);
+        if(pos)POSICOES_ESPN.set(chaveEscalacao(time,p),pos);
         const st=statusAtletaESPN(d);
         if(st){
           const key=chaveEscalacao(time,p);
@@ -739,30 +741,37 @@ async function atualizarAoVivo(force=false){
   }finally{liveEmCurso=false;}
 }
 async function consultarLesoesESPN(){
-  try{
-    const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries",{cache:"no-store",signal:AbortSignal.timeout(12000)});
-    if(!r.ok)throw Error("HTTP "+r.status);
-    const dados=await r.json();
-    if(!Array.isArray(dados.injuries))throw Error("Formato de lesões desconhecido");
-    LESOES_AO_VIVO.clear();
-    const apelidos={GS:"GSW",NO:"NOP",NY:"NYK",SA:"SAS",UTAH:"UTA",WSH:"WAS"};
-    for(const time of dados.injuries){
-      for(const item of time.injuries||[]){
-        const a=item.athlete||{}, comentario=(item.shortComment||"").toLowerCase();
-        const cod=a.team?.abbreviation||time.team?.abbreviation||"";
-        const team=apelidos[cod]||cod;
-        const ref=LISTA.flatMap(j=>[j.j.casa,j.j.visitante]).find(t=>t.sigla===team);
-        const jogador=(ref?.jogadores||[]).find(p=>limparNomeNBA(p.nome)===limparNomeNBA(a.displayName));
-        if(!ref||!jogador)continue;
-        let st="Dúvida";
-        if(item.status==="Out"||/ruled out|listed as out|downgraded to out|will not play|won't play/.test(comentario))st="Fora";
-        else if(/doubtful/.test(comentario))st="Provável ausência";
-        else if(/probable/.test(comentario)||item.status==="Probable")st="Provável";
-        LESOES_AO_VIVO.set(chaveEscalacao(ref,jogador),st);
-      }
+ try{
+  const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries",
+    {cache:"no-store",signal:AbortSignal.timeout(12000)});
+  if(!r.ok)throw Error("ESPN HTTP "+r.status);
+  const dados=await r.json();
+  if(!Array.isArray(dados.injuries))throw Error("Formato inesperado");
+  LESOES_AO_VIVO.clear();AUSENCIAS_ESPN.clear();
+  const refs=new Map();
+  LISTA.forEach(j=>[j.j.casa,j.j.visitante].forEach(t=>refs.set(t.sigla,t)));
+  for(const time of dados.injuries){
+   for(const item of time.injuries||[]){
+    const atleta=item.athlete||{},comentario=String(item.shortComment||"").toLowerCase();
+    const cod=siglaESPN(atleta.team?.abbreviation||time.team?.abbreviation||"");
+    const ref=refs.get(cod);if(!ref)continue;
+    const nome=atleta.displayName||"";
+    const pos=posicaoNormalizada(atleta.position?.abbreviation||atleta.position?.name||"");
+    let st="Dúvida";
+    if(String(item.status||"").toLowerCase()==="out"||/ruled out|listed as out|downgraded to out|will not play|won't play|is out/.test(comentario))st="Fora";
+    else if(String(item.status||"").toLowerCase()==="doubtful"||/doubtful/.test(comentario))st="Provável ausência";
+    else if(String(item.status||"").toLowerCase()==="probable"||/probable/.test(comentario))st="Provável";
+    if(st==="Fora")AUSENCIAS_ESPN.set(DADOS.data_jogos+"|"+cod+"|"+nomeNormalizado(nome),{nome,posicao:pos});
+    const p=(ref.jogadores||[]).find(x=>mesmoJogadorESPN(x.nome,nome));
+    if(p){
+     LESOES_AO_VIVO.set(chaveEscalacao(ref,p),st);
+     if(pos)POSICOES_ESPN.set(chaveEscalacao(ref,p),pos);
     }
-    return true;
-  }catch(e){return false;}
+   }
+  }
+  if(PAGINA==="escalacoes"&&$("central"))$("central").innerHTML=centralEscalacoes(LISTA);
+  return true;
+ }catch(e){return false;}
 }
 function limparNomeNBA(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();}
 async function atualizarEscalacoesAuto(){
@@ -773,7 +782,7 @@ async function atualizarEscalacoesAuto(){
 }
 if(["jogos","melhores","escalacoes"].includes(PAGINA)){
   setInterval(()=>atualizarAoVivo(),60000);
-  setInterval(()=>consultarLesoesESPN(),180000);
+  setInterval(()=>consultarLesoesESPN(),60000);
   setTimeout(()=>atualizarEscalacoesAuto(),150);
 }
 
