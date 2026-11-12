@@ -73,4 +73,24 @@ assert(page.includes('espnFinal(ev)')&&page.includes('compararPlacar(g,home,away
  "Não apurar projeções de jogo antes da confirmação de encerramento");
 assert(page.includes('statisticaESPN(group,pick.player,pick.market)'),
  "Apuração individual deve usar o boxscore do jogador correto");
+const historyUI=fs.readFileSync("historico.html","utf8");
+assert(historyUI.includes('statusLimite(alvo,acertou,final)'),"Exibir acerto de limite separado de erro");
+const uiCode=historyUI.match(/<script>([\\s\\S]*?)<\\/script>/)[1];
+const uiCtx=vm.createContext({document:{getElementById:()=>({addEventListener(){}})},fetch:()=>Promise.resolve({ok:false,status:404}),
+ setTimeout:()=>1,clearTimeout:()=>{},AbortController:class{},console});
+vm.runInContext(uiCode.replace(/carregar\\(\\);\\s*$/,""),uiCtx);
+assert(uiCtx.statusLimite({direction:"acima_de",threshold:112},true,true).includes("ACERTOU"),
+ "Se a previsão era passar de 112 e marcou 115, deve ser acerto");
+assert(uiCtx.statusLimite({direction:"acima_de",threshold:112},false,true).includes("NÃO ACERTOU"));
+assert.equal(uiCtx.statusLimite(null,true,true),"","Sem limite pré-jogo não inventar acerto");
+assert(uiCtx.compararPlacar({home:"UTA",away:"ORL",prediction:{
+ home_points:112.5,away_points:108,total_points:220.5,home_margin:4.5,favorite:"UTA",
+ targets:{home_points:{direction:"acima_de",threshold:112},away_points:{direction:"acima_de",threshold:108},
+ total_points:{direction:"acima_de",threshold:220}}
+}},115,105).targets_correct.home_points===true);
+assert(uiCtx.compararPlacar({home:"UTA",away:"ORL",prediction:{
+ home_points:112.5,away_points:108,total_points:220.5,home_margin:4.5,favorite:"UTA",
+ targets:{home_points:{direction:"acima_de",threshold:112},away_points:{direction:"acima_de",threshold:108},
+ total_points:{direction:"acima_de",threshold:220}}
+}},115,105).targets_correct.away_points===false);
 console.log("OK: histórico BSK, feed ESPN, DNP, NBA timezone, seleção do radar");
