@@ -118,3 +118,7 @@
 .history-table { overflow-x: auto; margin-block-start: 10px; }
 .history-table table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .history-table :is(th, td) { padding: 8px; border-bottom: 1px solid #23324a; text-align: start; }
+
+.expandable-match .match-card { display: block; }
+.expandable-match .match-card[aria-expanded="true"] { border-radius: 12px 12px 0 0; box-shadow: none; }
+.expandable-match .detail-panel { position: static; border-top: 0; border-radius: 0 0 12px 12px; }

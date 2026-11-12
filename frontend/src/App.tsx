@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import {
  Activity, ArrowRight, ArrowUpRight, BarChart3, CalendarDays,
  ChevronDown, ChevronLeft, ChevronRight, CircleAlert, Clock3, Database, History,
@@ -53,20 +53,33 @@ function StatTile({ label, value, note, icon: Icon }: {
   <strong>{value}</strong><small>{note}</small>
  </div>
 }
-function MatchCard({ match, selected, onClick }: { match: MatchView; selected: boolean; onClick: () => void }) {
+function MatchCard({ match, selected, onClick, panelId }: {
+ match: MatchView; selected: boolean; onClick: () => void; panelId?: string
+}) {
  const { game, prediction } = match
- return <button type="button" className={'match-card ' + (selected ? 'selected' : '')} onClick={onClick}>
-  <div className="match-card-top"><span><Clock3 size={13}/>{time(game.horario_utc)} · Brasília</span><span className="projection-pill">PROJEÇÃO</span></div>
-  <div className="score-row">
-   <div className="team-name"><MiniBrand name={game.visitante.sigla}/><div><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></div></div>
+ return <button type="button" className={'match-card ' + (selected ? 'selected' : '')} onClick={onClick}
+  aria-expanded={panelId ? selected : undefined} aria-controls={panelId}>
+  <span className="match-card-top"><span><Clock3 size={13}/>{time(game.horario_utc)} · Brasília</span><span className="projection-pill">PROJEÇÃO</span></span>
+  <span className="score-row">
+   <span className="team-name"><MiniBrand name={game.visitante.sigla}/><span><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></span></span>
    <strong className="score">{n(prediction.away, 0)}</strong>
-  </div>
-  <div className="score-row">
-   <div className="team-name"><MiniBrand name={game.casa.sigla}/><div><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></div></div>
+  </span>
+  <span className="score-row">
+   <span className="team-name"><MiniBrand name={game.casa.sigla}/><span><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></span></span>
    <strong className="score">{n(prediction.home, 0)}</strong>
-  </div>
-  <div className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito <ArrowRight size={14}/></span></div>
+  </span>
+  <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito {panelId ? <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/> : <ArrowRight size={14}/>}</span></span>
  </button>
+}
+function ExpandableMatch({ match }: { match: MatchView }) {
+ const [expanded, setExpanded] = useState(false)
+ const panelId = useId()
+ return <article className="expandable-match">
+  <MatchCard match={match} selected={expanded} onClick={() => setExpanded(open => !open)} panelId={panelId}/>
+  <div id={panelId} className="detail-panel" hidden={!expanded}>
+   {expanded && <Detail match={match}/>}
+  </div>
+ </article>
 }
 function Detail({ match }: { match: MatchView }) {
  const { game, prediction: p } = match
@@ -175,10 +188,16 @@ export default function App() {
       </div>
       <div className="section-head"><div><span className="eyebrow">VISÃO GERAL</span><h2>Confrontos da coleta</h2><p>Selecione um jogo para explorar a projeção e o contexto.</p></div><button type="button" className="text-link" onClick={() => setView('games')}>Ver todos <ArrowRight size={16}/></button></div>
      </>}
-     {view === 'games' && <div className="section-head"><div><span className="eyebrow">TODOS OS CONFRONTOS</span><h2>Jogos da rodada</h2><p>Resultados do modelo preservados sem odds.</p></div><span className="count-label">{shown.length} partidas</span></div>}
+     {view === 'games' && <div className="section-head"><div><span className="eyebrow">TODOS OS CONFRONTOS</span><h2>Jogos da rodada</h2><p>Abra um confronto para ver a projeção e os desfalques.</p></div><span className="count-label">{shown.length} partidas</span></div>}
      <div className="game-toolbar"><div className="search-box"><Search size={18}/><input aria-label="Buscar equipe" placeholder="Buscar equipe ou sigla…" value={search} onChange={e => setSearch(e.target.value)}/>{search && <button onClick={() => setSearch('')} aria-label="Limpar busca"><X size={16}/></button>}</div><label className="checkbox-filter"><input type="checkbox" checked={onlyAbsences} onChange={e => setOnlyAbsences(e.target.checked)}/> Com desfalques confirmados</label></div>
-     {shown.length ? <div className="workspace-grid"><div className="matches-column">{shown.map(m => <MatchCard key={m.key} match={m} selected={selectedMatch?.key === m.key} onClick={() => setSelected(m.key)}/>)}</div><aside className="detail-panel" key={selectedMatch?.key}><Detail match={selectedMatch}/></aside></div> :
-      <div className="empty-state"><Search size={25}/><strong>Nenhum confronto encontrado</strong><span>Altere a busca ou remova os filtros.</span></div>}
+     {!shown.length ?
+      <div className="empty-state"><Search size={25}/><strong>Nenhum confronto encontrado</strong><span>Altere a busca ou remova os filtros.</span></div> :
+      view === 'games' ? <div className="matches-column">{shown.map(match =>
+       <ExpandableMatch key={match.key} match={match}/>
+      )}</div> :
+      <div className="workspace-grid"><div className="matches-column">{shown.map(match =>
+       <MatchCard key={match.key} match={match} selected={selectedMatch.key === match.key} onClick={() => setSelected(match.key)}/>
+      )}</div><aside className="detail-panel" key={selectedMatch.key}><Detail match={selectedMatch}/></aside></div>}
      <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os cálculos de pontos, total, favorito e contexto são uma porta da função <code>analisar()</code> do BSK clássico, com parâmetros padrão. Esta fase não altera o motor Python, os snapshots de histórico ou os ajustes manuais do site atual. A equivalência numérica é verificada automaticamente no pipeline.</p></div></div>
      </>}
     </>}
