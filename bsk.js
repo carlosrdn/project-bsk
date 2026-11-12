@@ -167,25 +167,110 @@ function quadroElencoESPN(t){
    (linhas||'<p class="central-info">Nenhum atleta publicado.</p>')+
    '</details></div>';
 }
+
+const VAGAS_QUINTETO=["PG","SG","SF","PF","C"];
+function escalacaoIntegrada(t){
+  const feed=ESCALACOES_FEED.get(t.sigla);
+  const ausentes=new Set(ausenciasConfirmadas(t).map(a=>nomeNormalizado(a.nome)));
+  const pool=new Map();
+  const jogadoresBSK=t.jogadores||[];
+  for(const p of jogadoresBSK){
+    const nome=nomeNormalizado(p.nome);
+    if(ausentes.has(nome)||jogadorIndisponivel(t,p))continue;
+    pool.set(nome,{
+      nome:p.nome,posicao:posicaoJogador(t,p),minutos:Number(p.minutos)||0,
+      confirmado:statusEfetivo(t,p)==="Titular confirmado",
+      participou:statusEfetivo(t,p)==="Disponível confirmado",origem:"BSK"
+    });
+  }
+  // O feed da ESPN pode conter um substituto que ficou fora dos 12 jogadores
+  // da coleta. O elenco completo também participa da projeção das cinco vagas.
+  for(const p of feed?.jogadores||[]){
+    const key=nomeNormalizado(p.nome);
+    if(ausentes.has(key))continue;
+    const ref=jogadoresBSK.find(x=>nomeNormalizado(x.nome)===key);
+    if(ref&&jogadorIndisponivel(t,ref))continue;
+    const anterior=pool.get(key);
+    const pos=posicaoNormalizada(p.posicao)||anterior?.posicao||"";
+    const confirmado=p.status==="Titular confirmado"||
+      (ref&&statusEfetivo(t,ref)==="Titular confirmado");
+    pool.set(key,{
+      nome:p.nome,posicao:pos,minutos:anterior?.minutos||Number(p.minutos)||0,
+      confirmado:!!confirmado,participou:p.status==="Disponível confirmado",
+      origem:"ESPN"
+    });
+  }
+  const todos=[...pool.values()];
+  const confirmados=todos.filter(p=>p.confirmado);
+  const escolhidos=new Set(),vagas=VAGAS_QUINTETO.map(pos=>({pos,jogador:null}));
+  // Atletas oficialmente confirmados têm prioridade absoluta. Primeiro
+  // encaixamos quem tem posição conhecida; depois ocupamos vagas restantes.
+  for(const p of confirmados.sort((a,b)=>Number(!!b.posicao)-Number(!!a.posicao))){
+    const candidatos=vagas.filter(v=>!v.jogador);
+    if(!candidatos.length)break;
+    const alvo=candidatos.find(v=>v.pos===p.posicao)||
+      candidatos.find(v=>posicoesCompativeis(v.pos,p.posicao))||candidatos[0];
+    alvo.jogador=p;escolhidos.add(nomeNormalizado(p.nome));
+  }
+  for(const vaga of vagas){
+    if(vaga.jogador)continue;
+    const candidatos=todos.filter(p=>!escolhidos.has(nomeNormalizado(p.nome))&&!p.confirmado);
+    // Sem dados de posição, o BSK não afirma que o jogador ocupa a
+    // posição exata. O nome é apenas uma projeção de quinteto.
+    candidatos.sort((a,b)=>{
+      const compA=a.posicao===vaga.pos?2:posicoesCompativeis(a.posicao,vaga.pos)?1:0;
+      const compB=b.posicao===vaga.pos?2:posicoesCompativeis(b.posicao,vaga.pos)?1:0;
+      return compB-compA||b.minutos-a.minutos;
+    });
+    const escolha=candidatos[0];
+    if(escolha){vaga.jogador=escolha;escolhidos.add(nomeNormalizado(escolha.nome));}
+  }
+  const nConfirmados=vagas.filter(v=>v.jogador?.confirmado).length;
+  return {vagas,nConfirmados,totalConfirmados:confirmados.length,feedPresente:!!feed,
+    completo:nConfirmados===5};
+}
+function htmlQuintetoIntegrado(t){
+ const e=escalacaoIntegrada(t);
+ const tipo=e.completo?"Quinteto confirmado":e.nConfirmados?
+   e.nConfirmados+" titular(es) confirmado(s) · demais projetados":"Quinteto provável · sem titulares confirmados";
+ const linhas=e.vagas.map(v=>{
+   const p=v.jogador,confirmado=!!p?.confirmado;
+   return '<div class="lineup-slot'+(confirmado?' lineup-confirmed':'')+'">'+
+     '<span class="lineup-position">'+v.pos+'</span>'+
+     '<div class="lineup-person"><strong>'+esc(p?.nome||"A definir")+'</strong>'+
+     '<small>'+esc(!p?"Sem dados suficientes":confirmado?"Titular confirmado · ESPN/ajuste":"Projeção pela posição e rotação · não confirmado")+'</small></div>'+
+     '<span class="lineup-status">'+(confirmado?"Confirmado":p?"Provável":"Pendente")+'</span></div>';
+ }).join("");
+ return '<div class="lineup-board"><p class="lineup-summary">'+esc(tipo)+'</p>'+linhas+
+   '<p class="central-info">As ausências confirmadas não ocupam vagas. Quando surgir a escalação oficial, os titulares substituem automaticamente as projeções.</p></div>';
+}
 function centralEscalacoes(lista){
-  const times=new Map();
-  lista.forEach(r=>[r.j.visitante,r.j.casa].forEach(t=>times.set(t.sigla,t)));
-  const todos=Array.from(times.values());
-  const verificados=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>STATUS_AUTOMATICOS.has(chaveEscalacao(t,p))).length,0);
-  const manuais=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
-  const texto='<div class="central-top"><div><p class="eyebrow">Elenco ESPN e ajustes opcionais</p><h2>Central de escalações</h2><p class="sub">Titular confirmado somente quando o box score indica titularidade; jogar minutos confirma participação, não titularidade. A ESPN pode publicar dados depois do início.</p></div><span class="central-count">'+verificados+' automáticos · '+manuais+' manuais</span></div>';
-  const equipes=todos.map(t=>{
-    const jogadores=(t.jogadores||[]).map(p=>{
-      const escolhido=statusManual(t,p),inf=statusInfo(t,p);
-      const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(v===escolhido?' selected':'')+'>'+(v==="Não verificado"?"Automático (padrão)":esc(v))+'</option>').join("");
-      return '<div class="central-row"><div class="central-player"><b>'+esc(p.nome)+'</b><small><strong>'+esc(inf.valor)+'</strong> · '+esc(inf.origem)+'</small></div><details class="override"><summary>Corrigir</summary><select aria-label="Correção do status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></details></div>';
-    }).join("");
-    return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+quadroSubstituicoes(t)+quadroElencoESPN(t)+(jogadores||'<p class="sub">Sem atletas neste resumo.</p>')+'</div>';
-  }).join("");
-  return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+texto+
-    '<div class="central-tools" style="margin-top:12px"><button type="button" data-auto-refresh>Atualizar ESPN agora</button><button type="button" data-limpar-status>Limpar correções manuais</button></div>'+
-    '<p class="central-info" id="auto-status">'+esc(statusColetaAutomatica)+'</p>'+
-    '<div class="central-grid">'+equipes+'</div><p class="central-info">O bloco de monitoramento BSK contém somente jogadores da coleta. O elenco ESPN completo aparece acima quando o feed o disponibiliza. Antes do jogo, falta de alerta de lesão não significa titular confirmado. O feed NBA pode ser bloqueado no navegador; nesse caso, continua visível a última coleta ESPN. Nenhum ajuste de minutos é inferido automaticamente.</p></div></section>';
+ const times=new Map();
+ lista.forEach(r=>[r.j.visitante,r.j.casa].forEach(t=>times.set(t.sigla,t)));
+ const todos=[...times.values()];
+ const manuais=todos.reduce((n,t)=>n+(t.jogadores||[]).filter(p=>statusManual(t,p)!=="Não verificado").length,0);
+ const equipes=todos.map(t=>{
+   const painelCorrecoes=(t.jogadores||[]).map(p=>{
+     const atual=statusManual(t,p);
+     const opcoes=STATUS_MANUAIS.map(v=>'<option value="'+esc(v)+'"'+(atual===v?' selected':'')+'>'+
+       esc(v==="Não verificado"?"Automático":v)+'</option>').join("");
+     return '<label class="lineup-correction">'+esc(p.nome)+
+       '<select aria-label="Status de '+esc(p.nome)+'" data-status-player="'+esc(chaveEscalacao(t,p))+'">'+opcoes+'</select></label>';
+   }).join("");
+   return '<div class="central-team"><h3>'+esc(t.nome)+'</h3>'+htmlQuintetoIntegrado(t)+
+     '<details class="lineup-tools"><summary>Corrigir disponibilidade manualmente</summary>'+
+     (painelCorrecoes||'<p class="central-info">Sem jogadores na coleta.</p>')+
+     '</details></div>';
+ }).join("");
+ const cab='<div class="central-top"><div><h2>Escalações da rodada</h2>'+
+   '<p class="sub">Cinco vagas por equipe. Titulares confirmados têm prioridade; as outras posições são projeções do BSK.</p>'+
+   '</div><span class="central-count">'+manuais+' correções manuais</span></div>';
+ return '<section class="sec" data-id="central"><div class="sb" style="padding-top:18px">'+cab+
+   '<div class="central-tools"><button type="button" data-auto-refresh>Atualizar ESPN agora</button>'+
+   '<button type="button" data-limpar-status>Limpar correções manuais</button></div>'+
+   '<p class="central-info" id="auto-status">'+esc(statusColetaAutomatica)+'</p>'+
+   '<div class="central-grid">'+equipes+'</div>'+
+   '<p class="central-info">Quintetos projetados são estimativas baseadas nos atletas disponíveis, posições conhecidas e minutos médios. Sem escalação oficial, não indicam certeza de titularidade.</p></div></section>';
 }
 function salvarStatus(key,value){
   if(!STATUS_MANUAIS.includes(value))return;
