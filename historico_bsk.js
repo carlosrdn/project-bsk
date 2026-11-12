@@ -180,7 +180,7 @@ async function apurarDia(day){
    const casa=competitors.find(c=>c.homeAway==="home"),fora=competitors.find(c=>c.homeAway==="away");
    return tricode(casa?.team?.abbreviation)===j.home&&tricode(fora?.team?.abbreviation)===j.away;
   });
-  matching.set(j.start_utc,event||null);
+  matching.set(j.start_utc+"|"+j.away+"|"+j.home,event||null);
  }
  const summaries=new Map();
  await Promise.all([...matching.values()].filter(e=>e?.id&&isFinal(e)).map(async e=>{
@@ -191,7 +191,7 @@ async function apurarDia(day){
   }
  }));
  const partidas=snapshot.games.map(j=>{
-  const event=matching.get(j.start_utc);
+  const event=matching.get(j.start_utc+"|"+j.away+"|"+j.home);
   if(!event)return {...j,status:"nao_localizado",home_score:null,away_score:null};
   const competitors=event.competitions?.[0]?.competitors||[];
   const home=competitors.find(c=>c.homeAway==="home");
@@ -206,7 +206,9 @@ async function apurarDia(day){
  });
  const results=[];
  for(const pick of snapshot.recommendations){
-  const event=matching.get(pick.jogo_utc);
+  const partida=snapshot.games.find(j=>j.start_utc===pick.jogo_utc&&
+    [j.home,j.away].includes(pick.team)&&[j.home,j.away].includes(pick.opponent));
+  const event=partida?matching.get(partida.start_utc+"|"+partida.away+"|"+partida.home):null;
   const result={id:pick.id,status:"aguardando",actual:null,absolute_error:null,signed_error:null,
    line_result:null,updated_at:now().toISOString()};
   if(!event){result.status="jogo_nao_localizado";results.push(result);continue;}
