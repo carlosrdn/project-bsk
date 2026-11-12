@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Histórico | Project BSK</title>
+<link rel="stylesheet" href="bsk.css?v=20261111-14">
+<style>
+.history-main{max-width:1250px;margin:auto;padding:24px 22px 80px}
+.history-head{display:flex;justify-content:space-between;gap:15px;align-items:start;flex-wrap:wrap}
+.history-head h1{font-size:29px}
+.history-lead{font-size:14px;color:var(--mute);max-width:790px}
+.history-nav{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 24px}
+.history-nav a{font-size:13px;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:8px 11px}
+.history-nav a[aria-current="page"]{border-color:var(--green)}
+.history-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.history-metric{background:var(--panel);border:1px solid var(--line);padding:17px;border-radius:12px}
+.history-metric b{font-size:25px;display:block}.history-metric span{font-size:12px;color:var(--mute)}
+.history-panel{padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:15px 0}
+.history-filters{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
+.history-filters label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--mute)}
+.history-filters select,.history-filters input{padding:9px;min-height:38px;min-width:155px;color:var(--ink);border:1px solid #34465a;border-radius:7px;background:#142233}
+.history-list{display:grid;gap:12px}
+.history-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.history-top{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap}
+.history-top strong{font-size:16px}.history-top small{color:var(--mute)}
+.history-tag{font-size:10px;font-weight:750;border:1px solid #46566b;border-radius:20px;padding:4px 9px;white-space:nowrap}
+.history-tag.settled{border-color:#376955;color:#b5ddc7}
+.history-tag.pending{border-color:#6a5941;color:#e4c99b}
+.history-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:13px 0}
+.history-values div{background:#152235;border-radius:8px;padding:11px}
+.history-values span{display:block;font-size:11px;color:var(--mute)}
+.history-values b{font-size:20px}
+.history-card p{font-size:12px;color:#b9c8d9;margin:9px 0}
+.history-note{font-size:12px;color:var(--mute);line-height:1.5}
+.history-empty{padding:27px;text-align:center;border:1px dashed #41516a;border-radius:9px;color:var(--mute)}
+.history-detail summary{font-size:12px;cursor:pointer;color:#b8cbd9}
+.history-detail pre{white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.5 monospace;color:#a6bad0}
+@media(max-width:760px){.history-main{padding:19px 13px 50px}.history-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.history-filters label{width:100%}.history-filters select,.history-filters input{width:100%}.history-values b{font-size:18px}}
+</style>
+</head>
+<body><main class="history-main">
+<header class="history-head"><div><p class="eyebrow">Project BSK · transparência</p><h1>Histórico das projeções</h1>
+<p class="history-lead">O que o radar sinalizou antes dos jogos, quanto cada atleta produziu e qual foi o erro do modelo. Registros pré-jogo são congelados e não são recalculados após o resultado.</p>
+</div><button class="btn" type="button" id="atualizar">Atualizar</button></header>
+<nav class="history-nav" aria-label="Páginas BSK">
+<a href="index.html?v=20261111-14">Jogos</a><a href="melhores.html?v=20261111-14">Melhores do dia</a>
+<a href="escalacoes.html?v=20261111-14">Escalações</a>
+<a href="historico.html?v=20261111-14" aria-current="page">Histórico</a>
+<a href="backtest.html">Backtest</a></nav>
+<div class="history-panel"><strong>Como interpretar</strong>
+<p class="history-note">O histórico registra a projeção pré-jogo e, quando existir, o sinal condicional do radar. Uma linha exploratória NÃO significa que a aposta esteve disponível em uma casa de apostas. Sem linha e odd reais arquivadas antes da partida, este painel não informa taxa de acerto de apostas nem ROI. O erro de projeção é calculado apenas para atletas que jogaram.</p></div>
+<div class="history-metrics" id="resumo">
+ <div class="history-metric"><b>—</b><span>Rodadas registradas</span></div>
+ <div class="history-metric"><b>—</b><span>Projeções apuradas</span></div>
+ <div class="history-metric"><b>—</b><span>Erro absoluto médio</span></div>
+ <div class="history-metric"><b>—</b><span>Apostas reais registradas</span></div>
+</div>
+<section class="history-panel"><div class="history-filters">
+<label>Rodada<select id="data"><option value="">Todas disponíveis</option></select></label>
+<label>Mercado<select id="mercado"><option value="">Todas as estatísticas</option>
+<option value="pts">Pontos</option><option value="reb">Rebotes</option><option value="ast">Assistências</option>
+<option value="tres">Bolas de 3</option><option value="blk">Bloqueios</option><option value="stl">Roubos</option></select></label>
+<label>Tipo<select id="classe"><option value="">Todos os registros</option>
+<option value="principal">Pré-seleções do radar</option><option value="observacao">Em observação</option></select></label>
+<label>Jogador<input type="search" id="jogador" placeholder="Buscar por nome"></label></div>
+<p class="history-note" id="status">Lendo registros históricos...</p></section>
+<div class="history-list" id="cards" aria-live="polite"></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const numero=x=>x==null?"—":Number(x).toLocaleString("pt-BR",{maximumFractionDigits:2});
+const rotulo={pts:"Pontos",reb:"Rebotes",ast:"Assistências",tres:"Bolas de três",blk:"Bloqueios",stl:"Roubos"};
+let snapshots=[],erros=[];
+function statusRotulo(st){
+ return ({apurado:"Apurado",aguardando:"Aguardando",jogo_nao_finalizado:"Jogo em andamento/pendente",
+ jogo_nao_localizado:"Jogo não localizado",boxscore_indisponivel:"Box score indisponível",
+ jogador_nao_localizado:"Jogador não localizado",nao_atuou:"Não entrou em quadra",
+ estatistica_indisponivel:"Estatística indisponível"})[st]||"Resultado não publicado";
+}
+async function json(url){
+ const r=await fetch(url+(url.includes("?")?"&":"?")+"v="+Date.now(),{cache:"no-store"});
+ if(!r.ok)throw Error("HTTP "+r.status+" em "+url);
+ return r.json();
+}
+function render(){
+ const data=$("data").value,mercado=$("mercado").value,classe=$("classe").value,busca=$("jogador").value.toLowerCase().trim();
+ const itens=snapshots.filter(x=>(!data||x.date===data)&&(!mercado||x.market===mercado)&&
+  (!classe||x.classificacao===classe)&&(!busca||x.player.toLowerCase().includes(busca)));
+ const concluidos=itens.filter(x=>x.result?.status==="apurado");
+ const mae=concluidos.length?concluidos.reduce((a,x)=>a+x.result.absolute_error,0)/concluidos.length:null;
+ const datas=new Set(itens.map(x=>x.date));
+ const aprovadas=itens.filter(x=>x.bet_registered===true).length;
+ const met=[[""+datas.size,"Rodadas com sinais"],[""+concluidos.length,"Projeções apuradas"],numero(mae),"Apostas reais registradas"];
+ $("resumo").innerHTML='<div class="history-metric"><b>'+datas.size+'</b><span>Rodadas com sinais</span></div>'+
+  '<div class="history-metric"><b>'+concluidos.length+'</b><span>Projeções apuradas</span></div>'+
+  '<div class="history-metric"><b>'+numero(mae)+'</b><span>MAE dos sinais exibidos</span></div>'+
+  '<div class="history-metric"><b>'+aprovadas+'</b><span>Apostas com linha e odd reais</span></div>';
+ if(!itens.length){
+  $("cards").innerHTML='<div class="history-empty">Nenhum sinal registrado corresponde a esses filtros. Em dias sem recomendações aprovadas, o histórico pode ficar vazio.</div>';
+  return;
+ }
+ $("cards").innerHTML=itens.map(x=>{
+  const r=x.result,finalizado=r?.status==="apurado";
+  const label=finalizado?"Finalizado":statusRotulo(r?.status);
+  const classe=x.classificacao==="principal"?"Pré-seleção":"Em observação";
+  const discrepancia=finalizado?"Erro absoluto "+numero(r.absolute_error):"Sem avaliação numérica ainda";
+  return '<article class="history-card"><div class="history-top"><div><strong>'+esc(x.player)+'</strong>'+
+    '<div><small>'+esc(x.date)+' · '+esc(x.team)+' × '+esc(x.opponent)+' · '+esc(rotulo[x.market]||x.market)+'</small></div></div>'+
+    '<span class="history-tag '+(finalizado?'settled':'pending')+'">'+esc(label)+'</span></div>'+
+    '<p>'+esc(classe)+' · '+esc(x.signal||"Sem sinal condicional aprovado")+'</p>'+
+    '<div class="history-values"><div><span>Projeção BSK</span><b>'+numero(x.projection)+'</b></div>'+
+    '<div><span>Estatística real</span><b>'+numero(r?.actual)+'</b></div>'+
+    '<div><span>Erro absoluto</span><b>'+numero(r?.absolute_error)+'</b></div></div>'+
+    '<p class="history-note">Média histórica: '+numero(x.season_mean)+
+    ' · Últimos 5: '+numero(x.last5)+' · Amostra: '+numero(x.sample)+' jogos.</p>'+
+    '<p class="history-note">'+esc(discrepancia)+' · '+esc(statusRotulo(r?.status))+'</p>'+
+    '<details class="history-detail"><summary>Auditoria e limitações</summary>'+
+    '<pre>Capturado: '+esc(x.captured_at)+'\nVersão: '+esc(x.model_hash)+
+    '\nLinha exploratória: '+numero(x.exploratory_line)+
+    '\nAposta real registrada: '+(x.bet_registered?"Sim":"Não")+
+    '\nAlertas: '+esc((x.warnings||[]).join("; ")||"Nenhum")+'</pre></details></article>';
+ }).join("");
+}
+async function carregar(){
+ $("status").textContent="Atualizando dados históricos...";
+ try{
+  const indice=await json("historico/indice.json");
+  const dias=(indice.days||[]).slice(0,60);
+  $("data").innerHTML='<option value="">Todas disponíveis</option>'+
+    dias.map(d=>'<option value="'+esc(d.date)+'">'+esc(d.date)+' · '+d.games+' jogos registrados</option>').join("");
+  const dados=await Promise.all(dias.map(async d=>{
+   try{
+    const [snap,result]=await Promise.all([json(d.snapshot),d.results?json(d.results):Promise.resolve(null)]);
+    const porId=new Map((result?.results||[]).map(r=>[r.id,r]));
+    return (snap.recommendations||[]).map(x=>({...x,date:snap.date,
+       captured_at:snap.captured_at,model_hash:snap.model_hash,result:porId.get(x.id)||null}));
+   }catch(e){console.warn("Rodada indisponível:",d.date,e);return [];}
+  }));
+  snapshots=dados.flat().sort((a,b)=>b.date.localeCompare(a.date)||a.classificacao.localeCompare(b.classificacao));
+  render();
+  const vazias=dias.filter(d=>d.recommendations===0).length;
+  $("status").textContent=dias.length+" rodada(s) arquivada(s), "+snapshots.length+
+    " sinal(is), "+vazias+" rodada(s) sem sinais selecionados. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
+ }catch(e){
+  snapshots=[];render();
+  $("status").textContent="Ainda não há dados históricos publicados ou ocorreu um erro ao carregar: "+e.message+
+    ". A página só exibe rodadas realmente capturadas antes dos jogos.";
+ }
+}
+["data","mercado","classe","jogador"].forEach(id=>$(id).addEventListener("input",render));
+$("atualizar").addEventListener("click",carregar);
+carregar();
+</script>
+</body></html>
