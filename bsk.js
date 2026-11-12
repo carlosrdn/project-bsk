@@ -59,6 +59,7 @@ const NIVEL_TXT = {forte: "mais fortes", media: "do mesmo nível", fraca: "mais 
 const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
 const LINHAS = {};
 const ODDS = {};
+const LADOS = {};
 const STATUS_MANUAIS = ["Não verificado","Titular confirmado","Disponível confirmado","Provável","Questionável","Improvável","Fora"];
 const STATUS_KEY = "bsk-escalações-v1";
 let STATUS_SALVOS = {};
@@ -225,7 +226,7 @@ function projetar(chave,d,t,o,r,ehCasa,bump=0){
     base,media,recente,pesoRecente,exposicao,ajusteContexto:proj-base,
     ajusteMinutos:fMin,estimativaExperimental:true};
 }
-function analiseMercado(proj,sd,linha,odd,jogos,risco){
+function analiseMercado(proj,sd,linha,odd,jogos,risco,ladoEscolhido){
   if(!Number.isFinite(linha)||linha<0)return {apta:false,descricao:"Informe uma linha válida."};
   if(!Number.isFinite(proj)||!Number.isFinite(sd)||sd<=0)return {apta:false,descricao:"Projeção ou dispersão indisponível."};
   const discreta=Math.abs(linha-Math.round(linha))>0.0001;
@@ -233,8 +234,8 @@ function analiseMercado(proj,sd,linha,odd,jogos,risco){
   // Para X.5, a barreira é X+1 e o limiar contínuo é X+0.5.
   const over=cdf((proj-(discreta?Math.floor(linha)+0.5:linha+0.5))/sd);
   const under=cdf(((discreta?Math.floor(linha)+0.5:linha-0.5)-proj)/sd);
-  const lado=over>=under?"Over":"Under";
-  const prob=Math.max(over,under);
+  const lado=ladoEscolhido==="Over"||ladoEscolhido==="Under"?ladoEscolhido:(over>=under?"Over":"Under");
+  const prob=lado==="Over"?over:under;
   const riscoExtra=Array.isArray(risco)?risco:[];
   // Odds são necessárias para medir valor esperado; não inventar.
   if(!Number.isFinite(odd)||odd<=1)return {apta:false,lado,prob,
@@ -350,7 +351,8 @@ function camposMercado(id,projecao,sd,jogos,riscos){
   '" data-market-sd="'+sd+'" data-market-games="'+jogos+'" data-market-risks="'+esc(JSON.stringify(riscos))+'">'+
   '<div class="market-inputs"><label for="'+esc(uid)+'">Linha real da casa<input id="'+esc(uid)+
   '" data-market-line type="number" min="0" step="0.5" placeholder="Ex.: 6.5" value="'+esc(LINHAS[id]??"")+'"></label>'+
-  '<label>Odd decimal<input data-market-odd type="number" min="1.01" step="0.01" placeholder="Ex.: 1.90" value="'+esc(ODDS[id]??"")+'"></label></div>'+
+  '<label>Direção da aposta<select data-market-side><option value="">Escolher</option><option value="Over"'+(LADOS[id]==="Over"?' selected':'')+'>Over</option><option value="Under"'+(LADOS[id]==="Under"?' selected':'')+'>Under</option></select></label>'+
+  '<label>Odd desse lado<input data-market-odd type="number" min="1.01" step="0.01" placeholder="Ex.: 1.90" value="'+esc(ODDS[id]??"")+'"></label></div>'+
   '<span class="market-result res" role="status" aria-live="polite">Informe linha e odd para avaliar.</span></div>';
 }
 function atualizarMercado(el){
@@ -358,12 +360,13 @@ function atualizarMercado(el){
  const id=pai.dataset.marketId;
  const linha=pai.querySelector("[data-market-line]")?.value||"";
  const odd=pai.querySelector("[data-market-odd]")?.value||"";
- LINHAS[id]=linha;ODDS[id]=odd;
+ const lado=pai.querySelector("[data-market-side]")?.value||"";
+ LINHAS[id]=linha;ODDS[id]=odd;LADOS[id]=lado;
  const res=pai.querySelector(".market-result");
- if(!linha){res.textContent="Informe a linha real da casa.";res.dataset.status="negative";return;}
+ if(!linha||!lado){res.textContent="Informe a linha e escolha Over ou Under para comparar com a odd desse lado.";res.dataset.status="negative";return;}
  let riscos=[];try{riscos=JSON.parse(pai.dataset.marketRisks||"[]")}catch(e){riscos=["Alertas não disponíveis"];}
  const analise=analiseMercado(Number(pai.dataset.marketProj),Number(pai.dataset.marketSd),
-  Number(linha),odd?Number(odd):NaN,Number(pai.dataset.marketGames),riscos);
+  Number(linha),odd?Number(odd):NaN,Number(pai.dataset.marketGames),riscos,lado);
  res.textContent=analise.descricao;
  res.dataset.status=analise.apta?"positive":"negative";
 }
