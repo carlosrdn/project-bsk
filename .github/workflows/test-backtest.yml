@@ -31,6 +31,8 @@ jobs:
           node --check test_radar.js
           node --check test_live.js
           node --check test_substitutos.js
+          node --check test_quinteto.js
           node test_radar.js
           node test_live.js
           node test_substitutos.js
+          node test_quinteto.js
