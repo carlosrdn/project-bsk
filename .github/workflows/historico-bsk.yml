@@ -7,6 +7,8 @@ on:
       - "dados.js"
       - "bsk.js"
       - "historico_bsk.js"
+      - "metricas_bsk.js"
+      - "test_metricas.js"
       - ".github/workflows/historico-bsk.yml"
   workflow_dispatch:
 
@@ -34,8 +36,11 @@ jobs:
       - name: Validar scripts
         run: |
           node --check historico_bsk.js
+          node --check metricas_bsk.js
+          node --check test_metricas.js
           node --check test_historico.js
           node test_historico.js
+          node test_metricas.js
       - name: Congelar sinais dos jogos não iniciados
         run: node historico_bsk.js capturar
       - name: Apurar partidas finalizadas
