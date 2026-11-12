@@ -49,3 +49,13 @@ O módulo `metricas_bsk.js` consolida os registros fechados em `historico/metric
 **Limitações da automação:** o navegador consegue consultar a ESPN e mostrar resultados imediatamente, mas GitHub Pages não tem permissão de escrita no repositório. A persistência de novas métricas depende de o workflow rodar. Push em arquivos do motor/dados dispara workflow na branch de testes, mas um cron diário nativo exigiria configuração na branch padrão. Não há aprendizado de pesos/ajuste automático do modelo sem validação fora da amostra: por enquanto as métricas são usadas para auditoria e identificação de padrões, não para alterar cegamente as projeções.
 
 **Legado:** a captura de 11/11/2026 foi feita antes dessas funcionalidades, com três partidas e nenhuma projeção individual; esses dados não podem ser completados retroativamente.
+
+## Métricas disponíveis
+
+A consolidação inclui `geral` (todos os registros individuais monitorados), `destaques` (apenas seleções explicitamente destacadas no radar), `mercados` (pontos/rebotes/assistências etc.), `contextos` (minutagem, placar elástico, ausências) e `jogos` (vencedor, limites de pontos e erro médio dos placares). É importante não somar dados de monitoramento com apostas efetivamente realizadas; este sistema não possui odds nem confirmação de aposta feita.
+
+Ausência de atleta de rotação importante é operacionalmente definida como jogador listado como **fora antes do jogo** e com média de pelo menos **25 minutos por partida**, de acordo com a coleta disponível. Esse limiar é uma regra exploratória, não prova de impacto causal.
+
+Os resultados finalizados já arquivados são preservados se uma nova consulta à ESPN falhar ou não localizar momentaneamente a partida/jogador. Correções posteriores validadas pela ESPN ainda podem atualizar as estatísticas reais. O primeiro snapshot antigo não é completado retrospectivamente.
+
+O BSK ainda **não recalibra automaticamente pesos** pelas métricas: isso depende de amostra suficiente, validação temporal e testes fora da amostra para evitar sobreajuste. A automação atual registra, classifica e consolida; melhorias de projeção devem ser avaliadas separadamente.
