@@ -151,6 +151,122 @@ function analiseJogo(g){
    '<small>Ritmo estimado: '+numero(p.pace)+' posses/48 min (aproximação)</small></div></div>'+
    '<p class="history-note">Os números foram registrados antes do início, usando o modelo e parâmetros padrão daquela coleta. Erros são calculados somente após o resultado final.</p>';
 }
+
+const ESPN_ROOT="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/";
+const ESPN_SIGLAS={GS:"GSW",NO:"NOP",NY:"NYK",SA:"SAS",UTAH:"UTA",WSH:"WAS"};
+const normalSigla=s=>ESPN_SIGLAS[String(s||"").toUpperCase()]||String(s||"").toUpperCase();
+const normalizeName=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g,"").replace(/[^a-z ]/g,"").replace(/\s+/g," ").trim();
+const ESPN_COLUMNS={pts:["PTS","POINTS"],reb:["REB","REBOUNDS"],ast:["AST","ASSISTS"],tres:["3PT","3PM","FG3M"],blk:["BLK","BLOCKS"],stl:["STL","STEALS"]};
+const espnFinal=ev=>{
+ const t=ev?.status?.type||{};
+ return t.completed===true||(t.state==="post"&&/final/i.test(t.name||t.description||""));
+};
+const scoreOf=team=>{
+ const raw=team?.score?.value??team?.score;
+ if(raw===null||raw===undefined||raw==="")return null;
+ const n=Number(raw);return Number.isFinite(n)?n:null;
+};
+async function consultarESPN(path){
+ const controller=new AbortController();
+ const deadline=setTimeout(()=>controller.abort(),12000);
+ try{
+  const response=await fetch(ESPN_ROOT+path,{cache:"no-store",signal:controller.signal});
+  if(!response.ok)throw Error("ESPN HTTP "+response.status);
+  return await response.json();
+ }finally{clearTimeout(deadline);}
+}
+function gameMatch(ev,g){
+ const cs=ev.competitions?.[0]?.competitors||[];
+ const home=cs.find(t=>t.homeAway==="home"),away=cs.find(t=>t.homeAway==="away");
+ return normalSigla(home?.team?.abbreviation)===g.home&&normalSigla(away?.team?.abbreviation)===g.away;
+}
+function compararPlacar(g,home,away){
+ const p=g.prediction;
+ if(!p||!Number.isFinite(p.home_points)||!Number.isFinite(p.away_points))return null;
+ const margem=home-away;
+ const signed=(x)=>Number(x.toFixed(3));
+ return {
+  home_points_error:signed(p.home_points-home),
+  away_points_error:signed(p.away_points-away),
+  total_points_error:signed(p.total_points-(home+away)),
+  home_margin_error:signed(p.home_margin-margem),
+  winner_correct:home===away?null:p.favorite===(home>away?g.home:g.away)
+ };
+}
+function estatisticaESPN(group,name,market){
+ const expected=ESPN_COLUMNS[market]||[];
+ for(const category of group?.statistics||[]){
+  const headers=(category.names||category.labels||[]).map(x=>String(x).toUpperCase().replace(/[^A-Z0-9]/g,""));
+  const col=headers.findIndex(x=>expected.includes(x)),minute=headers.indexOf("MIN");
+  if(col<0)continue;
+  const athlete=(category.athletes||[]).find(a=>
+   normalizeName(a.athlete?.displayName||a.athlete?.fullName||a.displayName)===normalizeName(name));
+  if(!athlete)continue;
+  const minuteRaw=minute>=0?athlete.stats?.[minute]:null;
+  const played=minuteRaw!=null&&minuteRaw!=="--"&&Number(String(minuteRaw).split(":")[0])>0;
+  if(!played)return {status:"nao_atuou",actual:null,absolute_error:null};
+  const raw=athlete.stats?.[col];
+  if(raw==null||raw===""||raw==="--")return {status:"estatistica_indisponivel",actual:null,absolute_error:null};
+  const actual=Number(String(raw).split("-")[0]);
+  if(!Number.isFinite(actual))return {status:"estatistica_indisponivel",actual:null,absolute_error:null};
+  return {status:"apurado",actual};
+ }
+ return {status:"jogador_nao_localizado",actual:null,absolute_error:null};
+}
+let consultandoESPN=false;
+async function atualizarResultadosESPN(){
+ if(consultandoESPN||!partidas.length)return;
+ consultandoESPN=true;
+ const datas=[...new Set(partidas.map(g=>g.date))].slice(0,7);
+ let localizados=0,atualizados=0,falhas=[];
+ $("status").textContent="Consultando resultados finais diretamente na ESPN…";
+ try{
+  for(const date of datas){
+   let scoreboard;
+   try{scoreboard=await consultarESPN("scoreboard?dates="+date.replace(/-/g,""));}
+   catch(e){falhas.push(date+": "+e.message);continue;}
+   const eventos=scoreboard.events||[];
+   const resumos=new Map();
+   const jogos=partidas.filter(g=>g.date===date);
+   for(const g of jogos){
+    const ev=eventos.find(e=>gameMatch(e,g));
+    if(!ev||!espnFinal(ev))continue;
+    const cs=ev.competitions?.[0]?.competitors||[];
+    const home=scoreOf(cs.find(c=>c.homeAway==="home"));
+    const away=scoreOf(cs.find(c=>c.homeAway==="away"));
+    if(home===null||away===null)continue;
+    localizados++;
+    const previous=g.result||{};
+    g.result={...previous,status:"finalizado",home_score:home,away_score:away,
+      comparison:compararPlacar(g,home,away),espn_event_id:ev.id,source:"ESPN ao abrir a página"};
+    atualizados++;
+    const picks=snapshots.filter(p=>p.date===date&&p.jogo_utc===g.start_utc&&
+      [g.home,g.away].includes(p.team)&&[g.home,g.away].includes(p.opponent));
+    if(!picks.length||!ev.id)continue;
+    let summary=resumos.get(ev.id);
+    if(!summary){
+     try{summary=await consultarESPN("summary?event="+encodeURIComponent(ev.id));resumos.set(ev.id,summary);}
+     catch(e){falhas.push(g.away+" × "+g.home+" (jogadores): "+e.message);continue;}
+    }
+    for(const pick of picks){
+     const group=(summary.boxscore?.players||[]).find(x=>normalSigla(x.team?.abbreviation)===pick.team);
+     const resultado=estatisticaESPN(group,pick.player,pick.market);
+     if(resultado.status==="apurado"){
+      resultado.signed_error=Number((pick.projection-resultado.actual).toFixed(3));
+      resultado.absolute_error=Number(Math.abs(resultado.signed_error).toFixed(3));
+     }
+     pick.result=resultado;
+    }
+   }
+  }
+  render();
+  $("status").textContent="Histórico carregado · "+atualizados+" partida(s) finalizada(s) confirmada(s) pela ESPN nesta consulta."+
+   (falhas.length?" Algumas consultas não responderam; dados salvos foram preservados.":"")+
+   " Projeções antigas nunca são recalculadas.";
+ }catch(e){
+  $("status").textContent="A consulta à ESPN não pôde ser concluída ("+e.message+"). Mantendo resultados previamente arquivados.";
+ }finally{consultandoESPN=false;}
+}
 function render(){
  const data=$("data").value,market=$("mercado").value,classe=$("classe").value,busca=$("jogador").value.toLowerCase().trim();
  const jogos=partidas.filter(g=>!data||g.date===data);
@@ -209,7 +325,8 @@ async function carregar(){
   render();
   const vazias=dias.filter(d=>d.recommendations===0).length;
   $("status").textContent=dias.length+" rodada(s) arquivada(s), "+partidas.length+" partida(s), "+snapshots.length+
-    " projeção(ões), "+vazias+" rodada(s) sem projeções selecionados. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
+    " projeção(ões), "+vazias+" rodada(s) sem projeções selecionadas. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
+  await atualizarResultadosESPN();
  }catch(e){
   snapshots=[];partidas=[];render();
   $("status").textContent="Ainda não há dados históricos publicados ou ocorreu um erro ao carregar: "+e.message+
