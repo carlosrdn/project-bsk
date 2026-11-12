@@ -679,12 +679,30 @@ function estatisticaAtletaESPN(athlete,cabecalhos,chave){
   const valor=Number(String(raw).split("-")[0]);
   return Number.isFinite(valor)?valor:null;
 }
-function dadosAtletaESPN(grupo,nome){
-  for(const cat of grupo?.statistics||[]){
-    const atleta=(cat.athletes||[]).find(a=>mesmoJogadorESPN(a.athlete?.displayName||a.athlete?.fullName||a.displayName,nome));
-    if(atleta)return {atleta,headers:cat.names||cat.labels||[]};
+function gruposESPN(grupo){return Array.isArray(grupo?.statistics)?grupo.statistics:[];}
+function listaAtletasESPN(grupo){
+ const lista=[],vistos=new Set();
+ for(const cat of gruposESPN(grupo)){
+  for(const a of cat.athletes||[]){
+   const nome=a.athlete?.displayName||a.athlete?.fullName||a.displayName||"";
+   const chave=nomeNormalizado(nome);
+   if(!chave||vistos.has(chave))continue;
+   vistos.add(chave);
+   lista.push({nome,atleta:a,headers:cat.names||cat.labels||[],grupo:cat});
   }
-  return null;
+ }
+ return lista;
+}
+function dadosAtletaESPN(grupo,nome){
+ return listaAtletasESPN(grupo).find(d=>mesmoJogadorESPN(d.nome,nome))||null;
+}
+function flagTitularESPN(d){
+ if(!d)return false;
+ const a=d.atleta;
+ if(a.starter===true||a.starter===1||a.starter==="true"||a.starter==="1")return true;
+ // Algumas respostas identificam os titulares no grupo, sem starter individual.
+ const grupo=String(d.grupo?.name||d.grupo?.displayName||d.grupo?.type||"").toLowerCase();
+ return /^(starters?|titulares?)$/.test(grupo.trim());
 }
 function minutosAtletaESPN(d){
   if(!d)return 0;
@@ -698,8 +716,7 @@ function minutosAtletaESPN(d){
 }
 function statusAtletaESPN(d){
   if(!d)return null;
-  const starter=d.atleta.starter===true||d.atleta.starter===1||d.atleta.starter==="true"||d.atleta.starter==="1";
-  if(starter)return "Titular confirmado";
+  if(flagTitularESPN(d))return "Titular confirmado";
   if(minutosAtletaESPN(d)>0)return "Disponível confirmado";
   // Presença no elenco do boxscore não prova participação.
   return null;
@@ -707,6 +724,7 @@ function statusAtletaESPN(d){
 let liveEmCurso=false;
 let ultimaLive=null;
 const liveCache={data:null,stamp:0,jogos:[],resumos:new Map()};
+const ESCALACOES_FEED=new Map();
 function atualizarMensagemLive(msg){const el=$("live-status");if(el)el.textContent=msg;}
 async function atualizarAoVivo(force=false){
   if(liveEmCurso||typeof DADOS==="undefined"||!["jogos","melhores","escalacoes"].includes(PAGINA))return;
@@ -723,7 +741,7 @@ async function atualizarAoVivo(force=false){
       const board=await response.json();
       jogos=board.events||[];
       resumos=new Map();
-      const ativos=jogos.filter(j=>j.id&&j.status?.type?.state!=="pre");
+      const ativos=jogos.filter(j=>!!j.id); // titulares também podem aparecer antes do início
       await Promise.all(ativos.map(async j=>{
         try{
           const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event="+encodeURIComponent(j.id),
@@ -744,9 +762,15 @@ async function atualizarAoVivo(force=false){
     LISTA.forEach(r=>[r.j.casa,r.j.visitante].forEach(t=>referencias.set(t.sigla,t)));
     for(const [sigla,time] of referencias){
       const jogo=porTime.get(sigla);
-      if(!jogo||jogo.status?.type?.state==="pre")continue;
+      if(!jogo)continue;
       const grupo=(resumos.get(jogo.id)?.boxscore?.players||[]).find(x=>siglaESPN(x.team?.abbreviation)===sigla);
-      if(!grupo)continue;
+      if(!grupo){ESCALACOES_FEED.set(sigla,{status:"Box score não publicado",jogadores:[],iniciado:jogo.status?.type?.state!=="pre"});continue;}
+      const elenco=listaAtletasESPN(grupo);
+      ESCALACOES_FEED.set(sigla,{status:"ESPN · "+elenco.length+" atletas encontrados",jogadores:elenco.map(d=>({
+        nome:d.nome,status:statusAtletaESPN(d)||"Não confirmado",
+        posicao:posicaoNormalizada(d.atleta.athlete?.position?.abbreviation||d.atleta.athlete?.position?.name),
+        minutos:minutosAtletaESPN(d)
+      })),iniciado:jogo.status?.type?.state!=="pre"});
       for(const p of time.jogadores||[]){
         const d=dadosAtletaESPN(grupo,p.nome);
         const pos=posicaoNormalizada(d?.atleta?.athlete?.position?.abbreviation||d?.atleta?.athlete?.position?.name);
