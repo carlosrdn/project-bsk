@@ -40,6 +40,22 @@
 .history-empty{padding:27px;text-align:center;border:1px dashed #41516a;border-radius:9px;color:var(--mute)}
 .history-detail summary{font-size:12px;cursor:pointer;color:#b8cbd9}
 .history-detail pre{white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.5 monospace;color:#a6bad0}
+.game-history{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.game-history-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:15px 17px;border-bottom:1px solid var(--line)}
+.game-history-head h2{font-size:17px;margin:0}.game-history-head p{font-size:12px;color:var(--mute);margin:3px 0}
+.game-history-head strong{font-size:19px}
+.game-tabs{display:flex;gap:6px;padding:10px 14px 0}
+.game-tabs button{border:1px solid #3b4b5f;border-radius:8px 8px 0 0;background:transparent;color:var(--mute);padding:9px 13px;font-size:12px}
+.game-tabs button[aria-selected="true"]{color:var(--ink);background:#263b52;border-bottom-color:#263b52;font-weight:700}
+.game-body{padding:15px}
+.game-projection-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.game-projection-row{background:#18273a;border-radius:9px;padding:12px}
+.game-projection-row span{display:block;font-size:11px;color:var(--mute)}
+.game-projection-row b{font-size:18px}
+.game-projection-row small{font-size:11px;color:var(--mute)}
+.game-players{display:grid;gap:10px}
+.game-players .history-card{padding:13px;background:#18273a}
+@media(max-width:480px){.game-history-head{padding:12px}.game-body{padding:12px}.game-projection-grid{grid-template-columns:1fr}.game-tabs button{flex:1;padding:10px 5px}}
 @media(max-width:760px){.history-main{padding:19px 13px 50px}.history-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.history-filters label{width:100%}.history-filters select,.history-filters input{width:100%}.history-values b{font-size:18px}}
 </style>
 </head>
@@ -69,10 +85,8 @@
 <option value="principal">Projeções destacadas</option><option value="observacao">Histórico em observação</option></select></label>
 <label>Jogador<input type="search" id="jogador" placeholder="Buscar por nome"></label></div>
 <p class="history-note" id="status">Lendo registros históricos...</p></section>
-<section class="history-panel"><h2 style="font-size:18px;margin:0">Partidas arquivadas</h2>
-<p class="history-note">Todos os jogos com snapshot pré-jogo, incluindo aqueles sem projeções selecionados.</p>
-<div class="history-games" id="jogos-arquivados"></div></section>
-<h2 style="font-size:18px;margin:22px 0 12px">Projeções registradas</h2>
+<section class="history-panel"><h2 style="font-size:18px;margin:0">Jogos arquivados</h2>
+<p class="history-note">Abra um confronto e escolha entre análise do jogo e jogadores. Projeções pré-jogo permanecem congeladas.</p></section>
 <div class="history-list" id="cards" aria-live="polite"></div>
 </main>
 <script>
@@ -92,51 +106,74 @@ async function json(url){
  if(!r.ok)throw Error("HTTP "+r.status+" em "+url);
  return r.json();
 }
-function render(){
- const data=$("data").value,mercado=$("mercado").value,classe=$("classe").value,busca=$("jogador").value.toLowerCase().trim();
- const itens=snapshots.filter(x=>(!data||x.date===data)&&(!mercado||x.market===mercado)&&
-  (!classe||x.classificacao===classe)&&(!busca||x.player.toLowerCase().includes(busca)));
- const concluidos=itens.filter(x=>x.result?.status==="apurado");
- const mae=mercado&&concluidos.length?concluidos.reduce((a,x)=>a+x.result.absolute_error,0)/concluidos.length:null;
- const jogosFiltrados=partidas.filter(x=>!data||x.date===data);
- $("jogos-arquivados").innerHTML=jogosFiltrados.length?jogosFiltrados.map(x=>{
-  const r=x.result;
-  const final=r?.status==="finalizado";
-  const placar=final&&r?.away_score!=null&&r?.home_score!=null?
-    r.away_score+" × "+r.home_score:"Aguardando resultado";
-  return '<article class="history-game"><b>'+esc(x.away)+' @ '+esc(x.home)+'</b>'+
-   '<strong>'+esc(placar)+'</strong><span>'+esc(x.date)+' · '+(final?"Final":"Ainda não finalizado / não apurado")+
-   ' · '+x.numSinais+' projeção(ões) registrado(s)</span></article>';
- }).join(""):'<div class="history-empty">Ainda não existem partidas arquivadas neste filtro.</div>';
- const datas=new Set(jogosFiltrados.map(x=>x.date));
-
-
- $("resumo").innerHTML='<div class="history-metric"><b>'+datas.size+'</b><span>Rodadas com sinais</span></div>'+
-  '<div class="history-metric"><b>'+concluidos.length+'</b><span>Projeções apuradas</span></div>'+
-  '<div class="history-metric"><b>'+numero(mae)+'</b><span>'+(mercado?"MAE · "+esc(rotulo[mercado]):"Escolha um mercado para MAE") +'</span></div>'+
-  '<div class="history-metric"><b>'+jogosFiltrados.length+'</b><span>Jogos arquivados</span></div>';
- if(!itens.length){
-  $("cards").innerHTML='<div class="history-empty">Nenhuma projeção registrada corresponde a esses filtros. Em dias sem recomendações aprovadas, o histórico pode ficar vazio.</div>';
-  return;
+const GAME_VIEWS=new Map();
+function gameKey(g){return [g.date,g.start_utc,g.away,g.home].join("|");}
+function cardJogador(x){
+ const r=x.result,finished=r?.status==="apurado";
+ return '<article class="history-card"><div class="history-top"><div><strong>'+esc(x.player)+'</strong>'+
+  '<div><small>'+esc(rotulo[x.market]||x.market)+' · '+(x.classificacao==="principal"?"Projeção destacada":"Em observação")+'</small></div></div>'+
+  '<span class="history-tag '+(finished?'settled':'pending')+'">'+esc(statusRotulo(r?.status))+'</span></div>'+
+  '<div class="history-values"><div><span>Projeção BSK</span><b>'+numero(x.projection)+'</b></div>'+
+  '<div><span>Real</span><b>'+numero(r?.actual)+'</b></div>'+
+  '<div><span>Erro absoluto</span><b>'+numero(r?.absolute_error)+'</b></div></div>'+
+  '<p class="history-note">Média: '+numero(x.season_mean)+' · últimos 5: '+numero(x.last5)+
+  ' · '+numero(x.sample)+' jogos · oscilação: '+numero(x.sigma)+'</p>'+
+  '<p class="history-note">'+esc(x.summary||"Projeção pré-jogo")+'</p>'+
+  '<details class="history-detail"><summary>Auditoria</summary><pre>Capturado: '+esc(x.captured_at)+
+  '\nVersão: '+esc(x.model_hash)+'\nAlertas: '+esc((x.warnings||[]).join("; ")||"Nenhum")+
+  '</pre></details></article>';
+}
+function analiseJogo(g){
+ const p=g.prediction,r=g.result,final=r?.status==="finalizado",c=r?.comparison;
+ if(!p){
+  return '<div class="history-empty">Esta partida foi arquivada antes da implementação das projeções de equipe. Há placar e horário, mas não é possível reconstruir uma previsão original após o início do jogo.</div>';
  }
- $("cards").innerHTML=itens.map(x=>{
-  const r=x.result,finalizado=r?.status==="apurado";
-  const label=finalizado?"Finalizado":statusRotulo(r?.status);
-  const classe=x.classificacao==="principal"?"Pré-seleção":"Em observação";
-  const discrepancia=finalizado?"Erro absoluto "+numero(r.absolute_error):"Sem avaliação numérica ainda";
-  return '<article class="history-card"><div class="history-top"><div><strong>'+esc(x.player)+'</strong>'+
-    '<div><small>'+esc(x.date)+' · '+esc(x.team)+' × '+esc(x.opponent)+' · '+esc(rotulo[x.market]||x.market)+'</small></div></div>'+
-    '<span class="history-tag '+(finalizado?'settled':'pending')+'">'+esc(label)+'</span></div>'+
-    '<p>'+esc(classe)+' · '+esc(x.summary||"Projeção pré-jogo registrada")+'</p>'+
-    '<div class="history-values"><div><span>Projeção BSK</span><b>'+numero(x.projection)+'</b></div>'+
-    '<div><span>Estatística real</span><b>'+numero(r?.actual)+'</b></div>'+
-    '<div><span>Erro absoluto</span><b>'+numero(r?.absolute_error)+'</b></div></div>'+
-    '<p class="history-note">Média histórica: '+numero(x.season_mean)+
-    ' · Últimos 5: '+numero(x.last5)+' · Amostra: '+numero(x.sample)+' jogos.</p>'+
-    '<p class="history-note">'+esc(discrepancia)+' · '+esc(statusRotulo(r?.status))+'</p>'+
-    '<details class="history-detail"><summary>Auditoria e limitações</summary>'+
-    '<pre>Capturado: '+esc(x.captured_at)+'\nVersão: '+esc(x.model_hash)+
-    '\nAlertas: '+esc((x.warnings||[]).join("; ")||"Nenhum")+'</pre></details></article>';
+ const linha=(label,prev,real,erro,unit="")=>
+   '<div class="game-projection-row"><span>'+esc(label)+'</span><b>'+numero(prev)+esc(unit)+'</b>'+
+   '<small>Real: '+numero(final?real:null)+esc(unit)+(final&&erro!=null?' · erro: '+numero(Math.abs(erro))+esc(unit):'')+'</small></div>';
+ const margemReal=final?r.home_score-r.away_score:null;
+ const totalReal=final?r.home_score+r.away_score:null;
+ return '<div class="game-projection-grid">'+
+   linha('Pontos previstos · '+g.away,p.away_points,r?.away_score,c?.away_points_error)+
+   linha('Pontos previstos · '+g.home,p.home_points,r?.home_score,c?.home_points_error)+
+   linha('Total de pontos previsto',p.total_points,totalReal,c?.total_points_error)+
+   linha('Margem prevista · mandante',p.home_margin,margemReal,c?.home_margin_error)+
+   '<div class="game-projection-row"><span>Favorito projetado</span><b>'+esc(p.favorite||"—")+'</b>'+
+   '<small>'+(!final?"Resultado pendente":c?.winner_correct===null?"Vencedor indefinido":c?.winner_correct?"Vencedor previsto corretamente":"Vencedor diferente do previsto")+'</small></div>'+
+   '<div class="game-projection-row"><span>Probabilidade pré-jogo · mandante</span><b>'+numero(p.home_win_probability==null?null:100*p.home_win_probability)+'%</b>'+
+   '<small>Ritmo estimado: '+numero(p.pace)+' posses/48 min (aproximação)</small></div></div>'+
+   '<p class="history-note">Os números foram registrados antes do início, usando o modelo e parâmetros padrão daquela coleta. Erros são calculados somente após o resultado final.</p>';
+}
+function render(){
+ const data=$("data").value,market=$("mercado").value,classe=$("classe").value,busca=$("jogador").value.toLowerCase().trim();
+ const jogos=partidas.filter(g=>!data||g.date===data);
+ const filtrados=snapshots.filter(x=>(!data||x.date===data)&&(!market||x.market===market)&&
+  (!classe||x.classificacao===classe)&&(!busca||x.player.toLowerCase().includes(busca)));
+ const concluidos=filtrados.filter(x=>x.result?.status==="apurado");
+ const mae=market&&concluidos.length?concluidos.reduce((n,x)=>n+x.result.absolute_error,0)/concluidos.length:null;
+ $("resumo").innerHTML='<div class="history-metric"><b>'+new Set(jogos.map(g=>g.date)).size+'</b><span>Rodadas arquivadas</span></div>'+
+  '<div class="history-metric"><b>'+concluidos.length+'</b><span>Projeções de jogadores apuradas</span></div>'+
+  '<div class="history-metric"><b>'+numero(mae)+'</b><span>'+(market?'MAE · '+esc(rotulo[market]):'Escolha mercado para MAE')+'</span></div>'+
+  '<div class="history-metric"><b>'+jogos.filter(g=>g.result?.status==="finalizado").length+
+  '</b><span>Jogos finalizados</span></div>';
+ if(!jogos.length){$("cards").innerHTML='<div class="history-empty">Nenhum confronto arquivado nesta data.</div>';return;}
+ $("cards").innerHTML=jogos.map(g=>{
+  const key=gameKey(g),selected=GAME_VIEWS.get(key)||"jogo";
+  const r=g.result,final=r?.status==="finalizado";
+  const players=filtrados.filter(p=>p.jogo_utc===g.start_utc&&
+    [g.home,g.away].includes(p.team)&&[g.home,g.away].includes(p.opponent));
+  const body=selected==="jogo"?analiseJogo(g):
+    players.length?'<div class="game-players">'+players.map(cardJogador).join("")+'</div>':
+     '<div class="history-empty">Nenhuma projeção individual selecionada para esta partida'+
+     (market||classe||busca?" com os filtros atuais":" na coleta pré-jogo")+'.</div>';
+  return '<section class="game-history"><div class="game-history-head"><div><h2>'+esc(g.away)+' × '+esc(g.home)+'</h2>'+
+   '<p>'+esc(g.date)+' · '+(final?"Finalizado":"Pendente ou em andamento")+
+   ' · '+g.numSinais+' projeção(ões) individuais</p></div><strong>'+
+   (final&&r?.away_score!=null&&r?.home_score!=null?esc(r.away_score+' – '+r.home_score):"— : —")+'</strong></div>'+
+   '<div class="game-tabs" role="tablist" aria-label="Detalhes de '+esc(g.away)+' e '+esc(g.home)+'">'+
+   '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogo" aria-selected="'+(selected==="jogo")+'">Análise do jogo</button>'+
+   '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogadores" aria-selected="'+(selected==="jogadores")+'">Jogadores ('+players.length+')</button>'+
+   '</div><div class="game-body" role="tabpanel">'+body+'</div></section>';
  }).join("");
 }
 async function carregar(){
@@ -173,6 +210,12 @@ async function carregar(){
  }
 }
 ["data","mercado","classe","jogador"].forEach(id=>$(id).addEventListener("input",render));
+$("cards").addEventListener("click",e=>{
+ const btn=e.target.closest("button[data-game-key][data-game-view]");
+ if(!btn)return;
+ GAME_VIEWS.set(btn.dataset.gameKey,btn.dataset.gameView);
+ render();
+});
 $("atualizar").addEventListener("click",carregar);
 carregar();
 </script>
