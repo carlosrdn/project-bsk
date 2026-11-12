@@ -280,12 +280,14 @@ function elegibilidade(q){
   return alertas;
 }
 function pontuar(q){
-  const risco=elegibilidade(q);
-  // Score de qualidade histórica, não diferença para linha inventada.
-  const variacao=q.sd/Math.max(q.d.media,1);
-  const score=Math.min(1,q.d.jogos/18)/(1+variacao)-Math.min(0.8,risco.length*0.17);
-  const limite=q.chave==="tres"?0.95:0.75;
-  return {risco,score,apta:risco.length===0&&q.d.jogos>=12&&variacao<=limite};
+ const risco=elegibilidade(q);
+ const proposta=sugestaoCondicional(q.proj,q.sd,q.d.media,q.d.jogos,risco);
+ const prob=Number.isFinite(proposta.prob)?proposta.prob:0;
+ // Ranking do sinal do modelo, NÃO retorno de aposta (sem odds reais).
+ const amostra=Math.min(1,q.d.jogos/18);
+ const score=(prob-0.5)*amostra-Math.min(0.25,risco.length*0.08);
+ const apta=risco.length===0&&q.d.jogos>=12&&prob>=0.60;
+ return {risco,score,apta,probIndicativa:prob};
 }
 function opcoesDoJogo(r){
   const todas=[];
@@ -368,7 +370,7 @@ function atualizarMercado(el){
 function atualizarLinha(el){atualizarMercado(el);}
 function pickHtml(x,prefixo){
  const id=chaveMercado(x.t,x.p,x.chave,x.r.j.horario_utc);
- const status=x.apta?"Histórico consistente · avaliar preço":"Em observação";
+ const status=x.apta?"Sinal condicional · confira odd":"Em observação";
  const risco=x.risco.length?x.risco.join(" · "):"Confirme escalação, minutos e odds.";
  const indicacao=sugestaoCondicional(x.proj,x.sd,x.d.media,x.d.jogos,x.risco);
  return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Análise condicional</span></div>'+
@@ -539,10 +541,10 @@ function destaques(lista){
   const aptas=todas.filter(x=>x.apta && x.score>0).slice(0,6);
   const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,5);
   const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' pré-seleções · '+observacao.length+' em observação</p></div>';
-  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O escore prioriza amostras maiores e mais estáveis, não vantagens em linhas fictícias. As projeções exibidas não são linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
-  const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma pré-seleção passou por todos os filtros de risco e amostra nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
+  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O ranking mostra sinais contextuais exploratórios, não apostas aprovadas sem odds reais. As projeções exibidas não são linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
+  const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhum sinal condicional passou pelos filtros de amostra, risco e probabilidade nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
   const listaMotivos=[...new Set(todas.flatMap(x=>x.risco))].slice(0,5);
-  const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta ou sinal insuficiente em relação à referência sintética")+'</p>';
+  const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta, risco elevado ou ausência de sinal estatístico")+'</p>';
   const vigiar=observacao.length?'<section style="margin-top:25px"><div class="spotlight-head"><h2>Em observação</h2><p>Dados insuficientes ou alertas ativos</p></div><div class="picks-grid">'+observacao.map(x=>pickHtml(x,"g")).join("")+'</div></section>':'';
   return cab+principais+motivos+vigiar+aviso;
 }
