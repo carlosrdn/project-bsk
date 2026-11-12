@@ -109,9 +109,13 @@ function pintarMetricas(){
  const m=metricasPersistidas;
  if(!m){$("metricas-modelo").innerHTML='<p class="history-note">Aguardando a primeira apuração persistida no repositório.</p>';return;}
  const g=m.geral||{},rate=g.taxa_acerto==null?"—":numero(g.taxa_acerto*100)+"%";
+ const jm=m.jogos||{};
  $("metricas-modelo").innerHTML=[
-  [g.total??0,"Projeções avaliadas"],[g.acertos??0,"Limites atingidos"],
-  [g.erros??0,"Limites não atingidos"],[rate,"Taxa de acerto dos limites"]
+  [g.total??0,"Projeções de jogadores avaliadas"],[g.acertos??0,"Limites individuais atingidos"],
+  [g.erros??0,"Limites individuais não atingidos"],[rate,"Taxa de acerto dos limites"],
+  [jm.total??0,"Jogos com previsão apurada"],[jm.vencedor_acertado??0,"Vencedores previstos corretamente"],
+  [jm.mae_pontos_equipes==null?"—":numero(jm.mae_pontos_equipes),"Erro médio · pontos por equipe"],
+  [jm.limites_atingidos??0,"Limites de equipes atingidos"]
  ].map(([n,label])=>'<div class="history-metric"><b>'+esc(n)+'</b><span>'+esc(label)+'</span></div>').join("");
  const ctx=Object.entries(m.contextos||{}).sort((a,b)=>b[1].total-a[1].total).slice(0,5);
  $("metricas-contexto").innerHTML=ctx.length?
