@@ -60,4 +60,9 @@ assert(page.includes('<details class="game-history"'),
  "Cada confronto precisa de um menu recolhível");
 assert(page.includes("Histórico de acertos do jogo")&&page.includes("Histórico dos jogadores"),
  "Menu precisa ter as duas opções solicitadas");
+// Regressão: renderização não pode sombrear o objeto "result" dentro do .map(g).
+// A falha antiga "const result=(result?.games...)" descartava todas as partidas.
+const pagina=fs.readFileSync("historico.html","utf8");
+assert(!pagina.includes("const result=(result?.games||[])"),"Não acessar variável let/const antes da inicialização");
+assert(pagina.includes("const resultadoJogo=(result?.games||[])"),"Ler resultado do evento a partir do JSON externo");
 console.log("OK: histórico BSK, feed ESPN, DNP, NBA timezone, seleção do radar");
