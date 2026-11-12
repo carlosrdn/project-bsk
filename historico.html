@@ -195,9 +195,9 @@ async function carregar(){
     const [snap,result]=await Promise.all([json(d.snapshot),d.results?json(d.results):Promise.resolve(null)]);
     const porId=new Map((result?.results||[]).map(r=>[r.id,r]));
     const jogos=(snap.games||[]).map(g=>{
-      const result=(result?.games||[]).find(r=>r.start_utc===g.start_utc&&r.home===g.home&&r.away===g.away);
+      const resultadoJogo=(result?.games||[]).find(r=>r.start_utc===g.start_utc&&r.home===g.home&&r.away===g.away);
       const numSinais=(snap.recommendations||[]).filter(p=>p.jogo_utc===g.start_utc&&[g.home,g.away].includes(p.team)&&[g.home,g.away].includes(p.opponent)).length;
-      return {...g,date:snap.date,result,numSinais};
+      return {...g,date:snap.date,result:resultadoJogo||null,numSinais};
     });
     const sinais=(snap.recommendations||[]).map(x=>({...x,date:snap.date,
        captured_at:snap.captured_at,model_hash:snap.model_hash,result:porId.get(x.id)||null}));
