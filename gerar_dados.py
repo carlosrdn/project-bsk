@@ -145,6 +145,17 @@ def niveis_dos_times(geral):
     return niveis
 
 
+def data_historica(valor):
+    """Ordena o GAME_DATE pela data real, não por texto (OCT/NOV/DEC)."""
+    texto = str(valor or "").strip()
+    for formato in ("%Y-%m-%d", "%b %d, %Y", "%b %d %Y"):
+        try:
+            return datetime.strptime(texto, formato)
+        except ValueError:
+            pass
+    raise ValueError(f"GAME_DATE inválido: {texto!r}")
+
+
 def carregar_contexto_props(geral):
     """Busca todos os jogos de todos os jogadores da temporada (uma chamada só)."""
     try:
@@ -160,7 +171,7 @@ def carregar_contexto_props(geral):
         por_jogador.setdefault(l["PLAYER_ID"], []).append(l)
         nivel_sigla[l["TEAM_ABBREVIATION"]] = niveis_id.get(l["TEAM_ID"], "media")
     for jogos in por_jogador.values():
-        jogos.sort(key=lambda l: l["GAME_DATE"], reverse=True)  # mais recentes primeiro
+        jogos.sort(key=lambda l: data_historica(l["GAME_DATE"]), reverse=True)  # datas reais, mais recentes primeiro
     CONTEXTO.update({"jogos": por_jogador, "nivel_sigla": nivel_sigla, "niveis_id": niveis_id})
 
 
