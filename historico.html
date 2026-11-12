@@ -91,7 +91,7 @@
 <option value="pts">Pontos</option><option value="reb">Rebotes</option><option value="ast">Assistências</option>
 <option value="tres">Bolas de 3</option><option value="blk">Bloqueios</option><option value="stl">Roubos</option></select></label>
 <label>Tipo<select id="classe"><option value="">Todas as projeções</option>
-<option value="principal">Projeções destacadas</option><option value="observacao">Histórico em observação</option></select></label>
+<option value="principal">Projeções destacadas</option><option value="observacao">Histórico em observação</option><option value="monitoramento">Monitoramento automático</option></select></label>
 <label>Jogador<input type="search" id="jogador" placeholder="Buscar por nome"></label></div>
 <p class="history-note" id="status">Lendo registros históricos...</p></section>
 <section class="history-panel"><h2 style="font-size:18px;margin:0">Jogos arquivados</h2>
@@ -144,7 +144,7 @@ function statusLimite(alvo,acertou,concluido){
 function cardJogador(x){
  const r=x.result,finished=r?.status==="apurado";
  return '<article class="history-card"><div class="history-top"><div><strong>'+esc(x.player)+'</strong>'+
-  '<div><small>'+esc(rotulo[x.market]||x.market)+' · '+(x.classificacao==="principal"?"Projeção destacada":"Em observação")+'</small></div></div>'+
+  '<div><small>'+esc(rotulo[x.market]||x.market)+' · '+(x.classificacao==="principal"?"Projeção destacada":x.classificacao==="monitoramento"?"Monitoramento automático":"Em observação")+'</small></div></div>'+
   '<span class="history-tag '+(finished?'settled':'pending')+'">'+esc(statusRotulo(r?.status))+'</span></div>'+
   '<div class="history-values"><div><span>Projeção BSK</span><b>'+numero(x.projection)+'</b></div>'+
   '<div><span>Real</span><b>'+numero(r?.actual)+'</b></div>'+
@@ -184,6 +184,10 @@ function analiseJogo(g){
    '<small>'+(!final?"Resultado pendente":c?.winner_correct===null?"Vencedor indefinido":c?.winner_correct?"Vencedor previsto corretamente":"Vencedor diferente do previsto")+'</small></div>'+
    '<div class="game-projection-row"><span>Probabilidade pré-jogo · mandante</span><b>'+numero(p.home_win_probability==null?null:100*p.home_win_probability)+'%</b>'+
    '<small>Ritmo estimado: '+numero(p.pace)+' posses/48 min (aproximação)</small></div></div>'+
+   '<p class="history-note">Contexto registrado antes do jogo: '+(g.context?.home_absences?.length||0)+
+   ' ausência(s) na equipe da casa · '+(g.context?.away_absences?.length||0)+' na visitante. '+
+   (final?'Diferença final: '+numero(Math.abs(r.home_score-r.away_score))+
+   ' pontos'+(Math.abs(r.home_score-r.away_score)>=20?' · placar elástico, possível blowout.':'.'):'Resultado pendente.')+'</p>'+
    '<p class="history-note">Os números foram registrados antes do início, usando o modelo e parâmetros padrão daquela coleta. Erros são calculados somente após o resultado final.</p>';
 }
 
