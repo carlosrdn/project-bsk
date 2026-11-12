@@ -1,8 +1,8 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import {
- Activity, ArrowRight, ArrowUpRight, BarChart3, CalendarDays,
+ Activity, ArrowUpRight, BarChart3, CalendarDays,
  ChevronDown, ChevronLeft, ChevronRight, CircleAlert, Clock3, Database, History,
- LayoutDashboard, Menu, RefreshCw, Search, ShieldCheck, SlidersHorizontal, Sparkles,
+ Menu, RefreshCw, Search, ShieldCheck, SlidersHorizontal, Sparkles,
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
@@ -38,9 +38,8 @@ interface MatchView {
  prediction: GamePrediction
  key: string
 }
-type View = 'overview' | 'games' | 'radar' | 'lineups' | 'history' | 'backtest'
+type View = 'games' | 'radar' | 'lineups' | 'history' | 'backtest'
 const links = [
- { label: 'Visão geral', icon: LayoutDashboard, view: 'overview' as View },
  { label: 'Jogos da rodada', icon: CalendarDays, view: 'games' as View },
  { label: 'Radar', icon: TrendingUp, view: 'radar' as View },
  { label: 'Escalações', icon: Users, view: 'lineups' as View },
@@ -50,14 +49,6 @@ const links = [
 function MiniBrand({ name }: { name: string }) {
  return <span className="mini-brand" aria-hidden="true">{name.slice(0, 3)}</span>
 }
-function StatTile({ label, value, note, icon: Icon }: {
- label: string; value: string; note: string; icon: typeof Activity
-}) {
- return <div className="stat-tile">
-  <div className="stat-top"><span>{label}</span><Icon size={17} /></div>
-  <strong>{value}</strong><small>{note}</small>
- </div>
-}
 function MatchCard({ match, selected, onClick, panelId }: {
  match: MatchView; selected: boolean; onClick: () => void; panelId: string
 }) {
@@ -65,13 +56,15 @@ function MatchCard({ match, selected, onClick, panelId }: {
  return <button type="button" className={'match-card ' + (selected ? 'selected' : '')} onClick={onClick}
   aria-expanded={selected} aria-controls={panelId}>
   <span className="match-card-top"><span><Clock3 size={13}/>{time(game.horario_utc)} · Brasília</span><span className="projection-pill">PROJEÇÃO</span></span>
-  <span className="score-row">
-   <span className="team-name"><MiniBrand name={game.visitante.sigla}/><span><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></span></span>
-   <strong className="score">{n(prediction.away, 0)}</strong>
-  </span>
-  <span className="score-row">
-   <span className="team-name"><MiniBrand name={game.casa.sigla}/><span><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></span></span>
-   <strong className="score">{n(prediction.home, 0)}</strong>
+  <span className="match-teams">
+   <span className="score-row">
+    <span className="team-name"><MiniBrand name={game.visitante.sigla}/><span><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></span></span>
+    <strong className="score">{n(prediction.away, 0)}</strong>
+   </span>
+   <span className="score-row">
+    <span className="team-name"><MiniBrand name={game.casa.sigla}/><span><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></span></span>
+    <strong className="score">{n(prediction.home, 0)}</strong>
+   </span>
   </span>
   <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/></span></span>
  </button>
@@ -131,7 +124,7 @@ export default function App() {
  const [error, setError] = useState<string | null>(null)
  const [loading, setLoading] = useState(true)
  const [today, setToday] = useState(nbaToday)
- const [view, setView] = useState<View>('overview')
+ const [view, setView] = useState<View>('games')
  const [search, setSearch] = useState('')
  const [sidebar, setSidebar] = useState(false)
  const [onlyAbsences, setOnlyAbsences] = useState(false)
@@ -157,7 +150,7 @@ export default function App() {
    .some(a => a.situacao === 'Fora')
  })
  const stale = !!snapshot && snapshot.data_jogos !== today
- const scheduleOnly = (view === 'overview' || view === 'games') && (stale || (!snapshot && !loading))
+ const scheduleOnly = view === 'games' && (stale || (!snapshot && !loading))
  const missingInjuryData = !!snapshot && !snapshot.lesoes_ok
  const totalGames = matches.length
  const favoriteHome = matches.filter(m => m.prediction.favorite === m.game.casa.sigla).length
@@ -168,14 +161,14 @@ export default function App() {
    <div className="side-logo"><span className="logo-mark"><Activity size={23} strokeWidth={2.5}/></span><div><strong>BSK<span> Analytics</span></strong><small>NBA INTELLIGENCE</small></div><button className="sidebar-close" onClick={() => setSidebar(false)} aria-label="Fechar"><X size={20}/></button></div>
    <div className="side-section-label">WORKSPACE</div>
    <div className="nav-stack">{links.map(l => <button type="button" key={l.view}
-    className={'nav-item ' + (view === l.view ? 'nav-active' : '')}
+    className={'nav-item ' + (view === l.view ? 'nav-active' : '')} aria-current={view === l.view ? 'page' : undefined}
     onClick={() => {setView(l.view);setSidebar(false)}}><l.icon size={18}/>{l.label}{view === l.view && <span className="nav-dot"/>}</button>)}</div>
    <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Prévia em React</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
   </aside>
   <div className="main-column">
    <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
    <main className="content">
-    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
+    <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
     {view === 'backtest' ? <Backtest/> : view === 'history' ? <HistoryView legacyUrl={outside('historico.html')}/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
@@ -190,17 +183,13 @@ export default function App() {
       <a className="text-link" href={outside('melhores.html')}>Placar e estatísticas ao vivo no Radar clássico <ArrowUpRight size={16}/></a>
       <Radar snapshot={snapshot} current={!stale} matches={matches}/>
      </> : <>
-     {view === 'overview' && <>
-      <div className="stats-grid">
-       <StatTile label="Partidas na coleta" value={String(totalGames)} note="Snapshot da rodada" icon={CalendarDays}/>
-       <StatTile label="Favoritos mandantes" value={String(favoriteHome)} note="Projeções do modelo" icon={TrendingUp}/>
-       <StatTile label="Totais ≥ 230" value={String(highTotal)} note="Estimativa de pontos" icon={BarChart3}/>
-       <StatTile label="Status dos dados" value={stale ? 'Antigos' : 'Atuais'} note={stale ? 'Atualizar gerador Python' : 'Data NBA verificada'} icon={Database}/>
-      </div>
-      <div className="section-head"><div><span className="eyebrow">VISÃO GERAL</span><h2>Confrontos da coleta</h2><p>Selecione um jogo para explorar a projeção e o contexto.</p></div><button type="button" className="text-link" onClick={() => setView('games')}>Ver todos <ArrowRight size={16}/></button></div>
-     </>}
-     {view === 'games' && <div className="section-head"><div><span className="eyebrow">TODOS OS CONFRONTOS</span><h2>Jogos da rodada</h2><p>Abra um confronto para ver a projeção e os desfalques.</p></div><span className="count-label">{shown.length} partidas</span></div>}
-     <div className="game-toolbar"><div className="search-box"><Search size={18}/><input aria-label="Buscar equipe" placeholder="Buscar equipe ou sigla…" value={search} onChange={e => setSearch(e.target.value)}/>{search && <button onClick={() => setSearch('')} aria-label="Limpar busca"><X size={16}/></button>}</div><label className="checkbox-filter"><input type="checkbox" checked={onlyAbsences} onChange={e => setOnlyAbsences(e.target.checked)}/> Com desfalques confirmados</label></div>
+     <dl className="round-summary" aria-label="Resumo da rodada">
+      <div><dt>Partidas</dt><dd>{totalGames}</dd></div>
+      <div><dt>Mandantes favoritos</dt><dd>{favoriteHome}</dd></div>
+      <div><dt>Totais ≥ 230</dt><dd>{highTotal}</dd></div>
+      <div><dt>Dados</dt><dd>Atuais</dd></div>
+     </dl>
+     <div className="game-toolbar"><div className="search-box"><Search size={18}/><input aria-label="Buscar equipe" placeholder="Buscar equipe ou sigla…" value={search} onChange={e => setSearch(e.target.value)}/>{search && <button onClick={() => setSearch('')} aria-label="Limpar busca"><X size={16}/></button>}</div><label className="checkbox-filter"><input type="checkbox" checked={onlyAbsences} onChange={e => setOnlyAbsences(e.target.checked)}/> Com desfalques confirmados</label>{shown.length !== totalGames && <span className="count-label">{shown.length} de {totalGames} partidas</span>}</div>
      {!shown.length ?
       <div className="empty-state"><Search size={25}/><strong>{matches.length ? 'Nenhum confronto encontrado' : 'Nenhum confronto nesta rodada'}</strong>{matches.length > 0 && <span>Altere a busca ou remova os filtros.</span>}</div> :
       <div className="matches-column">{shown.map(match =>

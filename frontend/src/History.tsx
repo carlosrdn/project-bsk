@@ -79,7 +79,12 @@ function GameCard({ game, players }: { game: HistoryGame; players: HistoryPlayer
   const [view, setView] = useState('game')
   const r = game.result
   return <details className="stat-tile history-match">
-    <summary><strong>{game.away} × {game.home}</strong><span>{dateLabel(game.date)} · {r?.status === 'finalizado' ? number(r.away_score) + ' × ' + number(r.home_score) + ' · Final' : 'Resultado pendente'}</span></summary>
+    <summary>
+      <strong>{game.away} × {game.home}</strong>
+      <span className="history-match-meta"><time dateTime={game.date}>{dateLabel(game.date)}</time>
+        {r?.status === 'finalizado' ? <><b>{number(r.away_score)} × {number(r.home_score)}</b><span>Final</span></> : <span>Resultado pendente</span>}
+      </span>
+    </summary>
     <div className="history-tabs">
       <button type="button" className="refresh-btn" aria-pressed={view === 'game'} onClick={() => setView('game')}>Jogo</button>
       <button type="button" className="refresh-btn" aria-pressed={view === 'players'} onClick={() => setView('players')}>Jogadores ({players.length})</button>
@@ -139,7 +144,7 @@ export default function HistoryView({ legacyUrl }: { legacyUrl: string }) {
       {archive.warnings.length > 0 && <details className="notice caution"><summary>{archive.warnings.length} rodada(s) com dados incompletos</summary>
         <ul>{archive.warnings.map(warning => <li key={warning}>{warning}</li>)}</ul>
       </details>}
-      <section className="stat-tile">
+      <section className="stat-tile history-metrics">
         <h2>Métricas arquivadas</h2>
         {archive.metrics ? <Values values={[
           ['Projeções individuais apuradas', individual?.total ?? 0], ['Limites individuais atingidos', individual?.acertos ?? 0],
@@ -171,7 +176,7 @@ export default function HistoryView({ legacyUrl }: { legacyUrl: string }) {
         <label>Jogador<input type="search" value={search} onChange={event => setSearch(event.target.value)}/></label>
       </div>
       {archive.updatedAt && <small>Índice atualizado em <time dateTime={archive.updatedAt}>{new Date(archive.updatedAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })} BRT</time></small>}
-      <p>{games.length} jogos arquivados · {settled.length} projeções individuais apuradas{mae != null && ' · Erro médio de ' + markets[market].toLowerCase() + ' ' + number(mae)}</p>
+      <p className="history-result-count">{games.length} jogos arquivados · {settled.length} projeções individuais apuradas{mae != null && ' · Erro médio de ' + markets[market].toLowerCase() + ' ' + number(mae)}</p>
       {games.map(({ game, players }) => <GameCard key={game.key} game={game} players={players}/>)}
       {!games.length && <div className="empty-state"><strong>Nenhum confronto arquivado para a rodada selecionada.</strong></div>}
     </>}
