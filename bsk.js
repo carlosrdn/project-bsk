@@ -209,7 +209,11 @@ function projetar(chave,d,t,o,r,ehCasa,bump=0){
     clamp(ritmo,0.94,1.06);
   const favorito=ehCasa?r.margem>0:r.margem<0;
   const riscoBlowout=Math.max(0,Math.abs(r.margem)-12);
-  const fMin=favorito?1-Math.min(0.045,riscoBlowout*0.003):1;
+  const mediaMin=Number(d.minutos_media),recentMin=Number(d.minutos_ultimos5);
+  // Só usar a tendência de minutos após amostra suficiente; limitar efeito a 8%.
+  const fatorRotacao=n>=8&&Number.isFinite(mediaMin)&&mediaMin>0&&
+    Number.isFinite(recentMin)?clamp(Math.pow(recentMin/mediaMin,0.5),0.92,1.08):1;
+  const fMin=(favorito?1-Math.min(0.045,riscoBlowout*0.003):1)*fatorRotacao;
   // Ajuste por lesões só se confirmado fora e mesma rotação.
   // Sem minutos projetados confiáveis, NÃO redistribuímos produção de companheiros.
   const proj=Math.max(0,base*exposicao*fMin);
