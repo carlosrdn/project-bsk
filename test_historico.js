@@ -65,4 +65,12 @@ assert(page.includes("Histórico de acertos do jogo")&&page.includes("Histórico
 const pagina=fs.readFileSync("historico.html","utf8");
 assert(!pagina.includes("const result=(result?.games||[])"),"Não acessar variável let/const antes da inicialização");
 assert(pagina.includes("const resultadoJogo=(result?.games||[])"),"Ler resultado do evento a partir do JSON externo");
+assert(page.includes('async function atualizarResultadosESPN()'),
+ "Histórico deve consultar resultados finais diretamente no navegador");
+assert(page.includes('scoreboard?dates=')&&page.includes('summary?event='),
+ "ESPN deve fornecer o status, placar e boxscore dos jogadores");
+assert(page.includes('espnFinal(ev)')&&page.includes('compararPlacar(g,home,away)'),
+ "Não apurar projeções de jogo antes da confirmação de encerramento");
+assert(page.includes('statisticaESPN(group,pick.player,pick.market)'),
+ "Apuração individual deve usar o boxscore do jogador correto");
 console.log("OK: histórico BSK, feed ESPN, DNP, NBA timezone, seleção do radar");
