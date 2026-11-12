@@ -190,6 +190,20 @@ async function apurarDia(day){
    console.warn("Resumo indisponível",e.id,err.message);
   }
  }));
+ const partidas=snapshot.games.map(j=>{
+  const event=matching.get(j.start_utc);
+  if(!event)return {...j,status:"nao_localizado",home_score:null,away_score:null};
+  const competitors=event.competitions?.[0]?.competitors||[];
+  const home=competitors.find(c=>c.homeAway==="home");
+  const away=competitors.find(c=>c.homeAway==="away");
+  const pontos=c=>{
+   const v=c?.score?.value??c?.score;
+   const n=Number(v);
+   return v==null||v===""||!Number.isFinite(n)?null:n;
+  };
+  return {...j,status:isFinal(event)?"finalizado":event.status?.type?.state||"nao_iniciado",
+   home_score:pontos(home),away_score:pontos(away),espn_event_id:event.id||null};
+ });
  const results=[];
  for(const pick of snapshot.recommendations){
   const event=matching.get(pick.jogo_utc);
@@ -219,9 +233,9 @@ async function apurarDia(day){
  }
  const prev=readJSON(path.join(RESULTS,day+".json"));
  const payload={schema:1,date:day,updated_at:now().toISOString(),source:"ESPN",
-   results};
- const stable=JSON.stringify(results.map(({updated_at,...r})=>r));
- const oldStable=JSON.stringify((prev?.results||[]).map(({updated_at,...r})=>r));
+   games:partidas,results};
+ const stable=JSON.stringify({games:partidas,results:results.map(({updated_at,...r})=>r)});
+ const oldStable=JSON.stringify({games:prev?.games||[],results:(prev?.results||[]).map(({updated_at,...r})=>r)});
  if(stable!==oldStable)putJSON(path.join(RESULTS,day+".json"),payload);
  return {date:day,total:results.length,apurados:results.filter(r=>r.status==="apurado").length};
 }
@@ -232,6 +246,7 @@ function recriarIndice(){
   return {date:d,captured_at:s.captured_at,games:s.games.length,
    recommendations:s.recommendations.length,
    settled:(r?.results||[]).filter(x=>x.status==="apurado").length,
+   finished_games:(r?.games||[]).filter(x=>x.status==="finalizado").length,
    snapshot:"historico/snapshots/"+n,results:r?"historico/resultados/"+n:null};
  }).sort((a,b)=>b.date.localeCompare(a.date));
  const anterior=readJSON(INDICE);
