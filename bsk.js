@@ -189,27 +189,65 @@ function bumpsTime(t){
   return {pts: Math.min(pts, 3), ast: Math.min(ast, 1.5)};
 }
 
-function projetar(chave,d,t,o,r,ehCasa,bump){
-  // Base histórica validável em walk-forward. Ajustes contextuais conservadores,
-  // mas NÃO certificados pelo backtest de médias.
-  const base=Number(d.media)||0;
+function projetar(chave,d,t,o,r,ehCasa,bump=0){
+  // Previsão contextual (experimental); dados da temporada atual.
+  // Não forçar desvio artificial: pode coincidir com a média em jogos neutros.
+  const media=Number(d.media)||0, n=Math.max(0,Number(d.jogos)||0);
+  const recente=Number.isFinite(d.ultimos5)?d.ultimos5:media;
+  const pesoRecente=n<6?0:n<10?0.18:0.30;
+  const base=media*(1-pesoRecente)+recente*pesoRecente;
   const ptsTime=ehCasa?r.sc:r.sv;
-  const ptsBase=t.ataque*t.ritmo/100;
-  const relPts=ptsBase>0?ptsTime/ptsBase:1;
+  const esperadoTime=t.ataque*t.ritmo/100;
+  const relPts=esperadoTime>0?ptsTime/esperadoTime:1;
   const ritmo=t.ritmo>0?((t.ritmo+o.ritmo)/2)/t.ritmo:1;
-  const fator=chave==="pts"?clamp(relPts,0.96,1.04):
-    chave==="reb"?clamp(ritmo,0.97,1.03):clamp(Math.sqrt(Math.max(relPts,0)),0.97,1.03);
+  // PTS e 3PM: volume da equipe; AST: criação e conversão da equipe;
+  // REB, STL e BLK: ritmo como aproximação imperfeita de oportunidades.
+  const exposicao=chave==="pts"?clamp(relPts,0.90,1.10):
+    chave==="ast"?clamp(Math.pow(relPts,0.6),0.94,1.06):
+    chave==="tres"?clamp(Math.pow(relPts,0.45),0.95,1.05):
+    clamp(ritmo,0.94,1.06);
   const favorito=ehCasa?r.margem>0:r.margem<0;
-  const fMin=favorito?1-clamp((Math.abs(r.margem)-12)/12,0,1)*0.03:1;
-  // Não somar bump de lesões: já pode constar nas médias e gerar dupla contagem.
-  // Evitar o "por_nivel" retrospectivo: usa níveis atuais em partidas históricas.
-  const proj=Math.max(0,base*fator*fMin);
+  const riscoBlowout=Math.max(0,Math.abs(r.margem)-12);
+  const fMin=favorito?1-Math.min(0.045,riscoBlowout*0.003):1;
+  // Ajuste por lesões só se confirmado fora e mesma rotação.
+  // Sem minutos projetados confiáveis, NÃO redistribuímos produção de companheiros.
+  const proj=Math.max(0,base*exposicao*fMin);
   const prior=desvioPrior(chave,base);
-  const desvio=Number.isFinite(d.desvio)?d.desvio:prior;
-  const sd=(d.jogos*desvio+6*prior)/(d.jogos+6);
-  const ult5=Number.isFinite(d.ultimos5)?d.ultimos5:base;
-  const ref=Math.floor(Math.max(0,0.7*base+0.3*ult5)+1e-9)+0.5;
-  return {proj,sd:Math.max(sd,0.5),ref,nv:null,bump:0,fMin,favorito,ajusteContexto:proj-base};
+  const observado=Number.isFinite(d.desvio)?d.desvio:prior;
+  const sd=Math.max(chave==="pts"?2:0.65,(n*observado+8*prior)/(n+8));
+  const ref=Math.floor(media)+0.5; // apenas referência, não cotação.
+  return {proj,sd,ref,nv:null,bump:0,fMin,favorito,
+    base,media,recente,pesoRecente,exposicao,ajusteContexto:proj-base,
+    ajusteMinutos:fMin,estimativaExperimental:true};
+}
+function analiseMercado(proj,sd,linha,odd,jogos,risco){
+  if(!Number.isFinite(linha)||linha<0)return {apta:false,descricao:"Informe uma linha válida."};
+  if(!Number.isFinite(proj)||!Number.isFinite(sd)||sd<=0)return {apta:false,descricao:"Projeção ou dispersão indisponível."};
+  const discreta=Math.abs(linha-Math.round(linha))>0.0001;
+  // Aproximação normal COM correção de continuidade para mercados inteiros.
+  // Para X.5, a barreira é X+1 e o limiar contínuo é X+0.5.
+  const over=cdf((proj-(discreta?Math.floor(linha)+0.5:linha+0.5))/sd);
+  const under=cdf(((discreta?Math.floor(linha)+0.5:linha-0.5)-proj)/sd);
+  const lado=over>=under?"Over":"Under";
+  const prob=Math.max(over,under);
+  const riscoExtra=Array.isArray(risco)?risco:[];
+  // Odds são necessárias para medir valor esperado; não inventar.
+  if(!Number.isFinite(odd)||odd<=1)return {apta:false,lado,prob,
+    descricao:lado+" "+f1(linha)+" · chance aproximada "+pct(prob)+". Informe a odd real para testar valor esperado."};
+  const ev=prob*odd-1;
+  const minimo=chaveAmostraMinima(jogos);
+  const apta=minimo&&riscoExtra.length===0&&prob>=0.60&&ev>=0.05;
+  return {apta,lado,prob,ev,odd,
+    descricao:lado+" "+f1(linha)+" · chance estimada "+pct(prob)+" · valor esperado teórico "+pct(ev)+
+      (apta?" · candidata à revisão":" · sem aposta recomendada")+
+      ". Probabilidades ainda não calibradas para apostas."};
+}
+function chaveAmostraMinima(jogos){return Number(jogos)>=12;}
+function linhaExploratoria(proj,sd){
+  // Exibe somente alvos exploratórios, não odds ou mercado efetivamente disponíveis.
+  // Não há recomendação automática sem linha e odd da casa.
+  return {limiteInferior:Math.max(0,Math.floor(Math.max(0,proj-0.5*sd))+0.5),
+    limiteSuperior:Math.floor(proj+0.5*sd)+0.5};
 }
 function rodadaAtual(){
   if(typeof DADOS==="undefined"||!DADOS.data_jogos)return false;
