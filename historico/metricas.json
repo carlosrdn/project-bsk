@@ -10,6 +10,14 @@
     "taxa_acerto": null,
     "erro_absoluto_medio": null
   },
+  "destaques": {
+    "total": 0,
+    "acertos": 0,
+    "erros": 0,
+    "sem_limite": 0,
+    "taxa_acerto": null,
+    "erro_absoluto_medio": null
+  },
   "jogos": {
     "total": 0,
     "vencedor_acertado": 0,
