@@ -98,5 +98,33 @@ class TestBacktest(unittest.TestCase):
         self.assertTrue(all(r["jogos_anteriores"] == 5 for r in mesmo_dia))
 
 
+    def test_holdout_temporal_nao_usa_datas_futuras_para_treino(self):
+        linhas=[linha(f"NOV {dia:02d}, 2026", 10 if dia<=10 else 25, dia) for dia in range(1,17)]
+        resumo=backtest.avaliar_holdout(linhas)
+        self.assertEqual(resumo["status"],"holdout_temporal")
+        self.assertLess(resumo["treino_ate"],resumo["teste_desde"])
+        self.assertTrue(all(r["data"]>=resumo["teste_desde"] for r in resumo["estatisticas"]["pts"]["resultados"]))
+        self.assertIn(resumo["peso_escolhido"]["pts"],backtest.PESOS_TREINO)
+
+    def test_jogo_curto_conta_como_erro_no_holdout(self):
+        linhas=[linha(f"NOV {dia:02d}, 2026", 15, dia) for dia in range(1,17)]
+        # Jogo com apenas 3 minutos está no período de teste.
+        linhas[-1]["MIN"]="03:00"
+        linhas[-1]["PTS"]=0
+        resumo=backtest.avaliar_holdout(linhas)
+        regs=resumo["estatisticas"]["pts"]["resultados"]
+        self.assertTrue(any(r["data"]=="2026-11-16" and r["real"]==0 for r in regs))
+        self.assertGreater(len(regs),resumo["avaliacao_condicional_12_min"]["pts"]["previsoes"])
+
+    def test_backtest_nunca_consulta_resultado_do_mesmo_dia(self):
+        linhas=[linha(f"NOV {d:02d}, 2026", d, d) for d in range(1,7)]
+        linhas.append(linha("NOV 06, 2026",100,200))
+        result=backtest.previsoes_walk_forward(linhas)["pts"]
+        mesmo_dia=[r for r in result if r["data"]=="2026-11-06"]
+        self.assertEqual(len(mesmo_dia),2)
+        self.assertEqual({r["previsao_0.00"] for r in mesmo_dia},{3.0})
+
+
+
 if __name__ == "__main__":
     unittest.main()
