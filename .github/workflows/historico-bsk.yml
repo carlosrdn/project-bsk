@@ -1,0 +1,56 @@
+name: Histórico BSK — capturar e apurar
+
+on:
+  push:
+    branches: [melhorias-modelo-nba]
+    paths:
+      - "dados.js"
+      - "bsk.js"
+      - "historico_bsk.js"
+      - ".github/workflows/historico-bsk.yml"
+  workflow_dispatch:
+
+# O GitHub só executa agendamentos na branch padrão. Enquanto a main
+# permanecer intocada, usar push ou disparo manual nesta branch.
+permissions:
+  contents: write
+concurrency:
+  group: historico-bsk-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  historico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Baixar branch de testes
+        uses: actions/checkout@v4
+        with:
+          ref: melhorias-modelo-nba
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validar scripts
+        run: |
+          node --check historico_bsk.js
+          node --check test_historico.js
+          node test_historico.js
+      - name: Congelar sinais dos jogos não iniciados
+        run: node historico_bsk.js capturar
+      - name: Apurar partidas finalizadas
+        id: apurar
+        continue-on-error: true
+        run: node historico_bsk.js apurar
+      - name: Persistir histórico só na branch de testes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add historico/indice.json historico/snapshots/ historico/resultados/
+          if ! git diff --cached --quiet; then
+            git commit -m "Arquivar análises BSK e resultados ESPN [skip ci]"
+            git push origin HEAD:melhorias-modelo-nba
+          fi
+      - name: Avisar falha ESPN
+        if: steps.apurar.outcome == 'failure'
+        run: echo "::warning::A ESPN falhou. Os snapshots foram preservados; execute o workflow novamente."
