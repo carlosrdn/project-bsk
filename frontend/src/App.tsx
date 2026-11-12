@@ -6,6 +6,7 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import Footer from './Footer'
 import Backtest from './Backtest'
 import RoundSchedule from './RoundSchedule'
 import HistoryView from './History'
@@ -209,7 +210,7 @@ export default function App() {
      </>}
     </>}
     </>}
-    <footer className="footer"><span>© Project BSK · Protótipo React/TypeScript</span><span>Dados NBA 2026–27 · Sem odds</span></footer>
+    <Footer/>
    </main>
   </div>
  </div>
