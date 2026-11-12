@@ -178,8 +178,8 @@ function render(){
    ' · '+g.numSinais+' projeção(ões) individuais</p></div><strong>'+
    (final&&r?.away_score!=null&&r?.home_score!=null?esc(r.away_score+' – '+r.home_score):"— : —")+'</strong><span class="game-expand" aria-hidden="true">⌄</span></summary>'+
    '<div class="game-tabs" role="tablist" aria-label="Detalhes de '+esc(g.away)+' e '+esc(g.home)+'">'+
-   '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogo" aria-selected="'+(selected==="jogo")+'">Análise do jogo</button>'+
-   '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogadores" aria-selected="'+(selected==="jogadores")+'">Jogadores ('+players.length+')</button>'+
+   '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogo" aria-selected="'+(selected==="jogo")+'">Histórico de acertos do jogo</button>'+
+   '<button type="button" role="tab" data-game-key="'+esc(key)+'" data-game-view="jogadores" aria-selected="'+(selected==="jogadores")+'">Histórico dos jogadores ('+players.length+')</button>'+
    '</div><div class="game-body" role="tabpanel">'+body+'</div></details>';
  }).join("");
 }
