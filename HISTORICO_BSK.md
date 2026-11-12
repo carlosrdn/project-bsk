@@ -15,12 +15,12 @@ Executar, na raiz do repositório: node test_historico.js, node historico_bsk.js
 
 A captura exige dados.js da data atual da NBA em Nova York, arquivo do dia inexistente e ao menos uma partida ainda a mais de cinco minutos do início. Não registra retroativamente sinais que já passaram do horário.
 
-A seleção usa os mesmos filtros e pontuações da página Melhores do Dia com parâmetros padrão. Não incorpora linhas e odds que um visitante digitou no navegador, pois não existe servidor que as salve.
+A seleção usa os mesmos filtros e pontuações da página Melhores do Dia com parâmetros padrão. Registra somente projeções e alertas de risco.
 
 A apuração consulta ESPN scoreboard e summary para os dez últimos dias com snapshots. Jogador DNP, box score indisponível ou partida pendente não conta como erro numérico de previsão. Resultados ficam separados dos snapshots para não mudar o que foi previsto.
 
 ## Critério de transparência
-Uma linha exploratória sintética pode ser marcada como atingida ou não, mas isso NÃO é acerto de aposta real. Sem linha, lado e odd reais arquivados antes do início, não calcular taxa de sucesso de apostas ou ROI.
+O histórico mede apenas proximidade entre projeção pré-jogo e estatística real, por mercado, com erro absoluto. Não calcula preços ou retorno financeiro.
 
 ## Limite da automação na branch
 Push de dados.js, bsk.js, historico_bsk.js ou do workflow pode disparar GitHub Actions na branch de testes. Existe workflow_dispatch para uso manual quando o GitHub o disponibiliza.
@@ -28,4 +28,4 @@ Agendamentos GitHub cron são executados apenas quando o workflow está na branc
 O workflow exige permissões contents: write. O Pages só mostra a página nova se publicar esta branch.
 
 ## Auditoria
-Não sobrescrever snapshots antigos. Cada captura inclui captured_at, model_hash, data_hash, status de recomendação, estatística prevista, desvio e avisos. Recalcular o resultado jamais recalcula a previsão.
+Não sobrescrever snapshots antigos. Cada captura inclui captured_at, model_hash, data_hash, status de projeção, estatística prevista, desvio e avisos. Recalcular o resultado jamais recalcula a previsão.
