@@ -1,0 +1,31 @@
+# Histórico BSK — documentação de operação
+
+O histórico registra o que o modelo selecionou antes da partida, sem reconstrução retrospectiva. Funciona com arquivos JSON versionados no GitHub, sem banco tradicional.
+
+## Estrutura
+- historico_bsk.js: motor Node 22 (captura e apuração).
+- historico.html: página de jogos e desempenho.
+- historico/indice.json: índice das rodadas.
+- historico/snapshots/AAAA-MM-DD.json: snapshot imutável após a primeira gravação, com horário, hashes do motor/dados e sinais selecionados.
+- historico/resultados/AAAA-MM-DD.json: estatísticas reais da ESPN e comparações.
+- .github/workflows/historico-bsk.yml: workflow na branch melhorias-modelo-nba.
+
+## Execução
+Executar, na raiz do repositório: node test_historico.js, node historico_bsk.js capturar e node historico_bsk.js apurar.
+
+A captura exige dados.js da data atual da NBA em Nova York, arquivo do dia inexistente e ao menos uma partida ainda a mais de cinco minutos do início. Não registra retroativamente sinais que já passaram do horário.
+
+A seleção usa os mesmos filtros e pontuações da página Melhores do Dia com parâmetros padrão. Não incorpora linhas e odds que um visitante digitou no navegador, pois não existe servidor que as salve.
+
+A apuração consulta ESPN scoreboard e summary para os dez últimos dias com snapshots. Jogador DNP, box score indisponível ou partida pendente não conta como erro numérico de previsão. Resultados ficam separados dos snapshots para não mudar o que foi previsto.
+
+## Critério de transparência
+Uma linha exploratória sintética pode ser marcada como atingida ou não, mas isso NÃO é acerto de aposta real. Sem linha, lado e odd reais arquivados antes do início, não calcular taxa de sucesso de apostas ou ROI.
+
+## Limite da automação na branch
+Push de dados.js, bsk.js, historico_bsk.js ou do workflow pode disparar GitHub Actions na branch de testes. Existe workflow_dispatch para uso manual quando o GitHub o disponibiliza.
+Agendamentos GitHub cron são executados apenas quando o workflow está na branch padrão. Como a main não deve ser alterada sem autorização, não há apuração automática garantida por horário nesta fase. Fazer uma nova execução após os jogos para obter resultados.
+O workflow exige permissões contents: write. O Pages só mostra a página nova se publicar esta branch.
+
+## Auditoria
+Não sobrescrever snapshots antigos. Cada captura inclui captured_at, model_hash, data_hash, status de recomendação, estatística prevista, desvio e avisos. Recalcular o resultado jamais recalcula a previsão.
