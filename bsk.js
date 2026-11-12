@@ -204,7 +204,7 @@ function opcoesDoJogo(r){
         const bump=top3.includes(p.nome)?(chave==="pts"?bumps.pts:chave==="ast"?bumps.ast:0):0;
         const x=projetar(chave,d,t,o,r,ehCasa,bump);
         const forca=(x.proj-x.ref)/x.sd;
-        const q=Object.assign({r,t,o,p,d,chave,forca,dir:forca>=0?"Over":"Under"},x);
+        const q=Object.assign({r,t,o,p,d,chave,forca},x);
         Object.assign(q,pontuar(q));todas.push(q);
       });
     });
@@ -238,8 +238,11 @@ function avaliarLinhaReal(projecao, desvio, linha, riscos, jogos) {
     return {status:"negative", texto:"Digite uma linha válida (zero ou maior)."};
   }
   const diferenca = projecao - linha;
-  const lado = diferenca >= 0 ? "Over" : "Under";
+  // Regra única para todas as páginas: projeção acima da linha => Over;
+  // abaixo => Under. Linha igual à projeção => nenhuma direção confiável.
+  const lado = diferenca > 0 ? "Over" : diferenca < 0 ? "Under" : "Sem direção";
   const distancia = Math.abs(diferenca);
+  if(distancia<0.000001)return {status:"negative",texto:"Projeção igual à linha informada; sem direção estatística."};
   const padronizada = distancia / Math.max(desvio, 0.75);
   if (riscos.length || jogos < 12) {
     return {status:"negative", texto:lado+" "+f1(linha)+" · diferença de "+f1(distancia)+". Em observação: "+(riscos.join("; ") || "amostra curta")+". Não selecionar sem revisão."};
@@ -257,13 +260,13 @@ function pickHtml(x,prefixo){
   const pendente=statusEfetivo(x.t,x.p)==="Sem confirmação de titularidade";
   return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Linha real pendente</span></div>'+
     '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
-    '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção do modelo</span></div><div class="pick-stat"><strong>'+f1(x.ref)+'</strong><span>Linha sintética · não é cotação real</span></div></div>'+
+    '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção para este jogo</span></div><div class="pick-stat"><strong>'+f1(x.d.media)+'</strong><span>Média histórica da temporada</span></div></div>'+
     '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Média '+f1(x.d.media)+'</span><span>Últ. 5 '+f1(x.d.ultimos5)+'</span></div>'+
     '<div class="live-stat" data-live-player="'+esc(x.p.nome)+'" data-live-team="'+esc(x.t.sigla)+'" data-live-stat="'+esc(x.chave)+'"></div>'+
     '<div class="quality'+(x.apta?'':' warn')+'">'+esc(status)+'</div>'+
     '<p class="reason">'+esc(risco)+(pendente?' · Titularidade ainda não confirmada.':'')+'</p>'+
     '<div class="lin"><label for="'+esc(uid)+'">Linha real da casa</label><input id="'+esc(uid)+'" aria-label="Linha real para '+esc(x.p.nome)+'" data-k="'+esc(id)+'" data-proj="'+x.proj+'" data-sd="'+x.sd+'" data-riscos="'+esc(JSON.stringify(x.risco))+'" data-jogos="'+x.d.jogos+'" type="number" min="0" step="0.5" placeholder="Ex.: 22.5" value="'+esc(LINHAS[id]==null?"":LINHAS[id])+'"><span class="res" role="status" aria-live="polite"></span></div>'+
-    '<details><summary>Justificativa e limitações</summary><p>'+esc(motivo(x))+'</p><p>Este é um filtro exploratório, sem probabilidade calibrada ou análise de valor esperado com odds reais. O ranking usa uma linha de referência sintética.</p></details></article>';
+    '<details><summary>Justificativa e limitações</summary><p>'+esc(motivo(x))+'</p><p>Este é um filtro exploratório, sem probabilidade calibrada ou análise de valor esperado com odds reais. Uma direção Over/Under só é avaliada depois de inserir uma linha real.</p></details></article>';
 }
 function atualizarLinha(el){
   const alvo=el.parentElement.querySelector(".res");
@@ -435,7 +438,7 @@ function destaques(lista){
   const aptas=todas.filter(x=>x.apta && x.score>0).slice(0,6);
   const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,5);
   const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' pré-seleções · '+observacao.length+' em observação</p></div>';
-  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O escore prioriza amostras maiores e mais estáveis, não vantagens em linhas fictícias. As linhas exibidas são estimadas, não linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
+  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O escore prioriza amostras maiores e mais estáveis, não vantagens em linhas fictícias. As projeções exibidas não são linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
   const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma pré-seleção passou por todos os filtros de risco e amostra nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
   const listaMotivos=[...new Set(todas.flatMap(x=>x.risco))].slice(0,5);
   const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta ou sinal insuficiente em relação à referência sintética")+'</p>';
