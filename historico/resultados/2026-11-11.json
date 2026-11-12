@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "date": "2026-11-11",
-  "updated_at": "2026-11-12T09:51:30.952Z",
+  "updated_at": "2026-11-12T10:09:30.277Z",
   "source": "ESPN",
   "games": [
     {
@@ -12,7 +12,9 @@
       "home_score": 108,
       "away_score": 123,
       "comparison": null,
-      "espn_event_id": "401909973"
+      "espn_event_id": "401909973",
+      "actual_margin": -15,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-12T02:30:00Z",
@@ -22,7 +24,9 @@
       "home_score": 115,
       "away_score": 108,
       "comparison": null,
-      "espn_event_id": "401909974"
+      "espn_event_id": "401909974",
+      "actual_margin": 7,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-12T03:00:00Z",
@@ -32,7 +36,9 @@
       "home_score": 118,
       "away_score": 108,
       "comparison": null,
-      "espn_event_id": "401909975"
+      "espn_event_id": "401909975",
+      "actual_margin": 10,
+      "blowout": false
     }
   ],
   "results": []

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "metodologia": "Avaliação por limite congelado pré-jogo; contextos associados, sem causalidade; sem odds",
+  "periodo_dias": 1,
+  "geral": {
+    "total": 0,
+    "acertos": 0,
+    "erros": 0,
+    "sem_limite": 0,
+    "taxa_acerto": null,
+    "erro_absoluto_medio": null
+  },
+  "mercados": {},
+  "contextos": {}
+}
