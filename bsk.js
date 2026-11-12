@@ -57,9 +57,6 @@ const PAGINA = document.body.dataset.page || "jogos";
 const ROTULO = {pts: "pontos", reb: "rebotes", ast: "assistências", tres: "bolas de 3", blk:"bloqueios", stl:"roubos"};
 const NIVEL_TXT = {forte: "mais fortes", media: "do mesmo nível", fraca: "mais fracos"};
 const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
-const LINHAS = {};
-const ODDS = {};
-const LADOS = {};
 const STATUS_MANUAIS = ["Não verificado","Titular confirmado","Disponível confirmado","Provável","Questionável","Improvável","Fora"];
 const STATUS_KEY = "bsk-escalações-v1";
 let STATUS_SALVOS = {};
@@ -332,34 +329,17 @@ function projetar(chave,d,t,o,r,ehCasa,bump=0){
     base,media,recente,pesoRecente,exposicao,ajusteContexto:proj-base,
     ajusteMinutos:fMin,estimativaExperimental:true};
 }
-function analiseMercado(proj,sd,linha,odd,jogos,risco,ladoEscolhido){
-  if(!Number.isFinite(linha)||linha<0)return {apta:false,descricao:"Informe uma linha válida."};
-  if(!Number.isFinite(proj)||!Number.isFinite(sd)||sd<=0)return {apta:false,descricao:"Projeção ou dispersão indisponível."};
-  const discreta=Math.abs(linha-Math.round(linha))>0.0001;
-  // Aproximação normal COM correção de continuidade para mercados inteiros.
-  // Para X.5, a barreira é X+1 e o limiar contínuo é X+0.5.
-  const over=cdf((proj-(discreta?Math.floor(linha)+0.5:linha+0.5))/sd);
-  const under=cdf(((discreta?Math.floor(linha)+0.5:linha-0.5)-proj)/sd);
-  const lado=ladoEscolhido==="Over"||ladoEscolhido==="Under"?ladoEscolhido:(over>=under?"Over":"Under");
-  const prob=lado==="Over"?over:under;
-  const riscoExtra=Array.isArray(risco)?risco:[];
-  // Odds são necessárias para medir valor esperado; não inventar.
-  if(!Number.isFinite(odd)||odd<=1)return {apta:false,lado,prob,
-    descricao:lado+" "+f1(linha)+" · chance aproximada "+pct(prob)+". Informe a odd real para testar valor esperado."};
-  const ev=prob*odd-1;
-  const minimo=chaveAmostraMinima(jogos);
-  const apta=minimo&&riscoExtra.length===0&&prob>=0.60&&ev>=0.05;
-  return {apta,lado,prob,ev,odd,
-    descricao:lado+" "+f1(linha)+" · chance estimada "+pct(prob)+" · valor esperado teórico "+pct(ev)+
-      (apta?" · candidata à revisão":" · sem aposta recomendada")+
-      ". Probabilidades ainda não calibradas para apostas."};
+function faixaProjetada(proj,sd){
+  // Faixa descritiva experimental: projeção +/- um desvio, não intervalo calibrado.
+  return {min:Math.max(0,proj-sd),max:proj+sd};
 }
-function chaveAmostraMinima(jogos){return Number(jogos)>=12;}
-function linhaExploratoria(proj,sd){
-  // Exibe somente alvos exploratórios, não odds ou mercado efetivamente disponíveis.
-  // Não há recomendação automática sem linha e odd da casa.
-  return {limiteInferior:Math.max(0,Math.floor(Math.max(0,proj-0.5*sd))+0.5),
-    limiteSuperior:Math.floor(proj+0.5*sd)+0.5};
+function resumoProjecao(proj,media,recente,sd,jogos,alertas=[]){
+  const faixa=faixaProjetada(proj,sd);
+  const delta=proj-media;
+  const movimento=Math.abs(delta)<0.05?"em linha com a média":delta>0?"acima da média":"abaixo da média";
+  const observacao=alertas.length?" · Atenção: "+alertas.join("; "):"";
+  return {texto:"Projeção "+f1(proj)+" · "+movimento+" · oscilação histórica ±"+f1(sd)+observacao,
+    faixa,delta,recente,jogos};
 }
 function rodadaAtual(){
   if(typeof DADOS==="undefined"||!DADOS.data_jogos)return false;
@@ -388,13 +368,11 @@ function elegibilidade(q){
 }
 function pontuar(q){
  const risco=elegibilidade(q);
- const proposta=sugestaoCondicional(q.proj,q.sd,q.d.media,q.d.jogos,risco);
- const prob=Number.isFinite(proposta.prob)?proposta.prob:0;
- // Ranking do sinal do modelo, NÃO retorno de aposta (sem odds reais).
+ const variacao=q.sd/Math.max(q.d.media,1);
  const amostra=Math.min(1,q.d.jogos/18);
- const score=(prob-0.5)*amostra-Math.min(0.25,risco.length*0.08);
- const apta=risco.length===0&&q.d.jogos>=12&&prob>=0.60;
- return {risco,score,apta,probIndicativa:prob};
+ const score=amostra/(1+variacao)-Math.min(.8,risco.length*.17);
+ const limite=q.chave==="tres"?0.95:0.75;
+ return {risco,score,apta:risco.length===0&&q.d.jogos>=12&&variacao<=limite};
 }
 function opcoesDoJogo(r){
   const todas=[];
@@ -437,62 +415,20 @@ function motivo(x){
   return partes.join(" · ");
 }
 
-function avaliarLinhaReal(projecao,desvio,linha,riscos,jogos,odd){
- const resultado=analiseMercado(projecao,desvio,linha,odd,jogos,riscos);
- return {status:resultado.apta?"positive":"negative",texto:resultado.descricao};
-}
-function chaveMercado(t,p,chave,partida){return t.sigla+"|"+p.nome+"|"+chave+"|"+partida;}
-function sugestaoCondicional(projecao,sd,media,jogos,riscos){
- const linha=Math.floor(Math.max(0,media))+0.5;
- const analise=analiseMercado(projecao,sd,linha,NaN,jogos,riscos);
- if(jogos<12||riscos.length||!Number.isFinite(analise.prob)||analise.prob<0.60)
-   return {texto:"Sem seleção preliminar · sinal ou histórico insuficiente",linha};
- const preco=Math.ceil((1.05/analise.prob)*100)/100;
- return {texto:"Investigar "+analise.lado+" "+f1(linha)+" · odd mínima teórica "+preco.toFixed(2).replace(".",",")+
-    " · chance aproximada "+pct(analise.prob),linha,prob:analise.prob};
-}
-function camposMercado(id,projecao,sd,jogos,riscos){
- const uid="merc-"+id.replace(/[^a-zA-Z0-9]/g,"-");
- return '<div class="market-compare" data-market-id="'+esc(id)+'" data-market-proj="'+projecao+
-  '" data-market-sd="'+sd+'" data-market-games="'+jogos+'" data-market-risks="'+esc(JSON.stringify(riscos))+'">'+
-  '<div class="market-inputs"><label for="'+esc(uid)+'">Linha real da casa<input id="'+esc(uid)+
-  '" data-market-line type="number" min="0" step="0.5" placeholder="Ex.: 6.5" value="'+esc(LINHAS[id]??"")+'"></label>'+
-  '<label>Direção da aposta<select data-market-side><option value="">Escolher</option><option value="Over"'+(LADOS[id]==="Over"?' selected':'')+'>Over</option><option value="Under"'+(LADOS[id]==="Under"?' selected':'')+'>Under</option></select></label>'+
-  '<label>Odd desse lado<input data-market-odd type="number" min="1.01" step="0.01" placeholder="Ex.: 1.90" value="'+esc(ODDS[id]??"")+'"></label></div>'+
-  '<span class="market-result res" role="status" aria-live="polite">Informe linha e odd para avaliar.</span></div>';
-}
-function atualizarMercado(el){
- const pai=el.closest("[data-market-id]");if(!pai)return;
- const id=pai.dataset.marketId;
- const linha=pai.querySelector("[data-market-line]")?.value||"";
- const odd=pai.querySelector("[data-market-odd]")?.value||"";
- const lado=pai.querySelector("[data-market-side]")?.value||"";
- LINHAS[id]=linha;ODDS[id]=odd;LADOS[id]=lado;
- const res=pai.querySelector(".market-result");
- if(!linha||!lado){res.textContent="Informe a linha e escolha Over ou Under para comparar com a odd desse lado.";res.dataset.status="negative";return;}
- let riscos=[];try{riscos=JSON.parse(pai.dataset.marketRisks||"[]")}catch(e){riscos=["Alertas não disponíveis"];}
- const analise=analiseMercado(Number(pai.dataset.marketProj),Number(pai.dataset.marketSd),
-  Number(linha),odd?Number(odd):NaN,Number(pai.dataset.marketGames),riscos,lado);
- res.textContent=analise.descricao;
- res.dataset.status=analise.apta?"positive":"negative";
-}
-function atualizarLinha(el){atualizarMercado(el);}
 function pickHtml(x,prefixo){
- const id=chaveMercado(x.t,x.p,x.chave,x.r.j.horario_utc);
- const status=x.apta?"Sinal condicional · confira odd":"Em observação";
- const risco=x.risco.length?x.risco.join(" · "):"Confirme escalação, minutos e odds.";
- const indicacao=sugestaoCondicional(x.proj,x.sd,x.d.media,x.d.jogos,x.risco);
- return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Análise condicional</span></div>'+
+ const status=x.apta?"Histórico consistente":"Em observação";
+ const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos críticos; confira disponibilidade e minutos previstos.";
+ const resumo=resumoProjecao(x.proj,x.d.media,x.d.ultimos5,x.sd,x.d.jogos,x.risco);
+ return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Projeção BSK</span></div>'+
   '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
-  '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção neste confronto</span></div><div class="pick-stat"><strong>'+f1(x.d.media)+'</strong><span>Média da temporada</span></div></div>'+
-  '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Últimos 5: '+f1(x.d.ultimos5)+'</span><span>Dispersão: '+f1(x.sd)+'</span></div>'+
-  '<p class="market-hint">'+esc(indicacao.texto)+'</p>'+
+  '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Estimativa para este jogo</span></div><div class="pick-stat"><strong>'+f1(x.d.media)+'</strong><span>Média da temporada</span></div></div>'+
+  '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Últimos 5: '+f1(x.d.ultimos5)+'</span><span>Oscilação histórica: '+f1(x.sd)+'</span></div>'+
+  '<p class="market-hint">'+esc(resumo.texto)+'</p>'+
   '<div class="live-stat" data-live-player="'+esc(x.p.nome)+'" data-live-team="'+esc(x.t.sigla)+'" data-live-stat="'+esc(x.chave)+'"></div>'+
   '<p class="quality'+(x.apta?'':' warn')+'">'+esc(status)+'</p>'+
   '<p class="reason">'+esc(risco)+'</p>'+
-  camposMercado(id,x.proj,x.sd,x.d.jogos,x.risco)+
   '<details><summary>Como foi calculado</summary><p>'+esc(motivo(x))+'</p>'+
-  '<p>Média da temporada e forma recente ponderadas; ritmo e cenário do confronto. Probabilidade aproximada não calibrada. Sem cotação real ou valor esperado positivo, não existe seleção aprovada.</p></details></article>';
+  '<p>Combina histórico da temporada, forma recente e contexto do confronto. A oscilação é descritiva, não uma garantia nem um intervalo validado de acerto.</p></details></article>';
 }
 const NIVEL_NOME = {forte: "Forte", media: "Médio", fraca: "Fraco"};
 const estado = {jogo: 0, aba: "resumo", categoria: "pts", abertos: {}};
@@ -574,22 +510,21 @@ function cardsCategoria(r,chave,filtroTime){
  candidatos.sort((a,b)=>Number(a.fora)-Number(b.fora)||b.estimativa.valor-a.estimativa.valor);
  const itens=candidatos.slice(0,18);
  if(!itens.length)return '<div class="empty">Sem dados desta categoria na coleta atual.</div>';
- const descricao='<p class="category-desc">Número principal: projeção pré-jogo para o confronto (não é a média). A recomendação depende da linha real, odd e qualidade do histórico. Probabilidades ainda não calibradas no backtest contextual.</p>';
+ const descricao='<p class="category-desc">Número principal: projeção pré-jogo para o confronto (não é a média). A estimativa considera forma recente, ritmo, produção esperada da equipe e minutos quando disponíveis. O histórico ainda não valida todos os ajustes contextuais.</p>';
  return descricao+'<div class="category-grid">'+itens.map(({t,p,d,fora,estimativa:x})=>{
-  const id=chaveMercado(t,p,chave,r.j.horario_utc),status=statusEfetivo(t,p);
+  const status=statusEfetivo(t,p);
   const alertas=[];
   if(fora)alertas.push("Jogador indisponível");
   if(!rodadaAtual())alertas.push("Dados de outra rodada");
   if(!d.comHistorico)alertas.push("Sem histórico individual");
   if(!DADOS.lesoes_ok)alertas.push("Lesões não verificadas");
-  const sugestao=sugestaoCondicional(x.valor,x.sd,d.media,d.jogos,alertas);
+  const resumo=resumoProjecao(x.valor,d.media,d.ultimos5,x.sd,d.jogos,alertas);
   return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div>'+
    '<div class="category-projection"><strong class="category-average">'+f1(x.valor)+'</strong><span>Projeção BSK</span></div></div>'+
    '<div class="category-meta"><span>Média: '+f1(d.media)+'</span><span>Últ. 5: '+(d.ultimos5==null?"—":f1(d.ultimos5))+'</span><span>'+d.jogos+' jogos</span></div>'+
-   '<p class="market-hint">'+esc(sugestao.texto)+'</p>'+
+   '<p class="market-hint">'+esc(resumo.texto)+'</p>'+
    '<p class="category-status" data-live-status-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'">'+esc(status)+'</p>'+
    '<div class="live-stat" data-live-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'" data-live-stat="'+esc(chave)+'">Aguardando ESPN...</div>'+
-   camposMercado(id,x.valor,x.sd,d.jogos,alertas)+
    '<p class="category-note">'+esc(x.metodo)+' · estimativa experimental</p></article>';
  }).join("")+'</div>';
 }
@@ -649,11 +584,11 @@ function destaques(lista){
   const todas=lista.flatMap(r=>opcoesDoJogo(r)).sort((a,b)=>b.score-a.score);
   const aptas=todas.filter(x=>x.apta && x.score>0).slice(0,6);
   const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,5);
-  const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' pré-seleções · '+observacao.length+' em observação</p></div>';
-  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O ranking mostra sinais contextuais exploratórios, não apostas aprovadas sem odds reais. As projeções exibidas não são linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
-  const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhum sinal condicional passou pelos filtros de amostra, risco e probabilidade nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
+  const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' projeções selecionadas · '+observacao.length+' em observação</p></div>';
+  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O ranking prioriza jogadores com histórico mais consistente e menos alertas. As projeções são estimativas do confronto e não garantias; confira disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
+  const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma projeção passou pelos filtros de amostra, variação histórica e risco nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
   const listaMotivos=[...new Set(todas.flatMap(x=>x.risco))].slice(0,5);
-  const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta, risco elevado ou ausência de sinal estatístico")+'</p>';
+  const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta, oscilação alta ou risco elevado")+'</p>';
   const vigiar=observacao.length?'<section style="margin-top:25px"><div class="spotlight-head"><h2>Em observação</h2><p>Dados insuficientes ou alertas ativos</p></div><div class="picks-grid">'+observacao.map(x=>pickHtml(x,"g")).join("")+'</div></section>':'';
   return cab+principais+motivos+vigiar+aviso;
 }
@@ -663,7 +598,6 @@ function renderJogos(){
     '<button type="button" role="tab" class="gt' + (i === estado.jogo ? " on" : "") + '" aria-selected="' + (i === estado.jogo) + '" data-jogo="' + i + '"><span>' +
     esc(r.j.visitante.sigla) + ' @ ' + esc(r.j.casa.sigla) + '</span><small>' + hora(r.j.horario_utc) + '</small></button>').join("");
   $("painel").innerHTML = painelJogo(LISTA[estado.jogo], estado.jogo);
-  document.querySelectorAll("[data-market-id]").forEach(el=>atualizarMercado(el));
   if(liveCache.stamp)atualizarAoVivo();
 }
 
@@ -730,11 +664,6 @@ document.addEventListener("change",e=>{
     salvarStatus(el.dataset.statusPlayer,el.value);
     render();
   }
-});
-
-document.addEventListener("input", e => {
-  const el = e.target;
-  if (el && el.closest && el.closest("[data-market-id]")) atualizarMercado(el);
 });
 
 ["wHome", "wForm", "K", "sd", "kInj"].forEach(id => $(id).addEventListener("input", render));
@@ -898,8 +827,7 @@ async function atualizarAoVivo(force=false){
     if(PAGINA==="melhores"&&novas){
       // Preserva linhas preenchidas pelo usuário em LINHAS.
       $("dest").innerHTML=destaques(LISTA);
-      document.querySelectorAll("[data-market-id]").forEach(el=>atualizarMercado(el));
-    }
+        }
     let loaded=0,pending=0,unavailable=0;
     document.querySelectorAll("[data-live-player]").forEach(el=>{
       const sigla=el.dataset.liveTeam,jogo=porTime.get(sigla);
