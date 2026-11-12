@@ -335,3 +335,26 @@ table.pl tbody tr:hover{background:#ffffff05}
 .feed-roster summary{font-size:12px;font-weight:650;color:#d5e1eb;cursor:pointer}
 .feed-roster .central-row{grid-template-columns:minmax(0,1fr);padding:8px 2px}
 .feed-roster .central-player small{color:#a9bbcc}
+
+
+/* Quintetos integrados - cinco vagas por equipe */
+.lineup-board{margin:12px 0 14px;border:1px solid #374452;border-radius:9px;overflow:hidden}
+.lineup-summary{font-size:12px;font-weight:700;letter-spacing:.05px;padding:12px;margin:0;background:#202b37;color:#dce8f2}
+.lineup-slot{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:11px;padding:11px 12px;border-top:1px solid #303d49}
+.lineup-position{font-size:11px;font-weight:750;color:#a7bed1;background:#233342;border-radius:5px;padding:5px;text-align:center}
+.lineup-person{display:flex;flex-direction:column;gap:2px;min-width:0}
+.lineup-person strong{font-size:13px;line-height:1.3;overflow-wrap:anywhere}
+.lineup-person small{font-size:10px;color:var(--mute);line-height:1.45}
+.lineup-status{font-size:10px;color:#c0cbd5;font-weight:650;white-space:nowrap}
+.lineup-confirmed .lineup-status{color:#acd7bb}
+.lineup-board>.central-info{padding:10px 12px;margin:0;border-top:1px solid #303d49;font-size:11px}
+.lineup-tools{margin-top:11px;border-top:1px solid var(--line);padding-top:11px}
+.lineup-tools summary{color:#b7c8d7;font-size:12px;cursor:pointer}
+.lineup-correction{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12px}
+.lineup-correction select{min-width:120px;max-width:175px;font-size:12px;background:#111820;color:#e9f0f5;border:1px solid #3b4753;border-radius:5px;padding:7px}
+@media(max-width:650px){
+ .lineup-slot{grid-template-columns:29px minmax(0,1fr);gap:7px;padding:11px 9px}
+ .lineup-status{grid-column:2;font-size:10px}
+ .lineup-correction{flex-wrap:wrap}
+ .lineup-correction select{width:100%;max-width:180px}
+}
