@@ -30,6 +30,7 @@ function avaliarContexto(pick,resultado,jogo){
 }
 function consolidar(dias){
  const mercados={},contextos={},geral={avaliados:0,acertos:0,erros:0,sem_limite:0,erro_absoluto_soma:0};
+ const destaques={avaliados:0,acertos:0,erros:0,sem_limite:0,erro_absoluto_soma:0};
  const jogos={total:0,vencedor_acertado:0,vencedor_errado:0,limites_atingidos:0,limites_nao_atingidos:0,mae_pontos_soma:0,mae_pontos_amostra:0};
  for(const d of dias){
   const partidas=new Map((d.results?.games||[]).map(g=>
@@ -64,6 +65,13 @@ function consolidar(dias){
    if(r.target_correct===true){m.acertos++;geral.acertos++;}
    else if(r.target_correct===false){m.erros++;geral.erros++;}
    else{m.sem_limite++;geral.sem_limite++;}
+   if(p.classificacao==="principal"){
+    destaques.avaliados++;
+    destaques.erro_absoluto_soma+=erro||0;
+    if(r.target_correct===true)destaques.acertos++;
+    else if(r.target_correct===false)destaques.erros++;
+    else destaques.sem_limite++;
+   }
    mercados[p.market]=m;
    for(const f of fatores.fatores){
     const k=f.id;
@@ -85,6 +93,7 @@ function consolidar(dias){
   schema:1,metodologia:"Avaliação por limite congelado pré-jogo; contextos associados, sem causalidade; sem odds",
   periodo_dias: dias.length,
   geral:resumo(geral),
+  destaques:resumo(destaques),
   jogos:{total:jogos.total,vencedor_acertado:jogos.vencedor_acertado,vencedor_errado:jogos.vencedor_errado,
    taxa_acerto_vencedor:jogos.vencedor_acertado+jogos.vencedor_errado?arred(jogos.vencedor_acertado/(jogos.vencedor_acertado+jogos.vencedor_errado)):null,
    limites_atingidos:jogos.limites_atingidos,limites_nao_atingidos:jogos.limites_nao_atingidos,
