@@ -1,0 +1,777 @@
+{
+  "schema": 2,
+  "date": "2026-11-12",
+  "updated_at": "2026-11-12T15:10:05.952Z",
+  "source": "ESPN",
+  "games": [
+    {
+      "start_utc": "2026-11-13T00:00:00Z",
+      "home": "PHI",
+      "away": "TOR",
+      "context": {
+        "home_absences": [
+          "Adem Bona",
+          "Dominick Barlow",
+          "Ariel Hukporti"
+        ],
+        "away_absences": [
+          "Scottie Barnes",
+          "Kawhi Leonard",
+          "Trayce Jackson-Davis",
+          "Nate Bittle"
+        ],
+        "home_key_rotation_absences": [],
+        "away_key_rotation_absences": [
+          "Scottie Barnes",
+          "Kawhi Leonard"
+        ],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 113.251,
+        "away_points": 109.607,
+        "total_points": 222.858,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 113
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 109
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 222
+          }
+        },
+        "home_margin": 3.645,
+        "home_win_probability": 0.619,
+        "away_win_probability": 0.381,
+        "favorite": "PHI",
+        "pace": 102.485,
+        "home_injury_impact": 0.74,
+        "away_injury_impact": 2.148,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      },
+      "status": "pre",
+      "home_score": 0,
+      "away_score": 0,
+      "comparison": null,
+      "espn_event_id": "401909976"
+    },
+    {
+      "start_utc": "2026-11-13T00:00:00Z",
+      "home": "WAS",
+      "away": "DET",
+      "context": {
+        "home_absences": [
+          "Justin Champagnie",
+          "Tristan Vukcevic",
+          "Reece Beekman",
+          "Jamir Watkins"
+        ],
+        "away_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "home_key_rotation_absences": [],
+        "away_key_rotation_absences": [],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 107.406,
+        "away_points": 112.009,
+        "total_points": 219.415,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 107
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 112
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 219
+          }
+        },
+        "home_margin": -4.604,
+        "home_win_probability": 0.351,
+        "away_win_probability": 0.649,
+        "favorite": "DET",
+        "pace": 101.565,
+        "home_injury_impact": 0.04,
+        "away_injury_impact": 0.18,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      },
+      "status": "pre",
+      "home_score": 0,
+      "away_score": 0,
+      "comparison": null,
+      "espn_event_id": "401909977"
+    },
+    {
+      "start_utc": "2026-11-13T01:00:00Z",
+      "home": "MIN",
+      "away": "DAL",
+      "context": {
+        "home_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "away_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "home_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "away_key_rotation_absences": [],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 114.289,
+        "away_points": 109.926,
+        "total_points": 224.214,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 114
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 109
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 224
+          }
+        },
+        "home_margin": 4.363,
+        "home_win_probability": 0.642,
+        "away_win_probability": 0.358,
+        "favorite": "MIN",
+        "pace": 102.475,
+        "home_injury_impact": 1.156,
+        "away_injury_impact": 0,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      },
+      "status": "pre",
+      "home_score": 0,
+      "away_score": 0,
+      "comparison": null,
+      "espn_event_id": "401909978"
+    },
+    {
+      "start_utc": "2026-11-13T02:00:00Z",
+      "home": "PHX",
+      "away": "CHA",
+      "context": {
+        "home_absences": [
+          "Mark Williams"
+        ],
+        "away_absences": [
+          "Brandon Miller",
+          "Dennis Schroder",
+          "Kon Knueppel",
+          "Grant Williams"
+        ],
+        "home_key_rotation_absences": [],
+        "away_key_rotation_absences": [
+          "Brandon Miller",
+          "Dennis Schroder"
+        ],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 113.734,
+        "away_points": 106.102,
+        "total_points": 219.837,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 113
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 106
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 219
+          }
+        },
+        "home_margin": 7.632,
+        "home_win_probability": 0.738,
+        "away_win_probability": 0.262,
+        "favorite": "PHX",
+        "pace": 100.07,
+        "home_injury_impact": 0,
+        "away_injury_impact": 1.757,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      },
+      "status": "pre",
+      "home_score": 0,
+      "away_score": 0,
+      "comparison": null,
+      "espn_event_id": "401909979"
+    }
+  ],
+  "results": [
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|tyrese maxey|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|jaylen brown|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|rj barrett|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|vj edgecombe|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|jakobe walter|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|jamal shead|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|anfernee simons|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|collin murrayboyles|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|immanuel quickley|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|jamison battle|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|dean wade|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|TOR|jakob poeltl|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|lebron james|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|joel embiid|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|PHI|jabari walker|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|trae young|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|kyshawn george|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|cade cunningham|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|alex sarr|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|duncan robinson|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|bilal coulibaly|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|anthony davis|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|paul reed|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|daniss jenkins|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|tre johnson|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.951Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|john collins|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|ausar thompson|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|kevin huerter|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|deandre ayton|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|aj dybantsa|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|DET|ronald holland|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T00:00:00Z|WAS|bub carrington|tres",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|jaden mcdaniels|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|ayo dosunmu|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|lamelo ball|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|pj washington|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|zaccharie risacher|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|jonathan kuminga|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|cooper flagg|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|joan beringer|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|rudy gobert|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|daniel gafford|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|kyrie irving|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|trey lyles|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|terrence shannon|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|walter clayton|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|naji marshall|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|MIN|bones hyland|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|max christie|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|marcus sasser|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T01:00:00Z|DAL|morez johnson|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|naz reid|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|grayson allen|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|miles bridges|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|dillon brooks|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|khaman maluach|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|devin booker|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|ryan kalkbrenner|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|jalen green|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|sion james|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|royce oneale|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|collin gillespie|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|luke kennard|pts",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|oso ighodaro|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|ryan dunn|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|tidjane salaun|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|PHX|jordan goodwin|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|moussa diabate|reb",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    },
+    {
+      "id": "2026-11-13T02:00:00Z|CHA|christian anderson|ast",
+      "status": "jogo_nao_finalizado",
+      "actual": null,
+      "absolute_error": null,
+      "signed_error": null,
+      "updated_at": "2026-11-12T15:10:05.952Z"
+    }
+  ]
+}
