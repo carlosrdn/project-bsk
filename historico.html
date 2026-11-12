@@ -20,6 +20,11 @@
 .history-filters label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--mute)}
 .history-filters select,.history-filters input{padding:9px;min-height:38px;min-width:155px;color:var(--ink);border:1px solid #34465a;border-radius:7px;background:#142233}
 .history-list{display:grid;gap:12px}
+.history-games{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px;margin:12px 0}
+.history-game{background:#142134;border:1px solid #334259;border-radius:9px;padding:12px}
+.history-game b{display:block;font-size:14px}
+.history-game span{font-size:11px;color:var(--mute)}
+.history-game strong{font-size:17px}
 .history-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
 .history-top{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap}
 .history-top strong{font-size:16px}.history-top small{color:var(--mute)}
@@ -64,6 +69,10 @@
 <option value="principal">Pré-seleções do radar</option><option value="observacao">Em observação</option></select></label>
 <label>Jogador<input type="search" id="jogador" placeholder="Buscar por nome"></label></div>
 <p class="history-note" id="status">Lendo registros históricos...</p></section>
+<section class="history-panel"><h2 style="font-size:18px;margin:0">Partidas arquivadas</h2>
+<p class="history-note">Todos os jogos com snapshot pré-jogo, incluindo aqueles sem sinais selecionados.</p>
+<div class="history-games" id="jogos-arquivados"></div></section>
+<h2 style="font-size:18px;margin:22px 0 12px">Sinais e projeções</h2>
 <div class="history-list" id="cards" aria-live="polite"></div>
 </main>
 <script>
@@ -71,7 +80,7 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const numero=x=>x==null?"—":Number(x).toLocaleString("pt-BR",{maximumFractionDigits:2});
 const rotulo={pts:"Pontos",reb:"Rebotes",ast:"Assistências",tres:"Bolas de três",blk:"Bloqueios",stl:"Roubos"};
-let snapshots=[],erros=[];
+let snapshots=[],partidas=[];
 function statusRotulo(st){
  return ({apurado:"Apurado",aguardando:"Aguardando",jogo_nao_finalizado:"Jogo em andamento/pendente",
  jogo_nao_localizado:"Jogo não localizado",boxscore_indisponivel:"Box score indisponível",
@@ -89,7 +98,17 @@ function render(){
   (!classe||x.classificacao===classe)&&(!busca||x.player.toLowerCase().includes(busca)));
  const concluidos=itens.filter(x=>x.result?.status==="apurado");
  const mae=mercado&&concluidos.length?concluidos.reduce((a,x)=>a+x.result.absolute_error,0)/concluidos.length:null;
- const datas=new Set(itens.map(x=>x.date));
+ const jogosFiltrados=partidas.filter(x=>!data||x.date===data);
+ $("jogos-arquivados").innerHTML=jogosFiltrados.length?jogosFiltrados.map(x=>{
+  const r=x.result;
+  const final=r?.status==="finalizado";
+  const placar=final&&r?.away_score!=null&&r?.home_score!=null?
+    r.away_score+" × "+r.home_score:"Aguardando resultado";
+  return '<article class="history-game"><b>'+esc(x.away)+' @ '+esc(x.home)+'</b>'+
+   '<strong>'+esc(placar)+'</strong><span>'+esc(x.date)+' · '+(final?"Final":"Ainda não finalizado / não apurado")+
+   ' · '+x.numSinais+' sinal(is) registrado(s)</span></article>';
+ }).join(""):'<div class="history-empty">Ainda não existem partidas arquivadas neste filtro.</div>';
+ const datas=new Set(jogosFiltrados.map(x=>x.date));
  const aprovadas=itens.filter(x=>x.bet_registered===true).length;
 
  $("resumo").innerHTML='<div class="history-metric"><b>'+datas.size+'</b><span>Rodadas com sinais</span></div>'+
@@ -136,17 +155,24 @@ async function carregar(){
    try{
     const [snap,result]=await Promise.all([json(d.snapshot),d.results?json(d.results):Promise.resolve(null)]);
     const porId=new Map((result?.results||[]).map(r=>[r.id,r]));
-    return (snap.recommendations||[]).map(x=>({...x,date:snap.date,
+    const jogos=(snap.games||[]).map(g=>{
+      const result=(result?.games||[]).find(r=>r.start_utc===g.start_utc&&r.home===g.home&&r.away===g.away);
+      const numSinais=(snap.recommendations||[]).filter(p=>p.jogo_utc===g.start_utc).length;
+      return {...g,date:snap.date,result,numSinais};
+    });
+    const sinais=(snap.recommendations||[]).map(x=>({...x,date:snap.date,
        captured_at:snap.captured_at,model_hash:snap.model_hash,result:porId.get(x.id)||null}));
-   }catch(e){console.warn("Rodada indisponível:",d.date,e);return [];}
+    return {jogos,sinais};
+   }catch(e){console.warn("Rodada indisponível:",d.date,e);return {jogos:[],sinais:[]};}
   }));
-  snapshots=dados.flat().sort((a,b)=>b.date.localeCompare(a.date)||a.classificacao.localeCompare(b.classificacao));
+  snapshots=dados.flatMap(d=>d.sinais).sort((a,b)=>b.date.localeCompare(a.date)||a.classificacao.localeCompare(b.classificacao));
+  partidas=dados.flatMap(d=>d.jogos).sort((a,b)=>b.date.localeCompare(a.date));
   render();
   const vazias=dias.filter(d=>d.recommendations===0).length;
-  $("status").textContent=dias.length+" rodada(s) arquivada(s), "+snapshots.length+
+  $("status").textContent=dias.length+" rodada(s) arquivada(s), "+partidas.length+" partida(s), "+snapshots.length+
     " sinal(is), "+vazias+" rodada(s) sem sinais selecionados. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
  }catch(e){
-  snapshots=[];render();
+  snapshots=[];partidas=[];render();
   $("status").textContent="Ainda não há dados históricos publicados ou ocorreu um erro ao carregar: "+e.message+
     ". A página só exibe rodadas realmente capturadas antes dos jogos.";
  }
