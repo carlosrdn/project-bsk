@@ -326,3 +326,12 @@ table.pl tbody tr:hover{background:#ffffff05}
 .market-inputs{grid-template-columns:repeat(3,minmax(0,1fr))}
 .market-inputs select{display:block;width:100%;min-width:0;min-height:38px;margin:5px 0 0;font-size:13px;padding:8px 7px;background:#111820;border:1px solid #3c4a57;border-radius:6px;color:var(--ink)}
 @media(max-width:650px){.market-inputs{grid-template-columns:repeat(2,minmax(0,1fr))}.market-inputs label:last-child{grid-column:1/-1}}
+
+
+/* Escalação ESPN: situação de titulares vs jogadores com minutos */
+.feed-roster{border:1px solid #354451;border-radius:7px;margin:8px 0 13px;padding:10px;background:#18232e}
+.feed-roster>.central-info{margin:0 0 7px;line-height:1.55}
+.feed-roster details{margin-top:8px}
+.feed-roster summary{font-size:12px;font-weight:650;color:#d5e1eb;cursor:pointer}
+.feed-roster .central-row{grid-template-columns:minmax(0,1fr);padding:8px 2px}
+.feed-roster .central-player small{color:#a9bbcc}
