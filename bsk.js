@@ -58,6 +58,7 @@ const ROTULO = {pts: "pontos", reb: "rebotes", ast: "assistências", tres: "bola
 const NIVEL_TXT = {forte: "mais fortes", media: "do mesmo nível", fraca: "mais fracos"};
 const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
 const LINHAS = {};
+const ODDS = {};
 const STATUS_MANUAIS = ["Não verificado","Titular confirmado","Disponível confirmado","Provável","Questionável","Improvável","Fora"];
 const STATUS_KEY = "bsk-escalações-v1";
 let STATUS_SALVOS = {};
@@ -323,26 +324,44 @@ function motivo(x){
   return partes.join(" · ");
 }
 
-function avaliarLinhaReal(projecao, desvio, linha, riscos, jogos) {
-  // Classificação estatística exploratória; NÃO é probabilidade de acerto nem EV.
-  if (!Number.isFinite(linha) || linha < 0) {
-    return {status:"negative", texto:"Digite uma linha válida (zero ou maior)."};
-  }
-  const diferenca = projecao - linha;
-  // Regra única para todas as páginas: projeção acima da linha => Over;
-  // abaixo => Under. Linha igual à projeção => nenhuma direção confiável.
-  const lado = diferenca > 0 ? "Over" : diferenca < 0 ? "Under" : "Sem direção";
-  const distancia = Math.abs(diferenca);
-  if(distancia<0.000001)return {status:"negative",texto:"Projeção igual à linha informada; sem direção estatística."};
-  const padronizada = distancia / Math.max(desvio, 0.75);
-  if (riscos.length || jogos < 12) {
-    return {status:"negative", texto:lado+" "+f1(linha)+" · diferença de "+f1(distancia)+". Em observação: "+(riscos.join("; ") || "amostra curta")+". Não selecionar sem revisão."};
-  }
-  if (padronizada < 0.5) {
-    return {status:"negative", texto:"Sem diferença estatística suficiente para a linha "+f1(linha)+" (distância "+f1(distancia)+"). Melhor passar."};
-  }
-  return {status:"positive", texto:lado+" "+f1(linha)+" · distância "+f1(distancia)+" ("+f1(padronizada)+" desvios estimados). Candidato à revisão de odds, lesões e minutos — não é uma aposta garantida."};
+function avaliarLinhaReal(projecao,desvio,linha,riscos,jogos,odd){
+ const resultado=analiseMercado(projecao,desvio,linha,odd,jogos,riscos);
+ return {status:resultado.apta?"positive":"negative",texto:resultado.descricao};
 }
+function chaveMercado(t,p,chave,partida){return t.sigla+"|"+p.nome+"|"+chave+"|"+partida;}
+function sugestaoCondicional(projecao,sd,media,jogos,riscos){
+ const linha=Math.floor(Math.max(0,media))+0.5;
+ const analise=analiseMercado(projecao,sd,linha,NaN,jogos,riscos);
+ if(jogos<12||riscos.length||!Number.isFinite(analise.prob)||analise.prob<0.60)
+   return {texto:"Sem seleção preliminar · sinal ou histórico insuficiente",linha};
+ const preco=1.05/analise.prob;
+ return {texto:"Investigar "+analise.lado+" "+f1(linha)+" · odd mínima teórica "+f1(preco)+
+    " · chance aproximada "+pct(analise.prob),linha};
+}
+function camposMercado(id,projecao,sd,jogos,riscos){
+ const uid="merc-"+id.replace(/[^a-zA-Z0-9]/g,"-");
+ return '<div class="market-compare" data-market-id="'+esc(id)+'" data-market-proj="'+projecao+
+  '" data-market-sd="'+sd+'" data-market-games="'+jogos+'" data-market-risks="'+esc(JSON.stringify(riscos))+'">'+
+  '<div class="market-inputs"><label for="'+esc(uid)+'">Linha real da casa<input id="'+esc(uid)+
+  '" data-market-line type="number" min="0" step="0.5" placeholder="Ex.: 6.5" value="'+esc(LINHAS[id]??"")+'"></label>'+
+  '<label>Odd decimal<input data-market-odd type="number" min="1.01" step="0.01" placeholder="Ex.: 1.90" value="'+esc(ODDS[id]??"")+'"></label></div>'+
+  '<span class="market-result res" role="status" aria-live="polite">Informe linha e odd para avaliar.</span></div>';
+}
+function atualizarMercado(el){
+ const pai=el.closest("[data-market-id]");if(!pai)return;
+ const id=pai.dataset.marketId;
+ const linha=pai.querySelector("[data-market-line]")?.value||"";
+ const odd=pai.querySelector("[data-market-odd]")?.value||"";
+ LINHAS[id]=linha;ODDS[id]=odd;
+ const res=pai.querySelector(".market-result");
+ if(!linha){res.textContent="Informe a linha real da casa.";res.dataset.status="negative";return;}
+ let riscos=[];try{riscos=JSON.parse(pai.dataset.marketRisks||"[]")}catch(e){riscos=["Alertas não disponíveis"];}
+ const analise=analiseMercado(Number(pai.dataset.marketProj),Number(pai.dataset.marketSd),
+  Number(linha),odd?Number(odd):NaN,Number(pai.dataset.marketGames),riscos);
+ res.textContent=analise.descricao;
+ res.dataset.status=analise.apta?"positive":"negative";
+}
+function atualizarLinha(el){atualizarMercado(el);}
 function pickHtml(x,prefixo){
   const id=x.t.sigla+"|"+x.p.nome+"|"+x.chave+"|"+x.r.j.horario_utc;
   const uid=prefixo+"-"+id.replace(/[^a-zA-Z0-9]/g,"-");
