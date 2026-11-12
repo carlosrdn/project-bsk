@@ -1,0 +1,50 @@
+name: Atualizar dados.js pela ESPN
+
+on:
+  push:
+    branches: [melhorias-modelo-nba]
+    paths: [atualizar_dados_espn.py, gerar_dados.py, .github/workflows/dados-espn.yml]
+  workflow_dispatch:
+  schedule:
+    # 12h17, 16h17, 19h17 e 21h17 em Brasília.
+    - cron: "17 0,15,19,22 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dados-espn-melhorias-modelo-nba
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: melhorias-modelo-nba
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache/restore@v4
+        with:
+          path: .cache/espn-box-v1
+          key: espn-box-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: espn-box-v1-
+      - name: Gerar e validar arquivos da rodada
+        run: python atualizar_dados_espn.py
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .cache/espn-box-v1
+          key: espn-box-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Publicar na branch de testes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados.js jogos.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Atualizar dados NBA pela ESPN"
+          git pull --rebase origin melhorias-modelo-nba
+          git push origin HEAD:melhorias-modelo-nba
