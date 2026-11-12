@@ -136,26 +136,28 @@ function bumpsTime(t){
   return {pts: Math.min(pts, 3), ast: Math.min(ast, 1.5)};
 }
 
-function projetar(chave, d, t, o, r, ehCasa, bump){
-  const wRec = 0; // backtest inicial: média da temporada teve menor MAE nas quatro categorias; peso recente 0 permanece provisório.
-  const base = d.media * (1 - wRec) + d.ultimos5 * wRec;
-  const projTime = ehCasa ? r.sc : r.sv;
-  const fPts = clamp(projTime / (t.ataque * t.ritmo / 100), 0.85, 1.15);
-  const fRit = clamp(((t.ritmo + o.ritmo) / 2) / t.ritmo, 0.9, 1.1);
-  const fator = chave === "pts" ? fPts : chave === "reb" ? fRit : Math.pow(fPts, 0.5);
-  const favorito = ehCasa ? r.margem > 0 : r.margem < 0;
-  const fMin = favorito ? 1 - clamp((Math.abs(r.margem) - 10) / 10, 0, 1) * 0.08 : 1;  // jogo decidido: menos minutos
-  const modelo = base * fator * fMin + bump;
-  const nv = d.por_nivel ? d.por_nivel[o.nivel] : null;
-  const temNv = nv && nv.media != null;
-  const wN = temNv ? Math.min(0.4, nv.jogos / (nv.jogos + 6)) : 0;
-  const proj = temNv ? modelo * (1 - wN) + (nv.media * fMin + bump) * wN : modelo;
-  const prior = desvioPrior(chave, base);
-  const sd = d.desvio == null ? prior : (d.jogos * d.desvio + 6 * prior) / (d.jogos + 6);
-  const ref = Math.floor(0.7 * d.media + 0.3 * d.ultimos5 + 1e-9) + 0.5;  // linha sintética de referência; NÃO representa cotação de bookmaker
-  return {proj, sd: Math.max(sd, 0.5), ref, nv: temNv ? nv : null, bump, fMin, favorito};
+function projetar(chave,d,t,o,r,ehCasa,bump){
+  // Base histórica validável em walk-forward. Ajustes contextuais conservadores,
+  // mas NÃO certificados pelo backtest de médias.
+  const base=Number(d.media)||0;
+  const ptsTime=ehCasa?r.sc:r.sv;
+  const ptsBase=t.ataque*t.ritmo/100;
+  const relPts=ptsBase>0?ptsTime/ptsBase:1;
+  const ritmo=t.ritmo>0?((t.ritmo+o.ritmo)/2)/t.ritmo:1;
+  const fator=chave==="pts"?clamp(relPts,0.96,1.04):
+    chave==="reb"?clamp(ritmo,0.97,1.03):clamp(Math.sqrt(Math.max(relPts,0)),0.97,1.03);
+  const favorito=ehCasa?r.margem>0:r.margem<0;
+  const fMin=favorito?1-clamp((Math.abs(r.margem)-12)/12,0,1)*0.03:1;
+  // Não somar bump de lesões: já pode constar nas médias e gerar dupla contagem.
+  // Evitar o "por_nivel" retrospectivo: usa níveis atuais em partidas históricas.
+  const proj=Math.max(0,base*fator*fMin);
+  const prior=desvioPrior(chave,base);
+  const desvio=Number.isFinite(d.desvio)?d.desvio:prior;
+  const sd=(d.jogos*desvio+6*prior)/(d.jogos+6);
+  const ult5=Number.isFinite(d.ultimos5)?d.ultimos5:base;
+  const ref=Math.floor(Math.max(0,0.7*base+0.3*ult5)+1e-9)+0.5;
+  return {proj,sd:Math.max(sd,0.5),ref,nv:null,bump:0,fMin,favorito,ajusteContexto:proj-base};
 }
-
 function elegibilidade(q){
   const alertas=[];
   const situacao=statusEfetivo(q.t,q.p);
@@ -172,11 +174,11 @@ function elegibilidade(q){
 }
 function pontuar(q){
   const risco=elegibilidade(q);
-  const amostra=Math.min(1,q.d.jogos/15);
-  // Escore de PRIORIZAÇÃO, não probabilidade de acerto. Sem linhas reais e calibração não há "certeza".
-  const sinal=Math.abs(q.proj-q.ref)/Math.max(q.sd,0.75);
-  const penalidade=risco.length*0.22;
-  return {risco,score:sinal*amostra-penalidade,apta:risco.length===0 && q.d.jogos>=12 && sinal>=0.35};
+  // Score de qualidade histórica, não diferença para linha inventada.
+  const variacao=q.sd/Math.max(q.d.media,1);
+  const score=Math.min(1,q.d.jogos/18)/(1+variacao)-Math.min(0.8,risco.length*0.17);
+  const limite=q.chave==="tres"?0.95:0.75;
+  return {risco,score,apta:risco.length===0&&q.d.jogos>=12&&variacao<=limite};
 }
 function opcoesDoJogo(r){
   const todas=[];
@@ -201,7 +203,7 @@ function opcoesDoJogo(r){
     const key=q.t.sigla+"|"+q.p.nome;
     if(!melhor[key] || q.score>melhor[key].score) melhor[key]=q;
   });
-  return Object.values(melhor).filter(q=>Math.abs(q.forca)>=0.2).sort((a,b)=>b.score-a.score);
+  return Object.values(melhor).sort((a,b)=>b.score-a.score);
 }
 
 function motivo(x){
@@ -239,7 +241,7 @@ function avaliarLinhaReal(projecao, desvio, linha, riscos, jogos) {
 function pickHtml(x,prefixo){
   const id=x.t.sigla+"|"+x.p.nome+"|"+x.chave+"|"+x.r.j.horario_utc;
   const uid=prefixo+"-"+id.replace(/[^a-zA-Z0-9]/g,"-");
-  const status=x.apta?"Passou na triagem inicial":"Em observação";
+  const status=x.apta?"Histórico consistente · conferir linha real":"Em observação";
   const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos críticos; confira escalação, minutos e odds.";
   const pendente=statusEfetivo(x.t,x.p)==="Sem confirmação de titularidade";
   return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir '+(x.dir==="Over"?"ov":"un")+'">'+x.dir+' estimado</span></div>'+
@@ -422,7 +424,7 @@ function destaques(lista){
   const aptas=todas.filter(x=>x.apta && x.score>0).slice(0,6);
   const observacao=todas.filter(x=>!x.apta && x.score>0).slice(0,5);
   const cab='<div class="spotlight-head"><div><p class="eyebrow">Seleção criteriosa</p><h2>Radar · Melhores do dia</h2></div><p>'+aptas.length+' pré-seleções · '+observacao.length+' em observação</p></div>';
-  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. A posição no radar é um escore heurístico de prioridade, NÃO uma probabilidade calibrada. As linhas exibidas são estimadas, não linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
+  const aviso='<div class="notice"><strong>Importante:</strong> nenhuma seleção é garantida. O escore prioriza amostras maiores e mais estáveis, não vantagens em linhas fictícias. As linhas exibidas são estimadas, não linhas reais de casas de apostas. Informe a linha real para uma avaliação preliminar; para qualquer decisão, verifique também odds, disponibilidade e minutos previstos. O backtest atual mede erro da projeção simplificada, não taxa de acerto nem ROI deste ranking.</div>';
   const principais=aptas.length?'<div class="picks-grid">'+aptas.map(x=>pickHtml(x,"g")).join("")+'</div>':'<div class="empty">Nenhuma pré-seleção passou por todos os filtros de risco e amostra nesta coleta. Confira os candidatos em observação abaixo; isso não significa que os jogos estejam sem oportunidades.</div>';
   const listaMotivos=[...new Set(todas.flatMap(x=>x.risco))].slice(0,5);
   const motivos=aptas.length?"":'<p class="note" style="margin:10px 0 17px"><strong>Principais impedimentos identificados:</strong> '+(listaMotivos.length?listaMotivos.map(esc).join(" · "):"Amostra curta ou sinal insuficiente em relação à referência sintética")+'</p>';
