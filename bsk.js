@@ -54,7 +54,7 @@ function tag(s){
 function dataCurta(iso){ return iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) : "-"; }
 
 const PAGINA = document.body.dataset.page || "jogos";
-const ROTULO = {pts: "pontos", reb: "rebotes", ast: "assistências", tres: "bolas de 3"};
+const ROTULO = {pts: "pontos", reb: "rebotes", ast: "assistências", tres: "bolas de 3", blk:"bloqueios", stl:"roubos"};
 const NIVEL_TXT = {forte: "mais fortes", media: "do mesmo nível", fraca: "mais fracos"};
 const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
 const LINHAS = {};
@@ -375,7 +375,7 @@ function cardsCategoria(r,chave,filtroTime){
     return '<article class="category-card'+(fora?' inactive':'')+'"><div class="category-card-head"><div><strong>'+esc(p.nome)+'</strong><small>'+esc(t.sigla)+' · '+f1(p.minutos||0)+' min/jogo</small></div><div class="category-projection"><strong class="category-average">'+f1(estimativa.valor)+'</strong><span>Projeção BSK</span></div></div>'+
       '<div class="category-meta"><span>Média temporada: '+f1(d.media)+'</span><span>'+d.jogos+' jogos</span>'+(d.ultimos5!=null?'<span>Últimos 5: '+f1(d.ultimos5)+'</span>':'<span>Últimos 5: indisponível</span>')+'</div>'+
       '<p class="category-reference">Linha indicativa: <strong>'+f1(referencia)+'</strong> <small>(sintética, não é cotação)</small></p>'+
-      '<p class="category-status">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+ 
+      '<p class="category-status" data-live-status-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'">'+esc(fora?"Fora da análise · "+status:pendente?"Titularidade não confirmada":status)+'</p>'+ 
       '<div class="live-stat" data-live-player="'+esc(p.nome)+'" data-live-team="'+esc(t.sigla)+'" data-live-stat="'+esc(chave)+'">Aguardando ESPN...</div>'+
       '<p class="category-note">'+esc(estimativa.metodo)+(estimativa.provisorio?' · Sem validação específica desta categoria.':'')+'</p>'+
       '</article>';
@@ -453,6 +453,7 @@ function renderJogos(){
     esc(r.j.visitante.sigla) + ' @ ' + esc(r.j.casa.sigla) + '</span><small>' + hora(r.j.horario_utc) + '</small></button>').join("");
   $("painel").innerHTML = painelJogo(LISTA[estado.jogo], estado.jogo);
   document.querySelectorAll("input[data-k]").forEach(el => { if (el.value) atualizarLinha(el); });
+  if(liveCache.stamp)atualizarAoVivo();
 }
 
 function render(){
@@ -652,6 +653,11 @@ async function atualizarAoVivo(force=false){
       }
     }
     if(PAGINA==="escalacoes"&&$("central"))$("central").innerHTML=centralEscalacoes(LISTA);
+    document.querySelectorAll("[data-live-status-player]").forEach(el=>{
+      const team=referencias.get(el.dataset.liveTeam);
+      const p=(team?.jogadores||[]).find(x=>mesmoJogadorESPN(x.nome,el.dataset.liveStatusPlayer));
+      if(team&&p)el.textContent=statusEfetivo(team,p);
+    });
     if(PAGINA==="melhores"&&novas){
       // Preserva linhas preenchidas pelo usuário em LINHAS.
       $("dest").innerHTML=destaques(LISTA);
