@@ -64,6 +64,10 @@ def shooting(value):
 
 def player_row(athlete, columns):
     cells = dict(zip(columns, athlete["stats"], strict=True))
+    if cells["MIN"] in ("", "--", "—"):
+        if all(value in ("", "--", "—", "0", "0-0") for value in cells.values()):
+            return None
+        raise ValueError("Atleta com estatísticas, mas sem minutagem")
     minutes, _, seconds = cells["MIN"].partition(":")
     player = athlete["athlete"]
     fg, fga = shooting(cells["FG"])
@@ -96,7 +100,8 @@ def boxscore(event):
                 if athlete.get("didNotPlay") or not athlete.get("stats"):
                     continue
                 row = player_row(athlete, group.get("names") or group["labels"])
-                roster[row["PLAYER_ID"]] = row
+                if row is not None:
+                    roster[row["PLAYER_ID"]] = row
     result = []
     for entry in (home, away):
         team = teams[code(entry["team"])]
