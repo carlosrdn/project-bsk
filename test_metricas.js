@@ -25,6 +25,15 @@ assert.equal(metrics.geral.taxa_acerto,0.5);
 assert.equal(metrics.mercados.pts.erro_absoluto_medio,2);
 assert.equal(metrics.contextos.placar_elastico.total,1);
 assert.equal(metrics.contextos.minutos_abaixo.total,1);
+const jogoComPrevisao={...jogo,prediction:{home_points:112,away_points:105,favorite:"UTA"}};
+const metricasJogo=consolidar([{snapshot:{games:[jogoComPrevisao],recommendations:[]},
+ results:{games:[{...jogo,status:"finalizado",
+ comparison:{winner_correct:true,home_points_error:-3,away_points_error:5,
+ targets_correct:{home_points:true,away_points:false,total_points:true}}}],results:[]}}]);
+assert.equal(metricasJogo.jogos.total,1);
+assert.equal(metricasJogo.jogos.vencedor_acertado,1);
+assert.equal(metricasJogo.jogos.limites_atingidos,2);
+assert.equal(metricasJogo.jogos.mae_pontos_equipes,4);
 assert(!Object.keys(metrics).some(x=>/odd|ev|roi/i.test(x)));
 assert.equal(consolidar([{snapshot:{recommendations:[pick]},results:{results:[{id:"p1",status:"nao_atuou"}]}}]).geral.total,0);
 console.log("OK: classificação, minutagem, blowout, ausências e agregação sem odds");
