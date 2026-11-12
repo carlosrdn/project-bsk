@@ -5,19 +5,21 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 const projectDir = dirname(fileURLToPath(import.meta.url))
 
-// Em desenvolvimento, disponibiliza o mesmo dados.js da raiz do projeto.
-// Em produção, o frontend compilado em /novo/ lê ../dados.js.
+// Em desenvolvimento, serve os dados da raiz usados pelo site publicado em /novo/.
 function legacyData(): Plugin {
   return {
     name: 'bsk-local-data',
     configureServer(server) {
-      server.middlewares.use('/dados.js', async (_req, res) => {
+      server.middlewares.use(async (req, res, next) => {
+        const path = req.url?.split('?')[0]
+        if (!path || (path !== '/dados.js' && !/^\/historico\/(?:(?:indice|metricas)|(?:snapshots|resultados)\/\d{4}-\d{2}-\d{2})\.json$/.test(path))) return next()
         try {
-          res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
-          res.end(await readFile(resolve(projectDir, '../dados.js'), 'utf-8'))
+          const body = await readFile(resolve(projectDir, '..' + path), 'utf-8')
+          res.setHeader('Content-Type', path.endsWith('.json') ? 'application/json; charset=utf-8' : 'application/javascript; charset=utf-8')
+          res.end(body)
         } catch {
-          res.statusCode = 503
-          res.end('dados.js indisponível')
+          res.statusCode = 404
+          res.end('Arquivo indisponível')
         }
       })
     }

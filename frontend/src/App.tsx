@@ -6,6 +6,7 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import HistoryView from './History'
 import Lineups from './Lineups'
 import { loadSnapshot, nbaToday } from './data'
 import { DEFAULT_PARAMS, predictGame } from './model'
@@ -30,15 +31,15 @@ interface MatchView {
  prediction: GamePrediction
  key: string
 }
-type View = 'overview' | 'games' | 'radar' | 'lineups'
+type View = 'overview' | 'games' | 'radar' | 'lineups' | 'history'
 const links = [
  { label: 'Visão geral', icon: LayoutDashboard, view: 'overview' as View },
  { label: 'Jogos da rodada', icon: CalendarDays, view: 'games' as View },
  { label: 'Radar', icon: TrendingUp, view: 'radar' as View },
- { label: 'Escalações', icon: Users, view: 'lineups' as View }
+ { label: 'Escalações', icon: Users, view: 'lineups' as View },
+ { label: 'Histórico', icon: History, view: 'history' as View }
 ]
 const shortcuts = [
- { label: 'Histórico', icon: History, file: 'historico.html' },
  { label: 'Backtest', icon: BarChart3, file: 'backtest.html' }
 ]
 function MiniBrand({ name }: { name: string }) {
@@ -152,9 +153,10 @@ export default function App() {
    <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Prévia em React</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
   </aside>
   <div className="main-column">
-   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span><button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button></div></header>
+   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
    <main className="content">
-    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27. Sem odds, sem cálculos financeiros.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
+    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27. Sem odds, sem cálculos financeiros.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
+    {view === 'history' ? <HistoryView legacyUrl={outside('historico.html')}/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
     {snapshot && <>
@@ -179,6 +181,7 @@ export default function App() {
       <div className="empty-state"><Search size={25}/><strong>Nenhum confronto encontrado</strong><span>Altere a busca ou remova os filtros.</span></div>}
      <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os cálculos de pontos, total, favorito e contexto são uma porta da função <code>analisar()</code> do BSK clássico, com parâmetros padrão. Esta fase não altera o motor Python, os snapshots de histórico ou os ajustes manuais do site atual. A equivalência numérica é verificada automaticamente no pipeline.</p></div></div>
      </>}
+    </>}
     </>}
     <footer className="footer"><span>© Project BSK · Protótipo React/TypeScript</span><span>Dados NBA 2026–27 · Sem odds</span></footer>
    </main>
