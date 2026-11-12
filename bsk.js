@@ -363,32 +363,22 @@ function atualizarMercado(el){
 }
 function atualizarLinha(el){atualizarMercado(el);}
 function pickHtml(x,prefixo){
-  const id=x.t.sigla+"|"+x.p.nome+"|"+x.chave+"|"+x.r.j.horario_utc;
-  const uid=prefixo+"-"+id.replace(/[^a-zA-Z0-9]/g,"-");
-  const status=x.apta?"Histórico consistente · conferir linha real":"Em observação";
-  const risco=x.risco.length?x.risco.join(" · "):"Sem alertas automáticos críticos; confira escalação, minutos e odds.";
-  const pendente=statusEfetivo(x.t,x.p)==="Sem confirmação de titularidade";
-  return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Linha real pendente</span></div>'+
-    '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
-    '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção para este jogo</span></div><div class="pick-stat"><strong>'+f1(x.d.media)+'</strong><span>Média histórica da temporada</span></div></div>'+
-    '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Média '+f1(x.d.media)+'</span><span>Últ. 5 '+f1(x.d.ultimos5)+'</span></div>'+
-    '<div class="live-stat" data-live-player="'+esc(x.p.nome)+'" data-live-team="'+esc(x.t.sigla)+'" data-live-stat="'+esc(x.chave)+'"></div>'+
-    '<div class="quality'+(x.apta?'':' warn')+'">'+esc(status)+'</div>'+
-    '<p class="reason">'+esc(risco)+(pendente?' · Titularidade ainda não confirmada.':'')+'</p>'+
-    '<div class="lin"><label for="'+esc(uid)+'">Linha real da casa</label><input id="'+esc(uid)+'" aria-label="Linha real para '+esc(x.p.nome)+'" data-k="'+esc(id)+'" data-proj="'+x.proj+'" data-sd="'+x.sd+'" data-riscos="'+esc(JSON.stringify(x.risco))+'" data-jogos="'+x.d.jogos+'" type="number" min="0" step="0.5" placeholder="Ex.: 22.5" value="'+esc(LINHAS[id]==null?"":LINHAS[id])+'"><span class="res" role="status" aria-live="polite"></span></div>'+
-    '<details><summary>Justificativa e limitações</summary><p>'+esc(motivo(x))+'</p><p>Este é um filtro exploratório, sem probabilidade calibrada ou análise de valor esperado com odds reais. Uma direção Over/Under só é avaliada depois de inserir uma linha real.</p></details></article>';
+ const id=chaveMercado(x.t,x.p,x.chave,x.r.j.horario_utc);
+ const status=x.apta?"Histórico consistente · avaliar preço":"Em observação";
+ const risco=x.risco.length?x.risco.join(" · "):"Confirme escalação, minutos e odds.";
+ const indicacao=sugestaoCondicional(x.proj,x.sd,x.d.media,x.d.jogos,x.risco);
+ return '<article class="pick'+(x.apta?' featured':'')+'"><div class="pick-top"><span class="pick-type">'+esc(ROTULO[x.chave])+'</span><span class="dir">Análise condicional</span></div>'+
+  '<h3>'+esc(x.p.nome)+'</h3><p class="match">'+esc(x.t.sigla)+' × '+esc(x.o.sigla)+' · '+hora(x.r.j.horario_utc)+'</p>'+
+  '<div class="pick-stats"><div class="pick-stat"><strong>'+f1(x.proj)+'</strong><span>Projeção neste confronto</span></div><div class="pick-stat"><strong>'+f1(x.d.media)+'</strong><span>Média da temporada</span></div></div>'+
+  '<div class="quick-facts"><span>'+x.d.jogos+' jogos</span><span>Últimos 5: '+f1(x.d.ultimos5)+'</span><span>Dispersão: '+f1(x.sd)+'</span></div>'+
+  '<p class="market-hint">'+esc(indicacao.texto)+'</p>'+
+  '<div class="live-stat" data-live-player="'+esc(x.p.nome)+'" data-live-team="'+esc(x.t.sigla)+'" data-live-stat="'+esc(x.chave)+'"></div>'+
+  '<p class="quality'+(x.apta?'':' warn')+'">'+esc(status)+'</p>'+
+  '<p class="reason">'+esc(risco)+'</p>'+
+  camposMercado(id,x.proj,x.sd,x.d.jogos,x.risco)+
+  '<details><summary>Como foi calculado</summary><p>'+esc(motivo(x))+'</p>'+
+  '<p>Média da temporada e forma recente ponderadas; ritmo e cenário do confronto. Probabilidade aproximada não calibrada. Sem cotação real ou valor esperado positivo, não existe seleção aprovada.</p></details></article>';
 }
-function atualizarLinha(el){
-  const alvo=el.parentElement.querySelector(".res");
-  if(!el.value.trim()){alvo.textContent="";alvo.removeAttribute("data-status");return;}
-  let riscos=[];
-  try{riscos=JSON.parse(el.dataset.riscos||"[]");}catch(e){riscos=["Falha ao ler alertas"];}
-  const resultado=avaliarLinhaReal(Number(el.dataset.proj),Number(el.dataset.sd),Number(el.value),riscos,Number(el.dataset.jogos));
-  alvo.textContent=resultado.texto;
-  alvo.dataset.status=resultado.status;
-}
-
-
 const NIVEL_NOME = {forte: "Forte", media: "Médio", fraca: "Fraco"};
 const estado = {jogo: 0, aba: "resumo", categoria: "pts", abertos: {}};
 let LISTA = [];
@@ -562,7 +552,7 @@ function renderJogos(){
     '<button type="button" role="tab" class="gt' + (i === estado.jogo ? " on" : "") + '" aria-selected="' + (i === estado.jogo) + '" data-jogo="' + i + '"><span>' +
     esc(r.j.visitante.sigla) + ' @ ' + esc(r.j.casa.sigla) + '</span><small>' + hora(r.j.horario_utc) + '</small></button>').join("");
   $("painel").innerHTML = painelJogo(LISTA[estado.jogo], estado.jogo);
-  document.querySelectorAll("input[data-k]").forEach(el => { if (el.value) atualizarLinha(el); });
+  document.querySelectorAll("[data-market-id]").forEach(el=>atualizarMercado(el));
   if(liveCache.stamp)atualizarAoVivo();
 }
 
@@ -633,7 +623,7 @@ document.addEventListener("change",e=>{
 
 document.addEventListener("input", e => {
   const el = e.target;
-  if (el && el.dataset && el.dataset.k) { LINHAS[el.dataset.k] = el.value; atualizarLinha(el); }
+  if (el && el.closest && el.closest("[data-market-id]")) atualizarMercado(el);
 });
 
 ["wHome", "wForm", "K", "sd", "kInj"].forEach(id => $(id).addEventListener("input", render));
@@ -773,7 +763,7 @@ async function atualizarAoVivo(force=false){
     if(PAGINA==="melhores"&&novas){
       // Preserva linhas preenchidas pelo usuário em LINHAS.
       $("dest").innerHTML=destaques(LISTA);
-      document.querySelectorAll("input[data-k]").forEach(el=>{if(el.value)atualizarLinha(el);});
+      document.querySelectorAll("[data-market-id]").forEach(el=>atualizarMercado(el));
     }
     let loaded=0,pending=0,unavailable=0;
     document.querySelectorAll("[data-live-player]").forEach(el=>{
