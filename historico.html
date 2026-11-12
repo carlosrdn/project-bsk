@@ -88,13 +88,13 @@ function render(){
  const itens=snapshots.filter(x=>(!data||x.date===data)&&(!mercado||x.market===mercado)&&
   (!classe||x.classificacao===classe)&&(!busca||x.player.toLowerCase().includes(busca)));
  const concluidos=itens.filter(x=>x.result?.status==="apurado");
- const mae=concluidos.length?concluidos.reduce((a,x)=>a+x.result.absolute_error,0)/concluidos.length:null;
+ const mae=mercado&&concluidos.length?concluidos.reduce((a,x)=>a+x.result.absolute_error,0)/concluidos.length:null;
  const datas=new Set(itens.map(x=>x.date));
  const aprovadas=itens.filter(x=>x.bet_registered===true).length;
- const met=[[""+datas.size,"Rodadas com sinais"],[""+concluidos.length,"Projeções apuradas"],numero(mae),"Apostas reais registradas"];
+
  $("resumo").innerHTML='<div class="history-metric"><b>'+datas.size+'</b><span>Rodadas com sinais</span></div>'+
   '<div class="history-metric"><b>'+concluidos.length+'</b><span>Projeções apuradas</span></div>'+
-  '<div class="history-metric"><b>'+numero(mae)+'</b><span>MAE dos sinais exibidos</span></div>'+
+  '<div class="history-metric"><b>'+numero(mae)+'</b><span>'+(mercado?"MAE · "+esc(rotulo[mercado]):"Escolha um mercado para MAE") +'</span></div>'+
   '<div class="history-metric"><b>'+aprovadas+'</b><span>Apostas com linha e odd reais</span></div>';
  if(!itens.length){
   $("cards").innerHTML='<div class="history-empty">Nenhum sinal registrado corresponde a esses filtros. Em dias sem recomendações aprovadas, o histórico pode ficar vazio.</div>';
@@ -115,6 +115,9 @@ function render(){
     '<p class="history-note">Média histórica: '+numero(x.season_mean)+
     ' · Últimos 5: '+numero(x.last5)+' · Amostra: '+numero(x.sample)+' jogos.</p>'+
     '<p class="history-note">'+esc(discrepancia)+' · '+esc(statusRotulo(r?.status))+'</p>'+
+    (r?.line_result?'<p class="history-note"><strong>Referência teórica: '+
+      esc(r.line_result==="sinal_teorico_atingido"?"atingida":"não atingida")+
+      '</strong> · Não representa resultado de aposta real.</p>':'')+
     '<details class="history-detail"><summary>Auditoria e limitações</summary>'+
     '<pre>Capturado: '+esc(x.captured_at)+'\nVersão: '+esc(x.model_hash)+
     '\nLinha exploratória: '+numero(x.exploratory_line)+
