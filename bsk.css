@@ -310,3 +310,15 @@ table.pl tbody tr:hover{background:#ffffff05}
 .replacement-player b{font-size:12px;font-weight:650;min-width:0;overflow-wrap:anywhere}
 .replacement-player small{color:var(--mute);font-size:10px;text-align:right;max-width:60%}
 @media(max-width:650px){.replacement-player{flex-direction:column;gap:2px}.replacement-player small{text-align:left;max-width:100%}}
+
+
+/* Mercado real: projeção, preço e decisão condicional */
+.market-hint{font-size:12px;line-height:1.5;color:#c7dbec;background:#20303d;border-left:2px solid #8caabe;padding:9px 11px;margin:11px 0}
+.market-compare{padding:11px 0 3px;border-top:1px solid var(--line);margin-top:11px}
+.market-inputs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.market-inputs label{font-size:11px;color:var(--mute);margin:0}
+.market-inputs input{display:block;width:100%;min-width:0;min-height:38px;margin:5px 0 0;font-size:13px;padding:8px 9px;background:#111820;border:1px solid #3c4a57;border-radius:6px;color:var(--ink)}
+.market-result{display:block;font-size:12px;line-height:1.55;margin:9px 0 0;color:#b8c7d3}
+.market-result[data-status="positive"]{color:#aed9c2}
+.market-result[data-status="negative"]{color:#c8c8c5}
+@media(max-width:370px){.market-inputs{grid-template-columns:1fr}}
