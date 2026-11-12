@@ -113,10 +113,24 @@ function capturar({clock=now()}={}){
  const picks=[...selecionadas].filter(([q])=>
   ids.has(q.r.j.horario_utc+"|"+q.r.j.visitante.sigla+"|"+q.r.j.casa.sigla)
  ).map(([q,c])=>serializar(q,c,motor));
+ const arred=x=>Number.isFinite(x)?Number(x.toFixed(3)):null;
  const jogos=partidas.map(r=>({start_utc:r.j.horario_utc,
-   home:r.j.casa.sigla,away:r.j.visitante.sigla}));
+   home:r.j.casa.sigla,away:r.j.visitante.sigla,
+   prediction:{
+    home_points:arred(r.sc),away_points:arred(r.sv),
+    total_points:arred(r.sc+r.sv),
+    home_margin:arred(r.margem),
+    home_win_probability:arred(r.pc),
+    away_win_probability:arred(r.pv),
+    favorite:r.fav.sigla,
+    pace:arred((r.j.casa.ritmo+r.j.visitante.ritmo)/2),
+    home_injury_impact:arred(r.impC),
+    away_injury_impact:arred(r.impV),
+    model:"BSK analisar() · parâmetros padrão gravados antes da partida"
+   }
+ }));
  const snapshot={
-  schema:1,date:day,season:cfg.season,captured_at:clock.toISOString(),
+  schema:2,date:day,season:cfg.season,captured_at:clock.toISOString(),
   model_hash:code_hash,data_hash,
   fidelity:"Seleção automática reproduz o ranking de projeções do radar com parâmetros padrão",
   notes:["Apenas projeções pré-jogo, sem valores de cotação.",
@@ -195,8 +209,18 @@ async function apurarDia(day){
    const n=Number(v);
    return v==null||v===""||!Number.isFinite(n)?null:n;
   };
-  return {...j,status:isFinal(event)?"finalizado":event.status?.type?.state||"nao_iniciado",
-   home_score:pontos(home),away_score:pontos(away),espn_event_id:event.id||null};
+  const homeScore=pontos(home),awayScore=pontos(away),final=isFinal(event);
+  const pred=j.prediction||null;
+  const mae=final&&pred&&homeScore!==null&&awayScore!==null?{
+   home_points_error:Number((pred.home_points-homeScore).toFixed(3)),
+   away_points_error:Number((pred.away_points-awayScore).toFixed(3)),
+   total_points_error:Number((pred.total_points-homeScore-awayScore).toFixed(3)),
+   home_margin_error:Number((pred.home_margin-(homeScore-awayScore)).toFixed(3)),
+   winner_correct:homeScore===awayScore?null:
+      (pred.favorite===(homeScore>awayScore?j.home:j.away))
+  }:null;
+  return {...j,status:final?"finalizado":event.status?.type?.state||"nao_iniciado",
+   home_score:homeScore,away_score:awayScore,comparison:mae,espn_event_id:event.id||null};
  });
  const results=[];
  for(const pick of snapshot.recommendations){
