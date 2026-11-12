@@ -92,6 +92,8 @@ function serializar(q,classe,motor){
     Number(q.d.minutos_ultimos5):Number.isFinite(Number(q.p.minutos))?Number(q.p.minutos):null,
    team_absences:(q.t.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
    opponent_absences:(q.o.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
+   team_key_rotation_absences:(q.t.ausencias||[]).filter(a=>a.situacao==="Fora"&&Number(a.minutos)>=25).map(a=>a.nome),
+   opponent_key_rotation_absences:(q.o.ausencias||[]).filter(a=>a.situacao==="Fora"&&Number(a.minutos)>=25).map(a=>a.nome),
    projected_blowout_risk:Math.abs(q.r.margem)>=12,
    projected_margin:Number(q.r.margem.toFixed(2))
   },
@@ -138,6 +140,8 @@ function capturar({clock=now()}={}){
    home:r.j.casa.sigla,away:r.j.visitante.sigla,
    context:{home_absences:(r.j.casa.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
      away_absences:(r.j.visitante.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
+     home_key_rotation_absences:(r.j.casa.ausencias||[]).filter(a=>a.situacao==="Fora"&&Number(a.minutos)>=25).map(a=>a.nome),
+     away_key_rotation_absences:(r.j.visitante.ausencias||[]).filter(a=>a.situacao==="Fora"&&Number(a.minutos)>=25).map(a=>a.nome),
      injuries_verified:!!dados.lesoes_ok},
    prediction:{
     home_points:arred(r.sc),away_points:arred(r.sv),
