@@ -8,7 +8,7 @@
  *
  * SNAPSHOTS: imutáveis depois da gravação e apenas antes do início dos jogos.
  * APURAÇÃO: arquivo separado, só usa estatísticas publicadas pela ESPN.
- * Um sinal com linha sintética NÃO constitui uma aposta registrada.
+ * Guarda somente projeções anteriores às partidas e estatísticas finais.
  */
 const fs=require("node:fs");
 const path=require("node:path");
@@ -21,7 +21,7 @@ const RESULTS=path.join(ROOT,"resultados");
 const INDICE=path.join(ROOT,"indice.json");
 const MARKETS=["pts","reb","ast","tres","blk","stl"];
 const ESPN_MARKETS={pts:["PTS"],reb:["REB"],ast:["AST"],tres:["3PT","3PM","FG3M"],blk:["BLK"],stl:["STL"]};
-const cfg={version:1,season:"2026-27",policy:"snapshots pré-jogo; sinais sintéticos não são apostas"};
+const cfg={version:1,season:"2026-27",policy:"snapshots pré-jogo de projeções estatísticas"};
 const now=()=>new Date();
 function readJSON(file,fallback=null){
  try{return JSON.parse(fs.readFileSync(file,"utf8"));}catch(e){if(e.code==="ENOENT")return fallback;throw e;}
