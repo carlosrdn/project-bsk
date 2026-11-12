@@ -23,5 +23,10 @@ jobs:
           python-version: "3.12"
       - name: Verificar sintaxe
         run: python -m py_compile backtest.py test_backtest.py
-      - name: Executar testes offline
+      - name: Executar testes offline de Python
         run: python -m unittest -v test_backtest.py
+      - name: Validar JavaScript e lógica do radar
+        run: |
+          node --check bsk.js
+          node --check test_radar.js
+          node test_radar.js
