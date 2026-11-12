@@ -79,3 +79,30 @@ if (compareRadar().some(pick => pick.player === excluded.player && pick.team.sig
 data.data_jogos = '2000-01-01'
 if (compareRadar(false).some(pick => pick.eligible)) throw Error('Radar: coleta antiga ou lesões indisponíveis deveria bloquear seleção')
 console.log('OK: Radar equivalente ao BSK clássico para ' + radar.length + ' candidatos da coleta')
+
+const { buildLineup } = loadModule('lineup-model.ts')
+const lineupTeam = {
+ jogadores: [
+  { nome: 'Fora no boletim', situacao: 'Disponível', posicao: 'PG', minutos: 36 },
+  { nome: 'Armador reserva', posicao: 'G', minutos: 24 },
+  { nome: 'Pivô', posicao: 'C', minutos: 28 },
+  { nome: 'Ala', posicao: 'SF', minutos: 32 }
+ ],
+ ausencias: [{ nome: 'Fora no boletim', situacao: 'Fora', posicao: 'PG' }]
+}
+const box = [
+ { name: 'Titular da ESPN', position: 'SG', status: 'Titular confirmado', minutes: 0 },
+ { name: 'Fora no boletim', position: 'PG', minutes: 0 }
+]
+const lineup = buildLineup(lineupTeam, {}, box, [])
+if (lineup.confirmed !== 1 || lineup.lineup[1].player?.name !== 'Titular da ESPN' ||
+    lineup.lineup[4].player?.name !== 'Pivô' || lineup.lineup[0].player?.name !== 'Armador reserva' ||
+    lineup.replacements[0]?.candidates[0]?.name !== 'Armador reserva') {
+ throw Error('Escalações: quinteto, confirmação ou substituto incorreto')
+}
+const corrected = buildLineup(lineupTeam, { 'Fora no boletim': 'Titular confirmado', 'Armador reserva': 'Fora' }, box, [])
+if (corrected.confirmed !== 2 || corrected.lineup[0].player?.name !== 'Fora no boletim' ||
+    corrected.replacements.length !== 1 || corrected.replacements[0].absent.name !== 'Armador reserva') {
+ throw Error('Escalações: ajuste manual não atualizou quinteto e desfalques')
+}
+console.log('OK: Escalações priorizam confirmações, posições, desfalques e ajustes manuais')

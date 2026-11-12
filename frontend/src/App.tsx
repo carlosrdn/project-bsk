@@ -6,6 +6,7 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import Lineups from './Lineups'
 import { loadSnapshot, nbaToday } from './data'
 import { DEFAULT_PARAMS, predictGame } from './model'
 import type { DataSnapshot, Game, GamePrediction } from './types'
@@ -29,14 +30,14 @@ interface MatchView {
  prediction: GamePrediction
  key: string
 }
-type View = 'overview' | 'games' | 'radar'
+type View = 'overview' | 'games' | 'radar' | 'lineups'
 const links = [
  { label: 'Visão geral', icon: LayoutDashboard, view: 'overview' as View },
  { label: 'Jogos da rodada', icon: CalendarDays, view: 'games' as View },
- { label: 'Radar', icon: TrendingUp, view: 'radar' as View }
+ { label: 'Radar', icon: TrendingUp, view: 'radar' as View },
+ { label: 'Escalações', icon: Users, view: 'lineups' as View }
 ]
 const shortcuts = [
- { label: 'Escalações', icon: Users, file: 'escalacoes.html' },
  { label: 'Histórico', icon: History, file: 'historico.html' },
  { label: 'Backtest', icon: BarChart3, file: 'backtest.html' }
 ]
@@ -148,18 +149,18 @@ export default function App() {
     onClick={() => {setView(l.view);setSidebar(false)}}><l.icon size={18}/>{l.label}{view === l.view && <span className="nav-dot"/>}</button>)}</div>
    <div className="side-section-label tools-label">FERRAMENTAS DO SITE ATUAL</div>
    <div className="nav-stack">{shortcuts.map(l => <a className="nav-item" key={l.label} href={outside(l.file)}><l.icon size={18}/>{l.label}<ArrowUpRight size={14} className="nav-external"/></a>)}</div>
-   <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Protótipo React · leitura somente</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
+   <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Prévia em React</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
   </aside>
   <div className="main-column">
    <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span><button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button></div></header>
    <main className="content">
-    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27. Sem odds, sem cálculos financeiros.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
+    <div className="page-heading"><div><span className="eyebrow"><span className="tiny-green" /> PAINEL DE ANÁLISE · BETA</span><h1>{view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : view === 'overview' ? 'Panorama da rodada' : 'Jogos e projeções'}</h1><p>{view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27. Sem odds, sem cálculos financeiros.'}</p></div><span className="heading-icon"><Activity size={26}/></span></div>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
     {snapshot && <>
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span><span><Clock3 size={15}/> Coleta: {snapshot.atualizado_em.replace('T', ' ')}</span><span><ShieldCheck size={15}/> Fonte: dados.js existente</span></div>
-     {view === 'radar' ? <>
+     {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
       <a className="text-link" href={outside('melhores.html')}>Placar e estatísticas ao vivo no Radar clássico <ArrowUpRight size={16}/></a>
       <Radar snapshot={snapshot} current={!stale} matches={matches}/>
      </> : <>

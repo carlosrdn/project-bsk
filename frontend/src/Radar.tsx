@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react'
 import { rankRadar, radarLabels } from './radar-model'
 import type { RadarPick } from './radar-model'
 import type { DataSnapshot, Game, GamePrediction } from './types'
 
-const storageKey = 'bsk-escalações-v1'
-const number = (value: number) => value.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+import { useManualStatuses } from './lineup-status'
 
-function readStatuses(): Record<string, unknown> {
-  try {
-    const value = JSON.parse(localStorage.getItem(storageKey) || '{}')
-    return value && typeof value === 'object' && !Array.isArray(value) ? value : {}
-  } catch {
-    return {}
-  }
-}
+const number = (value: number) => value.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 
 function RadarCard({ pick }: { pick: RadarPick }) {
   const time = new Date(pick.game.horario_utc).toLocaleTimeString('pt-BR', {
@@ -40,14 +31,7 @@ export default function Radar({ snapshot, current, matches }: {
   current: boolean
   matches: { game: Game; prediction: GamePrediction }[]
 }) {
-  const [manual, setManual] = useState(readStatuses)
-  useEffect(() => {
-    const update = (event: StorageEvent) => {
-      if (event.key === storageKey || event.key === null) setManual(readStatuses())
-    }
-    window.addEventListener('storage', update)
-    return () => window.removeEventListener('storage', update)
-  }, [])
+  const { manual } = useManualStatuses()
 
   const ranked = rankRadar(matches, { date: snapshot.data_jogos, current, injuries: snapshot.lesoes_ok, manual })
   const selected = ranked.filter(pick => pick.eligible && pick.score > 0).slice(0, 6)

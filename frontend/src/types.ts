@@ -1,4 +1,5 @@
 export interface Absence {
+  posicao?: string
   nome: string
   situacao?: string
   jogos?: number
@@ -19,6 +20,7 @@ export interface PlayerStat {
 }
 
 export interface Player {
+  posicao?: string
   props?: Partial<Record<RadarStat, PlayerStat>>
   nome: string
   jogos: number
