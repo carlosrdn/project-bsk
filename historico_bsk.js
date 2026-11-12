@@ -84,6 +84,7 @@ function serializar(q,classe,motor){
   projection:Number(q.proj.toFixed(3)),season_mean:q.d.media,
   last5:q.d.ultimos5,sigma:Number(q.sd.toFixed(3)),sample:q.d.jogos,
   score:Number(q.score.toFixed(5)),warnings:[...q.risco],
+  target:{direction:"acima_de",threshold:Math.floor(q.proj)},
   summary:resumo.texto
  };
 }
@@ -119,6 +120,9 @@ function capturar({clock=now()}={}){
    prediction:{
     home_points:arred(r.sc),away_points:arred(r.sv),
     total_points:arred(r.sc+r.sv),
+    targets:{home_points:{direction:"acima_de",threshold:Math.floor(r.sc)},
+     away_points:{direction:"acima_de",threshold:Math.floor(r.sv)},
+     total_points:{direction:"acima_de",threshold:Math.floor(r.sc+r.sv)}},
     home_margin:arred(r.margem),
     home_win_probability:arred(r.pc),
     away_win_probability:arred(r.pv),
@@ -130,7 +134,7 @@ function capturar({clock=now()}={}){
    }
  }));
  const snapshot={
-  schema:2,date:day,season:cfg.season,captured_at:clock.toISOString(),
+  schema:3,date:day,season:cfg.season,captured_at:clock.toISOString(),
   model_hash:code_hash,data_hash,
   fidelity:"Seleção automática reproduz o ranking de projeções do radar com parâmetros padrão",
   notes:["Apenas projeções pré-jogo, sem valores de cotação.",
@@ -211,11 +215,15 @@ async function apurarDia(day){
   };
   const homeScore=pontos(home),awayScore=pontos(away),final=isFinal(event);
   const pred=j.prediction||null;
+  const acertou=(alvo,real)=>alvo?.direction==="acima_de"&&Number.isFinite(alvo.threshold)?real>alvo.threshold:null;
   const mae=final&&pred&&homeScore!==null&&awayScore!==null?{
    home_points_error:Number((pred.home_points-homeScore).toFixed(3)),
    away_points_error:Number((pred.away_points-awayScore).toFixed(3)),
    total_points_error:Number((pred.total_points-homeScore-awayScore).toFixed(3)),
    home_margin_error:Number((pred.home_margin-(homeScore-awayScore)).toFixed(3)),
+   targets_correct:{home_points:acertou(pred.targets?.home_points,homeScore),
+     away_points:acertou(pred.targets?.away_points,awayScore),
+     total_points:acertou(pred.targets?.total_points,homeScore+awayScore)},
    winner_correct:homeScore===awayScore?null:
       (pred.favorite===(homeScore>awayScore?j.home:j.away))
   }:null;
@@ -242,6 +250,7 @@ async function apurarDia(day){
   result.status="apurado";result.actual=real;
   result.signed_error=Number((pick.projection-real).toFixed(3));
   result.absolute_error=Number(Math.abs(pick.projection-real).toFixed(3));
+  result.target_correct=pick.target?.direction==="acima_de"&&Number.isFinite(pick.target?.threshold)?real>pick.target.threshold:null;
   results.push(result);
  }
  const prev=readJSON(path.join(RESULTS,day+".json"));
