@@ -228,8 +228,13 @@ function recriarIndice(){
    settled:(r?.results||[]).filter(x=>x.status==="apurado").length,
    snapshot:"historico/snapshots/"+n,results:r?"historico/resultados/"+n:null};
  }).sort((a,b)=>b.date.localeCompare(a.date));
- putJSON(INDICE,{schema:1,season:cfg.season,updated_at:now().toISOString(),
-  note:"Sinais do BSK são projeções, não apostas de linha real",days});
+ const anterior=readJSON(INDICE);
+ const novaBase={schema:1,season:cfg.season,
+  note:"Sinais do BSK são projeções, não apostas de linha real",days};
+ const semData=x=>JSON.stringify({schema:x?.schema,season:x?.season,note:x?.note,days:x?.days});
+ if(semData(anterior)!==semData(novaBase)){
+  putJSON(INDICE,{...novaBase,updated_at:now().toISOString()});
+ }
  return days;
 }
 async function apurar(){
