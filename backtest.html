@@ -28,9 +28,9 @@ table{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}th,td{p
 </head>
 <body><main>
 <header><div><h1>Backtesting</h1><p class="sub">Project BSK · avaliação histórica walk-forward</p></div><div class="controls"><input id="arquivo" type="file" accept=".json,application/json"><button id="exemplo" type="button">Como carregar</button></div></header>
-<section class="panel"><div id="status" class="muted">Selecione o arquivo <b>backtest_resultados.json</b> gerado pelo backtest.py.</div></section>
+<section class="panel"><div id="status" class="muted">Carregando resultados históricos da branch de testes...</div></section>
 <div id="app" class="hidden">
-<section class="panel"><h2>Resumo do teste</h2><div id="geral" class="metrics"></div></section>
+<section class="panel"><h2>Validação cronológica</h2><div id="metodo" class="notice"></div><h2>Resumo do teste</h2><div id="geral" class="metrics"></div></section>
 <section class="panel"><h2>Desempenho por estatística</h2><div id="stats" class="grid"></div></section>
 <section class="panel"><div class="controls" style="justify-content:space-between"><h2 style="margin:0">Previsões individuais</h2><div class="controls"><select id="tipo"><option value="pts">Pontos</option><option value="reb">Rebotes</option><option value="ast">Assistências</option><option value="tres">Bolas de 3</option></select><input id="busca" placeholder="Filtrar jogador" type="search"></div></div><div class="scroll" style="margin-top:12px"><table><thead><tr><th>Data</th><th>Jogador</th><th>Adversário</th><th>Jogos prévios</th><th>Projeção</th><th>Real</th><th>Erro</th></tr></thead><tbody id="linhas"></tbody></table></div><p id="contagem" class="muted"></p></section>
 <section class="panel"><h2>Como interpretar</h2><div id="limitacoes" class="notice"></div><p class="muted">MAE e RMSE menores indicam projeções mais próximas dos resultados. Viés positivo indica superestimação média; negativo, subestimação. “Dentro de 1” mede proximidade numérica, não acerto de aposta.</p></section>
@@ -46,10 +46,13 @@ function carregar(obj){
  if(!obj||!obj.estatisticas)throw Error("Estrutura do JSON não reconhecida.");
  dados=obj;$("app").classList.remove("hidden");
  $("status").textContent="Temporada "+obj.temporada+" · gerado em "+obj.gerado_em+" · "+obj.metodo;
+ const ho=obj.holdout||{};
+ $("metodo").textContent=ho.status==="holdout_temporal"?"Treino até "+ho.treino_ate+" · teste fora da amostra desde "+ho.teste_desde+". Pesos escolhidos no treino: "+Object.entries(ho.peso_escolhido||{}).map(([k,v])=>(nomes[k]||k)+": "+(v==null?"indisponível":Math.round(v*100)+"%")).join(" · ")+". Resultados abaixo são apenas do teste futuro, não do treino.":ho.status==="amostra_insuficiente"?"Amostra insuficiente para holdout temporal. Nenhuma conclusão de desempenho é permitida.":"Arquivo no formato antigo: os resultados podem incluir comparações exploratórias sem período de teste separado. Gere novo JSON com backtest.py.";
+
  const all=Object.values(obj.estatisticas).reduce((n,x)=>n+(x.previsoes||0),0);
- $("geral").innerHTML=metric(all,"Previsões avaliadas")+metric(obj.jogos_com_minutos_suficientes||0,"Jogos com minutos suficientes")+metric(obj.temporada,"Temporada")+metric("Walk-forward","Método");
- $("stats").innerHTML=Object.entries(obj.estatisticas).map(([k,v])=>'<div class="stat"><h3>'+nomes[k]+'</h3><div class="metrics">'+metric(fmt(v.mae),"MAE")+metric(fmt(v.rmse),"RMSE")+metric(fmt(v.vies),"Viés")+metric(v.dentro_1_ponto==null?"—":fmt(v.dentro_1_ponto)+"%","Dentro de 1")+'</div><div class="bar"><i style="width:'+Math.min(100,v.dentro_1_ponto||0)+'%"></i></div><small class="muted">'+v.previsoes+' previsões</small></div>').join("");
- $("limitacoes").textContent=(obj.limitacoes||[]).join(" ");
+ $("geral").innerHTML=metric(all,"Previsões avaliadas")+metric(ho.status==="holdout_temporal"?ho.datas_teste:"—","Dias no holdout")+metric(obj.temporada,"Temporada")+metric(ho.status==="holdout_temporal"?"Holdout":"Legado","Validação");
+ $("stats").innerHTML=Object.entries(obj.estatisticas).map(([k,v])=>'<div class="stat"><h3>'+nomes[k]+'</h3><div class="metrics">'+metric(fmt(v.mae),"MAE no teste")+metric(fmt(obj.holdout?.baseline_media_temporada?.[k]?.mae),"MAE da média histórica")+metric(fmt(v.rmse),"RMSE")+metric(fmt(v.vies),"Viés")+metric(v.dentro_1_ponto==null?"—":fmt(v.dentro_1_ponto)+"%","Dentro de 1")+'</div><div class="bar"><i style="width:'+Math.min(100,v.dentro_1_ponto||0)+'%"></i></div><small class="muted">'+v.previsoes+' previsões</small></div>').join("");
+ $("limitacoes").textContent=(obj.limitacoes||[]).join(" ")+" Os resultados não constituem taxa de acerto em apostas: faltam linhas e odds históricas. O ajuste completo do radar por adversário ainda NÃO foi validado.";
  renderTabela();
 }
 function renderTabela(){
@@ -61,4 +64,16 @@ function renderTabela(){
 $("arquivo").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{carregar(JSON.parse(await f.text()));}catch(err){$("status").textContent="Erro ao abrir arquivo: "+err.message;}});
 $("tipo").addEventListener("change",renderTabela);$("busca").addEventListener("input",renderTabela);
 $("exemplo").addEventListener("click",()=>$("status").textContent="Execute python backtest.py na pasta do projeto. Depois selecione aqui o arquivo backtest_resultados.json criado. O arquivo é carregado localmente no navegador.");
+
+async function carregarPublicado(){
+ try{
+   const response=await fetch("backtest_resultados.json?v="+Date.now(),{cache:"no-store"});
+   if(!response.ok)throw Error("relatório não publicado ("+response.status+")");
+   const result=await response.json();
+   carregar(result);
+ }catch(e){
+   $("status").textContent="Backtest ainda não publicado ou indisponível: "+e.message+". Execute python backtest.py e envie o backtest_resultados.json ou use o seletor acima.";
+ }
+}
+carregarPublicado();
 </script></body></html>
