@@ -75,10 +75,10 @@ assert(page.includes('statisticaESPN(group,pick.player,pick.market)'),
  "Apuração individual deve usar o boxscore do jogador correto");
 const historyUI=fs.readFileSync("historico.html","utf8");
 assert(historyUI.includes('statusLimite(alvo,acertou,final)'),"Exibir acerto de limite separado de erro");
-const uiCode=historyUI.match(/<script>([\\s\\S]*?)<\\/script>/)[1];
+const uiCode=historyUI.split("<script>")[1].split("</script>")[0];
 const uiCtx=vm.createContext({document:{getElementById:()=>({addEventListener(){}})},fetch:()=>Promise.resolve({ok:false,status:404}),
  setTimeout:()=>1,clearTimeout:()=>{},AbortController:class{},console});
-vm.runInContext(uiCode.replace(/carregar\\(\\);\\s*$/,""),uiCtx);
+vm.runInContext(uiCode.replace("carregar();",""),uiCtx);
 assert(uiCtx.statusLimite({direction:"acima_de",threshold:112},true,true).includes("ACERTOU"),
  "Se a previsão era passar de 112 e marcou 115, deve ser acerto");
 assert(uiCtx.statusLimite({direction:"acima_de",threshold:112},false,true).includes("NÃO ACERTOU"));
