@@ -45,7 +45,7 @@
 </head>
 <body><main class="history-main">
 <header class="history-head"><div><p class="eyebrow">Project BSK · transparência</p><h1>Histórico das projeções</h1>
-<p class="history-lead">O que o radar sinalizou antes dos jogos, quanto cada atleta produziu e qual foi o erro do modelo. Registros pré-jogo são congelados e não são recalculados após o resultado.</p>
+<p class="history-lead">O que o BSK projetou antes dos jogos, quanto cada atleta produziu e qual foi o erro do modelo. Registros pré-jogo são congelados e não são recalculados após o resultado.</p>
 </div><button class="btn" type="button" id="atualizar">Atualizar</button></header>
 <nav class="history-nav" aria-label="Páginas BSK">
 <a href="index.html?v=20261111-14">Jogos</a><a href="melhores.html?v=20261111-14">Melhores do dia</a>
@@ -53,26 +53,26 @@
 <a href="historico.html?v=20261111-14" aria-current="page">Histórico</a>
 <a href="backtest.html">Backtest</a></nav>
 <div class="history-panel"><strong>Como interpretar</strong>
-<p class="history-note">O histórico registra a projeção pré-jogo e, quando existir, o sinal condicional do radar. Uma linha exploratória NÃO significa que a aposta esteve disponível em uma casa de apostas. Sem linha e odd reais arquivadas antes da partida, este painel não informa taxa de acerto de apostas nem ROI. O erro de projeção é calculado apenas para atletas que jogaram.</p></div>
+<p class="history-note">O histórico registra apenas projeções feitas antes das partidas e as compara com as estatísticas finais da ESPN. O erro de projeção é calculado somente para atletas que jogaram. A avaliação mede precisão estatística, não resultados de apostas.</p></div>
 <div class="history-metrics" id="resumo">
  <div class="history-metric"><b>—</b><span>Rodadas registradas</span></div>
  <div class="history-metric"><b>—</b><span>Projeções apuradas</span></div>
  <div class="history-metric"><b>—</b><span>Erro absoluto médio</span></div>
- <div class="history-metric"><b>—</b><span>Apostas reais registradas</span></div>
+ <div class="history-metric"><b>—</b><span>Jogos arquivados</span></div>
 </div>
 <section class="history-panel"><div class="history-filters">
 <label>Rodada<select id="data"><option value="">Todas disponíveis</option></select></label>
 <label>Mercado<select id="mercado"><option value="">Todas as estatísticas</option>
 <option value="pts">Pontos</option><option value="reb">Rebotes</option><option value="ast">Assistências</option>
 <option value="tres">Bolas de 3</option><option value="blk">Bloqueios</option><option value="stl">Roubos</option></select></label>
-<label>Tipo<select id="classe"><option value="">Todos os registros</option>
-<option value="principal">Pré-seleções do radar</option><option value="observacao">Em observação</option></select></label>
+<label>Tipo<select id="classe"><option value="">Todas as projeções</option>
+<option value="principal">Projeções destacadas</option><option value="observacao">Histórico em observação</option></select></label>
 <label>Jogador<input type="search" id="jogador" placeholder="Buscar por nome"></label></div>
 <p class="history-note" id="status">Lendo registros históricos...</p></section>
 <section class="history-panel"><h2 style="font-size:18px;margin:0">Partidas arquivadas</h2>
-<p class="history-note">Todos os jogos com snapshot pré-jogo, incluindo aqueles sem sinais selecionados.</p>
+<p class="history-note">Todos os jogos com snapshot pré-jogo, incluindo aqueles sem projeções selecionados.</p>
 <div class="history-games" id="jogos-arquivados"></div></section>
-<h2 style="font-size:18px;margin:22px 0 12px">Sinais e projeções</h2>
+<h2 style="font-size:18px;margin:22px 0 12px">Projeções registradas</h2>
 <div class="history-list" id="cards" aria-live="polite"></div>
 </main>
 <script>
@@ -106,17 +106,17 @@ function render(){
     r.away_score+" × "+r.home_score:"Aguardando resultado";
   return '<article class="history-game"><b>'+esc(x.away)+' @ '+esc(x.home)+'</b>'+
    '<strong>'+esc(placar)+'</strong><span>'+esc(x.date)+' · '+(final?"Final":"Ainda não finalizado / não apurado")+
-   ' · '+x.numSinais+' sinal(is) registrado(s)</span></article>';
+   ' · '+x.numSinais+' projeção(ões) registrado(s)</span></article>';
  }).join(""):'<div class="history-empty">Ainda não existem partidas arquivadas neste filtro.</div>';
  const datas=new Set(jogosFiltrados.map(x=>x.date));
- const aprovadas=itens.filter(x=>x.bet_registered===true).length;
+
 
  $("resumo").innerHTML='<div class="history-metric"><b>'+datas.size+'</b><span>Rodadas com sinais</span></div>'+
   '<div class="history-metric"><b>'+concluidos.length+'</b><span>Projeções apuradas</span></div>'+
   '<div class="history-metric"><b>'+numero(mae)+'</b><span>'+(mercado?"MAE · "+esc(rotulo[mercado]):"Escolha um mercado para MAE") +'</span></div>'+
-  '<div class="history-metric"><b>'+aprovadas+'</b><span>Apostas com linha e odd reais</span></div>';
+  '<div class="history-metric"><b>'+jogosFiltrados.length+'</b><span>Jogos arquivados</span></div>';
  if(!itens.length){
-  $("cards").innerHTML='<div class="history-empty">Nenhum sinal registrado corresponde a esses filtros. Em dias sem recomendações aprovadas, o histórico pode ficar vazio.</div>';
+  $("cards").innerHTML='<div class="history-empty">Nenhuma projeção registrada corresponde a esses filtros. Em dias sem recomendações aprovadas, o histórico pode ficar vazio.</div>';
   return;
  }
  $("cards").innerHTML=itens.map(x=>{
@@ -127,20 +127,15 @@ function render(){
   return '<article class="history-card"><div class="history-top"><div><strong>'+esc(x.player)+'</strong>'+
     '<div><small>'+esc(x.date)+' · '+esc(x.team)+' × '+esc(x.opponent)+' · '+esc(rotulo[x.market]||x.market)+'</small></div></div>'+
     '<span class="history-tag '+(finalizado?'settled':'pending')+'">'+esc(label)+'</span></div>'+
-    '<p>'+esc(classe)+' · '+esc(x.signal||"Sem sinal condicional aprovado")+'</p>'+
+    '<p>'+esc(classe)+' · '+esc(x.summary||"Projeção pré-jogo registrada")+'</p>'+
     '<div class="history-values"><div><span>Projeção BSK</span><b>'+numero(x.projection)+'</b></div>'+
     '<div><span>Estatística real</span><b>'+numero(r?.actual)+'</b></div>'+
     '<div><span>Erro absoluto</span><b>'+numero(r?.absolute_error)+'</b></div></div>'+
     '<p class="history-note">Média histórica: '+numero(x.season_mean)+
     ' · Últimos 5: '+numero(x.last5)+' · Amostra: '+numero(x.sample)+' jogos.</p>'+
     '<p class="history-note">'+esc(discrepancia)+' · '+esc(statusRotulo(r?.status))+'</p>'+
-    (r?.line_result?'<p class="history-note"><strong>Referência teórica: '+
-      esc(r.line_result==="sinal_teorico_atingido"?"atingida":"não atingida")+
-      '</strong> · Não representa resultado de aposta real.</p>':'')+
     '<details class="history-detail"><summary>Auditoria e limitações</summary>'+
     '<pre>Capturado: '+esc(x.captured_at)+'\nVersão: '+esc(x.model_hash)+
-    '\nLinha exploratória: '+numero(x.exploratory_line)+
-    '\nAposta real registrada: '+(x.bet_registered?"Sim":"Não")+
     '\nAlertas: '+esc((x.warnings||[]).join("; ")||"Nenhum")+'</pre></details></article>';
  }).join("");
 }
@@ -170,7 +165,7 @@ async function carregar(){
   render();
   const vazias=dias.filter(d=>d.recommendations===0).length;
   $("status").textContent=dias.length+" rodada(s) arquivada(s), "+partidas.length+" partida(s), "+snapshots.length+
-    " sinal(is), "+vazias+" rodada(s) sem sinais selecionados. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
+    " projeção(ões), "+vazias+" rodada(s) sem projeções selecionados. Última atualização do índice: "+(indice.updated_at||"não informada")+".";
  }catch(e){
   snapshots=[];partidas=[];render();
   $("status").textContent="Ainda não há dados históricos publicados ou ocorreu um erro ao carregar: "+e.message+
