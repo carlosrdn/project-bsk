@@ -8,8 +8,8 @@
       "captured_at": "2026-11-12T15:10:05.685Z",
       "games": 4,
       "recommendations": 69,
-      "settled": 0,
-      "finished_games": 0,
+      "settled": 14,
+      "finished_games": 1,
       "snapshot": "historico/snapshots/2026-11-12.json",
       "results": "historico/resultados/2026-11-12.json"
     },
@@ -24,5 +24,5 @@
       "results": "historico/resultados/2026-11-11.json"
     }
   ],
-  "updated_at": "2026-11-12T15:10:06.315Z"
+  "updated_at": "2026-11-13T02:43:08.200Z"
 }

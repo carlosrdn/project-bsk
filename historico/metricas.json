@@ -3,30 +3,96 @@
   "metodologia": "Avaliação por limite congelado pré-jogo; contextos associados, sem causalidade; sem odds",
   "periodo_dias": 2,
   "geral": {
-    "total": 0,
-    "acertos": 0,
-    "erros": 0,
+    "total": 14,
+    "acertos": 8,
+    "erros": 6,
     "sem_limite": 0,
-    "taxa_acerto": null,
-    "erro_absoluto_medio": null
+    "taxa_acerto": 0.571,
+    "erro_absoluto_medio": 4.343
   },
   "destaques": {
-    "total": 0,
-    "acertos": 0,
+    "total": 1,
+    "acertos": 1,
     "erros": 0,
     "sem_limite": 0,
-    "taxa_acerto": null,
-    "erro_absoluto_medio": null
+    "taxa_acerto": 1,
+    "erro_absoluto_medio": 1.54
   },
   "jogos": {
-    "total": 0,
-    "vencedor_acertado": 0,
+    "total": 1,
+    "vencedor_acertado": 1,
     "vencedor_errado": 0,
-    "taxa_acerto_vencedor": null,
-    "limites_atingidos": 0,
+    "taxa_acerto_vencedor": 1,
+    "limites_atingidos": 3,
     "limites_nao_atingidos": 0,
-    "mae_pontos_equipes": null
+    "mae_pontos_equipes": 6.071
   },
-  "mercados": {},
-  "contextos": {}
+  "mercados": {
+    "pts": {
+      "total": 8,
+      "acertos": 6,
+      "erros": 2,
+      "sem_limite": 0,
+      "taxa_acerto": 0.75,
+      "erro_absoluto_medio": 5.223
+    },
+    "ast": {
+      "total": 1,
+      "acertos": 0,
+      "erros": 1,
+      "sem_limite": 0,
+      "taxa_acerto": 0,
+      "erro_absoluto_medio": 2.688
+    },
+    "reb": {
+      "total": 5,
+      "acertos": 2,
+      "erros": 3,
+      "sem_limite": 0,
+      "taxa_acerto": 0.4,
+      "erro_absoluto_medio": 3.267
+    }
+  },
+  "contextos": {
+    "desfalques_time": {
+      "total": 14,
+      "acertos": 8,
+      "erros": 6,
+      "sem_limite": 0,
+      "taxa_acerto": 0.571,
+      "erro_absoluto_medio": 4.343
+    },
+    "desfalques_adversario": {
+      "total": 14,
+      "acertos": 8,
+      "erros": 6,
+      "sem_limite": 0,
+      "taxa_acerto": 0.571,
+      "erro_absoluto_medio": 4.343
+    },
+    "desfalque_rotacao_adversaria": {
+      "total": 7,
+      "acertos": 5,
+      "erros": 2,
+      "sem_limite": 0,
+      "taxa_acerto": 0.714,
+      "erro_absoluto_medio": 3.154
+    },
+    "desfalque_rotacao_importante": {
+      "total": 7,
+      "acertos": 3,
+      "erros": 4,
+      "sem_limite": 0,
+      "taxa_acerto": 0.429,
+      "erro_absoluto_medio": 5.533
+    },
+    "minutos_acima": {
+      "total": 2,
+      "acertos": 1,
+      "erros": 1,
+      "sem_limite": 0,
+      "taxa_acerto": 0.5,
+      "erro_absoluto_medio": 3.257
+    }
+  }
 }
