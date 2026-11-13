@@ -11,13 +11,13 @@ on:
       - "test_metricas.js"
       - ".github/workflows/historico-bsk.yml"
   workflow_dispatch:
+  schedule:
+    - cron: "7,37 * * * *"
 
-# O GitHub só executa agendamentos na branch padrão. Enquanto a main
-# permanecer intocada, usar push ou disparo manual nesta branch.
 permissions:
   contents: write
 concurrency:
-  group: historico-bsk-${{ github.ref }}
+  group: historico-bsk-melhorias-modelo-nba
   cancel-in-progress: false
 
 jobs:
@@ -30,6 +30,7 @@ jobs:
         with:
           ref: melhorias-modelo-nba
           persist-credentials: true
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -42,6 +43,8 @@ jobs:
           node test_historico.js
           node test_metricas.js
       - name: Congelar sinais dos jogos não iniciados
+        id: capturar
+        continue-on-error: true
         run: node historico_bsk.js capturar
       - name: Apurar partidas finalizadas
         id: apurar
@@ -54,8 +57,11 @@ jobs:
           git add -A historico/
           if ! git diff --cached --quiet; then
             git commit -m "Arquivar análises BSK e resultados ESPN [skip ci]"
+            git pull --rebase origin melhorias-modelo-nba
             git push origin HEAD:melhorias-modelo-nba
           fi
-      - name: Avisar falha ESPN
-        if: steps.apurar.outcome == 'failure'
-        run: echo "::warning::A ESPN falhou. Os snapshots foram preservados; execute o workflow novamente."
+      - name: Sinalizar falha na atualização
+        if: steps.capturar.outcome == 'failure' || steps.apurar.outcome == 'failure'
+        run: |
+          echo '::error::Falha na captura ou na apuração. As etapas disponíveis foram persistidas.'
+          exit 1
