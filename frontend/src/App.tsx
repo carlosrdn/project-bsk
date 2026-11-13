@@ -165,6 +165,9 @@ export default function App() {
  const scheduleOnly = view === 'games' && (stale || (!snapshot && !loading))
  const missingInjuryData = !!snapshot && !snapshot.lesoes_ok
  const totalGames = matches.length
+ const teams = matches.flatMap(({ game }) => [game.casa, game.visitante])
+ const backToBackTeams = [...new Set(teams.filter(team => team.back_to_back === true).map(team => team.sigla))]
+ const backToBackChecked = teams.length > 0 && teams.every(team => typeof team.back_to_back === 'boolean')
  const favoriteHome = matches.filter(m => m.prediction.favorite === m.game.casa.sigla).length
  const highTotal = matches.filter(m => m.prediction.total >= 230).length
  return <div className="app-shell">
@@ -187,6 +190,7 @@ export default function App() {
     {scheduleOnly && <>
      {stale && <section className="notice caution"><CircleAlert size={19}/><div><b>Projeções da rodada pendentes</b><p>A última coleta é de {date(snapshot.data_jogos)}.</p></div></section>}
      <RoundSchedule key={today} day={today}/>
+     <p className="detail-explain">Back-to-back (B2B) · Aguardando a coleta da rodada.</p>
     </>}
     {snapshot && !scheduleOnly && <>
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
@@ -201,6 +205,11 @@ export default function App() {
       <div><dt>Totais ≥ 230</dt><dd>{highTotal}</dd></div>
       <div><dt>Dados</dt><dd>Atuais</dd></div>
      </dl>
+     <p className="detail-explain" style={{ margin: '0 0 12px' }}>
+      <strong>Back-to-back (B2B)</strong> · {backToBackTeams.length
+       ? backToBackTeams.join(', ') + (backToBackChecked ? '' : ' · verificação parcial')
+       : backToBackChecked ? 'Nenhuma equipe jogou na noite anterior.' : 'Dados de descanso indisponíveis nesta coleta.'}
+     </p>
      <div className="game-toolbar"><div className="search-box"><Search size={18}/><input aria-label="Buscar equipe" placeholder="Buscar equipe ou sigla…" value={search} onChange={e => setSearch(e.target.value)}/>{search && <button onClick={() => setSearch('')} aria-label="Limpar busca"><X size={16}/></button>}</div><label className="checkbox-filter"><input type="checkbox" checked={onlyAbsences} onChange={e => setOnlyAbsences(e.target.checked)}/> Com desfalques confirmados</label>{shown.length !== totalGames && <span className="count-label">{shown.length} de {totalGames} partidas</span>}</div>
      {!shown.length ?
       <div className="empty-state"><Search size={25}/><strong>{matches.length ? 'Nenhum confronto encontrado' : 'Nenhum confronto nesta rodada'}</strong>{matches.length > 0 && <span>Altere a busca ou remova os filtros.</span>}</div> :
