@@ -9,22 +9,25 @@ export default function RoundSchedule({ day }: { day: string }) {
     const controller = new AbortController()
     setError(false)
     setGames(null)
-    loadSchedule(day, controller.signal).then(result => {
-      if (!controller.signal.aborted) setGames(result)
+    const refresh = () => loadSchedule(day, controller.signal).then(result => {
+      if (!controller.signal.aborted) { setGames(result); setError(false) }
     }).catch(() => {
       if (!controller.signal.aborted) setError(true)
     })
-    return () => controller.abort()
+    void refresh()
+    const timer = window.setInterval(() => { void refresh() }, 30000)
+    return () => { controller.abort(); window.clearInterval(timer) }
   }, [day, revision])
 
   return <section className="stat-tile schedule-list" aria-label="Agenda da ESPN">
     <h2>Agenda da ESPN</h2>
-    {error ? <div role="alert"><p>Não foi possível confirmar a agenda da rodada.</p>
-      <button type="button" className="refresh-btn" onClick={() => setRevision(value => value + 1)}>Tentar novamente</button></div> :
-      !games ? <p role="status">Consultando agenda…</p> :
+    {error && <div role="alert"><p>Não foi possível confirmar a agenda da rodada.</p>
+      <button type="button" className="refresh-btn" onClick={() => setRevision(value => value + 1)}>Tentar novamente</button></div>}
+    {!games ? !error && <p role="status">Consultando agenda…</p> :
       !games.length ? <p>Nenhuma partida na agenda desta rodada.</p> :
       <ul>{games.map(game => <li key={game.id}>
-        <strong>{game.away} × {game.home}</strong>
+        <strong>{game.away} {['Em andamento', 'Finalizado'].includes(game.status) && game.awayScore != null && game.homeScore != null
+          ? game.awayScore + ' × ' + game.homeScore : '×'} {game.home}</strong>
         <span>{new Date(game.start).toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' })} BRT · {game.status}</span>
       </li>)}</ul>}
   </section>

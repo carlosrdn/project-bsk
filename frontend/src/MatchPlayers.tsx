@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { livePlayerKey } from './lineup-espn'
+import type { LiveMatch } from './useLiveMatch'
 import { rankRadar, radarLabels } from './radar-model'
 import { useManualStatuses } from './lineup-status'
 import type { DataSnapshot, Game, GamePrediction, PlayerStatCategory } from './types'
@@ -6,13 +8,15 @@ import type { DataSnapshot, Game, GamePrediction, PlayerStatCategory } from './t
 const categories = Object.keys(radarLabels) as PlayerStatCategory[]
 const number = (value?: number | null) => value == null ? '—' : value.toLocaleString('pt-BR', { maximumFractionDigits: 1 })
 
-export default function MatchPlayers({ match, snapshot }: {
+export default function MatchPlayers({ match, snapshot, live }: {
   match: { game: Game; prediction: GamePrediction }
   snapshot: DataSnapshot
+  live?: LiveMatch
 }) {
   const [category, setCategory] = useState<PlayerStatCategory>('pts')
   const { manual } = useManualStatuses()
   const started = Date.parse(match.game.horario_utc) <= Date.now()
+  const showActual = live?.event?.status === 'Em andamento' || live?.event?.status === 'Finalizado'
   const players = rankRadar([match], {
     date: snapshot.data_jogos, current: true, injuries: snapshot.lesoes_ok, manual
   }, category).sort((a, b) => Number(b.eligible) - Number(a.eligible) || b.score - a.score)
@@ -27,7 +31,9 @@ export default function MatchPlayers({ match, snapshot }: {
     {players.length ? <ul className="match-player-list">
       {players.slice(0, 18).map(pick => <li key={JSON.stringify([pick.team.sigla, pick.player])}>
         <div><strong>{pick.player}</strong><small>{pick.team.sigla} · {pick.sample.jogos} jogos</small></div>
-        <dl>
+        <dl className={showActual ? 'has-actual' : undefined}>
+          {showActual && <div className="match-player-actual"><dt>{live?.event?.status === 'Finalizado' ? 'Final' : 'Ao vivo'}</dt>
+            <dd>{number(live?.players?.get(livePlayerKey(pick.team.sigla, pick.player))?.[category])}</dd></div>}
           <div><dt>Projeção</dt><dd>{number(pick.projected)}</dd></div>
           <div><dt>Média</dt><dd>{number(pick.sample.media)}</dd></div>
           <div><dt>Últimos 5</dt><dd>{number(pick.sample.ultimos5)}</dd></div>

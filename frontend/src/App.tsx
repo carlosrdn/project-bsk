@@ -7,6 +7,8 @@ import {
 } from 'lucide-react'
 import Radar from './Radar'
 import MatchPlayers from './MatchPlayers'
+import LiveScore from './LiveScore'
+import { useLiveMatch } from './useLiveMatch'
 import Footer from './Footer'
 import Backtest from './Backtest'
 import RoundSchedule from './RoundSchedule'
@@ -70,16 +72,21 @@ function MatchCard({ match, selected, onClick, panelId }: {
   <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/></span></span>
  </button>
 }
+function MatchContent({ match, snapshot }: { match: MatchView; snapshot: DataSnapshot }) {
+ const { live, loading, refresh } = useLiveMatch(snapshot.data_jogos, match.game.casa.sigla, match.game.visitante.sigla)
+ return <>
+  <LiveScore live={live} loading={loading} refresh={refresh}/>
+  <Detail match={match}/>
+  <MatchPlayers match={match} snapshot={snapshot} live={live}/>
+ </>
+}
 function ExpandableMatch({ match, snapshot }: { match: MatchView; snapshot: DataSnapshot }) {
  const [expanded, setExpanded] = useState(false)
  const panelId = useId()
  return <article className="expandable-match">
   <MatchCard match={match} selected={expanded} onClick={() => setExpanded(open => !open)} panelId={panelId}/>
   <div id={panelId} className="detail-panel" hidden={!expanded}>
-   {expanded && <>
-    <Detail match={match}/>
-    <MatchPlayers match={match} snapshot={snapshot}/>
-   </>}
+   {expanded && <MatchContent match={match} snapshot={snapshot}/>}
   </div>
  </article>
 }

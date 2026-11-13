@@ -1,4 +1,5 @@
 import { participated, playerNameKey, positionCode, starter } from './lineup-model'
+import type { PlayerStatCategory } from './types'
 import type { LineupPlayer } from './lineup-model'
 
 const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/'
@@ -18,11 +19,11 @@ type Group = {
 }
 type Summary = { boxscore?: { players?: { team?: TeamRef; statistics?: Group[] }[] } }
 type Scoreboard = { events?: {
-  id?: string; date?: string; status?: { type?: { state?: string; name?: string } }
-  competitions?: { competitors?: { team?: TeamRef; homeAway?: string }[] }[]
+  id?: string; date?: string; status?: { type?: { state?: string; name?: string; shortDetail?: string } }
+  competitions?: { competitors?: { team?: TeamRef; homeAway?: string; score?: string }[] }[]
 }[] }
 
-export interface ScheduledMatch { id: string; start: string; home: string; away: string; status: string }
+export interface ScheduledMatch { id: string; start: string; home: string; away: string; status: string; state?: string; detail?: string; homeScore?: string; awayScore?: string }
 type InjuryReport = { injuries?: { team?: TeamRef; injuries?: { athlete?: Athlete; status?: string; shortComment?: string }[] }[] }
 
 async function request<T>(path: string, signal: AbortSignal): Promise<T> {
@@ -74,11 +75,48 @@ export async function loadSchedule(date: string, signal: AbortSignal): Promise<S
     const name = event.status?.type?.name
     const status = name === 'STATUS_POSTPONED' ? 'Adiado' : name === 'STATUS_CANCELED' ? 'Cancelado' :
       state === 'in' ? 'Em andamento' : state === 'post' ? 'Finalizado' : state === 'pre' ? 'Pré-jogo' : 'Status indisponível'
-    return { id: event.id, start: event.date, home, away, status }
+    return {
+      id: event.id, start: event.date, home, away, status, state, detail: event.status?.type?.shortDetail,
+      homeScore: sides.find(side => side.homeAway === 'home')?.score,
+      awayScore: sides.find(side => side.homeAway === 'away')?.score
+    }
   }).filter(game => {
     const parts = Object.fromEntries(dayFormat.formatToParts(new Date(game.start)).map(part => [part.type, part.value]))
     return [parts.year, parts.month, parts.day].join('-') === date
   }).sort((a, b) => Date.parse(a.start) - Date.parse(b.start))
+}
+
+const statColumns: Record<PlayerStatCategory, string[]> = {
+  pts: ['PTS', 'POINTS'], reb: ['REB', 'REBOUNDS'], ast: ['AST', 'ASSISTS'],
+  tres: ['3PT', '3PM', 'FG3M'], blk: ['BLK', 'BLOCKS'], stl: ['STL', 'STEALS']
+}
+
+export type LivePlayerStats = Partial<Record<PlayerStatCategory, number>>
+export const livePlayerKey = (team: string, name: string) => team + '|' + playerNameKey(name)
+
+export async function loadLiveStats(id: string, signal: AbortSignal) {
+  const summary = await request<Summary>('summary?event=' + encodeURIComponent(id), signal)
+  const players = new Map<string, LivePlayerStats>()
+  for (const team of summary.boxscore?.players ?? []) {
+    const code = teamCode(team.team?.abbreviation)
+    for (const group of team.statistics ?? []) {
+      const labels = (group.names || group.labels || []).map(label => label.toUpperCase().replace(/[^A-Z0-9]/g, ''))
+      for (const item of group.athletes ?? []) {
+        const name = item.athlete?.displayName || item.athlete?.fullName || item.displayName
+        if (!code || !name || item.didNotPlay || !item.stats) continue
+        const key = livePlayerKey(code, name)
+        const stats = players.get(key) ?? {}
+        for (const category of Object.keys(statColumns) as PlayerStatCategory[]) {
+          const index = labels.findIndex(label => statColumns[category].includes(label))
+          const raw = String(item.stats[index] ?? '').trim()
+          const made = category === 'tres' ? raw.match(/^(\d+)-\d+$/)?.[1] ?? raw : raw
+          if (/^\d+$/.test(made)) stats[category] = Number(made)
+        }
+        if (Object.keys(stats).length) players.set(key, stats)
+      }
+    }
+  }
+  return players
 }
 
 export async function loadBoxScores(date: string, teams: Set<string>, signal: AbortSignal) {
