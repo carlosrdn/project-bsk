@@ -9,7 +9,12 @@ on:
       - "historico_bsk.js"
       - "metricas_bsk.js"
       - "test_metricas.js"
+      - "test_historico.js"
       - ".github/workflows/historico-bsk.yml"
+  workflow_run:
+    workflows: ["Atualizar dados.js pela ESPN"]
+    types: [completed]
+    branches: [main, melhorias-modelo-nba]
   workflow_dispatch:
   schedule:
     - cron: "7,37 * * * *"
@@ -22,6 +27,7 @@ concurrency:
 
 jobs:
   historico:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
