@@ -10,6 +10,8 @@ export interface Absence {
 }
 export type RadarStat = 'pts' | 'reb' | 'ast' | 'tres'
 
+export type PlayerStatCategory = RadarStat | 'blk' | 'stl'
+
 export interface PlayerStat {
   media: number
   jogos: number
@@ -21,7 +23,7 @@ export interface PlayerStat {
 
 export interface Player {
   posicao?: string
-  props?: Partial<Record<RadarStat, PlayerStat>>
+  props?: Partial<Record<PlayerStatCategory, PlayerStat>>
   nome: string
   jogos: number
   minutos?: number

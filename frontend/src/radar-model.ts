@@ -1,10 +1,10 @@
-import type { Game, GamePrediction, PlayerStat, RadarStat, Team } from './types'
+import type { Game, GamePrediction, PlayerStat, PlayerStatCategory, Team } from './types'
 
 export const radarLabels = {
-  pts: 'Pontos', reb: 'Rebotes', ast: 'Assistências', tres: 'Bolas de 3'
+  pts: 'Pontos', reb: 'Rebotes', ast: 'Assistências', tres: 'Bolas de 3', blk: 'Bloqueios', stl: 'Roubos'
 }
 
-const minimum: Record<RadarStat, number> = { pts: 8, reb: 3.5, ast: 2.5, tres: 1.5 }
+const minimum: Record<PlayerStatCategory, number> = { pts: 8, reb: 3.5, ast: 2.5, tres: 1.5, blk: 0, stl: 0 }
 const stats = ['pts', 'reb', 'ast', 'tres'] as const
 const manualStatuses = ['Titular confirmado', 'Disponível confirmado', 'Provável', 'Questionável', 'Improvável', 'Fora']
 const available = ['Sem confirmação de titularidade', 'Disponível', 'Titular confirmado', 'Disponível confirmado', 'Banco confirmado']
@@ -17,7 +17,7 @@ export interface RadarPick {
   player: string
   team: Team
   opponent: Team
-  stat: RadarStat
+  stat: PlayerStatCategory
   sample: PlayerStat
   projected: number
   deviation: number
@@ -28,7 +28,7 @@ export interface RadarPick {
   margin: number
 }
 
-export function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, opponent: Team, points: number, margin: number) {
+export function projectPlayer(stat: PlayerStatCategory, sample: PlayerStat, team: Team, opponent: Team, points: number, margin: number) {
   const recent = finite(sample.ultimos5) ? sample.ultimos5 : sample.media
   const weight = sample.jogos < 6 ? 0 : sample.jogos < 10 ? 0.18 : 0.30
   const base = sample.media * (1 - weight) + recent * weight
@@ -39,7 +39,9 @@ export function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, o
     pts: clamp(relative, 0.90, 1.10),
     ast: clamp(Math.pow(relative, 0.6), 0.94, 1.06),
     tres: clamp(Math.pow(relative, 0.45), 0.95, 1.05),
-    reb: clamp(pace, 0.94, 1.06)
+    reb: clamp(pace, 0.94, 1.06),
+    blk: clamp(pace, 0.94, 1.06),
+    stl: clamp(pace, 0.94, 1.06)
   }[stat]
   const usualMinutes = sample.minutos_media
   const recentMinutes = sample.minutos_ultimos5
@@ -48,7 +50,8 @@ export function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, o
   const blowout = margin > 0 ? 1 - Math.min(0.045, Math.max(0, margin - 12) * 0.003) : 1
   const prior = {
     pts: 0.3 * base + 1.2, reb: 0.36 * base + 0.5,
-    ast: 0.45 * base + 0.5, tres: Math.sqrt(Math.max(base, 0)) + 0.2
+    ast: 0.45 * base + 0.5, tres: Math.sqrt(Math.max(base, 0)) + 0.2,
+    blk: Math.sqrt(Math.max(base, 0)) + 0.2, stl: Math.sqrt(Math.max(base, 0)) + 0.2
   }[stat]
   const observed = finite(sample.desvio) ? sample.desvio : prior
   return {
@@ -59,7 +62,8 @@ export function projectPlayer(stat: RadarStat, sample: PlayerStat, team: Team, o
 
 export function rankRadar(
   matches: { game: Game; prediction: GamePrediction }[],
-  context: { date: string; current: boolean; injuries: boolean; manual: Record<string, unknown> }
+  context: { date: string; current: boolean; injuries: boolean; manual: Record<string, unknown> },
+  category?: PlayerStatCategory
 ) {
   const candidates: RadarPick[] = []
   for (const { game, prediction } of matches) {
@@ -74,9 +78,9 @@ export function rankRadar(
           ? manual : player.situacao === 'Disponível' ? 'Sem confirmação de titularidade' : player.situacao || 'Desconhecido'
         if (unavailable.includes(status)) continue
         let best: RadarPick | undefined
-        for (const stat of stats) {
+        for (const stat of category ? [category] : stats) {
           const sample = player.props?.[stat]
-          if (!sample || !finite(sample.jogos) || sample.jogos < 5 || !finite(sample.media) || sample.media < minimum[stat]) continue
+          if (!sample || !finite(sample.jogos) || sample.jogos < 5 || !finite(sample.media) || sample.media < (category ? 0 : minimum[stat])) continue
           const { projected, deviation } = projectPlayer(stat, sample, team, opponent, teamPoints, margin)
           const alerts: string[] = []
           if (!context.current) alerts.push('Coleta de outra rodada ou data não verificável')

@@ -217,3 +217,16 @@
   .history-match > summary .history-match-meta { font-size: .75rem; }
   .history-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+.match-players { border-top: 1px solid #26364b; padding: 14px 16px; }
+.match-players h3 { margin: 0 0 10px; font-size: .95rem; }
+.player-categories { display: flex; flex-wrap: wrap; gap: 6px; }
+.player-categories [aria-pressed="true"] { border-color: #6edab3; color: #84edc9; }
+.match-player-list { list-style: none; padding: 0; margin: 12px 0 0; }
+.match-player-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 1fr); align-items: center; gap: 4px 12px; padding: 8px 0; border-top: 1px solid #26364b; }
+.match-player-list strong { display: block; font-size: .875rem; }
+.match-player-list small, .match-player-list dt { color: #a5b8cb; font-size: .75rem; }
+.match-player-list .player-eligible { color: #84edc9; }
+.match-player-list dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 0; }
+.match-player-list dd { margin: 2px 0 0; font-size: .875rem; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { .match-player-list li { grid-template-columns: 1fr; } }

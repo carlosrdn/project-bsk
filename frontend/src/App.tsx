@@ -6,6 +6,7 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import MatchPlayers from './MatchPlayers'
 import Footer from './Footer'
 import Backtest from './Backtest'
 import RoundSchedule from './RoundSchedule'
@@ -69,13 +70,16 @@ function MatchCard({ match, selected, onClick, panelId }: {
   <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/></span></span>
  </button>
 }
-function ExpandableMatch({ match }: { match: MatchView }) {
+function ExpandableMatch({ match, snapshot }: { match: MatchView; snapshot: DataSnapshot }) {
  const [expanded, setExpanded] = useState(false)
  const panelId = useId()
  return <article className="expandable-match">
   <MatchCard match={match} selected={expanded} onClick={() => setExpanded(open => !open)} panelId={panelId}/>
   <div id={panelId} className="detail-panel" hidden={!expanded}>
-   {expanded && <Detail match={match}/>}
+   {expanded && <>
+    <Detail match={match}/>
+    <MatchPlayers match={match} snapshot={snapshot}/>
+   </>}
   </div>
  </article>
 }
@@ -193,7 +197,7 @@ export default function App() {
      {!shown.length ?
       <div className="empty-state"><Search size={25}/><strong>{matches.length ? 'Nenhum confronto encontrado' : 'Nenhum confronto nesta rodada'}</strong>{matches.length > 0 && <span>Altere a busca ou remova os filtros.</span>}</div> :
       <div className="matches-column">{shown.map(match =>
-       <ExpandableMatch key={match.key} match={match}/>
+       <ExpandableMatch key={match.key} match={match} snapshot={snapshot}/>
       )}</div>}
      <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os pontos, o total e o favorito usam médias de equipe, ritmo e contexto disponível. O Backtest compara as estimativas com os resultados de partidas anteriores.</p></div></div>
      </>}
