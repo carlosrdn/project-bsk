@@ -7,7 +7,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from atualizar_dados_espn import aggregate, collect, utc, NBA_TZ
+from atualizar_dados_espn import aggregate, collect, previous_night, utc, NBA_TZ
 from gerar_dados import melhores_jogadores, media
 
 
@@ -19,15 +19,19 @@ def prepare(events, games):
     points = defaultdict(list)
     for day, fixtures in sorted(by_day.items()):
         teams, recent, roster, last5 = aggregate(prior_events, prior_games)
+        rested = previous_night(date.fromisoformat(day), prior_events, prior_games)
         league = media([team["OFF_RATING"] for team in teams.values()])
 
         def profile(code):
             team = teams[code]
+            players = melhores_jogadores(code, roster, last5)
+            for player in players:
+                player["back_to_back"] = player["nome"] in rested.get(code, set())
             return {
                 "sigla": code, "nome": code, "jogos": team["GP"], "vitorias": team["W"],
                 "derrotas": team["L"], "ataque": team["OFF_RATING"], "defesa": team["DEF_RATING"],
                 "ritmo": team["PACE"], "vitorias_ultimos_10": recent[code], "ausencias": None,
-                "jogadores": melhores_jogadores(code, roster, last5),
+                "jogadores": players, "back_to_back": code in rested,
             }
 
         for event, (home, away) in fixtures:

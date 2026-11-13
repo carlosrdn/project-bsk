@@ -1,4 +1,4 @@
-import type { Game, GamePrediction, PlayerStat, PlayerStatCategory, Team } from './types'
+import type { Calibration, PlayerTuning, Game, GamePrediction, PlayerStat, PlayerStatCategory, Team } from './types'
 
 export const radarLabels = {
   pts: 'Pontos', reb: 'Rebotes', ast: 'Assistências', tres: 'Bolas de 3', blk: 'Bloqueios', stl: 'Roubos'
@@ -26,11 +26,12 @@ export interface RadarPick {
   alerts: string[]
   teamPoints: number
   margin: number
+  backToBack?: boolean
 }
 
-export function projectPlayer(stat: PlayerStatCategory, sample: PlayerStat, team: Team, opponent: Team, points: number, margin: number) {
+export function projectPlayer(stat: PlayerStatCategory, sample: PlayerStat, team: Team, opponent: Team, points: number, margin: number, tuning?: PlayerTuning, backToBack?: boolean) {
   const recent = finite(sample.ultimos5) ? sample.ultimos5 : sample.media
-  const weight = sample.jogos < 6 ? 0 : sample.jogos < 10 ? 0.18 : 0.30
+  const weight = sample.jogos < 6 ? 0 : tuning?.recent ?? (sample.jogos < 10 ? 0.18 : 0.30)
   const base = sample.media * (1 - weight) + recent * weight
   const expected = team.ataque * team.ritmo / 100
   const relative = expected > 0 ? points / expected : 1
@@ -55,14 +56,24 @@ export function projectPlayer(stat: PlayerStatCategory, sample: PlayerStat, team
   }[stat]
   const observed = finite(sample.desvio) ? sample.desvio : prior
   return {
-    projected: Math.max(0, base * exposure * (blowout * rotation)),
+    projected: Math.max(0, base * exposure * (blowout * rotation) * (backToBack ? 1 - (tuning?.fatigue ?? 0) : 1)),
     deviation: Math.max(stat === 'pts' ? 2 : 0.65, (sample.jogos * observed + 8 * prior) / (sample.jogos + 8))
   }
 }
 
+/** Chance de superar estritamente o limite para uma estatística inteira. */
+export function thresholdChance(projected: number, deviation: number, limit: number, residuals?: number[]) {
+  const z = (Math.floor(limit) + 0.5 - projected) / deviation
+  if (residuals?.length) return (0.5 + residuals.filter(value => value > z).length) / (residuals.length + 1)
+  const t = 1 / (1 + 0.2316419 * Math.abs(z))
+  const tail = Math.exp(-z * z / 2) / Math.sqrt(2 * Math.PI) *
+    t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))))
+  return z < 0 ? 1 - tail : tail
+}
+
 export function rankRadar(
   matches: { game: Game; prediction: GamePrediction }[],
-  context: { date: string; current: boolean; injuries: boolean; manual: Record<string, unknown> },
+  context: { date: string; current: boolean; injuries: boolean; manual: Record<string, unknown>; calibration?: Calibration },
   category?: PlayerStatCategory
 ) {
   const candidates: RadarPick[] = []
@@ -81,7 +92,7 @@ export function rankRadar(
         for (const stat of category ? [category] : stats) {
           const sample = player.props?.[stat]
           if (!sample || !finite(sample.jogos) || sample.jogos < 5 || !finite(sample.media) || sample.media < (category ? 0 : minimum[stat])) continue
-          const { projected, deviation } = projectPlayer(stat, sample, team, opponent, teamPoints, margin)
+          const { projected, deviation } = projectPlayer(stat, sample, team, opponent, teamPoints, margin, context.calibration?.players[stat], player.back_to_back)
           const alerts: string[] = []
           if (!context.current) alerts.push('Coleta de outra rodada ou data não verificável')
           if (!available.includes(status)) alerts.push('Situação do jogador: ' + status)
@@ -94,7 +105,7 @@ export function rankRadar(
           const score = Math.min(1, sample.jogos / 18) / (1 + variation) - Math.min(0.8, alerts.length * 0.17)
           const eligible = alerts.length === 0 && sample.jogos >= 12 && variation <= (stat === 'tres' ? 0.95 : 0.75)
           if (!best || (eligible === best.eligible ? score > best.score : eligible)) {
-            best = { game, player: player.nome, team, opponent, stat, sample, projected, deviation, score, eligible, alerts, teamPoints, margin }
+            best = { game, player: player.nome, team, opponent, stat, sample, projected, deviation, score, eligible, alerts, teamPoints, margin, backToBack: player.back_to_back }
           }
         }
         if (best) candidates.push(best)

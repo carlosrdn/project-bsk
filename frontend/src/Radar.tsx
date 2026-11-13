@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import BackToBack from './BackToBack'
 import { rankRadar, radarLabels } from './radar-model'
 import type { RadarPick } from './radar-model'
 import type { DataSnapshot, Game, GamePrediction } from './types'
@@ -13,7 +14,7 @@ function RadarCard({ pick }: { pick: RadarPick }) {
   })
   return <article className="stat-tile radar-card">
     <div className="stat-top"><span>{radarLabels[pick.stat]}</span><span>{pick.team.sigla} × {pick.opponent.sigla} · {time} BRT</span></div>
-    <h3>{pick.player}</h3>
+    <BackToBack active={pick.backToBack} player/><h3>{pick.player}</h3>
     <dl className="radar-values">
       <div><dt>Projeção</dt><dd>{number(pick.projected)}</dd></div>
       <div><dt>Média na temporada</dt><dd>{number(pick.sample.media)}</dd></div>
@@ -40,7 +41,7 @@ export default function Radar({ snapshot, current, matches }: {
     return () => window.clearInterval(timer)
   }, [])
   const pending = current ? matches.filter(match => Date.parse(match.game.horario_utc) > clock) : matches
-  const ranked = rankRadar(pending, { date: snapshot.data_jogos, current, injuries: snapshot.lesoes_ok, manual })
+  const ranked = rankRadar(pending, { date: snapshot.data_jogos, current, injuries: snapshot.lesoes_ok, manual, calibration: snapshot.calibration })
   const selected = ranked.filter(pick => pick.eligible && pick.score > 0).slice(0, 6)
   const watching = ranked.filter(pick => !pick.eligible && pick.score > 0).slice(0, 5)
   const alerts = [...new Set(ranked.flatMap(pick => pick.alerts))].slice(0, 5)

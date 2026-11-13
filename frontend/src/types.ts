@@ -22,6 +22,7 @@ export interface PlayerStat {
 }
 
 export interface Player {
+  back_to_back?: boolean
   posicao?: string
   props?: Partial<Record<PlayerStatCategory, PlayerStat>>
   nome: string
@@ -33,6 +34,7 @@ export interface Player {
   situacao?: string
 }
 export interface Team {
+  back_to_back?: boolean
   sigla: string
   nome: string
   jogos: number
@@ -50,7 +52,30 @@ export interface Game {
   casa: Team
   visitante: Team
 }
+export interface PlayerTuning {
+  recent?: number
+  fatigue?: number
+}
+export interface Calibration {
+  version: string
+  trainedThrough: string
+  validatedThrough: string
+  team?: { fatigue: number; sd: number }
+  players: Partial<Record<PlayerStatCategory, PlayerTuning>>
+  thresholds: Partial<Record<PlayerStatCategory, number[]>>
+}
+export interface CalibrationReport {
+  games: number
+  trainGames: number
+  validationGames: number
+  validationFrom: string | null
+  validationThrough: string | null
+  status: 'amostra_insuficiente' | 'promovido' | 'sem_ganho'
+  promoted: string[]
+}
 export interface DataSnapshot {
+  calibrationReport?: CalibrationReport
+  calibration?: Calibration
   atualizado_em: string
   data_jogos: string
   lesoes_ok: boolean
@@ -63,6 +88,7 @@ export interface ModelParams {
   K: number
   sd: number
   kInj: number
+  fatigue?: number
 }
 export interface GamePrediction {
   home: number

@@ -6,6 +6,7 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import BackToBack from './BackToBack'
 import MatchPlayers from './MatchPlayers'
 import LiveScore from './LiveScore'
 import { useLiveMatch } from './useLiveMatch'
@@ -61,11 +62,11 @@ function MatchCard({ match, selected, onClick, panelId }: {
   <span className="match-card-top"><span><Clock3 size={13}/>{time(game.horario_utc)} · Brasília</span><span className="projection-pill">PROJEÇÃO</span></span>
   <span className="match-teams">
    <span className="score-row">
-    <span className="team-name"><MiniBrand name={game.visitante.sigla}/><span><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></span></span>
+    <span className="team-name"><MiniBrand name={game.visitante.sigla}/><span><BackToBack active={game.visitante.back_to_back}/><strong>{game.visitante.sigla}</strong><small>{game.visitante.nome}</small></span></span>
     <strong className="score">{n(prediction.away, 0)}</strong>
    </span>
    <span className="score-row">
-    <span className="team-name"><MiniBrand name={game.casa.sigla}/><span><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></span></span>
+    <span className="team-name"><MiniBrand name={game.casa.sigla}/><span><BackToBack active={game.casa.back_to_back}/><strong>{game.casa.sigla}</strong><small>{game.casa.nome}</small></span></span>
     <strong className="score">{n(prediction.home, 0)}</strong>
    </span>
   </span>
@@ -115,7 +116,7 @@ function Detail({ match }: { match: MatchView }) {
    <div><span>Margem da casa</span><strong>{p.margin >= 0 ? '+' : ''}{n(p.margin)}</strong></div>
    <div><span>Favorito</span><strong>{p.favorite}</strong></div>
   </div>
-  <p className="detail-explain">Probabilidades estimadas para o confronto. Ainda não são probabilidades calibradas por backtest.</p>
+  <p className="detail-explain">Probabilidades estimadas para o confronto.</p>
   <div className="prob-label"><span>{game.visitante.sigla} · {percent(p.awayChance)}</span><span>{game.casa.sigla} · {percent(p.homeChance)}</span></div>
   <div className="prob-track"><div style={{width: p.awayChance * 100 + '%'}} /></div>
   <button type="button" className="expand-button" aria-expanded={expanded} aria-controls={contextId} onClick={() => setExpanded(open => !open)}>
@@ -151,7 +152,7 @@ export default function App() {
  useEffect(() => { void reload() }, [today])
  const matches = useMemo(() => snapshot?.jogos.map(game => ({
   game,
-  prediction: predictGame(game, snapshot.media_liga.ataque, DEFAULT_PARAMS),
+  prediction: predictGame(game, snapshot.media_liga.ataque, { ...DEFAULT_PARAMS, ...snapshot.calibration?.team }),
   key: [game.horario_utc, game.visitante.sigla, game.casa.sigla].join('|')
  })).sort((a, b) => a.game.horario_utc.localeCompare(b.game.horario_utc)) || [], [snapshot])
  const shown = matches.filter(m => {
@@ -180,7 +181,7 @@ export default function App() {
    <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
    <main className="content">
     <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
-    {view === 'backtest' ? <Backtest/> : view === 'history' ? <HistoryView legacyUrl={outside('historico.html')}/> : <>
+    {view === 'backtest' ? <Backtest snapshot={snapshot}/> : view === 'history' ? <HistoryView legacyUrl={outside('historico.html')}/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
     {scheduleOnly && <>

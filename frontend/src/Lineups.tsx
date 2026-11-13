@@ -1,3 +1,5 @@
+import BackToBack from './BackToBack'
+import { playerNameKey } from './lineup-model'
 import { useEffect, useState } from 'react'
 import { RefreshCw } from 'lucide-react'
 import { loadBoxScores, loadInjuries } from './lineup-espn'
@@ -79,12 +81,12 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
         const overrides = Object.fromEntries(team.jogadores.map(player => [player.nome, manual[playerKey(snapshot.data_jogos, team.sigla, player.nome)]]))
         const { lineup, confirmed, replacements } = buildLineup(team, overrides, teamBox, injuries.get(team.sigla) ?? [])
         return <article className="stat-tile lineup-team" key={team.sigla}>
-          <header className="lineup-team-header"><h2>{team.nome}</h2>
+          <header className="lineup-team-header"><BackToBack active={team.back_to_back}/><h2>{team.nome}</h2>
           <p>{confirmed === 5 ? 'Quinteto confirmado' : confirmed + ' de 5 titulares confirmados · vagas restantes projetadas'}</p></header>
           <ul className="lineup-list">
             {lineup.map(({ position, player }) => <li key={position}>
               <span className="lineup-position">{position}</span>
-              <strong>{player?.name || 'A definir'}</strong>
+              <strong><BackToBack active={!!player && team.jogadores.some(entry => entry.back_to_back && playerNameKey(entry.nome) === playerNameKey(player.name))} player/>{player?.name || 'A definir'}</strong>
               <span className={'lineup-state' + (player?.status === starter ? ' lineup-state-confirmed' : '')}>{player?.status === starter ? 'Confirmado' : player ? 'Projetado' : 'Pendente'}</span>
             </li>)}
           </ul>

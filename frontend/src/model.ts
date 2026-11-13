@@ -46,6 +46,8 @@ export function predictGame(game: Game, leagueAttack: number, params: ModelParam
   const adjustment = params.wHome + params.wForm * (recentRate(home) - recentRate(away)) + (ia - ih)
   sh += adjustment / 2
   sa -= adjustment / 2
+  if (home.back_to_back) sh -= params.fatigue ?? 0
+  if (away.back_to_back) sa -= params.fatigue ?? 0
   const margin = sh - sa
   const homeChance = cdf(margin / Math.max(params.sd, 1))
   return {

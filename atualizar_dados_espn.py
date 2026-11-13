@@ -224,8 +224,17 @@ def injuries():
         return None
 
 
-def generate(day, cache):
-    events, games, fixtures, season = collect(day, cache)
+def previous_night(day, events, games):
+    previous = day - timedelta(days=1)
+    return {team["team"]: {p["PLAYER_NAME"] for p in team["players"] if p["MIN"] > 0}
+            for event, box in zip(events, games, strict=True)
+            if utc(event["date"]).astimezone(NBA_TZ).date() == previous
+            for team in box}
+
+
+def generate(day, cache, collected=None):
+    events, games, fixtures, season = collected if collected is not None else collect(day, cache)
+    back_to_back = previous_night(day, events, games)
     geral, recente, roster, last5 = aggregate(events, games)
     if fixtures and len(geral) != 30:
         raise ValueError(f"Cobertura insuficiente: {len(geral)}/30 equipes e {len(events)} jogos finalizados")
@@ -245,10 +254,12 @@ def generate(day, cache):
         for player in players:
             name = normalizar(player["nome"])
             player["situacao"] = statuses.get(name, "Disponível") if report is not None else "Desconhecido"
+            player["back_to_back"] = player["nome"] in back_to_back.get(sigla, set())
             if positions.get(name):
                 player["posicao"] = positions[name]
         return {
             "sigla": sigla, "nome": team["displayName"], "jogos": summary["GP"],
+            "back_to_back": sigla in back_to_back,
             "vitorias": summary["W"], "derrotas": summary["L"], "ataque": summary["OFF_RATING"],
             "defesa": summary["DEF_RATING"], "ritmo": summary["PACE"], "vitorias_ultimos_10": recente[sigla],
             "nivel": CONTEXTO["niveis_id"][sigla], "jogadores": players,
@@ -275,11 +286,23 @@ def main():
     parser.add_argument("--data", type=date.fromisoformat, default=datetime.now(NBA_TZ).date())
     parser.add_argument("--saida", type=Path, default=Path("."))
     parser.add_argument("--cache", type=Path, default=Path(".cache/espn-box-v1"))
+    parser.add_argument("--replay", type=Path, help="Gerar amostra cronológica para o backtest React")
     args = parser.parse_args()
-    output = generate(args.data, args.cache)
+    collected = collect(args.data, args.cache)
+    output = generate(args.data, args.cache, collected)
+    if args.replay:
+        import runpy
+
+        prepare = runpy.run_path(str(Path(__file__).parent / "frontend/scripts/prepare-replay.py"))["prepare"]
+        cases = prepare(*collected[:2])
+        atomic_write(args.replay, json.dumps(cases, ensure_ascii=False, allow_nan=False))
     published = args.saida / "jogos.json"
     if published.exists():
         previous = json.loads(published.read_text())
+        if previous.get("fonte", {}).get("temporada") == output["fonte"]["temporada"]:
+            for key in ("calibration", "calibrationReport"):
+                if key in previous:
+                    output[key] = previous[key]
         if previous["data_jogos"] > output["data_jogos"]:
             raise ValueError("A data solicitada é anterior à coleta publicada")
         if previous["data_jogos"] == output["data_jogos"] and previous["jogos"] and not output["jogos"]:

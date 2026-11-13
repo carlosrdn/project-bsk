@@ -38,6 +38,18 @@ function gameValid(x: unknown): x is Game {
   return isRecord(x) && text(x.horario_utc) && Number.isFinite(Date.parse(x.horario_utc)) &&
     teamValid(x.casa) && teamValid(x.visitante) && x.casa.sigla !== x.visitante.sigla
 }
+function calibrationValid(value: unknown, day: string) {
+  if (!isRecord(value) || !text(value.version) || !calendarDate(value.trainedThrough) ||
+      !calendarDate(value.validatedThrough) || value.trainedThrough >= value.validatedThrough ||
+      value.validatedThrough >= day || !isRecord(value.players) || !isRecord(value.thresholds)) return false
+  const range = (x: unknown, min: number, max: number) => numeric(x) && x >= min && x <= max
+  if (value.team != null && (!isRecord(value.team) || !range(value.team.fatigue, 0, 3) || !range(value.team.sd, 8, 24))) return false
+  return Object.values(value.players).every(tuning => isRecord(tuning) &&
+    range(tuning.recent, 0, 1) && range(tuning.fatigue, 0, .15)) &&
+    Object.values(value.thresholds).every(list => Array.isArray(list) && list.length === 99 &&
+      list.every((x, i) => numeric(x) && (i === 0 || x >= list[i - 1])))
+}
+
 export function validateSnapshot(x: unknown): DataSnapshot {
   if (!isRecord(x) || !calendarDate(x.data_jogos) ||
       !text(x.atualizado_em) || !Number.isFinite(Date.parse(x.atualizado_em)) ||
@@ -47,6 +59,10 @@ export function validateSnapshot(x: unknown): DataSnapshot {
   }
   const keys = x.jogos.map(game => [Date.parse(game.horario_utc), game.casa.sigla, game.visitante.sigla].join('|'))
   if (new Set(keys).size !== keys.length) throw new Error('dados.js contém confrontos duplicados.')
+  if (x.calibration != null && !calibrationValid(x.calibration, x.data_jogos)) {
+    const { calibration: _invalid, ...base } = x
+    return base as unknown as DataSnapshot
+  }
   return x as unknown as DataSnapshot
 }
 export function dataUrl(): string {

@@ -1,3 +1,4 @@
+import type { DataSnapshot } from './types'
 import evaluation from './evaluation/replay-2026-11-11.json'
 
 const number = (value: number | null) => value == null ? '—' : value.toLocaleString('pt-BR', { maximumFractionDigits: 3 })
@@ -14,9 +15,19 @@ function Results({ rows }: { rows: { label: string; model: string; baseline: str
   </table></div>
 }
 
-export default function Backtest() {
+export default function Backtest({ snapshot }: { snapshot: DataSnapshot | null }) {
   const { games, team, players } = evaluation
+  const report = snapshot?.calibrationReport
+  const calibration = snapshot?.calibration
   return <div className="history-view">
+    <section className="stat-tile">
+      <h2>Calibração automática</h2>
+      <p>{calibration ? 'Versão ativa ' + calibration.version + ' · validada até ' + date(calibration.validatedThrough) : 'Parâmetros originais em uso.'}</p>
+      {report && <p>{report.trainGames} jogos de treino · {report.validationGames} de validação. {report.status === 'promovido'
+        ? 'Ajustes aprovados: ' + report.promoted.join(', ')
+        : report.status === 'sem_ganho' ? 'A validação manteve os parâmetros anteriores.' : 'Amostra insuficiente para aprovar ajustes.'}</p>}
+      <p>Back-to-back entra no cálculo quando o ajuste é aprovado em jogos posteriores ao treino.</p>
+    </section>
     <p>{date(evaluation.from)} a {date(evaluation.to)} · {games} jogos em {evaluation.dates} dias · Box scores da {evaluation.source}</p>
     <section className="stat-tile">
       <h2>Projeções de equipe</h2>
