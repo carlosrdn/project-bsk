@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-13T15:05:57+00:00",
+  "atualizado_em": "2026-11-13T21:26:55+00:00",
   "data_jogos": "2026-11-13",
   "lesoes_ok": true,
   "media_liga": {
@@ -5550,8 +5550,8 @@
             "situacao": "Dúvida",
             "motivo": "Calf Strain",
             "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Da Silva (calf) is questionable for Friday's game against Milwaukee.",
+            "atualizado": "2026-11-13",
+            "comentario": "Da Silva (calf) participated in Friday's morning shootaround and remains questionable for Friday's game against Milwaukee, Jason Beede of the Orlando Sentinel reports.",
             "jogos": 9,
             "minutos": 30.4,
             "pts": 15.11,
@@ -5563,8 +5563,8 @@
             "situacao": "Fora",
             "motivo": "Knee",
             "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Suggs (knee) is questionable for Friday's game against Milwaukee.",
+            "atualizado": "2026-11-13",
+            "comentario": "Suggs (knee) participated in Friday's morning shootaround and remains questionable for Friday's game against the Bucks, Jason Beede of the Orlando Sentinel reports.",
             "jogos": 3,
             "minutos": 33.3,
             "pts": 8,
@@ -5576,8 +5576,8 @@
             "situacao": "Dúvida",
             "motivo": "Shoulder Bruise",
             "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Cain (shoulder) is questionable for Friday's game against the Bucks.",
+            "atualizado": "2026-11-13",
+            "comentario": "Cain (shoulder) participated in Friday morning's shootaround and remains questionable for Friday's game against the Bucks, Jason Beede of the Orlando Sentinel reports.",
             "jogos": 10,
             "minutos": 19.5,
             "pts": 7,
@@ -7753,7 +7753,7 @@
                 }
               }
             },
-            "situacao": "Provável",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -7903,7 +7903,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8203,7 +8203,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8810,25 +8810,12 @@
         ],
         "ausencias": [
           {
-            "nome": "Giannis Antetokounmpo",
-            "situacao": "Provável",
-            "motivo": "Wrist",
-            "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Antetokounmpo (wrist) is probable for Friday's game against Cleveland.",
-            "jogos": 11,
-            "minutos": 32.7,
-            "pts": 27.73,
-            "reb": 12.64,
-            "ast": 5.18
-          },
-          {
             "nome": "Pelle Larsson",
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "motivo": "Illness",
             "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Larsson (illness) is listed as questionable for Friday's game against Cleveland.",
+            "atualizado": "2026-11-13",
+            "comentario": "Larsson (illness) is listed as doubtful for Friday's game against Cleveland.",
             "jogos": 11,
             "minutos": 29.6,
             "pts": 11.36,
@@ -8837,11 +8824,11 @@
           },
           {
             "nome": "Klay Thompson",
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "motivo": "Ankle Soreness",
             "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Thompson (ankle) is listed as questionable for Friday's game against the Cavaliers.",
+            "atualizado": "2026-11-13",
+            "comentario": "Thompson (ankle) is listed as probable for Friday's game against the Cavaliers.",
             "jogos": 11,
             "minutos": 24.7,
             "pts": 14.36,
@@ -14596,7 +14583,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -14746,7 +14733,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -16096,7 +16083,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "G"
           }
@@ -16104,11 +16091,11 @@
         "ausencias": [
           {
             "nome": "Trey Murphy III",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "Knee Tendinitis",
-            "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Murphy (knee) is listed as doubtful for Friday's game against the Grizzlies.",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-13",
+            "comentario": "Murphy (knee) is out for Friday's game against Memphis.",
             "jogos": 9,
             "minutos": 32.8,
             "pts": 15.56,
@@ -16116,12 +16103,25 @@
             "ast": 3.56
           },
           {
+            "nome": "Dejounte Murray",
+            "situacao": "Fora",
+            "motivo": "Ankle",
+            "retorno": "2026-11-20",
+            "atualizado": "2026-11-13",
+            "comentario": "Murray (ankle) is out for Friday's game against Memphis.",
+            "jogos": 9,
+            "minutos": 31.4,
+            "pts": 13.44,
+            "reb": 4.56,
+            "ast": 4.44
+          },
+          {
             "nome": "Yves Missi",
             "situacao": "Fora",
             "motivo": "Knee Bruise",
-            "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Missi (knee) is listed as doubtful for Friday's game against the Grizzlies.",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-13",
+            "comentario": "Missi (knee) is out for Friday's game against the Grizzlies.",
             "jogos": 2,
             "minutos": 19.5,
             "pts": 9.5,
@@ -16143,11 +16143,11 @@
           },
           {
             "nome": "Bennedict Mathurin",
-            "situacao": "Provável ausência",
+            "situacao": "Dúvida",
             "motivo": "Thumb Sprain",
             "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "Mathurin (thumb) is listed as doubtful for Friday's game against Memphis.",
+            "atualizado": "2026-11-13",
+            "comentario": "Mathurin (thumb) is listed as questionable for Friday's game against Memphis.",
             "jogos": 11,
             "minutos": 15.7,
             "pts": 6,
@@ -16156,11 +16156,11 @@
           },
           {
             "nome": "Bryce McGowens",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "Elbow Infection",
-            "retorno": "2026-11-13",
-            "atualizado": "2026-11-12",
-            "comentario": "McGowens (elbow) is listed as doubtful for Friday's game against the Grizzlies.",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-13",
+            "comentario": "McGowens (elbow) is listed as out for Friday's game against the Grizzlies.",
             "jogos": 7,
             "minutos": 10.6,
             "pts": 3.71,
@@ -25695,7 +25695,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -26753,11 +26753,11 @@
         "ausencias": [
           {
             "nome": "Precious Achiuwa",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Ankle Soreness",
-            "retorno": "2026-11-13",
+            "retorno": "2026-11-15",
             "atualizado": "2026-11-13",
-            "comentario": "Achiuwa (ankle) is questionable to play Friday's game against the Trail Blazers.",
+            "comentario": "Achiuwa (ankle) is out for Friday's game against the Trail Blazers.",
             "jogos": 11,
             "minutos": 26.4,
             "pts": 10.36,
