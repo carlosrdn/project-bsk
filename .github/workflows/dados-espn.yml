@@ -6,8 +6,8 @@ on:
     paths: [atualizar_dados_espn.py, gerar_dados.py, .github/workflows/dados-espn.yml]
   workflow_dispatch:
   schedule:
-    # 12h17, 16h17, 19h17 e 21h17 em Brasília.
-    - cron: "17 0,15,19,22 * * *"
+    # 06h17, 09h17, 12h17, 16h17, 19h17 e 21h17 em Brasília.
+    - cron: "17 0,9,12,15,19,22 * * *"
 
 permissions:
   contents: write
