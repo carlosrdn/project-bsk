@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "date": "2026-11-13",
-  "updated_at": "2026-11-13T18:29:51.120Z",
+  "updated_at": "2026-11-14T06:10:31.485Z",
   "source": "ESPN",
   "games": [
     {
@@ -48,11 +48,24 @@
         "away_injury_impact": 0,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909296"
+      "status": "finalizado",
+      "home_score": 106,
+      "away_score": 104,
+      "comparison": {
+        "home_points_error": 2.195,
+        "away_points_error": 7.515,
+        "total_points_error": 9.711,
+        "home_margin_error": -5.32,
+        "targets_correct": {
+          "home_points": false,
+          "away_points": false,
+          "total_points": false
+        },
+        "winner_correct": false
+      },
+      "espn_event_id": "401909296",
+      "actual_margin": 2,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-14T00:00:00Z",
@@ -101,11 +114,24 @@
         "away_injury_impact": 0,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909297"
+      "status": "finalizado",
+      "home_score": 107,
+      "away_score": 99,
+      "comparison": {
+        "home_points_error": 8.535,
+        "away_points_error": 9.742,
+        "total_points_error": 18.277,
+        "home_margin_error": -1.207,
+        "targets_correct": {
+          "home_points": false,
+          "away_points": false,
+          "total_points": false
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909297",
+      "actual_margin": 8,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-14T01:00:00Z",
@@ -150,11 +176,24 @@
         "away_injury_impact": 1.54,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909298"
+      "status": "finalizado",
+      "home_score": 133,
+      "away_score": 121,
+      "comparison": {
+        "home_points_error": -17.008,
+        "away_points_error": -5.817,
+        "total_points_error": -22.825,
+        "home_margin_error": -11.191,
+        "targets_correct": {
+          "home_points": true,
+          "away_points": true,
+          "total_points": true
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909298",
+      "actual_margin": 12,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-14T01:00:00Z",
@@ -204,11 +243,24 @@
         "away_injury_impact": 0.012,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909299"
+      "status": "finalizado",
+      "home_score": 125,
+      "away_score": 117,
+      "comparison": {
+        "home_points_error": -9.925,
+        "away_points_error": 5.869,
+        "total_points_error": -4.057,
+        "home_margin_error": -15.794,
+        "targets_correct": {
+          "home_points": true,
+          "away_points": false,
+          "total_points": true
+        },
+        "winner_correct": false
+      },
+      "espn_event_id": "401909299",
+      "actual_margin": 8,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-14T01:00:00Z",
@@ -256,11 +308,24 @@
         "away_injury_impact": 0.131,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909300"
+      "status": "finalizado",
+      "home_score": 111,
+      "away_score": 142,
+      "comparison": {
+        "home_points_error": 2.308,
+        "away_points_error": -23.919,
+        "total_points_error": -21.612,
+        "home_margin_error": 26.227,
+        "targets_correct": {
+          "home_points": false,
+          "away_points": true,
+          "total_points": true
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909300",
+      "actual_margin": -31,
+      "blowout": true
     },
     {
       "start_utc": "2026-11-14T01:30:00Z",
@@ -311,11 +376,24 @@
         "away_injury_impact": 1.27,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909301"
+      "status": "finalizado",
+      "home_score": 125,
+      "away_score": 118,
+      "comparison": {
+        "home_points_error": -6.806,
+        "away_points_error": -14.72,
+        "total_points_error": -21.526,
+        "home_margin_error": 7.914,
+        "targets_correct": {
+          "home_points": true,
+          "away_points": true,
+          "total_points": true
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909301",
+      "actual_margin": 7,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-14T02:30:00Z",
@@ -366,11 +444,24 @@
         "away_injury_impact": 2.04,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909302"
+      "status": "finalizado",
+      "home_score": 123,
+      "away_score": 85,
+      "comparison": {
+        "home_points_error": -6.409,
+        "away_points_error": 25.495,
+        "total_points_error": 19.086,
+        "home_margin_error": -31.904,
+        "targets_correct": {
+          "home_points": true,
+          "away_points": false,
+          "total_points": false
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909302",
+      "actual_margin": 38,
+      "blowout": true
     },
     {
       "start_utc": "2026-11-14T03:00:00Z",
@@ -420,11 +511,24 @@
         "away_injury_impact": 0.382,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909303"
+      "status": "finalizado",
+      "home_score": 107,
+      "away_score": 120,
+      "comparison": {
+        "home_points_error": 4.38,
+        "away_points_error": -0.958,
+        "total_points_error": 3.422,
+        "home_margin_error": 5.338,
+        "targets_correct": {
+          "home_points": false,
+          "away_points": true,
+          "total_points": false
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909303",
+      "actual_margin": -13,
+      "blowout": false
     },
     {
       "start_utc": "2026-11-14T03:30:00Z",
@@ -478,1181 +582,5006 @@
         "away_injury_impact": 0.715,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
-      "comparison": null,
-      "espn_event_id": "401909304"
+      "status": "finalizado",
+      "home_score": 113,
+      "away_score": 112,
+      "comparison": {
+        "home_points_error": -2.608,
+        "away_points_error": 0.509,
+        "total_points_error": -2.098,
+        "home_margin_error": -3.117,
+        "targets_correct": {
+          "home_points": true,
+          "away_points": false,
+          "total_points": true
+        },
+        "winner_correct": false
+      },
+      "espn_event_id": "401909304",
+      "actual_margin": 1,
+      "blowout": false
     }
   ],
   "results": [
     {
       "id": "2026-11-14T00:00:00Z|IND|quenton jackson|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.119Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 0.936,
+      "signed_error": -0.936,
+      "updated_at": "2026-11-14T06:10:31.478Z",
+      "context": {
+        "actual_minutes": 20
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|karlanthony towns|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 23,
+      "absolute_error": 2.311,
+      "signed_error": -2.311,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|jalen brunson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 33,
+      "absolute_error": 7.187,
+      "signed_error": -7.187,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 36
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|pascal siakam|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 19,
+      "absolute_error": 3.486,
+      "signed_error": 3.486,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|og anunoby|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 5.479,
+      "signed_error": 5.479,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|andrew nembhard|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 4.706,
+      "signed_error": 4.706,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|jarace walker|reb",
-      "status": "jogo_nao_finalizado",
+      "status": "nao_atuou",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.480Z"
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|landry shamet|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 5.917,
+      "signed_error": 5.917,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7.2,
+            "texto": "Atuou 7.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|obi toppin|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 9,
+      "absolute_error": 2.511,
+      "signed_error": 2.511,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 16
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|kelly oubre|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 16,
+      "absolute_error": 6.638,
+      "signed_error": -6.638,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 7,
+            "texto": "Atuou 7 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|andre drummond|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 6,
+      "absolute_error": 3.008,
+      "signed_error": 3.008,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 14
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|miles mcbride|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 9,
+      "absolute_error": 0.021,
+      "signed_error": 0.021,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 22
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|josh hart|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 1.626,
+      "signed_error": 1.626,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 23
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -6.4,
+            "texto": "Atuou 6.4 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|larry nance|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 2,
+      "absolute_error": 1.152,
+      "signed_error": 1.152,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 14
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|jay huff|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 1,
+      "absolute_error": 3.058,
+      "signed_error": 3.058,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 8
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -13.2,
+            "texto": "Atuou 13.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|jalen slawson|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.321,
+      "signed_error": -0.321,
+      "updated_at": "2026-11-14T06:10:31.480Z",
+      "context": {
+        "actual_minutes": 10
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -10.2,
+            "texto": "Atuou 10.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|ivica zubac|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 13,
+      "absolute_error": 3.905,
+      "signed_error": -3.905,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 26
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|NYK|tyler kolek|ast",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 2,
+      "absolute_error": 3.755,
+      "signed_error": 3.755,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 19
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|IND|aaron nesmith|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 18,
+      "absolute_error": 6.107,
+      "signed_error": -6.107,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|ryan rollins|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 2.316,
+      "signed_error": 2.316,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 29
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 7.8,
+            "texto": "Atuou 7.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|jaime jaquez|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 22,
+      "absolute_error": 5.932,
+      "signed_error": -5.932,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 28
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|kyle kuzma|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.935,
+      "signed_error": 0.935,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|ORL|wendell carter|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 1.855,
+      "signed_error": 1.855,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|tyler herro|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 18,
+      "absolute_error": 4.678,
+      "signed_error": 4.678,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|ORL|franz wagner|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 35,
+      "absolute_error": 7.677,
+      "signed_error": -7.677,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 36
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|myles turner|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 5.341,
+      "signed_error": -5.341,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|brayden burries|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 8.472,
+      "signed_error": 8.472,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 19
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -8.6,
+            "texto": "Atuou 8.6 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|kelel ware|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 6,
+      "absolute_error": 0.249,
+      "signed_error": 0.249,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 17
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|ORL|desmond bane|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 21,
+      "absolute_error": 1.103,
+      "signed_error": -1.103,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|aj green|tres",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 0,
+      "absolute_error": 2.216,
+      "signed_error": 2.216,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 8
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -13.2,
+            "texto": "Atuou 13.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|kasparas jakucionis|ast",
-      "status": "jogo_nao_finalizado",
+      "status": "nao_atuou",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.481Z"
     },
     {
       "id": "2026-11-14T00:00:00Z|ORL|anthony black|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 15.442,
+      "signed_error": 15.442,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 37
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|MIL|nate ament|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 9,
+      "absolute_error": 0.223,
+      "signed_error": -0.223,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 22
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|ORL|tristan da silva|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 4.705,
+      "signed_error": 4.705,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T00:00:00Z|ORL|jevon carter|tres",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 1,
+      "absolute_error": 0.86,
+      "signed_error": 0.86,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 17
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|donovan mitchell|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 25,
+      "absolute_error": 1.959,
+      "signed_error": -1.959,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|james harden|ast",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 2.817,
+      "signed_error": -2.817,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|bam adebayo|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 14,
+      "absolute_error": 5.326,
+      "signed_error": -5.326,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 38
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|davion mitchell|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 22,
+      "absolute_error": 4.822,
+      "signed_error": -4.822,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 39
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|mario hezonja|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 2.654,
+      "signed_error": 2.654,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 9
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -13.6,
+            "texto": "Atuou 13.6 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|andrew wiggins|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 0.246,
+      "signed_error": -0.246,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 8.2,
+            "texto": "Atuou 8.2 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|bobby portis|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 1.801,
+      "signed_error": 1.801,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 15
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|peyton watson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 6.326,
+      "signed_error": 6.326,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|meleek thomas|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 1.155,
+      "signed_error": 1.155,
+      "updated_at": "2026-11-14T06:10:31.481Z",
+      "context": {
+        "actual_minutes": 18
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|jarrett allen|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 1.163,
+      "signed_error": 1.163,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|tyrese proctor|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 22,
+      "absolute_error": 13.311,
+      "signed_error": -13.311,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 27
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|giannis antetokounmpo|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 37,
+      "absolute_error": 8.493,
+      "signed_error": -8.493,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|pelle larsson|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "jogador_nao_localizado",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.482Z"
     },
     {
       "id": "2026-11-14T01:00:00Z|MIA|klay thompson|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "nao_atuou",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.482Z"
     },
     {
       "id": "2026-11-14T01:00:00Z|CLE|jaylon tyson|ast",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 1,
+      "absolute_error": 1.515,
+      "signed_error": 1.515,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 9.4,
+            "texto": "Atuou 9.4 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|aaron wiggins|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 9,
+      "absolute_error": 6.65,
+      "signed_error": 6.65,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 26
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|nickeil alexanderwalker|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 16,
+      "absolute_error": 8.414,
+      "signed_error": 8.414,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 41
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 8.8,
+            "texto": "Atuou 8.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|cj mccollum|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 20,
+      "absolute_error": 6.414,
+      "signed_error": -6.414,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 7,
+            "texto": "Atuou 7 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|onyeka okongwu|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 17,
+      "absolute_error": 1.553,
+      "signed_error": -1.553,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|dyson daniels|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 6,
+      "absolute_error": 4.354,
+      "signed_error": 4.354,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 36
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|luguentz dort|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 10,
+      "absolute_error": 0.34,
+      "signed_error": 0.34,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 20
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -6.4,
+            "texto": "Atuou 6.4 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|tre jones|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 7.079,
+      "signed_error": 7.079,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 15
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|matas buzelis|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 2.351,
+      "signed_error": 2.351,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 29
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|josh giddey|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 15,
+      "absolute_error": 3.668,
+      "signed_error": -3.668,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 39
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 10.4,
+            "texto": "Atuou 10.4 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|jalen johnson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 27,
+      "absolute_error": 7.158,
+      "signed_error": -7.158,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 40
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|jalen smith|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 15,
+      "absolute_error": 0.179,
+      "signed_error": 0.179,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|jock landale|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 0.708,
+      "signed_error": 0.708,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 18
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|ATL|kingston flemings|ast",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 1,
+      "absolute_error": 3.694,
+      "signed_error": 3.694,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 17
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7.8,
+            "texto": "Atuou 7.8 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|noa essengue|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 1,
+      "absolute_error": 3.265,
+      "signed_error": 3.265,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 8
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7,
+            "texto": "Atuou 7 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|leonard miller|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "nao_atuou",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.482Z"
     },
     {
       "id": "2026-11-14T01:00:00Z|CHI|norman powell|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 33,
+      "absolute_error": 13.552,
+      "signed_error": -13.552,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|saddiq bey|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 30,
+      "absolute_error": 14.465,
+      "signed_error": -14.465,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 7.2,
+            "texto": "Atuou 7.2 min acima da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|jeremiah fears|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 18,
+      "absolute_error": 1.192,
+      "signed_error": -1.192,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|zion williamson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 22,
+      "absolute_error": 0.37,
+      "signed_error": 0.37,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|cameron boozer|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 10,
+      "absolute_error": 0.167,
+      "signed_error": -0.167,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 25
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -8.6,
+            "texto": "Atuou 8.6 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|derik queen|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 10,
+      "absolute_error": 2.844,
+      "signed_error": 2.844,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 23
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|cam spencer|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 14,
+      "absolute_error": 4.386,
+      "signed_error": -4.386,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 24
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|jerami grant|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 22,
+      "absolute_error": 10.848,
+      "signed_error": -10.848,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 26
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|cedric coward|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 1.79,
+      "signed_error": 1.79,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|jaylen wells|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 1.095,
+      "signed_error": 1.095,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 27
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|ty jerome|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 17,
+      "absolute_error": 9.942,
+      "signed_error": 9.942,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 29
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|dejounte murray|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "jogador_nao_localizado",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.482Z"
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|karlo matkovic|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 1.425,
+      "signed_error": 1.425,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 19
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|MEM|isaiah stewart|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 0.236,
+      "signed_error": -0.236,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 20
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:00:00Z|NOP|jordan poole|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 13,
+      "absolute_error": 4.452,
+      "signed_error": -4.452,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 31,
+            "texto": "Diferença final de 31 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|darryn peterson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 28,
+      "absolute_error": 10.578,
+      "signed_error": -10.578,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|ace bailey|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 3.22,
+      "signed_error": 3.22,
+      "updated_at": "2026-11-14T06:10:31.482Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|kevin durant|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 22,
+      "absolute_error": 0.966,
+      "signed_error": -0.966,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|amen thompson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 2.809,
+      "signed_error": 2.809,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 41
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 9,
+            "texto": "Atuou 9 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|jabari smith|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 6,
+      "absolute_error": 10.348,
+      "signed_error": 10.348,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 24
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -12.6,
+            "texto": "Atuou 12.6 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|jaxson hayes|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 0.924,
+      "signed_error": 0.924,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 13
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -12,
+            "texto": "Atuou 12 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|keyonte george|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 27,
+      "absolute_error": 7.394,
+      "signed_error": -7.394,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 38
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|isaiah collier|ast",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 1.348,
+      "signed_error": -1.348,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 16
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|brice sensabaugh|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 1.029,
+      "signed_error": 1.029,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 27
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 11.8,
+            "texto": "Atuou 11.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|josh okogie|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 2,
+      "absolute_error": 1.613,
+      "signed_error": 1.613,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 22
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|UTA|mo bamba|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 9,
+      "absolute_error": 3.35,
+      "signed_error": -3.35,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 20
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|alperen sengun|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 43,
+      "absolute_error": 21.744,
+      "signed_error": -21.744,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 37
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|tari eason|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 14,
+      "absolute_error": 4.847,
+      "signed_error": -4.847,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 10,
+            "texto": "Atuou 10 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|fred vanvleet|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 17,
+      "absolute_error": 2.998,
+      "signed_error": -2.998,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|reed sheppard|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 0,
+      "absolute_error": 9.711,
+      "signed_error": 9.711,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 19
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|bogdan bogdanovic|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 2.592,
+      "signed_error": -2.592,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 12
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          },
+          {
+            "id": "risco_blowout_pre",
+            "tipo": "contexto_pre_jogo",
+            "texto": "Modelo indicava possível jogo desequilibrado antes da partida"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T01:30:00Z|HOU|marcus smart|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "nao_atuou",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.483Z"
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|dylan harper|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 9,
+      "absolute_error": 8.372,
+      "signed_error": 8.372,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 25
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|keldon johnson|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 1.868,
+      "signed_error": 1.868,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 25
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|yaxel lendeborg|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 16.906,
+      "signed_error": 16.906,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 24
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7.8,
+            "texto": "Atuou 7.8 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|victor wembanyama|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 18.753,
+      "signed_error": 18.753,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7.2,
+            "texto": "Atuou 7.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|stephon castle|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 0.6,
+      "signed_error": 0.6,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 25
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|georges niang|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 3.298,
+      "signed_error": 3.298,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 15
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -6.4,
+            "texto": "Atuou 6.4 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|luke kornet|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 2.846,
+      "signed_error": -2.846,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 16
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|deanthony melton|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.316,
+      "signed_error": 0.316,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 18
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|julian champagnie|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 2.514,
+      "signed_error": 2.514,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 23
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|deaaron fox|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 5.963,
+      "signed_error": 5.963,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 17
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -11.2,
+            "texto": "Atuou 11.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|brandin podziemski|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 8.384,
+      "signed_error": 8.384,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 22
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -11.4,
+            "texto": "Atuou 11.4 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|draymond green|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 1.66,
+      "signed_error": 1.66,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 16
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -9.2,
+            "texto": "Atuou 9.2 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|al horford|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 0.663,
+      "signed_error": 0.663,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 10
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7.8,
+            "texto": "Atuou 7.8 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|gui santos|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.221,
+      "signed_error": -0.221,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|SAS|devin vassell|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 4.222,
+      "signed_error": 4.222,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 23
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T02:30:00Z|GSW|charles bassey|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 3.043,
+      "signed_error": 3.043,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 20
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "placar_elastico",
+            "tipo": "observado",
+            "valor": 38,
+            "texto": "Diferença final de 38 pontos (possível blowout)"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|deni avdija|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 34,
+      "absolute_error": 11.103,
+      "signed_error": -11.103,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|damian lillard|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 29,
+      "absolute_error": 9.084,
+      "signed_error": -9.084,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|darius acuff|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 17,
+      "absolute_error": 10.211,
+      "signed_error": 10.211,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|zach lavine|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 9.926,
+      "signed_error": 9.926,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 36
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|toumani camara|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 14,
+      "absolute_error": 0.968,
+      "signed_error": -0.968,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 36
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|donovan clingan|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 0.195,
+      "signed_error": -0.195,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 27
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|jrue holiday|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 6,
+      "absolute_error": 7.532,
+      "signed_error": 7.532,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 27
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|sidy cissoko|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.57,
+      "signed_error": -0.57,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 26
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|scoot henderson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 2.779,
+      "signed_error": -2.779,
+      "updated_at": "2026-11-14T06:10:31.483Z",
+      "context": {
+        "actual_minutes": 23
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|domantas sabonis|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 0.091,
+      "signed_error": -0.091,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|deandre hunter|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 0.546,
+      "signed_error": -0.546,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 42
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 7.8,
+            "texto": "Atuou 7.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|POR|robert williams|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 7,
+      "absolute_error": 0.624,
+      "signed_error": -0.624,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 17
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|malik monk|ast",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 1.621,
+      "signed_error": 1.621,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 18
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|precious achiuwa|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "jogador_nao_localizado",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.484Z"
     },
     {
       "id": "2026-11-14T03:00:00Z|SAC|leaky black|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 0,
+      "absolute_error": 3.986,
+      "signed_error": 3.986,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 12
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -13,
+            "texto": "Atuou 13 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|shai gilgeousalexander|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 40,
+      "absolute_error": 9.905,
+      "signed_error": -9.905,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 39
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 7.2,
+            "texto": "Atuou 7.2 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|isaiah hartenstein|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 16,
+      "absolute_error": 5.664,
+      "signed_error": -5.664,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|aday mara|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 4.084,
+      "signed_error": 4.084,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|jared mccain|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 23,
+      "absolute_error": 8.73,
+      "signed_error": -8.73,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|darius garland|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 24,
+      "absolute_error": 4.108,
+      "signed_error": -4.108,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 37
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|keaton wagler|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 14,
+      "absolute_error": 3.349,
+      "signed_error": -3.349,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 18
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|kris dunn|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 0.749,
+      "signed_error": 0.749,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 20
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7,
+            "texto": "Atuou 7 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|brook lopez|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 26,
+      "absolute_error": 12.313,
+      "signed_error": -12.313,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 6.8,
+            "texto": "Atuou 6.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|derrick jones|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 14,
+      "absolute_error": 3.233,
+      "signed_error": -3.233,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 29
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|isaiah jackson|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 2.813,
+      "signed_error": 2.813,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 17
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|bennett stirtz|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 5.782,
+      "signed_error": 5.782,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 12
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -11.6,
+            "texto": "Atuou 11.6 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|kobe sanders|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 6.107,
+      "signed_error": 6.107,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 15
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -11.8,
+            "texto": "Atuou 11.8 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|kenrich williams|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 0.191,
+      "signed_error": 0.191,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 11.8,
+            "texto": "Atuou 11.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|rui hachimura|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 5.266,
+      "signed_error": -5.266,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|alex caruso|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 1,
+      "absolute_error": 3.719,
+      "signed_error": 3.719,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 27
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 6.8,
+            "texto": "Atuou 6.8 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|LAC|gradey dick|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "status": "apurado",
+      "actual": 13,
+      "absolute_error": 4.11,
+      "signed_error": -4.11,
+      "updated_at": "2026-11-14T06:10:31.484Z",
+      "context": {
+        "actual_minutes": 19
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 5,
+            "texto": "5 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 2,
+            "texto": "2 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|micah peavy|reb",
-      "status": "jogo_nao_finalizado",
+      "status": "jogador_nao_localizado",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.484Z"
     },
     {
       "id": "2026-11-14T03:30:00Z|OKC|ajay mitchell|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "jogador_nao_localizado",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-13T18:29:51.120Z"
+      "updated_at": "2026-11-14T06:10:31.484Z"
     }
   ]
 }
