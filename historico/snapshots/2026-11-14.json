@@ -1,0 +1,3464 @@
+{
+  "schema": 3,
+  "date": "2026-11-14",
+  "season": "2026-27",
+  "captured_at": "2026-11-14T19:06:03.446Z",
+  "model_hash": "67a2c86b3a6fbb9d",
+  "data_hash": "5b54e4db96c4bba8",
+  "fidelity": "Seleção automática reproduz o ranking de projeções do radar com parâmetros padrão",
+  "notes": [
+    "Apenas projeções pré-jogo, sem valores de cotação.",
+    "Somente partidas ainda não iniciadas no momento da captura."
+  ],
+  "games": [
+    {
+      "start_utc": "2026-11-15T00:00:00Z",
+      "home": "NOP",
+      "away": "DEN",
+      "context": {
+        "home_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "away_absences": [
+          "Julian Strawther"
+        ],
+        "home_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "away_key_rotation_absences": [],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 113.205,
+        "away_points": 117.543,
+        "total_points": 230.749,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 113
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 117
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 230
+          }
+        },
+        "home_margin": -4.338,
+        "home_win_probability": 0.359,
+        "away_win_probability": 0.641,
+        "favorite": "DEN",
+        "pace": 101.28,
+        "home_injury_impact": 1.441,
+        "away_injury_impact": 0,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      }
+    },
+    {
+      "start_utc": "2026-11-15T00:30:00Z",
+      "home": "CLE",
+      "away": "DAL",
+      "context": {
+        "home_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "away_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "home_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "away_key_rotation_absences": [],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 114.471,
+        "away_points": 113.672,
+        "total_points": 228.143,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 114
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 113
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 228
+          }
+        },
+        "home_margin": 0.799,
+        "home_win_probability": 0.527,
+        "away_win_probability": 0.473,
+        "favorite": "CLE",
+        "pace": 102.17,
+        "home_injury_impact": 1.421,
+        "away_injury_impact": 0,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      }
+    },
+    {
+      "start_utc": "2026-11-15T01:00:00Z",
+      "home": "MIA",
+      "away": "DET",
+      "context": {
+        "home_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "away_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "home_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "away_key_rotation_absences": [],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 112.03,
+        "away_points": 115.315,
+        "total_points": 227.345,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 112
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 115
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 227
+          }
+        },
+        "home_margin": -3.285,
+        "home_win_probability": 0.392,
+        "away_win_probability": 0.608,
+        "favorite": "DET",
+        "pace": 102.765,
+        "home_injury_impact": 0.68,
+        "away_injury_impact": 0.164,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      }
+    },
+    {
+      "start_utc": "2026-11-15T01:00:00Z",
+      "home": "MEM",
+      "away": "BKN",
+      "context": {
+        "home_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "away_absences": [],
+        "home_key_rotation_absences": [],
+        "away_key_rotation_absences": [],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 117.99,
+        "away_points": 108.667,
+        "total_points": 226.658,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 117
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 108
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 226
+          }
+        },
+        "home_margin": 9.323,
+        "home_win_probability": 0.781,
+        "away_win_probability": 0.219,
+        "favorite": "MEM",
+        "pace": 102.415,
+        "home_injury_impact": 0.12,
+        "away_injury_impact": 0.074,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      }
+    },
+    {
+      "start_utc": "2026-11-15T01:00:00Z",
+      "home": "MIN",
+      "away": "CHI",
+      "context": {
+        "home_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "away_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "home_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "away_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "injuries_verified": true
+      },
+      "prediction": {
+        "home_points": 124.068,
+        "away_points": 107.348,
+        "total_points": 231.417,
+        "targets": {
+          "home_points": {
+            "direction": "acima_de",
+            "threshold": 124
+          },
+          "away_points": {
+            "direction": "acima_de",
+            "threshold": 107
+          },
+          "total_points": {
+            "direction": "acima_de",
+            "threshold": 231
+          }
+        },
+        "home_margin": 16.72,
+        "home_win_probability": 0.918,
+        "away_win_probability": 0.082,
+        "favorite": "MIN",
+        "pace": 104.73,
+        "home_injury_impact": 1.06,
+        "away_injury_impact": 1.544,
+        "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "2026-11-15T00:00:00Z|NOP|zion williamson|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "NOP",
+      "opponent": "DEN",
+      "player": "Zion Williamson",
+      "market": "pts",
+      "classificacao": "principal",
+      "projection": 22.09,
+      "season_mean": 21.75,
+      "last5": 22.4,
+      "sigma": 5.867,
+      "sample": 12,
+      "score": 0.52503,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 22
+      },
+      "context": {
+        "expected_minutes": 33.6,
+        "team_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "opponent_absences": [
+          "Julian Strawther"
+        ],
+        "team_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 22,1 · acima da média · oscilação histórica ±5,9"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|NOP|saddiq bey|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "NOP",
+      "opponent": "DEN",
+      "player": "Saddiq Bey",
+      "market": "pts",
+      "classificacao": "principal",
+      "projection": 16.992,
+      "season_mean": 16.54,
+      "last5": 16.8,
+      "sigma": 6.3,
+      "sample": 13,
+      "score": 0.52302,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 16
+      },
+      "context": {
+        "expected_minutes": 29,
+        "team_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "opponent_absences": [
+          "Julian Strawther"
+        ],
+        "team_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 17,0 · acima da média · oscilação histórica ±6,3"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|NOP|jeremiah fears|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "NOP",
+      "opponent": "DEN",
+      "player": "Jeremiah Fears",
+      "market": "pts",
+      "classificacao": "principal",
+      "projection": 16.799,
+      "season_mean": 15.46,
+      "last5": 18.4,
+      "sigma": 6.144,
+      "sample": 13,
+      "score": 0.51682,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 16
+      },
+      "context": {
+        "expected_minutes": 31.2,
+        "team_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "opponent_absences": [
+          "Julian Strawther"
+        ],
+        "team_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 16,8 · acima da média · oscilação histórica ±6,1"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|NOP|derik queen|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "NOP",
+      "opponent": "DEN",
+      "player": "Derik Queen",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 12.056,
+      "season_mean": 12.5,
+      "last5": 12.6,
+      "sigma": 4.696,
+      "sample": 12,
+      "score": 0.48462,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 12
+      },
+      "context": {
+        "expected_minutes": 21.2,
+        "team_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "opponent_absences": [
+          "Julian Strawther"
+        ],
+        "team_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 12,1 · abaixo da média · oscilação histórica ±4,7"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|nikola jokic|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "Nikola Jokic",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 24.862,
+      "season_mean": 23.5,
+      "last5": 25.8,
+      "sigma": 7.52,
+      "sample": 10,
+      "score": 0.25088,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 24
+      },
+      "context": {
+        "expected_minutes": 35.6,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 24,9 · acima da média · oscilação histórica ±7,5 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|jamal murray|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "Jamal Murray",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 26.592,
+      "season_mean": 26.2,
+      "last5": 26.6,
+      "sigma": 10.893,
+      "sample": 10,
+      "score": 0.22241,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 26
+      },
+      "context": {
+        "expected_minutes": 34.4,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 26,6 · acima da média · oscilação histórica ±10,9 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|aaron gordon|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "Aaron Gordon",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 10.629,
+      "season_mean": 11,
+      "last5": 9.2,
+      "sigma": 5.061,
+      "sample": 10,
+      "score": 0.21049,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 10
+      },
+      "context": {
+        "expected_minutes": 27.8,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 10,6 · abaixo da média · oscilação histórica ±5,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|NOP|karlo matkovic|reb",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "NOP",
+      "opponent": "DEN",
+      "player": "Karlo Matkovic",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.063,
+      "season_mean": 4.6,
+      "last5": 3.8,
+      "sigma": 2.153,
+      "sample": 10,
+      "score": 0.20842,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 19,
+        "team_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "opponent_absences": [
+          "Julian Strawther"
+        ],
+        "team_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 4,1 · abaixo da média · oscilação histórica ±2,2 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|christian braun|reb",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "Christian Braun",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.062,
+      "season_mean": 4.1,
+      "last5": 4,
+      "sigma": 2.057,
+      "sample": 10,
+      "score": 0.19996,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 32.6,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 4,1 · em linha com a média · oscilação histórica ±2,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|trevon brazile|reb",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "Trevon Brazile",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.991,
+      "season_mean": 5.6,
+      "last5": 4.6,
+      "sigma": 2.965,
+      "sample": 10,
+      "score": 0.19325,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 16.4,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 5,0 · abaixo da média · oscilação histórica ±3,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|demar derozan|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "DeMar DeRozan",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.375,
+      "season_mean": 10,
+      "last5": 7.6,
+      "sigma": 4.653,
+      "sample": 9,
+      "score": 0.17124,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 21,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 9,4 · abaixo da média · oscilação histórica ±4,7 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|DEN|cameron johnson|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "DEN",
+      "opponent": "NOP",
+      "player": "Cameron Johnson",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 13.885,
+      "season_mean": 13.33,
+      "last5": 13.6,
+      "sigma": 5.602,
+      "sample": 6,
+      "score": 0.0647,
+      "warnings": [
+        "Amostra pequena (6 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 13
+      },
+      "context": {
+        "expected_minutes": 30.8,
+        "team_absences": [
+          "Julian Strawther"
+        ],
+        "opponent_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 13,9 · acima da média · oscilação histórica ±5,6 · Atenção: Amostra pequena (6 jogos)"
+    },
+    {
+      "id": "2026-11-15T00:00:00Z|NOP|jordan poole|pts",
+      "jogo_utc": "2026-11-15T00:00:00Z",
+      "team": "NOP",
+      "opponent": "DEN",
+      "player": "Jordan Poole",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.475,
+      "season_mean": 9.33,
+      "last5": 10.4,
+      "sigma": 4.11,
+      "sample": 6,
+      "score": 0.06141,
+      "warnings": [
+        "Amostra pequena (6 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 23.6,
+        "team_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray",
+          "Yves Missi",
+          "Trendon Watford",
+          "Bryce McGowens"
+        ],
+        "opponent_absences": [
+          "Julian Strawther"
+        ],
+        "team_key_rotation_absences": [
+          "Trey Murphy III",
+          "Dejounte Murray"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -4.34
+      },
+      "summary": "Projeção 9,5 · acima da média · oscilação histórica ±4,1 · Atenção: Amostra pequena (6 jogos)"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|donovan mitchell|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Donovan Mitchell",
+      "market": "pts",
+      "classificacao": "principal",
+      "projection": 22.807,
+      "season_mean": 23,
+      "last5": 23.8,
+      "sigma": 7.372,
+      "sample": 13,
+      "score": 0.54692,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 22
+      },
+      "context": {
+        "expected_minutes": 32.4,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 22,8 · abaixo da média · oscilação histórica ±7,4"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|james harden|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "James Harden",
+      "market": "pts",
+      "classificacao": "principal",
+      "projection": 16.506,
+      "season_mean": 16.92,
+      "last5": 17.4,
+      "sigma": 6.32,
+      "sample": 13,
+      "score": 0.52582,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 16
+      },
+      "context": {
+        "expected_minutes": 31.4,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 16,5 · abaixo da média · oscilação histórica ±6,3"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|zaccharie risacher|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Zaccharie Risacher",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.252,
+      "season_mean": 5,
+      "last5": 3.8,
+      "sigma": 2.038,
+      "sample": 12,
+      "score": 0.47361,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 19,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 4,3 · abaixo da média · oscilação histórica ±2,0"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|pj washington|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "P.J. Washington",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 6.613,
+      "season_mean": 7.17,
+      "last5": 6.4,
+      "sigma": 3.041,
+      "sample": 12,
+      "score": 0.46811,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 6
+      },
+      "context": {
+        "expected_minutes": 29.6,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 6,6 · abaixo da média · oscilação histórica ±3,0"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|daniel gafford|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Daniel Gafford",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.243,
+      "season_mean": 5.33,
+      "last5": 3,
+      "sigma": 2.787,
+      "sample": 12,
+      "score": 0.43777,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 18.2,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 4,2 · abaixo da média · oscilação histórica ±2,8"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|cooper flagg|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Cooper Flagg",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 24.502,
+      "season_mean": 24.64,
+      "last5": 24,
+      "sigma": 8.96,
+      "sample": 11,
+      "score": 0.27814,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 24
+      },
+      "context": {
+        "expected_minutes": 33.4,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 24,5 · abaixo da média · oscilação histórica ±9,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|meleek thomas|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Meleek Thomas",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 13.186,
+      "season_mean": 13,
+      "last5": 13,
+      "sigma": 4.061,
+      "sample": 10,
+      "score": 0.25331,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 13
+      },
+      "context": {
+        "expected_minutes": 23.6,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 13,2 · acima da média · oscilação histórica ±4,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|jarrett allen|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Jarrett Allen",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 8.981,
+      "season_mean": 9,
+      "last5": 9.2,
+      "sigma": 3.083,
+      "sample": 10,
+      "score": 0.24381,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 27,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 9,0 · em linha com a média · oscilação histórica ±3,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|peyton watson|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Peyton Watson",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.999,
+      "season_mean": 10.36,
+      "last5": 9.8,
+      "sigma": 4.965,
+      "sample": 11,
+      "score": 0.24311,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 27.6,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 10,0 · abaixo da média · oscilação histórica ±5,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|mario hezonja|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Mario Hezonja",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 6.578,
+      "season_mean": 5.91,
+      "last5": 6.8,
+      "sigma": 2.855,
+      "sample": 11,
+      "score": 0.24207,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 6
+      },
+      "context": {
+        "expected_minutes": 22.6,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 6,6 · acima da média · oscilação histórica ±2,9 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|kyrie irving|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Kyrie Irving",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 22.255,
+      "season_mean": 21.6,
+      "last5": 21.8,
+      "sigma": 8.366,
+      "sample": 10,
+      "score": 0.23046,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 22
+      },
+      "context": {
+        "expected_minutes": 31.6,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 22,3 · acima da média · oscilação histórica ±8,4 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|walter clayton|ast",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Walter Clayton Jr.",
+      "market": "ast",
+      "classificacao": "monitoramento",
+      "projection": 4.303,
+      "season_mean": 4.11,
+      "last5": 4.2,
+      "sigma": 1.829,
+      "sample": 9,
+      "score": 0.17601,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 21.4,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 4,3 · acima da média · oscilação histórica ±1,8 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|naji marshall|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Naji Marshall",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 10.943,
+      "season_mean": 11.33,
+      "last5": 11.2,
+      "sigma": 5.131,
+      "sample": 9,
+      "score": 0.17415,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 10
+      },
+      "context": {
+        "expected_minutes": 22.8,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 10,9 · abaixo da média · oscilação histórica ±5,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|tyrese proctor|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Tyrese Proctor",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 10.316,
+      "season_mean": 10,
+      "last5": 10.6,
+      "sigma": 4.972,
+      "sample": 9,
+      "score": 0.16395,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 10
+      },
+      "context": {
+        "expected_minutes": 23,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 10,3 · acima da média · oscilação histórica ±5,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|jaylon tyson|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Jaylon Tyson",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 8.14,
+      "season_mean": 8.29,
+      "last5": 8,
+      "sigma": 4.637,
+      "sample": 7,
+      "score": 0.0794,
+      "warnings": [
+        "Amostra pequena (7 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 22.4,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 8,1 · abaixo da média · oscilação histórica ±4,6 · Atenção: Amostra pequena (7 jogos)"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|CLE|thomas bryant|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "CLE",
+      "opponent": "DAL",
+      "player": "Thomas Bryant",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.091,
+      "season_mean": 9.2,
+      "last5": 9.2,
+      "sigma": 3.602,
+      "sample": 5,
+      "score": 0.02962,
+      "warnings": [
+        "Amostra pequena (5 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 15,
+        "team_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "opponent_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "team_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 9,1 · abaixo da média · oscilação histórica ±3,6 · Atenção: Amostra pequena (5 jogos)"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|marcus sasser|pts",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Marcus Sasser",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.844,
+      "season_mean": 9.8,
+      "last5": 9.8,
+      "sigma": 4.517,
+      "sample": 5,
+      "score": 0.02014,
+      "warnings": [
+        "Amostra pequena (5 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 23.8,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 9,8 · em linha com a média · oscilação histórica ±4,5 · Atenção: Amostra pequena (5 jogos)"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|morez johnson|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Morez Johnson Jr.",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 5.562,
+      "season_mean": 4.82,
+      "last5": 6.6,
+      "sigma": 3.749,
+      "sample": 11,
+      "score": 0.00375,
+      "warnings": [
+        "Situação do jogador: Provável",
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 5
+      },
+      "context": {
+        "expected_minutes": 18.2,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 5,6 · acima da média · oscilação histórica ±3,7 · Atenção: Situação do jogador: Provável; Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T00:30:00Z|DAL|max christie|reb",
+      "jogo_utc": "2026-11-15T00:30:00Z",
+      "team": "DAL",
+      "opponent": "CLE",
+      "player": "Max Christie",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 3.561,
+      "season_mean": 3.57,
+      "last5": 3.6,
+      "sigma": 1.709,
+      "sample": 7,
+      "score": -0.07702,
+      "warnings": [
+        "Situação do jogador: Dúvida",
+        "Amostra pequena (7 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 3
+      },
+      "context": {
+        "expected_minutes": 21.8,
+        "team_absences": [
+          "Sergio de Larrea",
+          "Dereck Lively II",
+          "Tarik Biberovic"
+        ],
+        "opponent_absences": [
+          "Evan Mobley",
+          "Sam Merrill",
+          "Nae'Qwan Tomlin"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Evan Mobley"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": 0.8
+      },
+      "summary": "Projeção 3,6 · em linha com a média · oscilação histórica ±1,7 · Atenção: Situação do jogador: Dúvida; Amostra pequena (7 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIA|giannis antetokounmpo|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIA",
+      "opponent": "DET",
+      "player": "Giannis Antetokounmpo",
+      "market": "pts",
+      "classificacao": "principal",
+      "projection": 27.935,
+      "season_mean": 28.5,
+      "last5": 28.6,
+      "sigma": 7.894,
+      "sample": 12,
+      "score": 0.52207,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 27
+      },
+      "context": {
+        "expected_minutes": 33.6,
+        "team_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "opponent_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "team_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 27,9 · abaixo da média · oscilação histórica ±7,9"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIA|bam adebayo|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIA",
+      "opponent": "DET",
+      "player": "Bam Adebayo",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 9.41,
+      "season_mean": 8.83,
+      "last5": 10,
+      "sigma": 2.716,
+      "sample": 12,
+      "score": 0.50984,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 36.6,
+        "team_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "opponent_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "team_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 9,4 · acima da média · oscilação histórica ±2,7"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIA|davion mitchell|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIA",
+      "opponent": "DET",
+      "player": "Davion Mitchell",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 17.498,
+      "season_mean": 16.92,
+      "last5": 18.2,
+      "sigma": 5.268,
+      "sample": 12,
+      "score": 0.50837,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 17
+      },
+      "context": {
+        "expected_minutes": 39.6,
+        "team_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "opponent_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "team_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 17,5 · acima da média · oscilação histórica ±5,3"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIA|andrew wiggins|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIA",
+      "opponent": "DET",
+      "player": "Andrew Wiggins",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 7.577,
+      "season_mean": 8.67,
+      "last5": 6.4,
+      "sigma": 4.259,
+      "sample": 12,
+      "score": 0.44707,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 7
+      },
+      "context": {
+        "expected_minutes": 25.4,
+        "team_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "opponent_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "team_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 7,6 · abaixo da média · oscilação histórica ±4,3"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIA|bobby portis|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIA",
+      "opponent": "DET",
+      "player": "Bobby Portis",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.612,
+      "season_mean": 5.58,
+      "last5": 4,
+      "sigma": 3.143,
+      "sample": 12,
+      "score": 0.42645,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 16.8,
+        "team_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "opponent_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "team_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 4,6 · abaixo da média · oscilação histórica ±3,1"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|duncan robinson|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Duncan Robinson",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 19.534,
+      "season_mean": 18.09,
+      "last5": 19.6,
+      "sigma": 5.881,
+      "sample": 11,
+      "score": 0.29118,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 19
+      },
+      "context": {
+        "expected_minutes": 34.2,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 19,5 · acima da média · oscilação histórica ±5,9 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|cade cunningham|ast",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Cade Cunningham",
+      "market": "ast",
+      "classificacao": "monitoramento",
+      "projection": 8.416,
+      "season_mean": 7.91,
+      "last5": 8.8,
+      "sigma": 2.871,
+      "sample": 11,
+      "score": 0.27835,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 36,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 8,4 · acima da média · oscilação histórica ±2,9 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|paul reed|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Paul Reed",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 8.189,
+      "season_mean": 7.73,
+      "last5": 8.6,
+      "sigma": 2.979,
+      "sample": 11,
+      "score": 0.27111,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 27.4,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 8,2 · acima da média · oscilação histórica ±3,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|john collins|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "John Collins",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 5.532,
+      "season_mean": 5.91,
+      "last5": 4.4,
+      "sigma": 3.035,
+      "sample": 11,
+      "score": 0.23376,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 5
+      },
+      "context": {
+        "expected_minutes": 26,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 5,5 · abaixo da média · oscilação histórica ±3,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|ausar thompson|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Ausar Thompson",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 11.078,
+      "season_mean": 10.1,
+      "last5": 11.4,
+      "sigma": 4.015,
+      "sample": 10,
+      "score": 0.22752,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 11
+      },
+      "context": {
+        "expected_minutes": 31,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 11,1 · acima da média · oscilação histórica ±4,0 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|daniss jenkins|ast",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Daniss Jenkins",
+      "market": "ast",
+      "classificacao": "monitoramento",
+      "projection": 4.68,
+      "season_mean": 4.27,
+      "last5": 4.6,
+      "sigma": 2.358,
+      "sample": 11,
+      "score": 0.22368,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 30.8,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 4,7 · acima da média · oscilação histórica ±2,4 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|kevin huerter|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Kevin Huerter",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 10.996,
+      "season_mean": 9,
+      "last5": 12.8,
+      "sigma": 5.121,
+      "sample": 11,
+      "score": 0.2195,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 10
+      },
+      "context": {
+        "expected_minutes": 26.4,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 11,0 · acima da média · oscilação histórica ±5,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|DET|ronald holland|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "DET",
+      "opponent": "MIA",
+      "player": "Ronald Holland II",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 3.496,
+      "season_mean": 3.8,
+      "last5": 3.2,
+      "sigma": 2.051,
+      "sample": 10,
+      "score": 0.19079,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 3
+      },
+      "context": {
+        "expected_minutes": 15,
+        "team_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "opponent_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 3,5 · abaixo da média · oscilação histórica ±2,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIA|ryan conwell|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIA",
+      "opponent": "DET",
+      "player": "Ryan Conwell",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 8.485,
+      "season_mean": 8.8,
+      "last5": 8.8,
+      "sigma": 5.359,
+      "sample": 5,
+      "score": 0.00264,
+      "warnings": [
+        "Amostra pequena (5 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 24,
+        "team_absences": [
+          "Pelle Larsson",
+          "Klay Thompson"
+        ],
+        "opponent_absences": [
+          "Jalen Duren",
+          "Isaiah Joe"
+        ],
+        "team_key_rotation_absences": [
+          "Pelle Larsson"
+        ],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": -3.29
+      },
+      "summary": "Projeção 8,5 · abaixo da média · oscilação histórica ±5,4 · Atenção: Amostra pequena (5 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|cameron boozer|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Cameron Boozer",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 9.526,
+      "season_mean": 9.83,
+      "last5": 9.2,
+      "sigma": 2.938,
+      "sample": 12,
+      "score": 0.51325,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 31,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 9,5 · abaixo da média · oscilação histórica ±2,9"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|cam spencer|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Cam Spencer",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.925,
+      "season_mean": 9.67,
+      "last5": 10,
+      "sigma": 3.812,
+      "sample": 12,
+      "score": 0.47816,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 20.8,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 9,9 · acima da média · oscilação histórica ±3,8"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|jerami grant|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Jerami Grant",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 12.277,
+      "season_mean": 11.67,
+      "last5": 14.8,
+      "sigma": 5.293,
+      "sample": 12,
+      "score": 0.45864,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 12
+      },
+      "context": {
+        "expected_minutes": 22.8,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 12,3 · acima da média · oscilação histórica ±5,3"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|jaylen wells|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Jaylen Wells",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 11.225,
+      "season_mean": 11.92,
+      "last5": 10.8,
+      "sigma": 5.5,
+      "sample": 12,
+      "score": 0.45618,
+      "warnings": [],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 11
+      },
+      "context": {
+        "expected_minutes": 26,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 11,2 · abaixo da média · oscilação histórica ±5,5"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|cedric coward|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Cedric Coward",
+      "market": "reb",
+      "classificacao": "observacao",
+      "projection": 8.444,
+      "season_mean": 8.55,
+      "last5": 8.4,
+      "sigma": 2.577,
+      "sample": 11,
+      "score": 0.2996,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 28.2,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 8,4 · abaixo da média · oscilação histórica ±2,6 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|michael porter|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Michael Porter Jr.",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 21.933,
+      "season_mean": 21.55,
+      "last5": 22,
+      "sigma": 6.672,
+      "sample": 11,
+      "score": 0.29664,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 21
+      },
+      "context": {
+        "expected_minutes": 33.6,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 21,9 · acima da média · oscilação histórica ±6,7 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|julius randle|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Julius Randle",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 18.951,
+      "season_mean": 19.73,
+      "last5": 18.4,
+      "sigma": 6.525,
+      "sample": 11,
+      "score": 0.28924,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 18
+      },
+      "context": {
+        "expected_minutes": 32,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 19,0 · abaixo da média · oscilação histórica ±6,5 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|ty jerome|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Ty Jerome",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 23.905,
+      "season_mean": 25.36,
+      "last5": 22,
+      "sigma": 9.626,
+      "sample": 11,
+      "score": 0.27298,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 23
+      },
+      "context": {
+        "expected_minutes": 30,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 23,9 · abaixo da média · oscilação histórica ±9,6 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|moritz wagner|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Moritz Wagner",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 10.484,
+      "season_mean": 10.91,
+      "last5": 9.8,
+      "sigma": 4.261,
+      "sample": 11,
+      "score": 0.26946,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 10
+      },
+      "context": {
+        "expected_minutes": 18.2,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 10,5 · abaixo da média · oscilação histórica ±4,3 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|dayron sharpe|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Day'Ron Sharpe",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 6.634,
+      "season_mean": 6.82,
+      "last5": 5.8,
+      "sigma": 2.831,
+      "sample": 11,
+      "score": 0.26187,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 6
+      },
+      "context": {
+        "expected_minutes": 24,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 6,6 · abaixo da média · oscilação histórica ±2,8 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|noah clowney|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Noah Clowney",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.673,
+      "season_mean": 4.8,
+      "last5": 4.6,
+      "sigma": 2.547,
+      "sample": 10,
+      "score": 0.19295,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 20.2,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 4,7 · abaixo da média · oscilação histórica ±2,5 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|isaiah stewart|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Isaiah Stewart",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 3.707,
+      "season_mean": 3.62,
+      "last5": 3.6,
+      "sigma": 1.656,
+      "sample": 8,
+      "score": 0.13495,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 3
+      },
+      "context": {
+        "expected_minutes": 20.6,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 3,7 · acima da média · oscilação histórica ±1,7 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|gg jackson|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "GG Jackson",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 8.388,
+      "season_mean": 8.33,
+      "last5": 9,
+      "sigma": 5.331,
+      "sample": 9,
+      "score": 0.13488,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 17.8,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 8,4 · acima da média · oscilação histórica ±5,3 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|danny wolf|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Danny Wolf",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.924,
+      "season_mean": 9.83,
+      "last5": 10.6,
+      "sigma": 3.389,
+      "sample": 6,
+      "score": 0.07788,
+      "warnings": [
+        "Amostra pequena (6 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 25.4,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 9,9 · acima da média · oscilação histórica ±3,4 · Atenção: Amostra pequena (6 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|nolan traore|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Nolan Traore",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 14.664,
+      "season_mean": 14,
+      "last5": 16.4,
+      "sigma": 5.233,
+      "sample": 9,
+      "score": 0.02395,
+      "warnings": [
+        "Situação do jogador: Provável",
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 14
+      },
+      "context": {
+        "expected_minutes": 25,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 14,7 · acima da média · oscilação histórica ±5,2 · Atenção: Situação do jogador: Provável; Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MEM|javon small|ast",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MEM",
+      "opponent": "BKN",
+      "player": "Javon Small",
+      "market": "ast",
+      "classificacao": "monitoramento",
+      "projection": 4.18,
+      "season_mean": 4.2,
+      "last5": 4.2,
+      "sigma": 1.971,
+      "sample": 5,
+      "score": 0.01906,
+      "warnings": [
+        "Amostra pequena (5 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 19,
+        "team_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "opponent_absences": [],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 4,2 · em linha com a média · oscilação histórica ±2,0 · Atenção: Amostra pequena (5 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|BKN|mikel brown|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "BKN",
+      "opponent": "MEM",
+      "player": "Mikel Brown Jr.",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 13.222,
+      "season_mean": 12.86,
+      "last5": 15.2,
+      "sigma": 5.089,
+      "sample": 7,
+      "score": -0.06137,
+      "warnings": [
+        "Situação do jogador: Dúvida",
+        "Amostra pequena (7 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 13
+      },
+      "context": {
+        "expected_minutes": 24.6,
+        "team_absences": [],
+        "opponent_absences": [
+          "Zach Edey",
+          "Scotty Pippen Jr.",
+          "Quinten Post",
+          "Richie Saunders"
+        ],
+        "team_key_rotation_absences": [],
+        "opponent_key_rotation_absences": [],
+        "projected_blowout_risk": false,
+        "projected_margin": 9.32
+      },
+      "summary": "Projeção 13,2 · acima da média · oscilação histórica ±5,1 · Atenção: Situação do jogador: Dúvida; Amostra pequena (7 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|jaden mcdaniels|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Jaden McDaniels",
+      "market": "pts",
+      "classificacao": "observacao",
+      "projection": 17.233,
+      "season_mean": 16.92,
+      "last5": 16.4,
+      "sigma": 4.544,
+      "sample": 12,
+      "score": 0.35554,
+      "warnings": [
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 17
+      },
+      "context": {
+        "expected_minutes": 32.8,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 17,2 · acima da média · oscilação histórica ±4,5 · Atenção: Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|ayo dosunmu|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Ayo Dosunmu",
+      "market": "pts",
+      "classificacao": "observacao",
+      "projection": 20.662,
+      "season_mean": 18.08,
+      "last5": 22,
+      "sigma": 6.457,
+      "sample": 12,
+      "score": 0.32124,
+      "warnings": [
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 20
+      },
+      "context": {
+        "expected_minutes": 33.4,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 20,7 · acima da média · oscilação histórica ±6,5 · Atenção: Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|lamelo ball|ast",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "LaMelo Ball",
+      "market": "ast",
+      "classificacao": "observacao",
+      "projection": 6.683,
+      "season_mean": 6.25,
+      "last5": 6.2,
+      "sigma": 2.414,
+      "sample": 12,
+      "score": 0.3109,
+      "warnings": [
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 6
+      },
+      "context": {
+        "expected_minutes": 30.8,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 6,7 · acima da média · oscilação histórica ±2,4 · Atenção: Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|jonathan kuminga|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Jonathan Kuminga",
+      "market": "pts",
+      "classificacao": "observacao",
+      "projection": 12.546,
+      "season_mean": 12.42,
+      "last5": 11.8,
+      "sigma": 5.032,
+      "sample": 12,
+      "score": 0.30444,
+      "warnings": [
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 12
+      },
+      "context": {
+        "expected_minutes": 29.6,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 12,5 · acima da média · oscilação histórica ±5,0 · Atenção: Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|tre jones|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Tre Jones",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 9.3,
+      "season_mean": 10,
+      "last5": 9,
+      "sigma": 3.56,
+      "sample": 11,
+      "score": 0.28067,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 9
+      },
+      "context": {
+        "expected_minutes": 18.8,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 9,3 · abaixo da média · oscilação histórica ±3,6 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|matas buzelis|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Matas Buzelis",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 12.483,
+      "season_mean": 13.27,
+      "last5": 11.8,
+      "sigma": 5.067,
+      "sample": 11,
+      "score": 0.27225,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 12
+      },
+      "context": {
+        "expected_minutes": 28,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 12,5 · abaixo da média · oscilação histórica ±5,1 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|josh giddey|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Josh Giddey",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 11.3,
+      "season_mean": 10.64,
+      "last5": 13.2,
+      "sigma": 4.552,
+      "sample": 11,
+      "score": 0.25802,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 11
+      },
+      "context": {
+        "expected_minutes": 31.4,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 11,3 · acima da média · oscilação histórica ±4,6 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|trey lyles|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Trey Lyles",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.595,
+      "season_mean": 3.92,
+      "last5": 5,
+      "sigma": 3.019,
+      "sample": 12,
+      "score": 0.20661,
+      "warnings": [
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 21.2,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 4,6 · acima da média · oscilação histórica ±3,0 · Atenção: Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|norman powell|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Norman Powell",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 20.165,
+      "season_mean": 20.78,
+      "last5": 21.8,
+      "sigma": 7.273,
+      "sample": 9,
+      "score": 0.20038,
+      "warnings": [
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 20
+      },
+      "context": {
+        "expected_minutes": 30,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 20,2 · abaixo da média · oscilação histórica ±7,3 · Atenção: Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|joan beringer|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Joan Beringer",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 7.006,
+      "season_mean": 6.73,
+      "last5": 6.4,
+      "sigma": 2.431,
+      "sample": 11,
+      "score": 0.10892,
+      "warnings": [
+        "Histórico ainda curto",
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 7
+      },
+      "context": {
+        "expected_minutes": 19.8,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 7,0 · acima da média · oscilação histórica ±2,4 · Atenção: Histórico ainda curto; Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|rudy gobert|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Rudy Gobert",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 11.145,
+      "season_mean": 11.55,
+      "last5": 10.6,
+      "sigma": 4.489,
+      "sample": 11,
+      "score": 0.10008,
+      "warnings": [
+        "Histórico ainda curto",
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 11
+      },
+      "context": {
+        "expected_minutes": 28.6,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 11,1 · abaixo da média · oscilação histórica ±4,5 · Atenção: Histórico ainda curto; Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|jalen smith|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Jalen Smith",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 14.179,
+      "season_mean": 14,
+      "last5": 14.6,
+      "sigma": 5.246,
+      "sample": 10,
+      "score": 0.06412,
+      "warnings": [
+        "Situação do jogador: Dúvida",
+        "Histórico ainda curto"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 14
+      },
+      "context": {
+        "expected_minutes": 29.4,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 14,2 · acima da média · oscilação histórica ±5,2 · Atenção: Situação do jogador: Dúvida; Histórico ainda curto"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|noa essengue|reb",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Noa Essengue",
+      "market": "reb",
+      "classificacao": "monitoramento",
+      "projection": 4.214,
+      "season_mean": 4.17,
+      "last5": 4.8,
+      "sigma": 2.084,
+      "sample": 6,
+      "score": 0.05226,
+      "warnings": [
+        "Amostra pequena (6 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 4
+      },
+      "context": {
+        "expected_minutes": 15,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 4,2 · em linha com a média · oscilação histórica ±2,1 · Atenção: Amostra pequena (6 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|CHI|leonard miller|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "CHI",
+      "opponent": "MIN",
+      "player": "Leonard Miller",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 8.532,
+      "season_mean": 8.83,
+      "last5": 9.8,
+      "sigma": 4.612,
+      "sample": 6,
+      "score": 0.04896,
+      "warnings": [
+        "Amostra pequena (6 jogos)"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 8
+      },
+      "context": {
+        "expected_minutes": 19,
+        "team_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "opponent_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "team_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "opponent_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 8,5 · abaixo da média · oscilação histórica ±4,6 · Atenção: Amostra pequena (6 jogos)"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|terrence shannon|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Terrence Shannon Jr.",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 10.393,
+      "season_mean": 10.56,
+      "last5": 8.6,
+      "sigma": 4.87,
+      "sample": 9,
+      "score": 0.00219,
+      "warnings": [
+        "Histórico ainda curto",
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 10
+      },
+      "context": {
+        "expected_minutes": 20.8,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 10,4 · abaixo da média · oscilação histórica ±4,9 · Atenção: Histórico ainda curto; Possível redução de minutos"
+    },
+    {
+      "id": "2026-11-15T01:00:00Z|MIN|bones hyland|pts",
+      "jogo_utc": "2026-11-15T01:00:00Z",
+      "team": "MIN",
+      "opponent": "CHI",
+      "player": "Bones Hyland",
+      "market": "pts",
+      "classificacao": "monitoramento",
+      "projection": 13.995,
+      "season_mean": 13.5,
+      "last5": 14.6,
+      "sigma": 6.19,
+      "sample": 8,
+      "score": -0.03527,
+      "warnings": [
+        "Histórico ainda curto",
+        "Possível redução de minutos"
+      ],
+      "target": {
+        "direction": "acima_de",
+        "threshold": 13
+      },
+      "context": {
+        "expected_minutes": 16,
+        "team_absences": [
+          "Anthony Edwards",
+          "Donte DiVincenzo"
+        ],
+        "opponent_absences": [
+          "Caleb Wilson",
+          "Tobe Awaka",
+          "Dailyn Swain"
+        ],
+        "team_key_rotation_absences": [
+          "Anthony Edwards"
+        ],
+        "opponent_key_rotation_absences": [
+          "Caleb Wilson"
+        ],
+        "projected_blowout_risk": true,
+        "projected_margin": 16.72
+      },
+      "summary": "Projeção 14,0 · acima da média · oscilação histórica ±6,2 · Atenção: Histórico ainda curto; Possível redução de minutos"
+    }
+  ]
+}
