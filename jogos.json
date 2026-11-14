@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-14T15:50:09+00:00",
+  "atualizado_em": "2026-11-14T22:59:37+00:00",
   "data_jogos": "2026-11-14",
   "lesoes_ok": true,
   "media_liga": {
@@ -1375,7 +1375,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -1835,9 +1835,9 @@
             "nome": "Trey Murphy III",
             "situacao": "Fora",
             "motivo": "Knee Tendinitis",
-            "retorno": "2026-11-14",
-            "atualizado": "2026-11-13",
-            "comentario": "Murphy (knee) is out for Friday's game against Memphis.",
+            "retorno": "2026-11-16",
+            "atualizado": "2026-11-14",
+            "comentario": "Murphy (knees) has been ruled out for Saturday's game against the Nuggets.",
             "jogos": 9,
             "minutos": 32.8,
             "pts": 15.56,
@@ -1858,25 +1858,12 @@
             "ast": 4.44
           },
           {
-            "nome": "Yves Missi",
-            "situacao": "Fora",
-            "motivo": "Knee Bruise",
-            "retorno": "2026-11-14",
-            "atualizado": "2026-11-13",
-            "comentario": "Missi (knee) is out for Friday's game against the Grizzlies.",
-            "jogos": 2,
-            "minutos": 19.5,
-            "pts": 9.5,
-            "reb": 7.5,
-            "ast": 2.5
-          },
-          {
             "nome": "Trendon Watford",
             "situacao": "Fora",
             "motivo": "Ankle Sprain",
-            "retorno": "2026-11-14",
-            "atualizado": "2026-11-12",
-            "comentario": "Watford (ankle) is listed as out for Friday's game against the Grizzlies.",
+            "retorno": "2026-11-16",
+            "atualizado": "2026-11-14",
+            "comentario": "Watford (ankle) has been ruled out for Saturday's game against Denver.",
             "jogos": 6,
             "minutos": 17.8,
             "pts": 7.17,
@@ -1887,9 +1874,9 @@
             "nome": "Bryce McGowens",
             "situacao": "Fora",
             "motivo": "Elbow Infection",
-            "retorno": "2026-11-14",
+            "retorno": "2026-11-16",
             "atualizado": "2026-11-14",
-            "comentario": "McGowens (elbow) is listed as out for Friday's game against the Grizzlies.",
+            "comentario": "McGowens (elbow) has been ruled out for Saturday's game against the Nuggets.",
             "jogos": 7,
             "minutos": 10.6,
             "pts": 3.71,
@@ -3740,7 +3727,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -3890,7 +3877,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -4190,7 +4177,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -4340,7 +4327,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "C"
           },
@@ -5397,17 +5384,69 @@
         ],
         "ausencias": [
           {
-            "nome": "Evan Mobley",
-            "situacao": "Fora",
-            "motivo": "Toe",
+            "nome": "Donovan Mitchell",
+            "situacao": "Dúvida",
+            "motivo": "Knee Bruise",
             "retorno": "2026-11-14",
             "atualizado": "2026-11-14",
-            "comentario": "Mobley (toe) is out for Friday's game against the Heat.",
+            "comentario": "Mitchell (knee) is listed as questionable for Saturday's game against the Mavericks.",
+            "jogos": 13,
+            "minutos": 32.9,
+            "pts": 23,
+            "reb": 4.92,
+            "ast": 5.62
+          },
+          {
+            "nome": "Evan Mobley",
+            "situacao": "Fora",
+            "motivo": "Toe Sprain",
+            "retorno": "2026-11-16",
+            "atualizado": "2026-11-14",
+            "comentario": "Mobley (toe) has been ruled out for Saturday's meeting with Dallas.",
             "jogos": 12,
             "minutos": 32.1,
             "pts": 16.92,
             "reb": 7.33,
             "ast": 3.58
+          },
+          {
+            "nome": "James Harden",
+            "situacao": "Dúvida",
+            "motivo": "Calf",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-14",
+            "comentario": "Harden (left lower leg/calf tightness) is listed as questionable for Saturday's game against the Mavericks.",
+            "jogos": 13,
+            "minutos": 32.8,
+            "pts": 16.92,
+            "reb": 4.69,
+            "ast": 5.77
+          },
+          {
+            "nome": "Jarrett Allen",
+            "situacao": "Fora",
+            "motivo": "Knee",
+            "retorno": "2026-11-16",
+            "atualizado": "2026-11-14",
+            "comentario": "Allen (knee) has been ruled out for Saturday's game against the Mavericks.",
+            "jogos": 11,
+            "minutos": 25.8,
+            "pts": 12.55,
+            "reb": 8.27,
+            "ast": 1.36
+          },
+          {
+            "nome": "Peyton Watson",
+            "situacao": "Dúvida",
+            "motivo": "Hamstring",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-14",
+            "comentario": "Watson (hamstring) is listed as questionable for Saturday's game against the Mavericks.",
+            "jogos": 11,
+            "minutos": 28,
+            "pts": 10.36,
+            "reb": 4.55,
+            "ast": 2.73
           },
           {
             "nome": "Sam Merrill",
@@ -6646,7 +6685,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -7267,11 +7306,11 @@
           },
           {
             "nome": "Max Christie",
-            "situacao": "Dúvida",
-            "motivo": "Ankle",
+            "situacao": "Provável ausência",
+            "motivo": "Ankle Sprain",
             "retorno": "2026-11-14",
-            "atualizado": "2026-11-13",
-            "comentario": "Christie is questionable for Saturday's game against the Cavaliers due to a sprained left ankle.",
+            "atualizado": "2026-11-14",
+            "comentario": "Christie (ankle) has been downgraded to doubtful for Saturday's game against the Cavaliers",
             "jogos": 11,
             "minutos": 18.6,
             "pts": 5.27,
@@ -7781,7 +7820,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Provável",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -7931,7 +7970,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8231,7 +8270,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Provável",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8838,12 +8877,25 @@
         ],
         "ausencias": [
           {
+            "nome": "Giannis Antetokounmpo",
+            "situacao": "Provável",
+            "motivo": "Wrist Sprain",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-14",
+            "comentario": "Antetokounmpo (wrist) is listed as probable for Saturday's game against Detroit.",
+            "jogos": 12,
+            "minutos": 32.6,
+            "pts": 28.5,
+            "reb": 12.33,
+            "ast": 4.92
+          },
+          {
             "nome": "Pelle Larsson",
-            "situacao": "Fora",
+            "situacao": "Provável ausência",
             "motivo": "Illness",
             "retorno": "2026-11-14",
             "atualizado": "2026-11-14",
-            "comentario": "Larsson (illness) is out for Friday's game against Cleveland.",
+            "comentario": "Larsson (illness) is listed as doubtful for Saturday's game against Detroit.",
             "jogos": 11,
             "minutos": 29.6,
             "pts": 11.36,
@@ -8852,11 +8904,11 @@
           },
           {
             "nome": "Klay Thompson",
-            "situacao": "Fora",
-            "motivo": "Ankle Soreness",
+            "situacao": "Provável",
+            "motivo": "Ankle Sprain",
             "retorno": "2026-11-14",
             "atualizado": "2026-11-14",
-            "comentario": "Thompson (ankle) is out for Friday's game against the Cavaliers.",
+            "comentario": "Thompson (ankle) is listed as probable for Saturday's game against the Pistons.",
             "jogos": 11,
             "minutos": 24.7,
             "pts": 14.36,
@@ -10870,7 +10922,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -11320,7 +11372,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -11470,7 +11522,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -12377,17 +12429,43 @@
         ],
         "ausencias": [
           {
-            "nome": "Zach Edey",
+            "nome": "Ty Jerome",
             "situacao": "Fora",
+            "motivo": "Hip Soreness",
+            "retorno": "2026-11-16",
+            "atualizado": "2026-11-14",
+            "comentario": "Jerome (hip) has been ruled out for Saturday's game against the Nets.",
+            "jogos": 11,
+            "minutos": 30.6,
+            "pts": 25.36,
+            "reb": 3.36,
+            "ast": 5.27
+          },
+          {
+            "nome": "Zach Edey",
+            "situacao": "Dúvida",
             "motivo": "Ankle",
             "retorno": "2026-11-14",
             "atualizado": "2026-11-14",
-            "comentario": "Edey won't play in Friday's game against the Pelicans due to left ankle injury management.",
+            "comentario": "Edey (ankle) is listed as questionable for Saturday's game against Brooklyn.",
             "jogos": 10,
             "minutos": 20.8,
             "pts": 7.6,
             "reb": 7.7,
             "ast": 0.9
+          },
+          {
+            "nome": "Jerami Grant",
+            "situacao": "Dúvida",
+            "motivo": "Head",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-14",
+            "comentario": "Grant (head) is questionable for Saturday's game against the Nets.",
+            "jogos": 12,
+            "minutos": 23.7,
+            "pts": 11.67,
+            "reb": 2.08,
+            "ast": 2
           },
           {
             "nome": "Scotty Pippen Jr.",
@@ -12406,9 +12484,9 @@
             "nome": "Quinten Post",
             "situacao": "Fora",
             "motivo": "Concussion",
-            "retorno": "2026-11-14",
+            "retorno": "2026-11-16",
             "atualizado": "2026-11-14",
-            "comentario": "Post (concussion) has been ruled out for Friday's game against New Orleans.",
+            "comentario": "Post (concussion) has been ruled out for Saturday's game against the Nets.",
             "jogos": 8,
             "minutos": 12.9,
             "pts": 5,
@@ -13039,7 +13117,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -14247,11 +14325,11 @@
         "ausencias": [
           {
             "nome": "Mikel Brown Jr.",
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "motivo": "Illness Not Specified",
             "retorno": "2026-11-14",
-            "atualizado": "2026-11-13",
-            "comentario": "Brown (illness) is listed as questionable for Saturday's game against Memphis.",
+            "atualizado": "2026-11-14",
+            "comentario": "Brown (illness) has been upgraded to probable for Saturday's game at Memphis.",
             "jogos": 7,
             "minutos": 23.3,
             "pts": 12.86,
@@ -16278,7 +16356,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -17178,7 +17256,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "C"
           },
@@ -17798,12 +17876,25 @@
             "ast": 1.9
           },
           {
-            "nome": "Jalen Smith",
+            "nome": "Norman Powell",
             "situacao": "Dúvida",
-            "motivo": "Hand",
+            "motivo": "Back",
             "retorno": "2026-11-14",
             "atualizado": "2026-11-14",
-            "comentario": "Smith (hand) exited Friday's 125-117 win over the Hawks in overtime and did not return, finishing with 15 points (6-15 FG, 1-6 3Pt, 2-2 FT), 12 rebounds, three assists and three steals across 32 minutes.",
+            "comentario": "Powell (back) is listed as questionable for Saturday's game against Minnesota.",
+            "jogos": 9,
+            "minutos": 29.1,
+            "pts": 20.78,
+            "reb": 2.78,
+            "ast": 1.67
+          },
+          {
+            "nome": "Jalen Smith",
+            "situacao": "Dúvida",
+            "motivo": "Finger Sprain",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-14",
+            "comentario": "Smith (finger) is listed as questionable for Saturday's game at Minnesota.",
             "jogos": 11,
             "minutos": 24.6,
             "pts": 13,
@@ -17811,30 +17902,30 @@
             "ast": 2
           },
           {
+            "nome": "Nic Claxton",
+            "situacao": "Dúvida",
+            "motivo": "Hamstring",
+            "retorno": "2026-11-14",
+            "atualizado": "2026-11-14",
+            "comentario": "Claxton (hamstring) is listed as questionable for Saturday's game against the Timberwolves.",
+            "jogos": 3,
+            "minutos": 18.7,
+            "pts": 7.67,
+            "reb": 5.33,
+            "ast": 2.33
+          },
+          {
             "nome": "Tobe Awaka",
             "situacao": "Fora",
             "motivo": "Back",
-            "retorno": "2026-11-14",
+            "retorno": "2026-11-16",
             "atualizado": "2026-11-14",
-            "comentario": "Awaka (back) has been ruled out for Friday's game against the Hawks.",
+            "comentario": "Awaka has been ruled out for Saturday's game against the Timberwolves.",
             "jogos": 4,
             "minutos": 10,
             "pts": 2,
             "reb": 5.25,
             "ast": 0.75
-          },
-          {
-            "nome": "Dailyn Swain",
-            "situacao": "Fora",
-            "motivo": "Back",
-            "retorno": "2026-11-14",
-            "atualizado": "2026-11-14",
-            "comentario": "Swain (back) is out for Friday's game against the Hawks.",
-            "jogos": 2,
-            "minutos": 9.5,
-            "pts": 2.5,
-            "reb": 1.5,
-            "ast": 1.5
           }
         ]
       }
