@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-15T16:24:19+00:00",
+  "atualizado_em": "2026-11-15T23:24:03+00:00",
   "data_jogos": "2026-11-15",
   "lesoes_ok": true,
   "media_liga": {
@@ -1536,7 +1536,7 @@
             "situacao": "Fora",
             "motivo": "Foot",
             "retorno": "2026-11-16",
-            "atualizado": "2026-11-14",
+            "atualizado": "2026-11-15",
             "comentario": "Embiid (right foot injury management) has been ruled out for Sunday's game against the Pacers.",
             "jogos": 11,
             "minutos": 31.4,
@@ -1744,7 +1744,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -2194,7 +2194,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -3415,42 +3415,16 @@
           },
           {
             "nome": "Andrew Nembhard",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Hip Soreness",
-            "retorno": "2026-11-15",
+            "retorno": "2026-11-18",
             "atualizado": "2026-11-15",
-            "comentario": "Nembhard is questionable for Sunday's game against the 76ers due to left hip soreness.",
+            "comentario": "Nembhard (hip) has been ruled out for Sunday's game against the 76ers, Tony East of Forbes.com reports.",
             "jogos": 11,
             "minutos": 33.4,
             "pts": 16.64,
             "reb": 2.27,
             "ast": 7.64
-          },
-          {
-            "nome": "Aaron Nesmith",
-            "situacao": "Dúvida",
-            "motivo": "Hand Sprain",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "Nesmith (hand) is listed as questionable for Sunday's game against Philadelphia.",
-            "jogos": 11,
-            "minutos": 25.8,
-            "pts": 12.27,
-            "reb": 2.64,
-            "ast": 1.64
-          },
-          {
-            "nome": "T.J. McConnell",
-            "situacao": "Provável",
-            "motivo": "Hamstring",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "McConnell (hamstring) is listed as probable for Sunday's game against the 76ers.",
-            "jogos": 4,
-            "minutos": 12,
-            "pts": 5.25,
-            "reb": 2,
-            "ast": 4.5
           },
           {
             "nome": "Ben Sheppard",
@@ -6372,7 +6346,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -6540,19 +6514,6 @@
             "pts": 24.67,
             "reb": 3.33,
             "ast": 4.67
-          },
-          {
-            "nome": "Collin Sexton",
-            "situacao": "Dúvida",
-            "motivo": "Head",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-15",
-            "comentario": "Sexton (head) is questionable for Sunday's game against the Suns, Daniel Starkand of LakersNation.com reports.",
-            "jogos": 12,
-            "minutos": 17.8,
-            "pts": 10.25,
-            "reb": 1.83,
-            "ast": 2.58
           }
         ]
       }
@@ -12765,7 +12726,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -13521,6 +13482,19 @@
           }
         ],
         "ausencias": [
+          {
+            "nome": "De'Aaron Fox",
+            "situacao": "Fora",
+            "motivo": "Hip",
+            "retorno": "2026-11-17",
+            "atualizado": "2026-11-15",
+            "comentario": "Fox (hip) has been ruled out for Sunday's game against the Jazz.",
+            "jogos": 13,
+            "minutos": 28.6,
+            "pts": 13.62,
+            "reb": 4.38,
+            "ast": 5.77
+          },
           {
             "nome": "Tobias Harris",
             "situacao": "Fora",
@@ -15677,7 +15651,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -16127,7 +16101,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -17027,32 +17001,45 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "F"
           }
         ],
         "ausencias": [
           {
-            "nome": "Daniel Gafford",
-            "situacao": "Dúvida",
-            "motivo": "Face",
-            "retorno": "2026-11-15",
+            "nome": "Kyrie Irving",
+            "situacao": "Fora",
+            "motivo": "Knee",
+            "retorno": "2026-11-18",
             "atualizado": "2026-11-15",
-            "comentario": "Gafford (face) won't return to Saturday's game against the Cavaliers, Grant Afseth of DallasHoopsJournal.com reports.",
-            "jogos": 13,
-            "minutos": 21.2,
-            "pts": 9.15,
-            "reb": 5.15,
-            "ast": 1.85
+            "comentario": "Irving (knee) has been ruled out for Sunday's game against the Celtics.",
+            "jogos": 11,
+            "minutos": 30.8,
+            "pts": 22.73,
+            "reb": 3.45,
+            "ast": 4.36
+          },
+          {
+            "nome": "Santi Aldama",
+            "situacao": "Fora",
+            "motivo": "Ankle Sprain",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-15",
+            "comentario": "Aldama (ankle) is out for Sunday's game against the Celtics.",
+            "jogos": 5,
+            "minutos": 14.6,
+            "pts": 8,
+            "reb": 3.6,
+            "ast": 0.8
           },
           {
             "nome": "Max Christie",
             "situacao": "Fora",
             "motivo": "Ankle Sprain",
-            "retorno": "2026-11-15",
+            "retorno": "2026-11-18",
             "atualizado": "2026-11-15",
-            "comentario": "Christie (ankle) has been ruled out for Saturday's game against Cleveland.",
+            "comentario": "Christie (ankle) has been ruled out for Sunday's game against the Celtics.",
             "jogos": 11,
             "minutos": 18.6,
             "pts": 5.27,
@@ -17412,7 +17399,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -18768,19 +18755,6 @@
           }
         ],
         "ausencias": [
-          {
-            "nome": "Scottie Barnes",
-            "situacao": "Fora",
-            "motivo": "Groin Strain",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "Barnes (groin) is listed as questionable for Sunday's game against the Knicks, Michael Grange of Sportsnet.ca reports.",
-            "jogos": 8,
-            "minutos": 33.4,
-            "pts": 23.5,
-            "reb": 7.62,
-            "ast": 5.12
-          },
           {
             "nome": "Kawhi Leonard",
             "situacao": "Fora",
@@ -21387,7 +21361,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -21687,7 +21661,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -21987,7 +21961,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -22294,19 +22268,6 @@
         ],
         "ausencias": [
           {
-            "nome": "Alex Sarr",
-            "situacao": "Dúvida",
-            "motivo": "Illness",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "Sarr (illness) is listed as questionable for Sunday's game against Houston.",
-            "jogos": 12,
-            "minutos": 27.3,
-            "pts": 11.17,
-            "reb": 7.42,
-            "ast": 1.67
-          },
-          {
             "nome": "Justin Champagnie",
             "situacao": "Fora",
             "motivo": "Foot Not Specified",
@@ -22321,29 +22282,16 @@
           },
           {
             "nome": "Tre Johnson",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Back",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "Johnson is listed as questionable for Sunday's game against the Rockets due to lower-back soreness.",
+            "retorno": "2026-11-16",
+            "atualizado": "2026-11-15",
+            "comentario": "Johnson (back) won't play in Sunday's game against Houston, Josh Robbins of The Athletic reports.",
             "jogos": 12,
             "minutos": 23.6,
             "pts": 9.67,
             "reb": 2.08,
             "ast": 0.92
-          },
-          {
-            "nome": "Bub Carrington",
-            "situacao": "Dúvida",
-            "motivo": "Chest",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "Carrington (chest) is listed as questionable for Sunday's game against Houston.",
-            "jogos": 13,
-            "minutos": 18.3,
-            "pts": 4.85,
-            "reb": 1.62,
-            "ast": 2
           },
           {
             "nome": "Tristan Vukcevic",
@@ -23939,19 +23887,6 @@
             "pts": 3.17,
             "reb": 5.17,
             "ast": 1.67
-          },
-          {
-            "nome": "Steven Adams",
-            "situacao": "Fora",
-            "motivo": "Calf Strain",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
-            "comentario": "Adams (calf) has been upgraded to probable for Sunday's game against the Wizards.",
-            "jogos": 1,
-            "minutos": 8,
-            "pts": 4,
-            "reb": 2,
-            "ast": 1
           }
         ]
       }
@@ -24717,7 +24652,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -25624,12 +25559,25 @@
         ],
         "ausencias": [
           {
+            "nome": "Ryan Rollins",
+            "situacao": "Dúvida",
+            "motivo": "Illness",
+            "retorno": "2026-11-15",
+            "atualizado": "2026-11-15",
+            "comentario": "Rollins (illness) is questionable to play in Sunday's game against the Hawks.",
+            "jogos": 13,
+            "minutos": 23.9,
+            "pts": 10.54,
+            "reb": 5.08,
+            "ast": 3.92
+          },
+          {
             "nome": "Ousmane Dieng",
             "situacao": "Fora",
-            "motivo": "Finger Sprain",
+            "motivo": "Finger Fracture",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-14",
-            "comentario": "Dieng (finger) has been ruled out for Sunday's game against the Hawks.",
+            "atualizado": "2026-11-15",
+            "comentario": "Dieng (finger) is listed as out for Sunday's game versus the Hawks.",
             "jogos": 10,
             "minutos": 12,
             "pts": 3.9,
@@ -26997,7 +26945,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -27315,6 +27263,19 @@
             "pts": 7.75,
             "reb": 2.5,
             "ast": 4.08
+          },
+          {
+            "nome": "Jock Landale",
+            "situacao": "Dúvida",
+            "motivo": "Hip Inflammation",
+            "retorno": "2026-11-15",
+            "atualizado": "2026-11-15",
+            "comentario": "Landale (hip) is listed as questionable for Sunday's game against Milwakee.",
+            "jogos": 9,
+            "minutos": 15.4,
+            "pts": 6.78,
+            "reb": 4.89,
+            "ast": 1.67
           },
           {
             "nome": "Asa Newell",
@@ -28132,7 +28093,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -29050,19 +29011,6 @@
             "pts": 10.36,
             "reb": 6.36,
             "ast": 1.09
-          },
-          {
-            "nome": "Keegan Murray",
-            "situacao": "Dúvida",
-            "motivo": "Illness",
-            "retorno": "2026-11-15",
-            "atualizado": "2026-11-15",
-            "comentario": "Murray (illness) is questionable for Sunday's game against the Thunder.",
-            "jogos": 5,
-            "minutos": 28.2,
-            "pts": 10.2,
-            "reb": 3.2,
-            "ast": 1.6
           },
           {
             "nome": "Maxime Raynaud",
