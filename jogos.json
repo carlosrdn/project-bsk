@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-15T06:38:00+00:00",
+  "atualizado_em": "2026-11-15T16:24:19+00:00",
   "data_jogos": "2026-11-15",
   "lesoes_ok": true,
   "media_liga": {
@@ -16127,7 +16127,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -17035,7 +17035,7 @@
         "ausencias": [
           {
             "nome": "Daniel Gafford",
-            "situacao": "Fora",
+            "situacao": "Dúvida",
             "motivo": "Face",
             "retorno": "2026-11-15",
             "atualizado": "2026-11-15",
@@ -17051,7 +17051,7 @@
             "situacao": "Fora",
             "motivo": "Ankle Sprain",
             "retorno": "2026-11-15",
-            "atualizado": "2026-11-14",
+            "atualizado": "2026-11-15",
             "comentario": "Christie (ankle) has been ruled out for Saturday's game against Cleveland.",
             "jogos": 11,
             "minutos": 18.6,
