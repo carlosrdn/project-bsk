@@ -1,0 +1,125 @@
+name: Diagnóstico de cobertura SportsGameOdds
+on:
+  push:
+    branches: [melhorias-modelo-nba]
+    paths: [.github/workflows/cobertura-sportsgameodds.yml]
+permissions: {}
+jobs:
+  cobertura:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Medir cobertura pré-jogo da NBA
+        env:
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from collections import defaultdict
+          from datetime import datetime, timedelta, timezone
+          from decimal import Decimal, InvalidOperation
+          from urllib.error import HTTPError, URLError
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+
+          key = os.environ.get("SPORTSGAMEODDS_API_KEY")
+          if not key:
+              raise SystemExit("Secret SPORTSGAMEODDS_API_KEY indisponível.")
+          now = datetime.now(timezone.utc)
+          params = dict(
+              leagueID="NBA", type="match", started="false", includeAltLines="false",
+              startsAfter=now.isoformat(), startsBefore=(now + timedelta(hours=24)).isoformat(),
+              limit=25,
+          )
+          events = {}
+          returned = 0
+          def get_page():
+              request = Request("https://api.sportsgameodds.com/v2/events?" + urlencode(params),
+                                headers={"x-api-key": key, "Accept": "application/json"})
+              try:
+                  with urlopen(request, timeout=25) as response:
+                      return json.load(response)
+              except HTTPError as error:
+                  raise SystemExit(f"SportsGameOdds respondeu HTTP {error.code}.")
+              except (URLError, TimeoutError, ValueError):
+                  raise SystemExit("Falha ao consultar ou interpretar SportsGameOdds.")
+
+          complete = False
+          for page in range(1, 5):
+              payload = get_page()
+              rows = payload.get("data")
+              if payload.get("success") is False or not isinstance(rows, list):
+                  raise SystemExit("Resposta de eventos fora do formato esperado.")
+              returned += len(rows)
+              events.update((event["eventID"], event) for event in rows)
+              cursor = payload.get("nextCursor")
+              if not cursor:
+                  complete = True
+                  break
+              if cursor == params.get("cursor"):
+                  raise SystemExit("Cursor repetido pela SportsGameOdds.")
+              params["cursor"] = cursor
+
+          aliases = {
+              "points": "Pontos", "rebounds": "Rebotes", "assists": "Assistências",
+              "threepointers": "Bolas de três", "threepointersmade": "Bolas de três",
+              "threes": "Bolas de três", "threepointfieldgoalsmade": "Bolas de três",
+              "steals": "Roubos", "blocks": "Bloqueios",
+          }
+          categories = list(dict.fromkeys(aliases.values()))
+          matches, athletes, pairs, lead = (defaultdict(set) for _ in range(4))
+          observed = set()
+          for event_id, event in events.items():
+              start = event.get("status", {}).get("startsAt")
+              hours = None
+              if start:
+                  hours = (datetime.fromisoformat(start.replace("Z", "+00:00")) - now).total_seconds() / 3600
+              sides = defaultdict(set)
+              for market in (event.get("odds") or {}).values():
+                  player = market.get("statEntityID", "")
+                  side = market.get("sideID")
+                  if not player.endswith("_NBA") or market.get("periodID") != "game":
+                      continue
+                  if market.get("betTypeID") != "ou" or side not in {"over", "under"}:
+                      continue
+                  stat = market.get("statID", "")
+                  observed.add(stat)
+                  category = aliases.get("".join(c for c in stat.lower() if c.isalnum()))
+                  if not category:
+                      continue
+                  for book, item in (market.get("byBookmaker") or {}).items():
+                      if item.get("available") is not True:
+                          continue
+                      try:
+                          line = Decimal(str(item.get("overUnder")))
+                      except InvalidOperation:
+                          continue
+                      if line.is_finite():
+                          sides[category, player, book, line].add(side)
+              for (category, player, book, line), available in sides.items():
+                  if available != {"over", "under"}:
+                      continue
+                  matches[category].add(event_id)
+                  athletes[category].add((event_id, player))
+                  pairs[category].add((event_id, player, book, line))
+                  if hours is not None:
+                      lead[category].add(hours)
+
+          lines = [
+              f"Consulta UTC: {now.isoformat(timespec='seconds')}",
+              f"Janela: próximas 24h | jogos únicos: {len(events)} | objetos retornados: {returned} | páginas: {page} | completa: {complete}",
+              "",
+              "| Mercado | Jogos | Atletas por jogo | Pares de linhas por casa | Antecedência observada |",
+              "|---|---:|---:|---:|---|",
+          ]
+          for category in categories:
+              values = lead[category]
+              span = f"{min(values):.1f}–{max(values):.1f} h" if values else "—"
+              lines.append(f"| {category} | {len(matches[category])} | {len(athletes[category])} | {len(pairs[category])} | {span} |")
+          lines.extend(["", "IDs de estatísticas individuais observados: " + ", ".join(sorted(observed))])
+          report = "\n".join(lines)
+          print(report)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write(report + "\n")
+          PY
