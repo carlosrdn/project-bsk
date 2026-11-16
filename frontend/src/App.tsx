@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import {
- Activity, ArrowUpRight, BarChart3, CalendarDays,
+ Activity, BarChart3, CalendarDays,
  ChevronDown, ChevronLeft, ChevronRight, CircleAlert, Clock3, Database, History,
  Menu, RefreshCw, Search, SlidersHorizontal, Sparkles,
  TrendingUp, Users, X
@@ -195,7 +195,6 @@ export default function App() {
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
-      <a className="text-link" href={outside('melhores.html')}>Placar e estatísticas ao vivo no Radar clássico <ArrowUpRight size={16}/></a>
       <Radar picks={market.picks} available={market.available}/>
      </> : <>
      <dl className="round-summary" aria-label="Resumo da rodada">
