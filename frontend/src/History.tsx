@@ -98,7 +98,7 @@ function GameCard({ game, players }: { game: HistoryGame; players: HistoryPlayer
   </details>
 }
 
-export default function HistoryView({ legacyUrl }: { legacyUrl: string }) {
+export default function HistoryView() {
   const [archive, setArchive] = useState<HistoryArchive>()
   const [error, setError] = useState('')
   const [revision, setRevision] = useState(0)
@@ -136,7 +136,6 @@ export default function HistoryView({ legacyUrl }: { legacyUrl: string }) {
   return <section className="history-view" aria-label="Histórico">
     <div className="lineup-toolbar">
       <button type="button" className="refresh-btn" disabled={loading} onClick={() => setRevision(value => value + 1)}>Recarregar arquivo</button>
-      <a className="text-link" href={legacyUrl}>Consultar resultados na ESPN pelo Histórico clássico</a>
     </div>
     {loading && <p role="status">Carregando histórico…</p>}
     {error && <p role="alert">{error}</p>}
