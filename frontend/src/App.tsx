@@ -6,6 +6,8 @@ import {
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
+import { useMarketPicks } from './useMarketPicks'
+import type { MarketPick } from './useMarketPicks'
 import BackToBack from './BackToBack'
 import MatchPlayers from './MatchPlayers'
 import LiveScore from './LiveScore'
@@ -69,21 +71,21 @@ function MatchCard({ match, selected, onClick, panelId }: {
   <span className="match-bottom"><span>Total previsto <b>{n(prediction.total)}</b></span><span><b>{prediction.favorite}</b> favorito <ChevronDown size={16} className={selected ? 'rotated' : ''} aria-hidden="true"/></span></span>
  </button>
 }
-function MatchContent({ match, snapshot }: { match: MatchView; snapshot: DataSnapshot }) {
+function MatchContent({ match, snapshot, picks }: { match: MatchView; snapshot: DataSnapshot; picks: MarketPick[] }) {
  const { live, loading, refresh } = useLiveMatch(snapshot.data_jogos, match.game.casa.sigla, match.game.visitante.sigla)
  return <>
   <LiveScore live={live} loading={loading} refresh={refresh}/>
   <Detail match={match}/>
-  <MatchPlayers match={match} snapshot={snapshot} live={live}/>
+  <MatchPlayers match={match} snapshot={snapshot} live={live} picks={picks}/>
  </>
 }
-function ExpandableMatch({ match, snapshot }: { match: MatchView; snapshot: DataSnapshot }) {
+function ExpandableMatch({ match, snapshot, picks }: { match: MatchView; snapshot: DataSnapshot; picks: MarketPick[] }) {
  const [expanded, setExpanded] = useState(false)
  const panelId = useId()
  return <article className="expandable-match">
   <MatchCard match={match} selected={expanded} onClick={() => setExpanded(open => !open)} panelId={panelId}/>
   <div id={panelId} className="detail-panel" hidden={!expanded}>
-   {expanded && <MatchContent match={match} snapshot={snapshot}/>}
+   {expanded && <MatchContent match={match} snapshot={snapshot} picks={picks}/>}
   </div>
  </article>
 }
@@ -157,6 +159,7 @@ export default function App() {
   return !onlyAbsences || [...(m.game.casa.ausencias || []), ...(m.game.visitante.ausencias || [])]
    .some(a => a.situacao === 'Fora')
  })
+ const market = useMarketPicks(snapshot?.data_jogos === today ? today : undefined)
  const stale = !!snapshot && snapshot.data_jogos !== today
  const scheduleOnly = view === 'games' && (stale || (!snapshot && !loading))
  const missingInjuryData = !!snapshot && !snapshot.lesoes_ok
@@ -193,7 +196,7 @@ export default function App() {
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
       <a className="text-link" href={outside('melhores.html')}>Placar e estatísticas ao vivo no Radar clássico <ArrowUpRight size={16}/></a>
-      <Radar snapshot={snapshot} current={!stale}/>
+      <Radar picks={market.picks} available={market.available}/>
      </> : <>
      <dl className="round-summary" aria-label="Resumo da rodada">
       <div><dt>Partidas</dt><dd>{totalGames}</dd></div>
@@ -210,7 +213,8 @@ export default function App() {
      {!shown.length ?
       <div className="empty-state"><Search size={25}/><strong>{matches.length ? 'Nenhum confronto encontrado' : 'Nenhum confronto nesta rodada'}</strong>{matches.length > 0 && <span>Altere a busca ou remova os filtros.</span>}</div> :
       <div className="matches-column">{shown.map(match =>
-       <ExpandableMatch key={match.key} match={match} snapshot={snapshot}/>
+       <ExpandableMatch key={match.key} match={match} snapshot={snapshot} picks={market.picks.filter(pick =>
+        pick.game === JSON.stringify([match.game.horario_utc, match.game.casa.sigla, match.game.visitante.sigla]))}/>
       )}</div>}
      <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os pontos, o total e o favorito usam médias de equipe, ritmo e contexto disponível. O Backtest compara as estimativas com os resultados de partidas anteriores.</p></div></div>
      </>}
