@@ -1,0 +1,173 @@
+name: Validar cruzamento SportsGameOdds e BSK
+on:
+  push:
+    branches: [melhorias-modelo-nba]
+    paths: [.github/workflows/validar-cruzamento-sportsgameodds.yml]
+permissions:
+  contents: read
+jobs:
+  cruzamento:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Contar vínculos de linhas e estatísticas
+        env:
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from collections import defaultdict
+          from datetime import datetime, timedelta, timezone
+          from decimal import Decimal, InvalidOperation
+          from pathlib import Path
+          from urllib.error import HTTPError, URLError
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+          
+          key = os.environ.get("SPORTSGAMEODDS_API_KEY")
+          if not key:
+              raise SystemExit("Secret SPORTSGAMEODDS_API_KEY indisponível.")
+          now = datetime.now(timezone.utc)
+          params = dict(
+              leagueID="NBA", type="match", started="false", includeAltLines="false",
+              startsAfter=now.isoformat(), startsBefore=(now + timedelta(hours=24)).isoformat(),
+              limit=25,
+          )
+          events = {}
+          returned = 0
+          def get_page():
+              request = Request("https://api.sportsgameodds.com/v2/events?" + urlencode(params),
+                                headers={"x-api-key": key, "Accept": "application/json"})
+              try:
+                  with urlopen(request, timeout=25) as response:
+                      return json.load(response)
+              except HTTPError as error:
+                  raise SystemExit(f"SportsGameOdds respondeu HTTP {error.code}.")
+              except (URLError, TimeoutError, ValueError):
+                  raise SystemExit("Falha ao consultar ou interpretar SportsGameOdds.")
+          
+          complete = False
+          for page in range(1, 5):
+              payload = get_page()
+              rows = payload.get("data")
+              if payload.get("success") is False or not isinstance(rows, list):
+                  raise SystemExit("Resposta de eventos fora do formato esperado.")
+              returned += len(rows)
+              events.update((event["eventID"], event) for event in rows)
+              cursor = payload.get("nextCursor")
+              if not cursor:
+                  complete = True
+                  break
+              if cursor == params.get("cursor"):
+                  raise SystemExit("Cursor repetido pela SportsGameOdds.")
+              params["cursor"] = cursor
+          
+          canonical = {"points": "pts", "rebounds": "reb", "assists": "ast", "threePointersMade": "tres"}
+          if not complete:
+              raise SystemExit("Paginação incompleta; feed anterior preservado.")
+          output = []
+          for event_id, event in events.items():
+              start = event.get("status", {}).get("startsAt")
+              if not start:
+                  continue
+              sides = defaultdict(set)
+              players = event.get("players") or {}
+              for market in (event.get("odds") or {}).values():
+                  player = market.get("statEntityID", "")
+                  side = market.get("sideID")
+                  if not player.endswith("_NBA") or market.get("periodID") != "game":
+                      continue
+                  if market.get("betTypeID") != "ou" or side not in {"over", "under"}:
+                      continue
+                  stat = market.get("statID", "")
+                  category = canonical.get(stat)
+                  if not category:
+                      continue
+                  for book, item in (market.get("byBookmaker") or {}).items():
+                      if item.get("available") is not True:
+                          continue
+                      try:
+                          line = Decimal(str(item.get("overUnder")))
+                      except InvalidOperation:
+                          continue
+                      if line.is_finite():
+                          sides[category, player, book, line].add(side)
+              candidates = defaultdict(lambda: defaultdict(set))
+              for (category, player, book, line), available in sides.items():
+                  if available == {"over", "under"} and line > 0 and line % 1 == Decimal("0.5"):
+                      candidates[category, player][line].add(book)
+              for (category, player), lines in sorted(candidates.items()):
+                  ordered = sorted(lines, key=lambda line: (-len(lines[line]), line))
+                  if len(ordered) > 1 and len(lines[ordered[0]]) == len(lines[ordered[1]]):
+                      continue
+                  name = players.get(player, {}).get("name")
+                  teams = event.get("teams", {})
+                  home = teams.get("home", {}).get("names", {}).get("short")
+                  away = teams.get("away", {}).get("names", {}).get("short")
+                  player_team = players.get(player, {}).get("teamID")
+                  team = next((code for side, code in (("home", home), ("away", away))
+                               if player_team and player_team == teams.get(side, {}).get("teamID")), None)
+                  if name and home and away and team:
+                      output.append(dict(start=start, home=home, away=away, team=team,
+                                         player=name, stat=category, line=float(ordered[0])))
+          
+          import re
+          import unicodedata
+          from collections import Counter
+          
+          def moment(value):
+              return datetime.fromisoformat(value.replace("Z", "+00:00"))
+          
+          def name_key(value):
+              return re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFD", value).lower())
+          
+          def team_key(value):
+              return {"GS": "GSW", "NO": "NOP", "NY": "NYK", "SA": "SAS", "WSH": "WAS", "UTAH": "UTA"}.get(value.upper(), value.upper())
+          
+          snapshot = json.loads(Path("jogos.json").read_text(encoding="utf-8"))
+          games = [g for g in snapshot["jogos"] if now < moment(g["horario_utc"]) <= now + timedelta(hours=24)]
+          counts = defaultdict(Counter)
+          matched_games = set()
+          links = Counter()
+          for line in output:
+              stat = line["stat"]
+              counts[stat]["lines"] += 1
+              matches = [g for g in games if team_key(line["home"]) == g["casa"]["sigla"]
+                         and team_key(line["away"]) == g["visitante"]["sigla"]
+                         and abs((moment(line["start"]) - moment(g["horario_utc"])).total_seconds()) <= 900]
+              if len(matches) != 1:
+                  counts[stat]["game_missing"] += 1
+                  continue
+              match = matches[0]
+              matched_games.add((match["casa"]["sigla"], match["visitante"]["sigla"], match["horario_utc"]))
+              team = next((match[k] for k in ("casa", "visitante") if match[k]["sigla"] == team_key(line["team"])), None)
+              players = [p for p in (team or {}).get("jogadores", []) if name_key(p["nome"]) == name_key(line["player"])]
+              if len(players) != 1:
+                  counts[stat]["player_missing"] += 1
+                  continue
+              links[(match["horario_utc"], team["sigla"], name_key(line["player"]), stat)] += 1
+              if stat not in (players[0].get("props") or {}):
+                  counts[stat]["stat_missing"] += 1
+                  continue
+              counts[stat]["matched"] += 1
+          
+          report = [
+              f"Consulta UTC: {now.isoformat(timespec='seconds')}",
+              f"Rodada BSK: {snapshot['data_jogos']} | jogos BSK na janela: {len(games)} | jogos API: {len(events)} | objetos: {returned} | jogos cruzados: {len(matched_games)}",
+              f"Chaves de jogador e mercado duplicadas: {sum(n > 1 for n in links.values())}",
+              "",
+              "| Estatística | Linhas | Cruzadas com estatística | Jogo sem vínculo | Atleta sem vínculo | Estatística ausente |",
+              "|---|---:|---:|---:|---:|---:|",
+          ]
+          for stat in canonical.values():
+              c = counts[stat]
+              report.append(f"| {stat} | {c['lines']} | {c['matched']} | {c['game_missing']} | {c['player_missing']} | {c['stat_missing']} |")
+          summary = "\n".join(report) + "\n"
+          print(summary)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as file:
+              file.write(summary)
+          PY
