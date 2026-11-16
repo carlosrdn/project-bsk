@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useState } from 'react'
 import {
  Activity, ArrowUpRight, BarChart3, CalendarDays,
  ChevronDown, ChevronLeft, ChevronRight, CircleAlert, Clock3, Database, History,
- Menu, RefreshCw, Search, ShieldCheck, SlidersHorizontal, Sparkles,
+ Menu, RefreshCw, Search, SlidersHorizontal, Sparkles,
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
@@ -29,10 +29,6 @@ const date = (str: string) => {
 }
 const time = (iso: string) => new Date(iso).toLocaleTimeString('pt-BR', {
  hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo'
-})
-const localDateTime = new Intl.DateTimeFormat('pt-BR', {
- day: '2-digit', month: '2-digit', year: 'numeric',
- hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short'
 })
 const outside = (file: string) => new URL('../' + file, new URL(
  import.meta.env.BASE_URL, window.location.origin)).toString()
@@ -194,7 +190,7 @@ export default function App() {
     </>}
     {snapshot && !scheduleOnly && <>
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
-     <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span><span><Clock3 size={15}/> Coleta: <time dateTime={snapshot.atualizado_em}>{localDateTime.format(new Date(snapshot.atualizado_em))}</time></span><span><ShieldCheck size={15}/> Fonte: dados.js existente</span></div>
+     <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
       <a className="text-link" href={outside('melhores.html')}>Placar e estatísticas ao vivo no Radar clássico <ArrowUpRight size={16}/></a>
       <Radar snapshot={snapshot} current={!stale}/>
