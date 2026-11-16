@@ -195,7 +195,12 @@ export default function App() {
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
-      <Radar picks={market.picks} available={market.available}/>
+      <Radar picks={market.picks} available={market.available} validated={!!snapshot && !stale && (
+        ['pts', 'reb', 'ast', 'tres'].some(stat => {
+          const category = stat as 'pts' | 'reb' | 'ast' | 'tres'
+          return !!snapshot.calibration?.thresholds[category] || snapshot.marketReference?.categories[category]?.approved === true
+        })
+      )}/>
      </> : <>
      <dl className="round-summary" aria-label="Resumo da rodada">
       <div><dt>Partidas</dt><dd>{totalGames}</dd></div>

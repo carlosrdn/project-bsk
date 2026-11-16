@@ -12,13 +12,14 @@ export function MarketPickCards({ picks }: { picks: MarketPick[] }) {
     )}</div>
 }
 
-export default function Radar({ picks, available }: { picks: MarketPick[]; available: boolean }) {
+export default function Radar({ picks, available, validated }: { picks: MarketPick[]; available: boolean; validated: boolean }) {
   return <section className="radar" aria-labelledby="radar-selected">
     <div className="section-head"><h2 id="radar-selected">Indicações pré-jogo</h2></div>
     {picks.length ? <MarketPickCards picks={picks}/> : <div className="empty-state">
       <strong>Sem entrada disponível</strong>
-      <span>{available ? 'Nenhuma indicação pré-jogo ativa para esta rodada.' :
-        'Indicações da rodada ainda indisponíveis.'}</span>
+      <span>{!available ? 'Indicações da rodada ainda indisponíveis.' : !validated
+        ? 'Aguardando validação do modelo para liberar indicações.'
+        : 'Nenhuma indicação pré-jogo ativa para esta rodada.'}</span>
     </div>}
   </section>
 }
