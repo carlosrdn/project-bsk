@@ -197,7 +197,7 @@ export default function App() {
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span><span><Clock3 size={15}/> Coleta: <time dateTime={snapshot.atualizado_em}>{localDateTime.format(new Date(snapshot.atualizado_em))}</time></span><span><ShieldCheck size={15}/> Fonte: dados.js existente</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
       <a className="text-link" href={outside('melhores.html')}>Placar e estatísticas ao vivo no Radar clássico <ArrowUpRight size={16}/></a>
-      <Radar snapshot={snapshot} current={!stale} matches={matches}/>
+      <Radar snapshot={snapshot} current={!stale}/>
      </> : <>
      <dl className="round-summary" aria-label="Resumo da rodada">
       <div><dt>Partidas</dt><dd>{totalGames}</dd></div>

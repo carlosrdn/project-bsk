@@ -1,65 +1,51 @@
 import { useEffect, useState } from 'react'
-import BackToBack from './BackToBack'
-import { rankRadar, radarLabels } from './radar-model'
-import type { RadarPick } from './radar-model'
-import type { DataSnapshot, Game, GamePrediction } from './types'
+import { radarLabels } from './radar-model'
+import type { DataSnapshot } from './types'
 
-import { useManualStatuses } from './lineup-status'
-
-const number = (value: number) => value.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-
-function RadarCard({ pick }: { pick: RadarPick }) {
-  const time = new Date(pick.game.horario_utc).toLocaleTimeString('pt-BR', {
-    hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo'
-  })
-  return <article className="stat-tile radar-card">
-    <div className="stat-top"><span>{radarLabels[pick.stat]}</span><span>{pick.team.sigla} × {pick.opponent.sigla} · {time} BRT</span></div>
-    <BackToBack active={pick.backToBack} player/><h3>{pick.player}</h3>
-    <dl className="radar-values">
-      <div><dt>Projeção</dt><dd>{number(pick.projected)}</dd></div>
-      <div><dt>Média na temporada</dt><dd>{number(pick.sample.media)}</dd></div>
-    </dl>
-    <p>{pick.sample.jogos} jogos · Últimos 5: {pick.sample.ultimos5 == null ? '—' : number(pick.sample.ultimos5)} · Oscilação ±{number(pick.deviation)}</p>
-    {pick.alerts.length > 0 && <ul>{pick.alerts.map(alert => <li key={alert}>{alert}</li>)}</ul>}
-    <details>
-      <summary>Como foi calculado</summary>
-      <p>O modelo combina média da temporada, forma recente e contexto do confronto. Projeta {number(pick.teamPoints)} pontos para {pick.team.sigla}, com margem de {number(pick.margin)} pontos. A oscilação descreve a variação da projeção e ainda não foi calibrada pelo backtest.</p>
-    </details>
-  </article>
+type Pick = {
+  startsAt: string; player: string; team: string; stat: 'pts' | 'reb' | 'ast' | 'tres'
+  side: 'Acima' | 'Abaixo'; line: number; probability: number; sample: number; projection: number
 }
+type Feed = { date: string; picks: Pick[] }
 
-export default function Radar({ snapshot, current, matches }: {
-  snapshot: DataSnapshot
-  current: boolean
-  matches: { game: Game; prediction: GamePrediction }[]
-}) {
-  const { manual } = useManualStatuses()
-
+export default function Radar({ snapshot, current }: { snapshot: DataSnapshot; current: boolean }) {
+  const [feed, setFeed] = useState<Feed | null>(null)
   const [clock, setClock] = useState(Date.now)
   useEffect(() => {
-    const timer = window.setInterval(() => setClock(Date.now()), 60000)
-    return () => window.clearInterval(timer)
+    const controller = new AbortController()
+    const refresh = () => {
+      setClock(Date.now())
+      const root = new URL(import.meta.env.BASE_URL, window.location.origin)
+      const url = new URL(import.meta.env.DEV ? '/mercados-bsk/atual.json' : '../mercados-bsk/atual.json', root)
+      void fetch(url, { signal: controller.signal, cache: 'no-store' }).then(async response => {
+        if (!response.ok) throw Error('Feed indisponível')
+        const next: Feed = await response.json()
+        if (!Array.isArray(next.picks)) throw Error('Feed inválido')
+        if (!controller.signal.aborted) setFeed(next)
+      }).catch(() => {})
+    }
+    refresh()
+    const timer = window.setInterval(refresh, 60000)
+    return () => {
+      controller.abort()
+      window.clearInterval(timer)
+    }
   }, [])
-  const pending = current ? matches.filter(match => Date.parse(match.game.horario_utc) > clock) : matches
-  const ranked = rankRadar(pending, { date: snapshot.data_jogos, current, injuries: snapshot.lesoes_ok, manual, calibration: snapshot.calibration })
-  const selected = ranked.filter(pick => pick.eligible && pick.score > 0).slice(0, 6)
-  const watching = ranked.filter(pick => !pick.eligible && pick.score > 0).slice(0, 5)
-  const alerts = [...new Set(ranked.flatMap(pick => pick.alerts))].slice(0, 5)
-  const cards = (picks: RadarPick[]) => <div className="radar-grid">{picks.map(pick =>
-    <RadarCard key={JSON.stringify([pick.game.horario_utc, pick.team.sigla, pick.player])} pick={pick}/>
-  )}</div>
-
-  return <div className="radar">
-    {!pending.length && current && matches.length > 0 ? <p>Todos os jogos da coleta passaram do horário previsto de início.</p> : <section aria-labelledby="radar-selected">
-      <div className="section-head"><h2 id="radar-selected">Projeções selecionadas</h2><span className="count-label">{selected.length}</span></div>
-      {selected.length ? cards(selected) : <div className="empty-state">
-        <strong>{ranked.length ? 'Nenhuma projeção passou pelos filtros' : 'Nenhum jogador com dados suficientes nesta coleta'}</strong>
-        {ranked.length > 0 && <span>{alerts.length ? alerts.join(' · ') : 'Amostra curta ou variação histórica elevada.'}</span>}
-      </div>}
-    </section>}
-    {watching.length > 0 && <section aria-labelledby="radar-watching">
-      <div className="section-head"><h2 id="radar-watching">Em observação</h2><span className="count-label">{watching.length}</span></div>
-      {cards(watching)}
-    </section>}
-  </div>
+  const selected = current && feed?.date === snapshot.data_jogos
+    ? feed.picks.filter(pick => Date.parse(pick.startsAt) > clock) : []
+  return <section className="radar" aria-labelledby="radar-selected">
+    <div className="section-head"><h2 id="radar-selected">Indicações pré-jogo</h2></div>
+    {selected.length ? <div className="radar-grid">{selected.map(pick =>
+      <article className="stat-tile radar-card" key={JSON.stringify([pick.startsAt, pick.team, pick.player])}>
+        <h3>{pick.player} · {pick.team}</h3>
+        <p>{pick.side} de {pick.line.toLocaleString('pt-BR')} · {radarLabels[pick.stat]}</p>
+        <p>{pick.probability.toLocaleString('pt-BR', { style: 'percent', maximumFractionDigits: 1 })} estimados pelo BSK</p>
+        <p>{pick.sample} jogos na amostra · projeção {pick.projection.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}</p>
+      </article>
+    )}</div> : <div className="empty-state">
+      <strong>Sem entrada disponível</strong>
+      <span>{feed?.date === snapshot.data_jogos ? 'Nenhuma indicação pré-jogo ativa para esta rodada.' :
+        'Indicações da rodada ainda indisponíveis.'}</span>
+    </div>}
+  </section>
 }
