@@ -34,18 +34,38 @@ const archive = fs.existsSync(history) ? JSON.parse(fs.readFileSync(history, 'ut
 }
 const frozen = new Set(archive.picks.map(pick => pick.game))
 const gameKey = game => JSON.stringify([game.horario_utc, game.casa.sigla, game.visitante.sigla])
-const matches = snapshot.jogos.filter(game => {
+const pending = snapshot.jogos.filter(game => {
   const start = Date.parse(game.horario_utc)
-  return start > now + 5 * 60_000 && !frozen.has(gameKey(game))
+  return start > now + 5 * 60_000
 }).map(game => ({ game, prediction: predictGame(game, snapshot.media_liga.ataque,
   { ...DEFAULT_PARAMS, ...snapshot.calibration?.team }) }))
-const picks = selectRecommendations(matches, snapshot, feed, now).map(pick => ({
+const categories = ['pts', 'reb', 'ast', 'tres']
+const matches = pending.filter(({ game }) => !frozen.has(gameKey(game)))
+const referenceMatches = pending.map(({ game }) => ({
+  game, prediction: predictGame(game, snapshot.media_liga.ataque, DEFAULT_PARAMS)
+}))
+const reference = selectRecommendations(referenceMatches, snapshot, feed, now, categories, true)
+const approval = snapshot.marketReference
+const approved = approval?.version === version && approval.through < snapshot.data_jogos
+  ? categories.filter(stat => approval.categories[stat]?.approved === true && !snapshot.calibration?.thresholds[stat])
+  : []
+const fallback = reference.filter(pick => approved.includes(pick.stat) && !frozen.has(gameKey(pick.game)))
+const chosen = new Map()
+const official = selectRecommendations(matches, snapshot, feed, now)
+for (const pick of [...official, ...fallback]) {
+  const key = JSON.stringify([gameKey(pick.game), pick.team.sigla, pick.player])
+  if (!chosen.has(key)) chosen.set(key, pick)
+}
+const archivePick = (pick, calibration) => ({
   game: gameKey(pick.game), startsAt: pick.game.horario_utc,
   player: pick.player, team: pick.team.sigla, stat: pick.stat, line: pick.line,
   side: pick.side, probability: pick.probability, sample: pick.sample.jogos, projection: pick.projected,
   capturedAt: nowIso, collectedAt: feed.collectedAt, snapshotAt: snapshot.atualizado_em,
-  calibration: snapshot.calibration.version, model: version
-}))
+  calibration, model: version
+})
+const picks = [...chosen.values()].slice(0, 6).map(pick => archivePick(
+  pick, official.includes(pick) ? snapshot.calibration.version : 'referencia'
+))
 function write(file, data) {
   const temporary = file + '.tmp'
   fs.writeFileSync(temporary, JSON.stringify(data, null, 2) + '\n')
@@ -57,6 +77,12 @@ const capture = path.join(samples, new Date(feed.collectedAt).toISOString().repl
 if (!fs.existsSync(capture)) write(capture, {
   collectedAt: feed.collectedAt,
   lines: feed.lines.filter(line => Date.parse(line.start) > Date.parse(feed.collectedAt))
+})
+const shadows = path.join(outputDirectory, 'referencia', snapshot.data_jogos)
+fs.mkdirSync(shadows, { recursive: true })
+const shadowFile = path.join(shadows, path.basename(capture))
+if (!fs.existsSync(shadowFile)) write(shadowFile, {
+  date: snapshot.data_jogos, picks: reference.map(pick => archivePick(pick, 'referencia'))
 })
 if (picks.length) {
   archive.picks.push(...picks)

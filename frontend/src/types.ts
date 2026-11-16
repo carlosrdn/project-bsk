@@ -74,6 +74,7 @@ export interface CalibrationReport {
   promoted: string[]
 }
 export interface DataSnapshot {
+  marketReference?: MarketReference
   calibrationReport?: CalibrationReport
   calibration?: Calibration
   atualizado_em: string
@@ -100,4 +101,9 @@ export interface GamePrediction {
   favorite: string
   injuryHome: number
   injuryAway: number
+}
+
+export type MarketReference = {
+  version: string; through: string;
+  categories: Partial<Record<PlayerStatCategory, { games: number; dates: number; settled: number; hitRate: number; brier: number | null; approved: boolean }>>
 }

@@ -13,16 +13,17 @@ const aliases: Record<string, string> = { GS: 'GSW', NO: 'NOP', NY: 'NYK', SA: '
 const teamKey = (name: string) => aliases[name.toUpperCase()] ?? name.toUpperCase()
 
 export function selectRecommendations(matches: { game: Game; prediction: GamePrediction }[],
-  snapshot: DataSnapshot, feed: Feed, clock: number): Recommendation[] {
+  snapshot: DataSnapshot, feed: Feed, clock: number,
+  categoriesToEvaluate: readonly Category[] = categories, reference = false): Recommendation[] {
   const age = clock - Date.parse(feed.collectedAt)
   if (age < 0 || age > 12 * 3600_000 || Date.parse(snapshot.atualizado_em) > clock ||
       clock - Date.parse(snapshot.atualizado_em) > 12 * 3600_000) return []
   const pending = matches.filter(({ game }) => Date.parse(game.horario_utc) > clock)
-  const candidates = categories.flatMap(stat => {
-    const residuals = snapshot.calibration?.thresholds[stat]
-    if (!residuals) return []
+  const candidates = categoriesToEvaluate.flatMap(stat => {
+    const residuals = reference ? undefined : snapshot.calibration?.thresholds[stat]
+    if (!reference && !residuals) return []
     return rankRadar(pending, { date: snapshot.data_jogos, current: true,
-      injuries: snapshot.lesoes_ok, manual: {}, calibration: snapshot.calibration }, stat).flatMap(pick => {
+      injuries: snapshot.lesoes_ok, manual: {}, calibration: reference ? undefined : snapshot.calibration }, stat).flatMap(pick => {
       if (!pick.eligible) return []
       const lines = feed.lines.filter(line => line.stat === stat && teamKey(line.team) === pick.team.sigla &&
         teamKey(line.home) === pick.game.casa.sigla && teamKey(line.away) === pick.game.visitante.sigla &&

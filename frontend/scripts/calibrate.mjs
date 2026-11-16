@@ -1,6 +1,8 @@
 import fs from 'node:fs'
 import { createHash } from 'node:crypto'
 import ts from 'typescript'
+import path from 'node:path'
+import { evaluateMarketReference } from './evaluate-market-reference.mjs'
 
 const [, , input, snapshotPath] = process.argv
 if (!input || !snapshotPath) throw Error('Uso: node scripts/calibrate.mjs replay.json jogos.json')
@@ -135,6 +137,9 @@ function atomic(path, body) {
   fs.writeFileSync(temp, body)
   fs.renameSync(temp, path)
 }
-atomic(snapshotPath, JSON.stringify(snapshot, null, 2) + '\n')
+const marketReference = evaluateMarketReference(cases, snapshot.data_jogos,
+  path.join(path.dirname(snapshotPath), 'mercados-bsk', 'referencia'))
+delete snapshot.marketReference
 atomic(snapshotPath.replace(/jogos\.json$/, 'dados.js'), 'const DADOS = ' + JSON.stringify(snapshot) + ';')
-console.log(JSON.stringify(snapshot.calibrationReport))
+atomic(snapshotPath, JSON.stringify({ ...snapshot, marketReference }, null, 2) + '\n')
+console.log(JSON.stringify({ ...snapshot.calibrationReport, marketReference }))
