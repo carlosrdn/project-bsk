@@ -402,7 +402,23 @@ button:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visib
 .team-tab[aria-selected="true"] { color: var(--accent); background: var(--selected); border-color: var(--accent-border); }
 
 .header-controls { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.theme-select { display: flex; align-items: center; gap: 4px; color: var(--header-ink); background: var(--header-control); border: 1px solid var(--header-border); border-radius: 8px; padding: 0 7px; }
-.theme-select select { color: inherit; background: var(--header-control); border: 0; padding: 8px 0; font-size: .78rem; font-weight: 700; }
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  color: var(--header-muted);
+  background: transparent;
+}
+.theme-toggle:hover { background: var(--header-hover); }
+.theme-toggle:focus-visible { outline-color: #f8d685; }
+.theme-toggle[aria-pressed="true"] { color: #f8d685; }
+.theme-toggle[aria-pressed="true"] svg {
+  fill: #f8d68538;
+  filter: drop-shadow(0 0 5px #f8d6857a);
+}
 .radar h2 { margin: 0; font-size: 1.15rem; }
 @media (max-width: 560px) { .header-refresh span { display: none; } .site-logo small { display: none; } }

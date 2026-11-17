@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useState } from 'react'
 import {
  Activity, BarChart3, CalendarDays,
  ChevronDown, CircleAlert, Clock3, History,
- Moon, RefreshCw, Search, SlidersHorizontal, Sparkles,
+ Lightbulb, RefreshCw, Search, SlidersHorizontal, Sparkles,
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
@@ -128,7 +128,7 @@ function Detail({ match }: { match: MatchView }) {
 }
 type Theme = 'system' | 'light' | 'dark'
 
-function ThemeSelect() {
+function ThemeToggle() {
  const [theme, setTheme] = useState<Theme>(() => {
   try {
    const stored = localStorage.getItem('bsk-theme')
@@ -137,17 +137,25 @@ function ThemeSelect() {
   return 'system'
  })
 
+ const [deviceDark, setDeviceDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches)
+ useEffect(() => {
+  const preference = window.matchMedia('(prefers-color-scheme: dark)')
+  const update = () => setDeviceDark(preference.matches)
+  update()
+  preference.addEventListener('change', update)
+  return () => preference.removeEventListener('change', update)
+ }, [])
+
  useEffect(() => {
   document.documentElement.dataset.theme = theme
   try { localStorage.setItem('bsk-theme', theme) } catch { /* Keep the selected theme for this session. */ }
  }, [theme])
 
- return <label className="theme-select">
-  <Moon size={16} aria-hidden="true"/>
-  <select aria-label="Tema do site" value={theme} onChange={event => setTheme(event.target.value as Theme)}>
-   <option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Escuro</option>
-  </select>
- </label>
+ const lit = theme === 'light' || (theme === 'system' && !deviceDark)
+ return <button type="button" className="theme-toggle" aria-label="Modo claro" aria-pressed={lit}
+  title={lit ? 'Apagar a luz' : 'Acender a luz'} onClick={() => setTheme(lit ? 'dark' : 'light')}>
+  <Lightbulb size={19} aria-hidden="true"/>
+ </button>
 }
 
 export default function App() {
@@ -219,7 +227,7 @@ export default function App() {
      <button type="button" key={l.view} className="nav-item" aria-current={view === l.view ? 'page' : undefined}
       onClick={() => setView(l.view)}><l.icon size={16} aria-hidden="true"/>{l.view === 'games' ? 'Jogos' : l.label}</button>
     )}</nav>
-    <div className="header-controls"><ThemeSelect/>
+    <div className="header-controls"><ThemeToggle/>
     {view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn header-refresh" aria-label="Atualizar dados"
      onClick={() => { setLoading(true); setRevision(value => value + 1) }} disabled={loading}>
      <RefreshCw size={16} className={loading ? 'spin' : ''} aria-hidden="true"/><span>Atualizar</span>
