@@ -128,7 +128,6 @@ export async function loadHistory(signal: AbortSignal): Promise<HistoryArchive> 
   if (!Array.isArray(index.days)) throw new Error('Índice do histórico em formato inesperado.')
   const days = [...index.days].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 60)
   const warnings: string[] = []
-  const metricsRequest = readJson<Metrics>('historico/metricas.json', signal).catch(() => undefined)
   const games: HistoryGame[] = []
   for (let offset = 0; offset < days.length; offset += 8) {
     signal.throwIfAborted()
@@ -159,5 +158,5 @@ export async function loadHistory(signal: AbortSignal): Promise<HistoryArchive> 
       if (day.warning) warnings.push(day.warning)
     }
   }
-  return { days: days.map(day => day.date), games, metrics: await metricsRequest, warnings, updatedAt: index.updated_at }
+  return { days: days.map(day => day.date), games, warnings, updatedAt: index.updated_at }
 }

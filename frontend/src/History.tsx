@@ -33,18 +33,12 @@ function PlayerCard({ player }: { player: HistoryPlayer }) {
   return <article className="stat-tile history-player">
     <h4>{player.player}</h4>
     <p>{player.team} · {markets[player.market] || player.market} · {classes[player.classificacao] || player.classificacao}</p>
-    <Values values={[[ 'Projeção', number(player.projection)], ['Real', number(r?.actual)], ['Erro absoluto', number(r?.absolute_error)]]}/>
+    <Values values={[[ 'Projeção', number(player.projection)], ['Real', number(r?.actual)]]}/>
     <Limit target={player.target} correct={r?.target_correct} finished={r?.status === 'apurado'} unavailable={r?.status === 'nao_atuou' || r?.status === 'estatistica_indisponivel'}/>
     <p>{statuses[r?.status || ''] || 'Resultado não publicado'} · {number(player.sample)} jogos na amostra</p>
     {(player.context?.expected_minutes != null || r?.context?.actual_minutes != null) &&
       <p>Minutos de referência {number(player.context?.expected_minutes)} · reais {number(r?.context?.actual_minutes)}</p>}
-    {!!r?.analysis?.fatores?.length && <ul>{r.analysis.fatores.map((factor, index) => <li key={index}>{factor.texto}</li>)}</ul>}
-    <details>
-      <summary>Dados da projeção</summary>
-      <p>Média {number(player.season_mean)} · últimos cinco {number(player.last5)} · oscilação {number(player.sigma)}</p>
-      {player.summary && <p>{player.summary}</p>}
-      {player.warnings?.map(warning => <p key={warning}>{warning}</p>)}
-    </details>
+    <p>Média da temporada {number(player.season_mean)} · últimos cinco jogos {number(player.last5)}</p>
   </article>
 }
 
@@ -65,7 +59,7 @@ function GameDetails({ game }: { game: HistoryGame }) {
   return <>
     <div className="history-game-grid">{rows.map(row => <div className="stat-tile" key={row.label}>
       <h4>{row.label}</h4>
-      <Values values={[[ 'Projeção', number(row.expected)], ['Real', number(row.actual)], ['Erro absoluto', number(row.actual == null ? null : Math.abs(row.actual - row.expected))]]}/>
+      <Values values={[[ 'Projeção', number(row.expected)], ['Real', number(row.actual)]]}/>
       {row.key && <Limit target={p.targets?.[row.key]} correct={r?.comparison?.targets_correct?.[row.key]} finished={final}/>}
     </div>)}</div>
     <p>Favorito projetado <strong>{p.favorite || '—'}</strong> · Chance do mandante {percent(p.home_win_probability)} · Ritmo estimado {number(p.pace)}</p>
@@ -92,9 +86,6 @@ function GameCard({ game, players }: { game: HistoryGame; players: HistoryPlayer
     {view === 'game' ? <GameDetails game={game}/> : players.length ? <div className="history-game-grid">
       {players.map(player => <PlayerCard key={player.id} player={player}/>)}
     </div> : <p>{game.players.length ? 'Nenhuma projeção corresponde aos filtros.' : 'Nenhuma projeção individual arquivada para este jogo.'}</p>}
-    <details className="history-audit"><summary>Auditoria da coleta</summary>
-      <p>Captura <time dateTime={game.capturedAt}>{game.capturedAt}</time></p><p>Versão do modelo <code>{game.modelHash}</code></p>
-    </details>
   </details>
 }
 
@@ -125,14 +116,7 @@ export default function HistoryView() {
     game, players: game.players.filter(player => (!market || player.market === market) &&
       (!type || player.classificacao === type) && normalize(player.player).includes(normalize(search)))
   }))
-  const individual = archive?.metrics?.geral
-  const teams = archive?.metrics?.jogos
-  const marketMetrics = Object.entries(archive?.metrics?.mercados ?? {})
-  const highlighted = archive?.metrics?.destaques
-  const contexts = Object.entries(archive?.metrics?.contextos ?? {}).sort((a, b) => (b[1].total ?? 0) - (a[1].total ?? 0))
-  const settled = games.flatMap(game => game.players).filter(player => player.result?.status === 'apurado' &&
-    typeof player.result.absolute_error === 'number' && Number.isFinite(player.result.absolute_error))
-  const mae = market && settled.length ? settled.reduce((sum, player) => sum + (player.result?.absolute_error ?? 0), 0) / settled.length : null
+  const settled = games.flatMap(game => game.players).filter(player => player.result?.status === 'apurado')
   return <section className="history-view" aria-label="Histórico">
     <div className="lineup-toolbar">
       <button type="button" className="refresh-btn" disabled={loading} onClick={() => setRevision(value => value + 1)}>Recarregar arquivo</button>
@@ -143,28 +127,6 @@ export default function HistoryView() {
       {archive.warnings.length > 0 && <details className="notice caution"><summary>{archive.warnings.length} rodada(s) com dados incompletos</summary>
         <ul>{archive.warnings.map(warning => <li key={warning}>{warning}</li>)}</ul>
       </details>}
-      <section className="stat-tile history-metrics">
-        <h2>Métricas arquivadas</h2>
-        {archive.metrics ? <Values values={[
-          ['Projeções individuais apuradas', individual?.total ?? 0], ['Limites individuais atingidos', individual?.acertos ?? 0],
-          ['Limites individuais não atingidos', individual?.erros ?? 0], ['Taxa de acerto individual', percent(individual?.taxa_acerto)],
-          ['Jogos com projeção apurada', teams?.total ?? 0], ['Vencedores previstos corretamente', teams?.vencedor_acertado ?? 0],
-          ['Limites de equipes atingidos', teams?.limites_atingidos ?? 0], ['Erro médio de pontos por equipe', number(teams?.mae_pontos_equipes)]
-        ]}/> : <p>Métricas consolidadas indisponíveis.</p>}
-        {marketMetrics.length > 0 && <details className="history-audit"><summary>Desempenho por estatística</summary>
-          <div className="history-table"><table><thead><tr><th>Estatística</th><th>Apuradas</th><th>Acertos</th><th>Erros</th><th>Taxa de acerto</th><th>Erro absoluto médio</th></tr></thead>
-            <tbody>{marketMetrics.map(([key, value]) => <tr key={key}><th scope="row">{markets[key] || key}</th>
-              <td>{value.total ?? 0}</td><td>{value.acertos ?? 0}</td><td>{value.erros ?? 0}</td>
-              <td>{percent(value.taxa_acerto)}</td><td>{number(value.erro_absoluto_medio)}</td>
-            </tr>)}</tbody>
-          </table></div>
-          {highlighted && <p>Projeções destacadas · {highlighted.total ?? 0} apuradas · {highlighted.acertos ?? 0} acertos · {highlighted.erros ?? 0} erros</p>}
-        </details>}
-        {contexts.length > 0 && <details className="history-audit"><summary>Contextos associados aos resultados</summary>
-          <p>As ocorrências descrevem o contexto dos resultados. A amostra pode reunir vários fatores no mesmo jogo.</p>
-          <ul>{contexts.map(([key, value]) => <li key={key}>{key.replaceAll('_', ' ')} · {value.total ?? 0} ocorrências · {value.acertos ?? 0} acertos · {value.erros ?? 0} erros</li>)}</ul>
-        </details>}
-      </section>
       <div className="history-filters">
         <label>Rodada<select value={day} onChange={event => setDay(event.target.value)}><option value="">Todas</option>
           {archive.days.map(date => <option key={date} value={date}>{dateLabel(date)}</option>)}</select></label>
@@ -175,7 +137,7 @@ export default function HistoryView() {
         <label>Jogador<input type="search" value={search} onChange={event => setSearch(event.target.value)}/></label>
       </div>
       {archive.updatedAt && <small>Índice atualizado em <time dateTime={archive.updatedAt}>{new Date(archive.updatedAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })} BRT</time></small>}
-      <p className="history-result-count">{games.length} jogos arquivados · {settled.length} projeções individuais apuradas{mae != null && ' · Erro médio de ' + markets[market].toLowerCase() + ' ' + number(mae)}</p>
+      <p className="history-result-count">{games.length} jogos arquivados · {settled.length} projeções individuais apuradas</p>
       {games.map(({ game, players }) => <GameCard key={game.key} game={game} players={players}/>)}
       {!games.length && <div className="empty-state"><strong>Nenhum confronto arquivado para a rodada selecionada.</strong></div>}
     </>}

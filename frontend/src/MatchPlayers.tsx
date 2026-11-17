@@ -6,7 +6,6 @@ import type { LiveMatch } from './useLiveMatch'
 import { rankRadar, radarLabels } from './radar-model'
 import { MarketPickCards } from './Radar'
 import type { MarketPick } from './useMarketPicks'
-import { useManualStatuses } from './lineup-status'
 import type { DataSnapshot, Game, GamePrediction, PlayerStatCategory } from './types'
 
 const categories = Object.keys(radarLabels) as PlayerStatCategory[]
@@ -19,13 +18,12 @@ export default function MatchPlayers({ match, snapshot, live, picks }: {
   picks: MarketPick[]
 }) {
   const [category, setCategory] = useState<PlayerStatCategory>('pts')
-  const { manual } = useManualStatuses()
   const { game } = match
   const started = Date.parse(live?.event?.start ?? game.horario_utc) <= Date.now()
   const showActual = live?.event?.status === 'Em andamento' || live?.event?.status === 'Finalizado'
   const actualLabel = live?.event?.status === 'Finalizado' ? 'Final' : 'Ao vivo'
   const players = rankRadar([match], {
-    date: snapshot.data_jogos, current: true, injuries: snapshot.lesoes_ok, manual, calibration: snapshot.calibration
+    date: snapshot.data_jogos, current: true, injuries: snapshot.lesoes_ok, manual: {}, calibration: snapshot.calibration
   }, category).sort((a, b) => Number(b.eligible) - Number(a.eligible) || b.score - a.score)
 
   return <section className="match-players" aria-label="Estatísticas e projeções de jogadores">

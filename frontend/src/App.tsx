@@ -1,8 +1,8 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import {
- Activity, BarChart3, CalendarDays,
+ Activity, CalendarDays,
  ChevronDown, CircleAlert, Clock3, History,
- Lightbulb, RefreshCw, Search, SlidersHorizontal, Sparkles,
+ Lightbulb, RefreshCw, Search, SlidersHorizontal,
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
@@ -13,7 +13,6 @@ import MatchPlayers from './MatchPlayers'
 import LiveScore from './LiveScore'
 import { useLiveMatch } from './useLiveMatch'
 import Footer from './Footer'
-import Backtest from './Backtest'
 import RoundSchedule from './RoundSchedule'
 import HistoryView from './History'
 import Lineups from './Lineups'
@@ -37,13 +36,12 @@ interface MatchView {
  prediction: GamePrediction
  key: string
 }
-type View = 'games' | 'radar' | 'lineups' | 'history' | 'backtest'
+type View = 'games' | 'radar' | 'lineups' | 'history'
 const links = [
  { label: 'Jogos da rodada', icon: CalendarDays, view: 'games' as View },
  { label: 'Radar', icon: TrendingUp, view: 'radar' as View },
  { label: 'Escalações', icon: Users, view: 'lineups' as View },
  { label: 'Histórico', icon: History, view: 'history' as View },
- { label: 'Backtest', icon: BarChart3, view: 'backtest' as View }
 ]
 function MiniBrand({ name }: { name: string }) {
  return <span className="mini-brand" aria-hidden="true">{name.slice(0, 3)}</span>
@@ -164,7 +162,7 @@ export default function App() {
  const [loading, setLoading] = useState(true)
  const [today, setToday] = useState(nbaToday)
  const [revision, setRevision] = useState(0)
- const [view, setView] = useState<View>('games')
+ const [view, setView] = useState<View>(() => window.location.hash === '#historico' ? 'history' : window.location.hash === '#escalacoes' ? 'lineups' : 'games')
  const [search, setSearch] = useState('')
  const [onlyAbsences, setOnlyAbsences] = useState(false)
  useEffect(() => {
@@ -228,15 +226,15 @@ export default function App() {
       onClick={() => setView(l.view)}><l.icon size={16} aria-hidden="true"/>{l.view === 'games' ? 'Jogos' : l.label}</button>
     )}</nav>
     <div className="header-controls"><ThemeToggle/>
-    {view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn header-refresh" aria-label="Atualizar dados"
+    {view !== 'history' && <button type="button" className="refresh-btn header-refresh" aria-label="Atualizar dados"
      onClick={() => { setLoading(true); setRevision(value => value + 1) }} disabled={loading}>
      <RefreshCw size={16} className={loading ? 'spin' : ''} aria-hidden="true"/><span>Atualizar</span>
     </button>}</div>
    </div>
   </header>
    <main className="content">
-    <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Acima ou abaixo das linhas pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
-    {view === 'backtest' ? <Backtest snapshot={snapshot}/> : view === 'history' ? <HistoryView/> : <>
+    <div className="page-heading"><div><h1>{view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'history' ? 'Projeções registradas antes dos jogos e resultados.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Acima ou abaixo das linhas pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
+    {view === 'history' ? <HistoryView/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>{snapshot ? 'Falha ao atualizar os dados' : 'Dados indisponíveis'}</b><p>{error}</p></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
     {scheduleOnly && <>
@@ -267,7 +265,6 @@ export default function App() {
        <ExpandableMatch key={match.key} match={match} snapshot={snapshot} picks={market.picks.filter(pick =>
         pick.game === JSON.stringify([match.game.horario_utc, match.game.casa.sigla, match.game.visitante.sigla]))}/>
       )}</div>}
-     <div className="methodology"><Sparkles size={18}/><div><strong>Sobre as projeções</strong><p>Os pontos, o total e o favorito usam médias de equipe, ritmo e contexto disponível. O Backtest compara as estimativas com os resultados de partidas anteriores.</p></div></div>
      </>}
     </>}
     </>}

@@ -4,13 +4,11 @@ import { useEffect, useState } from 'react'
 import { RefreshCw } from 'lucide-react'
 import { loadBoxScores, loadInjuries } from './lineup-espn'
 import { buildLineup, starter, type LineupPlayer } from './lineup-model'
-import { automatic, playerKey, statusOptions, useManualStatuses } from './lineup-status'
 import type { DataSnapshot } from './types'
 
 const emptyFeed = new Map<string, LineupPlayer[]>()
 
 export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot; current: boolean }) {
-  const { manual, save, error } = useManualStatuses()
   const [selected, setSelected] = useState('')
   const [refresh, setRefresh] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -55,8 +53,6 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
   if (!match) return <div className="empty-state"><strong>Nenhum confronto nesta coleta</strong></div>
 
   const teams = [match.game.visitante, match.game.casa]
-  const keys = teams.flatMap(team => team.jogadores.map(player => playerKey(snapshot.data_jogos, team.sigla, player.nome)))
-  const corrections = keys.filter(key => manual[key]).length
   return <section className="lineups" aria-label="Escalações">
     <div className="lineup-fixtures">
       <h2>Confronto</h2>
@@ -71,19 +67,14 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
       <button type="button" className="refresh-btn" disabled={loading} onClick={() => setRefresh(value => value + 1)}>
         <RefreshCw size={16} className={loading ? 'spin' : ''}/> Atualizar ESPN
       </button>
-      <button type="button" className="refresh-btn" disabled={!corrections} onClick={() => save(latest => keys.forEach(key => delete latest[key]))}>
-        Limpar correções do confronto
-      </button>
     </div>
     <div className="lineup-feed" role="status">
       {loading ? 'Consultando ESPN…' : messages.join(' ')}
-      {error && <p>{error}</p>}
     </div>
     <div className="lineup-grid">
       {teams.map(team => {
         const teamBox = box.get(team.sigla) ?? []
-        const overrides = Object.fromEntries(team.jogadores.map(player => [player.nome, manual[playerKey(snapshot.data_jogos, team.sigla, player.nome)]]))
-        const { lineup, confirmed, replacements } = buildLineup(team, overrides, teamBox, injuries.get(team.sigla) ?? [])
+        const { lineup, confirmed, replacements } = buildLineup(team, {}, teamBox, injuries.get(team.sigla) ?? [])
         return <article className="stat-tile lineup-team" key={team.sigla}>
           <header className="lineup-team-header"><BackToBack active={team.back_to_back}/><h2>{team.nome}</h2>
           <p>{confirmed === 5 ? 'Quinteto confirmado' : confirmed + ' de 5 titulares confirmados · vagas restantes projetadas'}</p></header>
@@ -106,24 +97,6 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
             <summary>Elenco no box score da ESPN ({teamBox.length})</summary>
             <ul>{teamBox.map(player => <li key={player.name}>{player.name} · {player.status || 'Participação pendente'}</li>)}</ul>
           </details>}
-          <details>
-            <summary>Corrigir disponibilidade manualmente</summary>
-            {team.jogadores.map(player => {
-              const key = playerKey(snapshot.data_jogos, team.sigla, player.nome)
-              return <label className="lineup-correction" key={key}>{player.nome}
-                <select value={manual[key] || automatic} onChange={event => {
-                  const status = event.target.value
-                  save(latest => {
-                    if (status === automatic) delete latest[key]
-                    else latest[key] = status
-                  })
-                }}>
-                  {statusOptions.map(status => <option key={status} value={status}>{status === automatic ? 'Automático' : status}</option>)}
-                </select>
-              </label>
-            })}
-            {!team.jogadores.length && <p>Sem jogadores na coleta.</p>}
-          </details>
         </article>
       })}
     </div>
