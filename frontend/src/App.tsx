@@ -1,8 +1,8 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import {
  Activity, BarChart3, CalendarDays,
- ChevronDown, ChevronLeft, ChevronRight, CircleAlert, Clock3, Database, History,
- Menu, RefreshCw, Search, SlidersHorizontal, Sparkles,
+ ChevronDown, CircleAlert, Clock3, History,
+ RefreshCw, Search, SlidersHorizontal, Sparkles,
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
@@ -32,9 +32,6 @@ const date = (str: string) => {
 const time = (iso: string) => new Date(iso).toLocaleTimeString('pt-BR', {
  hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo'
 })
-const outside = (file: string) => new URL('../' + file, new URL(
- import.meta.env.BASE_URL, window.location.origin)).toString()
-
 interface MatchView {
  game: Game
  prediction: GamePrediction
@@ -137,7 +134,6 @@ export default function App() {
  const [revision, setRevision] = useState(0)
  const [view, setView] = useState<View>('games')
  const [search, setSearch] = useState('')
- const [sidebar, setSidebar] = useState(false)
  const [onlyAbsences, setOnlyAbsences] = useState(false)
  useEffect(() => {
   const controller = new AbortController()
@@ -190,17 +186,21 @@ export default function App() {
  const favoriteHome = matches.filter(m => m.prediction.favorite === m.game.casa.sigla).length
  const highTotal = matches.filter(m => m.prediction.total >= 230).length
  return <div className="app-shell">
-  {sidebar && <button className="mobile-backdrop" onClick={() => setSidebar(false)} aria-label="Fechar menu" />}
-  <aside className={'sidebar ' + (sidebar ? 'sidebar-open' : '')}>
-   <div className="side-logo"><span className="logo-mark"><Activity size={23} strokeWidth={2.5}/></span><div><strong>BSK<span> Analytics</span></strong><small>NBA INTELLIGENCE</small></div><button className="sidebar-close" onClick={() => setSidebar(false)} aria-label="Fechar"><X size={20}/></button></div>
-   <div className="side-section-label">WORKSPACE</div>
-   <div className="nav-stack">{links.map(l => <button type="button" key={l.view}
-    className={'nav-item ' + (view === l.view ? 'nav-active' : '')} aria-current={view === l.view ? 'page' : undefined}
-    onClick={() => {setView(l.view);setSidebar(false)}}><l.icon size={18}/>{l.label}{view === l.view && <span className="nav-dot"/>}</button>)}</div>
-   <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Prévia em React</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
-  </aside>
-  <div className="main-column">
-   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => { setLoading(true); setRevision(value => value + 1) }} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
+  <header className="site-header">
+   <div className="site-header-inner">
+    <button type="button" className="site-logo" onClick={() => setView('games')} aria-label="BSK Analytics, Jogos da rodada">
+     <span className="logo-mark"><Activity size={22} strokeWidth={2.3} aria-hidden="true"/></span><span>BSK <small>Analytics</small></span>
+    </button>
+    <nav className="nav-stack" aria-label="Navegação principal">{links.map(l =>
+     <button type="button" key={l.view} className="nav-item" aria-current={view === l.view ? 'page' : undefined}
+      onClick={() => setView(l.view)}><l.icon size={16} aria-hidden="true"/>{l.view === 'games' ? 'Jogos' : l.label}</button>
+    )}</nav>
+    {view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn header-refresh" aria-label="Atualizar dados"
+     onClick={() => { setLoading(true); setRevision(value => value + 1) }} disabled={loading}>
+     <RefreshCw size={16} className={loading ? 'spin' : ''} aria-hidden="true"/><span>Atualizar</span>
+    </button>}
+   </div>
+  </header>
    <main className="content">
     <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores e indicações pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
     {view === 'backtest' ? <Backtest snapshot={snapshot}/> : view === 'history' ? <HistoryView/> : <>
@@ -213,7 +213,6 @@ export default function App() {
     </>}
     {snapshot && !scheduleOnly && <>
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
-     <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
       <Radar picks={market.picks} available={market.available} snapshot={snapshot}
         matches={matches} current={!stale} clock={market.clock}/>
@@ -222,7 +221,6 @@ export default function App() {
       <div><dt>Partidas</dt><dd>{totalGames}</dd></div>
       <div><dt>Mandantes favoritos</dt><dd>{favoriteHome}</dd></div>
       <div><dt>Totais ≥ 230</dt><dd>{highTotal}</dd></div>
-      <div><dt>Dados</dt><dd>Atuais</dd></div>
      </dl>
      <p className="detail-explain" style={{ margin: '0 0 12px' }}>
       <strong>Back-to-back (B2B)</strong> · {backToBackTeams.length
@@ -242,6 +240,5 @@ export default function App() {
     </>}
     <Footer/>
    </main>
-  </div>
  </div>
 }
