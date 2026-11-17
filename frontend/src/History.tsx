@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ChevronDown, RefreshCw, Search } from 'lucide-react'
+import { useEffect, useId, useRef, useState } from 'react'
+import { ChevronDown, RefreshCw, Search, X } from 'lucide-react'
 import HistoryFilter from './HistoryFilter'
 import { loadHistory } from './history-data'
 import type { HistoryArchive, HistoryGame, HistoryPlayer, Target } from './history-data'
@@ -111,6 +111,8 @@ export default function HistoryView() {
   const [market, setMarket] = useState('')
   const [team, setTeam] = useState('')
   const [search, setSearch] = useState('')
+  const searchId = useId()
+  const searchInput = useRef<HTMLInputElement>(null)
   useEffect(() => {
     const controller = new AbortController()
     setLoading(true)
@@ -154,10 +156,18 @@ export default function HistoryView() {
             options={[{ value: '', label: 'Todas' }, ...archive.days.map(date => ({ value: date, label: dateLabel(date) }))]}/>
           <HistoryFilter label="Time" value={team} onChange={setTeam}
             options={[{ value: '', label: 'Todos' }, ...teams.map(code => ({ value: code, label: code }))]}/>
-          <label className="history-filter">Jogador<span className="history-filter-search">
-            <Search size={16} aria-hidden="true"/>
-            <input type="search" value={search} placeholder="Nome do jogador" onChange={event => setSearch(event.target.value)}/>
-          </span></label>
+          <div className="history-filter">
+            <label htmlFor={searchId}>Jogador</label>
+            <div className="history-filter-search">
+              <Search size={16} aria-hidden="true"/>
+              <input id={searchId} ref={searchInput} type="search" value={search} placeholder="Nome do jogador"
+                onChange={event => setSearch(event.target.value)}/>
+              {search && <button type="button" aria-label="Limpar busca por jogador"
+                onClick={() => { setSearch(''); searchInput.current?.focus() }}>
+                <X size={15} aria-hidden="true"/>
+              </button>}
+            </div>
+          </div>
           <HistoryFilter label="Estatística" value={market} onChange={setMarket}
             options={[{ value: '', label: 'Todas' }, ...Object.entries(markets).map(([value, label]) => ({ value, label }))]}/>
         </div>
