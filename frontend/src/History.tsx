@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ChevronDown, RefreshCw } from 'lucide-react'
 import { loadHistory } from './history-data'
 import type { HistoryArchive, HistoryGame, HistoryPlayer, Target } from './history-data'
 
@@ -57,11 +58,17 @@ function GameDetails({ game }: { game: HistoryGame }) {
     { label: 'Margem do mandante', key: null, expected: p.home_margin, actual: scored ? home - away : null }
   ] as const
   return <>
-    <div className="history-game-grid">{rows.map(row => <div className="stat-tile" key={row.label}>
-      <h4>{row.label}</h4>
-      <Values values={[[ 'Projeção', number(row.expected)], ['Real', number(row.actual)]]}/>
-      {row.key && <Limit target={p.targets?.[row.key]} correct={r?.comparison?.targets_correct?.[row.key]} finished={final}/>}
-    </div>)}</div>
+    <div className="history-table" role="region" aria-label="Projeção e resultado do jogo" tabIndex={0}>
+      <table className="history-comparison">
+        <thead><tr><th scope="col">Estatística</th><th scope="col">Projeção</th><th scope="col">Resultado</th></tr></thead>
+        <tbody>{rows.map(row => <tr key={row.label}>
+          <th scope="row">{row.label}
+            {row.key && <Limit target={p.targets?.[row.key]} correct={r?.comparison?.targets_correct?.[row.key]} finished={final}/>}
+          </th>
+          <td>{number(row.expected)}</td><td>{number(row.actual)}</td>
+        </tr>)}</tbody>
+      </table>
+    </div>
     <p>Favorito projetado <strong>{p.favorite || '—'}</strong> · Chance do mandante {percent(p.home_win_probability)} · Ritmo estimado {number(p.pace)}</p>
     {r?.comparison?.winner_correct != null && <p>{r.comparison.winner_correct ? 'Vencedor previsto corretamente' : 'Vencedor diferente do previsto'}</p>}
     {!!game.context && <p>Ausências pré-jogo · {game.away} {game.context.away_absences?.join(', ') || '—'} · {game.home} {game.context.home_absences?.join(', ') || '—'}</p>}
@@ -69,19 +76,24 @@ function GameDetails({ game }: { game: HistoryGame }) {
   </>
 }
 
-function GameCard({ game, players }: { game: HistoryGame; players: HistoryPlayer[] }) {
-  const [view, setView] = useState('game')
+function GameCard({ game, players, playerFilter }: { game: HistoryGame; players: HistoryPlayer[]; playerFilter: boolean }) {
+  const defaultView = playerFilter ? 'players' : 'game'
+  const [selection, setSelection] = useState<{ group: boolean; view: 'game' | 'players' }>()
+  const view = selection?.group === playerFilter ? selection.view : defaultView
+  const select = (next: 'game' | 'players') => setSelection({ group: playerFilter, view: next })
   const r = game.result
-  return <details className="stat-tile history-match">
+  const final = r?.status === 'finalizado'
+  return <details className="stat-tile history-match history-result">
     <summary>
-      <strong>{game.away} × {game.home}</strong>
-      <span className="history-match-meta"><time dateTime={game.date}>{dateLabel(game.date)}</time>
-        {r?.status === 'finalizado' ? <><b>{number(r.away_score)} × {number(r.home_score)}</b><span>Final</span></> : <span>Resultado pendente</span>}
+      <span className="history-teams" aria-label={game.away + ' contra ' + game.home}>
+        <strong>{game.away}</strong><span className="history-score">{final ? number(r.away_score) + ' × ' + number(r.home_score) : '×'}</span><strong>{game.home}</strong>
       </span>
+      <span className={'history-match-status' + (final ? ' history-match-final' : '')}>{final ? 'Final' : 'Resultado pendente'}</span>
+      <ChevronDown size={16} aria-hidden="true"/>
     </summary>
     <div className="history-tabs">
-      <button type="button" className="refresh-btn" aria-pressed={view === 'game'} onClick={() => setView('game')}>Jogo</button>
-      <button type="button" className="refresh-btn" aria-pressed={view === 'players'} onClick={() => setView('players')}>Jogadores ({players.length})</button>
+      <button type="button" className="refresh-btn" aria-pressed={view === 'game'} onClick={() => select('game')}>Jogo</button>
+      <button type="button" className="refresh-btn" aria-pressed={view === 'players'} onClick={() => select('players')}>Jogadores ({players.length})</button>
     </div>
     {view === 'game' ? <GameDetails game={game}/> : players.length ? <div className="history-game-grid">
       {players.map(player => <PlayerCard key={player.id} player={player}/>)}
@@ -94,9 +106,9 @@ export default function HistoryView() {
   const [error, setError] = useState('')
   const [revision, setRevision] = useState(0)
   const [loading, setLoading] = useState(true)
-  const [day, setDay] = useState('')
+  const [day, setDay] = useState<string>()
   const [market, setMarket] = useState('')
-  const [type, setType] = useState('')
+  const [team, setTeam] = useState('')
   const [search, setSearch] = useState('')
   useEffect(() => {
     const controller = new AbortController()
@@ -112,34 +124,56 @@ export default function HistoryView() {
     return () => controller.abort()
   }, [revision])
 
-  const games = (archive?.games ?? []).filter(game => !day || game.date === day).map(game => ({
-    game, players: game.players.filter(player => (!market || player.market === market) &&
-      (!type || player.classificacao === type) && normalize(player.player).includes(normalize(search)))
-  }))
-  const settled = games.flatMap(game => game.players).filter(player => player.result?.status === 'apurado')
+  const allGames = archive?.games ?? []
+  const activeDay = day ?? allGames[0]?.date ?? archive?.days[0] ?? ''
+  const teams = [...new Set(allGames.flatMap(game => [game.away, game.home]))].sort()
+  const query = normalize(search)
+  const playerFilter = !!(query || market)
+  const games = allGames
+    .filter(game => (!activeDay || game.date === activeDay) && (!team || game.away === team || game.home === team))
+    .map(game => ({ game, players: game.players.filter(player =>
+      (!market || player.market === market) && (!team || !playerFilter || player.team === team) && normalize(player.player).includes(query)) }))
+    .filter(item => !playerFilter || item.players.length > 0)
+  const byDay = new Map<string, typeof games>()
+  for (const item of games) {
+    const group = byDay.get(item.game.date) ?? []
+    if (!byDay.has(item.game.date)) byDay.set(item.game.date, group)
+    group.push(item)
+  }
+
   return <section className="history-view" aria-label="Histórico">
-    <div className="lineup-toolbar">
-      <button type="button" className="refresh-btn" disabled={loading} onClick={() => setRevision(value => value + 1)}>Recarregar arquivo</button>
-    </div>
     {loading && <p role="status">Carregando histórico…</p>}
-    {error && <p role="alert">{error}</p>}
+    {error && <div className="notice error-notice" role="alert">
+      <span>{error}</span><button type="button" className="refresh-btn" onClick={() => setRevision(value => value + 1)}>Tentar novamente</button>
+    </div>}
     {archive && <>
+      <div className="stat-tile history-controls">
+        <div className="history-filters">
+          <label>Rodada<select value={activeDay} onChange={event => setDay(event.target.value)}><option value="">Todas</option>
+            {archive.days.map(date => <option key={date} value={date}>{dateLabel(date)}</option>)}</select></label>
+          <label>Time<select value={team} onChange={event => setTeam(event.target.value)}><option value="">Todos</option>
+            {teams.map(code => <option key={code} value={code}>{code}</option>)}</select></label>
+          <label>Jogador<input type="search" value={search} placeholder="Nome do jogador" onChange={event => setSearch(event.target.value)}/></label>
+          <label>Estatística<select value={market} onChange={event => setMarket(event.target.value)}><option value="">Todas</option>
+            {Object.entries(markets).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
+        </div>
+        <div className="history-controls-actions">
+          <p className="history-result-count" aria-live="polite">{games.length} {games.length === 1 ? 'jogo' : 'jogos'}</p>
+          {(activeDay || team || playerFilter) && <button type="button" className="refresh-btn"
+            onClick={() => { setDay(''); setTeam(''); setSearch(''); setMarket('') }}>Limpar filtros</button>}
+          <button type="button" className="refresh-btn" disabled={loading} onClick={() => setRevision(value => value + 1)}>
+            <RefreshCw size={14} aria-hidden="true"/> Atualizar
+          </button>
+        </div>
+      </div>
       {archive.warnings.length > 0 && <details className="notice caution"><summary>{archive.warnings.length} rodada(s) com dados incompletos</summary>
         <ul>{archive.warnings.map(warning => <li key={warning}>{warning}</li>)}</ul>
       </details>}
-      <div className="history-filters">
-        <label>Rodada<select value={day} onChange={event => setDay(event.target.value)}><option value="">Todas</option>
-          {archive.days.map(date => <option key={date} value={date}>{dateLabel(date)}</option>)}</select></label>
-        <label>Estatística<select value={market} onChange={event => setMarket(event.target.value)}><option value="">Todas</option>
-          {Object.entries(markets).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
-        <label>Tipo de projeção<select value={type} onChange={event => setType(event.target.value)}><option value="">Todos</option>
-          {Object.entries(classes).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
-        <label>Jogador<input type="search" value={search} onChange={event => setSearch(event.target.value)}/></label>
-      </div>
-      {archive.updatedAt && <small>Índice atualizado em <time dateTime={archive.updatedAt}>{new Date(archive.updatedAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })} BRT</time></small>}
-      <p className="history-result-count">{games.length} jogos arquivados · {settled.length} projeções individuais apuradas</p>
-      {games.map(({ game, players }) => <GameCard key={game.key} game={game} players={players}/>)}
-      {!games.length && <div className="empty-state"><strong>Nenhum confronto arquivado para a rodada selecionada.</strong></div>}
+      {[...byDay].map(([date, items]) => <section className="history-round" key={date} aria-label={'Rodada de ' + dateLabel(date)}>
+        <h2><time dateTime={date}>{dateLabel(date)}</time></h2>
+        {items.map(({ game, players }) => <GameCard key={game.key} game={game} players={players} playerFilter={playerFilter}/>)}
+      </section>)}
+      {!games.length && <div className="empty-state"><strong>Nenhum jogo encontrado com esses filtros.</strong></div>}
     </>}
   </section>
 }
