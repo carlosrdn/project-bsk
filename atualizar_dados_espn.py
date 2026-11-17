@@ -12,6 +12,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
+from boletim_nba import official_injuries
 from gerar_dados import (
     ALIAS_SIGLAS, CONTEXTO, ESTATISTICAS, ausencias_do_time, classificar, media,
     melhores_jogadores, niveis_dos_times, normalizar,
@@ -239,6 +240,19 @@ def generate(day, cache, collected=None):
     if fixtures and len(geral) != 30:
         raise ValueError(f"Cobertura insuficiente: {len(geral)}/30 equipes e {len(events)} jogos finalizados")
     report = injuries() if fixtures else None
+    fixture_teams = {code(entry["team"]): entry["team"] for event in fixtures for entry in competitors(event)}
+    named_teams = {sigla: [team["displayName"]] for sigla, team in fixture_teams.items()}
+    if "LAC" in named_teams:
+        named_teams["LAC"].extend(["LA Clippers", "Los Angeles Clippers"])
+    official, injury_url = official_injuries(day, season, named_teams) if fixtures else ([], None)
+    if official:
+        merged = {(row["sigla"], normalizar(row["nome"])): row for row in report or []}
+        merged.update(((row["sigla"], normalizar(row["nome"])), row) for row in official)
+        report = list(merged.values())
+    latest_game = {}
+    for event in events:
+        for entry in competitors(event):
+            latest_game.setdefault(code(entry["team"]), event["id"])
 
     def profile(team):
         sigla = code(team)
@@ -251,6 +265,11 @@ def generate(day, cache, collected=None):
             "teamCity": team["location"], "teamName": team["name"], "teamId": sigla, "teamTricode": sigla
         }, report or [], roster)
         statuses = {normalizar(row["nome"]): row["situacao"] for row in report or [] if row["sigla"] == sigla}
+        for absence in absence_rows:
+            name = normalizar(absence["nome"])
+            if positions.get(name):
+                absence["posicao"] = positions[name]
+        official_statuses = {row["nome"]: row["situacao"] for row in official if row["sigla"] == sigla}
         for player in players:
             name = normalizar(player["nome"])
             player["situacao"] = statuses.get(name, "Disponível") if report is not None else "Desconhecido"
@@ -259,6 +278,8 @@ def generate(day, cache, collected=None):
                 player["posicao"] = positions[name]
         return {
             "sigla": sigla, "nome": team["displayName"], "jogos": summary["GP"],
+            "espn_id": team["id"], "ultimo_jogo_espn": latest_game.get(sigla),
+            "boletim_nba": official_statuses,
             "back_to_back": sigla in back_to_back,
             "vitorias": summary["W"], "derrotas": summary["L"], "ataque": summary["OFF_RATING"],
             "defesa": summary["DEF_RATING"], "ritmo": summary["PACE"], "vitorias_ultimos_10": recente[sigla],
@@ -274,7 +295,7 @@ def generate(day, cache, collected=None):
         "media_liga": {"ataque": round(media([t["OFF_RATING"] for t in geral.values()]), 2),
                        "ritmo": round(media([t["PACE"] for t in geral.values()]), 2)},
         "fonte": {"agenda": "ESPN", "box_scores": "ESPN", "temporada": f"{season - 1}-{season % 100:02d}",
-                  "jogos_finalizados": len(events), "ratings": "posses estimadas"},
+                  "jogos_finalizados": len(events), "ratings": "posses estimadas", "boletim_nba": injury_url},
         "jogos": [{"horario_utc": utc(event["date"]).isoformat().replace("+00:00", "Z"),
                    "casa": profile(competitors(event)[0]["team"]), "visitante": profile(competitors(event)[1]["team"])}
                   for event in fixtures],

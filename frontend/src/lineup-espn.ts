@@ -1,5 +1,5 @@
 import { participated, playerNameKey, positionCode, starter } from './lineup-model'
-import type { PlayerStatCategory } from './types'
+import type { PlayerStatCategory, Team } from './types'
 import type { LineupPlayer } from './lineup-model'
 
 const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/'
@@ -136,6 +136,25 @@ export async function loadBoxScores(date: string, teams: Set<string>, signal: Ab
     }
   }
   return { box, partial: results.some(result => result.status === 'rejected') }
+}
+
+type DepthResponse = { depthchart?: { positions?: Record<string, { athletes?: Athlete[] }> }[] }
+
+export async function loadLineupHints(teams: Team[], signal: AbortSignal) {
+  const recent = new Map([...new Set(teams.flatMap(team => team.ultimo_jogo_espn ? [team.ultimo_jogo_espn] : []))]
+    .map(id => [id, request<Summary>('summary?event=' + encodeURIComponent(id), signal).catch(() => undefined)]))
+  return new Map(await Promise.all(teams.map(async team => {
+    const [depth, prior] = await Promise.all([
+      team.espn_id ? request<DepthResponse>('teams/' + encodeURIComponent(team.espn_id) + '/depthcharts', signal)
+        .catch(() => undefined) : undefined,
+      team.ultimo_jogo_espn ? recent.get(team.ultimo_jogo_espn) : undefined
+    ])
+    const chart = Object.fromEntries(Object.entries(depth?.depthchart?.[0]?.positions ?? {}).map(([position, entry]) =>
+      [positionCode(position), (entry.athletes ?? []).flatMap(player => player.displayName ? [player.displayName] : [])]))
+    const previous = prior?.boxscore?.players?.find(group => teamCode(group.team?.abbreviation) === team.sigla)
+    const recentStarters = parseBox(previous?.statistics).filter(player => player.status === starter)
+    return [team.sigla, { chart, recent: recentStarters }] as const
+  })))
 }
 
 export async function loadInjuries(signal: AbortSignal) {

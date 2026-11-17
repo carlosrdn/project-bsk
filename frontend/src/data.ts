@@ -30,6 +30,8 @@ function teamValid(x: unknown): x is Team {
     count(x.jogos) && positive(x.ataque) && positive(x.defesa) && positive(x.ritmo) &&
     count(x.vitorias_ultimos_10) && count(x.vitorias) && count(x.derrotas) &&
     x.vitorias + x.derrotas === x.jogos && x.vitorias_ultimos_10 <= Math.min(x.vitorias, 10) &&
+    [x.espn_id, x.ultimo_jogo_espn].every(id => id == null || typeof id === 'string' && /^\d+$/.test(id)) &&
+    (x.boletim_nba == null || isRecord(x.boletim_nba) && Object.values(x.boletim_nba).every(text)) &&
     Array.isArray(x.jogadores) && x.jogadores.every(playerValid) &&
     (x.ausencias === null || (Array.isArray(x.ausencias) && x.ausencias.every(absence =>
       isRecord(absence) && athleteValid(absence) && (absence.jogos == null || count(absence.jogos)))))

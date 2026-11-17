@@ -2,8 +2,8 @@ import BackToBack from './BackToBack'
 import { playerNameKey } from './lineup-model'
 import { useEffect, useState } from 'react'
 import { RefreshCw } from 'lucide-react'
-import { loadBoxScores, loadInjuries } from './lineup-espn'
-import { buildLineup, starter, type LineupPlayer } from './lineup-model'
+import { loadBoxScores, loadInjuries, loadLineupHints } from './lineup-espn'
+import { buildLineup, starter, type LineupPlayer, type LineupHints } from './lineup-model'
 import type { DataSnapshot } from './types'
 
 const emptyFeed = new Map<string, LineupPlayer[]>()
@@ -14,12 +14,17 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
   const [loading, setLoading] = useState(false)
   const [box, setBox] = useState(emptyFeed)
   const [injuries, setInjuries] = useState(emptyFeed)
+  const [hints, setHints] = useState(new Map<string, LineupHints>())
   const [messages, setMessages] = useState<string[]>([])
 
   useEffect(() => {
     if (!snapshot.jogos.length) return
     const controller = new AbortController()
-    const teams = new Set(snapshot.jogos.flatMap(game => [game.casa.sigla, game.visitante.sigla]))
+    const roster = snapshot.jogos.flatMap(game => [game.casa, game.visitante])
+    const teams = new Set(roster.map(team => team.sigla))
+    void loadLineupHints(roster, controller.signal).then(result => {
+      if (!controller.signal.aborted) setHints(result)
+    })
     async function update() {
       setLoading(true)
       const [scores, reports] = await Promise.allSettled([
@@ -74,9 +79,10 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
     <div className="lineup-grid">
       {teams.map(team => {
         const teamBox = box.get(team.sigla) ?? []
-        const { lineup, confirmed, replacements } = buildLineup(team, {}, teamBox, injuries.get(team.sigla) ?? [])
+        const { lineup, confirmed, replacements } = buildLineup(team, {}, teamBox, injuries.get(team.sigla) ?? [], hints.get(team.sigla))
         return <article className="stat-tile lineup-team" key={team.sigla}>
           <header className="lineup-team-header"><BackToBack active={team.back_to_back}/><h2>{team.nome}</h2>
+          {Object.keys(team.boletim_nba ?? {}).length > 0 && <p>Desfalques cruzados com o boletim oficial da NBA</p>}
           <p>{confirmed === 5 ? 'Quinteto confirmado' : confirmed + ' de 5 titulares confirmados · vagas restantes projetadas'}</p></header>
           <ul className="lineup-list">
             {lineup.map(({ position, player }) => <li key={position}>
@@ -87,10 +93,9 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
           </ul>
           {replacements.length > 0 && <details>
             <summary>Desfalques e possíveis substitutos ({replacements.length})</summary>
-            {replacements.map(({ absent, candidates, byPosition }) => <div className="lineup-replacement" key={absent.name}>
+            {replacements.map(({ absent, candidates }) => <div className="lineup-replacement" key={absent.name}>
               <strong>{absent.name} · Fora{absent.position && ' · ' + absent.position}</strong>
-              <p>{candidates.length ? byPosition ? 'Candidatos por posição e minutagem' : 'Alternativas pela rotação' : 'Sem substituto identificado'}</p>
-              <ul>{candidates.map(player => <li key={player.name}>{player.name} · {player.minutes.toLocaleString('pt-BR', { maximumFractionDigits: 1 })} min{player.status === starter && ' · titular confirmado'}</li>)}</ul>
+              {candidates[0] && <p>Substituto provável <b>{candidates[0].name}</b></p>}
             </div>)}
           </details>}
           {teamBox.length > 0 && <details>

@@ -119,3 +119,24 @@ if (corrected.confirmed !== 2 || corrected.lineup[0].player?.name !== 'Fora no b
  throw Error('Escalações: ajuste manual não atualizou quinteto e desfalques')
 }
 console.log('OK: Escalações priorizam confirmações, posições, desfalques e ajustes manuais')
+
+const ranked = buildLineup({
+  jogadores: [
+    { nome: 'Titular fora', posicao: 'PG', minutos: 30, situacao: 'Disponível' },
+    { nome: 'Reserva no depth chart', posicao: 'PG', minutos: 12, situacao: 'Disponível' },
+    { nome: 'Reserva com mais minutos', posicao: 'G', minutos: 24, situacao: 'Disponível' },
+    { nome: 'Ala recente', posicao: 'SF', minutos: 9, situacao: 'Disponível' },
+    { nome: 'Ala com mais minutos', posicao: 'SF', minutos: 20, situacao: 'Disponível' }
+  ],
+  ausencias: [],
+  boletim_nba: { 'Titular fora': 'Fora' }
+}, {}, [], [{ name: 'Titular fora', position: 'PG', minutes: 0, status: 'Dúvida' }], {
+  chart: { PG: ['Titular fora', 'Reserva no depth chart'] },
+  recent: [{ name: 'Ala recente', position: 'SF', minutes: 20, status: 'Titular confirmado' }]
+})
+if (ranked.confirmed !== 0 || ranked.lineup[0].player?.name !== 'Reserva no depth chart' ||
+    ranked.lineup[2].player?.name !== 'Ala recente' ||
+    ranked.replacements[0]?.candidates.map(player => player.name).join() !== 'Reserva no depth chart') {
+  throw Error('Escalações: boletim oficial, ordem do depth chart ou titular recente incorreto')
+}
+console.log('OK: OUT oficial remove titular, depth chart escolhe um substituto e titulares recentes permanecem projetados')

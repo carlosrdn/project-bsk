@@ -34,6 +34,9 @@ export interface Player {
   situacao?: string
 }
 export interface Team {
+  espn_id?: string
+  ultimo_jogo_espn?: string | null
+  boletim_nba?: Record<string, string>
   back_to_back?: boolean
   sigla: string
   nome: string
