@@ -3,7 +3,7 @@ name: Atualizar dados.js pela ESPN
 on:
   push:
     branches: [melhorias-modelo-nba]
-    paths: [atualizar_dados_espn.py, gerar_dados.py, .github/workflows/dados-espn.yml]
+    paths: [atualizar_dados_espn.py, boletim_nba.py, gerar_dados.py, .github/workflows/dados-espn.yml]
   workflow_dispatch:
   schedule:
     # 06h17, 09h17, 12h17, 16h17, 19h17 e 21h17 em Brasília.
@@ -36,6 +36,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Preparar leitor do boletim oficial
+        run: command -v pdftotext || (sudo apt-get update && sudo apt-get install -y poppler-utils)
       - name: Gerar e validar arquivos da rodada
         run: python atualizar_dados_espn.py --replay "$RUNNER_TEMP/bsk-replay.json"
       - name: Validar calibração cronológica
