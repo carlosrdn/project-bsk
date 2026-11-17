@@ -1,3 +1,4 @@
+import TeamTabs from './TeamTabs'
 import BackToBack from './BackToBack'
 import { useState } from 'react'
 import { livePlayerKey } from './lineup-espn'
@@ -37,17 +38,17 @@ export default function MatchPlayers({ match, snapshot, live, picks }: {
       {categories.map(stat => <button type="button" className="refresh-btn" key={stat}
         aria-pressed={category === stat} onClick={() => setCategory(stat)}>{radarLabels[stat]}</button>)}
     </div>
-    {[game.visitante, game.casa].map(team => {
-      const rows = players.filter(pick => pick.team.sigla === team.sigla).map(pick => ({
-        key: livePlayerKey(team.sigla, pick.player), name: pick.player, projection: pick
+    <TeamTabs away={{code: game.visitante.sigla, name: game.visitante.nome}} home={{code: game.casa.sigla, name: game.casa.nome}}>
+    {team => {
+      const rows = players.filter(pick => pick.team.sigla === team.code).map(pick => ({
+        key: livePlayerKey(team.code, pick.player), name: pick.player, projection: pick
       }))
       const projectedKeys = new Set(rows.map(row => row.key))
       const actualOnly = showActual ? [...live?.players?.entries() ?? []]
-        .filter(([key, player]) => player.team === team.sigla && !projectedKeys.has(key))
+        .filter(([key, player]) => player.team === team.code && !projectedKeys.has(key))
         .map(([key, player]) => ({ key, name: player.name, projection: undefined })) : []
 
-      return <section className="match-player-team" key={team.sigla} aria-label={team.nome}>
-        <h4>{team.nome} <small>{team === game.casa ? 'Mandante' : 'Visitante'}</small></h4>
+      return <>
         {!rows.length && !actualOnly.length ?
           <p className="detail-explain">Nenhuma estatística disponível para esta equipe.</p> :
           <ul className="match-player-list">
@@ -69,7 +70,8 @@ export default function MatchPlayers({ match, snapshot, live, picks }: {
               </small>}
             </li>)}
           </ul>}
-      </section>
-    })}
+      </>
+    }}
+    </TeamTabs>
   </section>
 }

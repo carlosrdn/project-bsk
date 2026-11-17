@@ -1,3 +1,4 @@
+import TeamTabs from './TeamTabs'
 import { useEffect, useState } from 'react'
 import { loadSchedule, type ScheduledMatch } from './lineup-espn'
 import LiveScore from './LiveScore'
@@ -18,13 +19,14 @@ function ScheduleBoxScore({ day, game }: { day: string; game: ScheduledMatch }) 
         {categories.map(stat => <button type="button" className="refresh-btn" key={stat}
           aria-pressed={category === stat} onClick={() => setCategory(stat)}>{radarLabels[stat]}</button>)}
       </div>
-      {[game.away, game.home].map(team => <section className="match-player-team" key={team}>
-        <h4>{team} <small>{team === game.home ? 'Mandante' : 'Visitante'}</small></h4>
-        <dl className="schedule-boxscore">
-          {players.filter(player => player.team === team).map(player =>
-            <div key={player.name}><dt>{player.name}</dt><dd>{player[category] ?? '—'}</dd></div>)}
-        </dl>
-      </section>)}
+      <TeamTabs away={{code: game.away, name: game.away}} home={{code: game.home, name: game.home}}>
+        {team => {
+          const rows = players.filter(player => player.team === team.code)
+          return rows.length ? <dl className="schedule-boxscore">
+            {rows.map(player => <div key={player.name}><dt>{player.name}</dt><dd>{player[category] ?? '—'}</dd></div>)}
+          </dl> : <p className="detail-explain">Nenhuma estatística disponível para esta equipe.</p>
+        }}
+      </TeamTabs>
     </div>}
   </>
 }
