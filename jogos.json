@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-16T19:38:16+00:00",
+  "atualizado_em": "2026-11-17T04:30:36+00:00",
   "data_jogos": "2026-11-16",
   "lesoes_ok": true,
   "media_liga": {
@@ -775,7 +775,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "C"
           },
@@ -1683,11 +1683,11 @@
         "ausencias": [
           {
             "nome": "Neemias Queta",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Rest",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-16",
-            "comentario": "Queta (rest) is questionable for Monday's game against the Magic.",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Queta (rest) won't play in Monday's game against the Magic, Taylor Snow of the Celtics' official site reports.",
             "jogos": 13,
             "minutos": 21.9,
             "pts": 9.08,
@@ -3528,7 +3528,7 @@
             "nome": "Jonathan Isaac",
             "situacao": "Fora",
             "motivo": "Knee Not Specified",
-            "retorno": "2026-11-18",
+            "retorno": "2026-11-22",
             "atualizado": "2026-11-15",
             "comentario": "Isaac (knee) has been ruled out for Monday's game against the Celtics.",
             "jogos": 0,
@@ -4477,7 +4477,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -5387,9 +5387,9 @@
             "nome": "Evan Mobley",
             "situacao": "Fora",
             "motivo": "Toe Sprain",
-            "retorno": "2026-11-18",
-            "atualizado": "2026-11-15",
-            "comentario": "Mobley (toe) has been ruled out for Monday's game against Chicago.",
+            "retorno": "2026-11-29",
+            "atualizado": "2026-11-16",
+            "comentario": "Mobley will receive treatment and participate in rehab after the team confirmed a diagnosis of a right great toe sprain, and he'll be re-evaluated in the next 7-to-10 days.",
             "jogos": 12,
             "minutos": 32.1,
             "pts": 16.92,
@@ -5399,10 +5399,10 @@
           {
             "nome": "Peyton Watson",
             "situacao": "Dúvida",
-            "motivo": "Abdomen Soreness",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-15",
-            "comentario": "Watson (abdominal soreness) is questionable to play in Monday's game against the Bulls.",
+            "motivo": "Head Not Specified",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Watson left Monday's 126-115 win over Chicago due to a head injury and did not return.",
             "jogos": 11,
             "minutos": 28,
             "pts": 10.36,
@@ -5411,11 +5411,11 @@
           },
           {
             "nome": "Jaylon Tyson",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "Ankle",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-16",
-            "comentario": "Tyson (ankle) has been downgraded to doubtful for Monday's game against the Bulls.",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Tyson (ankle) has been ruled out for Monday's game against Chicago.",
             "jogos": 8,
             "minutos": 23.9,
             "pts": 9.5,
@@ -6359,7 +6359,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -7281,15 +7281,28 @@
           {
             "nome": "Jalen Smith",
             "situacao": "Dúvida",
-            "motivo": "Finger Sprain",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-15",
-            "comentario": "Smith (finger) is listed as questionable for Monday's game against Cleveland.",
+            "motivo": "Head",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Smith (undisclosed) exited in the fourth quarter of Monday's 126-115 loss to the Cavaliers and did not return.",
             "jogos": 11,
             "minutos": 24.6,
             "pts": 13,
             "reb": 7.82,
             "ast": 2
+          },
+          {
+            "nome": "Patrick Williams",
+            "situacao": "Fora",
+            "motivo": "Finger",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Williams (finger) has been ruled out for the remainder of Monday's game against Cleveland.",
+            "jogos": 5,
+            "minutos": 24.6,
+            "pts": 9.4,
+            "reb": 3.8,
+            "ast": 2.4
           },
           {
             "nome": "Tobe Awaka",
@@ -8368,7 +8381,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8986,19 +8999,6 @@
             "pts": 7.25,
             "reb": 7.5,
             "ast": 1.25
-          },
-          {
-            "nome": "Tre Johnson",
-            "situacao": "Dúvida",
-            "motivo": "Back Soreness",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-16",
-            "comentario": "Johnson (back) is listed as questionable for Monday's game against Memphis.",
-            "jogos": 12,
-            "minutos": 23.6,
-            "pts": 9.67,
-            "reb": 2.08,
-            "ast": 0.92
           },
           {
             "nome": "Tristan Vukcevic",
@@ -10250,7 +10250,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -10850,7 +10850,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           }
@@ -10861,7 +10861,7 @@
             "situacao": "Fora",
             "motivo": "Hip Soreness",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-15",
+            "atualizado": "2026-11-17",
             "comentario": "Jerome (hip) has been ruled out for Monday's game against the Wizards.",
             "jogos": 11,
             "minutos": 30.6,
@@ -10870,24 +10870,11 @@
             "ast": 5.27
           },
           {
-            "nome": "Zach Edey",
-            "situacao": "Dúvida",
-            "motivo": "Ankle",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-15",
-            "comentario": "Edey (ankle) is questionable for Monday's game against Washington.",
-            "jogos": 10,
-            "minutos": 20.8,
-            "pts": 7.6,
-            "reb": 7.7,
-            "ast": 0.9
-          },
-          {
             "nome": "Isaiah Stewart",
             "situacao": "Fora",
             "motivo": "Illness",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-16",
+            "atualizado": "2026-11-17",
             "comentario": "Stewart is out for Monday's game against the Wizards due to an illness.",
             "jogos": 10,
             "minutos": 18.1,
@@ -10920,19 +10907,6 @@
             "pts": 6.67,
             "reb": 3,
             "ast": 1
-          },
-          {
-            "nome": "Quinten Post",
-            "situacao": "Fora",
-            "motivo": "Concussion",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-15",
-            "comentario": "Post (concussion) is questionable for Monday's game against the Wizards.",
-            "jogos": 8,
-            "minutos": 12.9,
-            "pts": 5,
-            "reb": 2.12,
-            "ast": 0.38
           },
           {
             "nome": "Richie Saunders",
@@ -13527,7 +13501,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -14284,24 +14258,11 @@
         ],
         "ausencias": [
           {
-            "nome": "Joel Embiid",
-            "situacao": "Dúvida",
-            "motivo": "Foot",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-16",
-            "comentario": "Embiid (foot) is questionable for Monday's game against the Nets.",
-            "jogos": 11,
-            "minutos": 31.4,
-            "pts": 17.91,
-            "reb": 8.82,
-            "ast": 3.73
-          },
-          {
             "nome": "LeBron James",
             "situacao": "Fora",
             "motivo": "Back",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-16",
+            "atualizado": "2026-11-17",
             "comentario": "James (back) has been ruled out for Monday's game against the Nets.",
             "jogos": 11,
             "minutos": 32.5,
@@ -14313,7 +14274,7 @@
             "nome": "Adem Bona",
             "situacao": "Fora",
             "motivo": "Back Sprain",
-            "retorno": "2026-11-18",
+            "retorno": "2026-11-21",
             "atualizado": "2026-11-12",
             "comentario": "Bona (back) will be re-evaluated in approximately one week after seeing a specialist, Ky Carlin of USA Today reports.",
             "jogos": 9,
@@ -14327,8 +14288,8 @@
             "situacao": "Fora",
             "motivo": "Back Fracture",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-12",
-            "comentario": "Barlow (back) participated in Thursday's shootaround but doesn't have a timeline to return to game action, Ky Carlin of USA Today reports.",
+            "atualizado": "2026-11-16",
+            "comentario": "Barlow (back) will be re-evaluated later in the week and is thought to be nearing his 2026-27 season debut, Tony Jones of The Athletic reports.",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -14662,7 +14623,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -14962,7 +14923,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -15862,19 +15823,32 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           }
         ],
         "ausencias": [
           {
+            "nome": "Bam Adebayo",
+            "situacao": "Dúvida",
+            "motivo": "Hip",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Coach Erik Spoelstra stated after Monday's 128-110 win over Houston that the team held Adebayo (hip) out of the second half in an effort to be proactive, and the injury isn't expected to be a long-term issue, Anthony Chiang of the Miami Herald reports.",
+            "jogos": 13,
+            "minutos": 33.8,
+            "pts": 19.46,
+            "reb": 8.54,
+            "ast": 3.31
+          },
+          {
             "nome": "Pelle Larsson",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "Illness",
-            "retorno": "2026-11-16",
+            "retorno": "2026-11-18",
             "atualizado": "2026-11-16",
-            "comentario": "Larsson (illness) has been downgraded to doubtful for Monday's game against Houston.",
+            "comentario": "Larsson won't play in Monday's game against the Rockets due to an illness, Ira Winderman of the South Florida Sun Sentinel reports.",
             "jogos": 11,
             "minutos": 29.6,
             "pts": 11.36,
@@ -15883,11 +15857,11 @@
           },
           {
             "nome": "Nikola Jovic",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Illness",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-16",
-            "comentario": "Jovic (illness) has been downgraded to questionable for Monday's game against Houston.",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Jovic (illness) is out for Monday's game against Houston.",
             "jogos": 8,
             "minutos": 12,
             "pts": 2.38,
@@ -16505,7 +16479,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -17563,11 +17537,11 @@
         "ausencias": [
           {
             "nome": "Amen Thompson",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Knee Soreness",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-16",
-            "comentario": "Thompson (knee) is listed as questionable for Monday's game against the Heat.",
+            "retorno": "2026-11-18",
+            "atualizado": "2026-11-17",
+            "comentario": "Thompson (knee) is out for Monday's game against the Heat.",
             "jogos": 14,
             "minutos": 33.3,
             "pts": 15.79,
@@ -17579,7 +17553,7 @@
             "situacao": "Dúvida",
             "motivo": "Suspension",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-12",
+            "atualizado": "2026-11-17",
             "comentario": "Smart has been suspended three games for throwing a punch during Wednesday's matchup against Golden State, Shams Charania of ESPN reports.",
             "jogos": 9,
             "minutos": 21.3,
@@ -17592,7 +17566,7 @@
             "situacao": "Fora",
             "motivo": "Calf",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-16",
+            "atualizado": "2026-11-17",
             "comentario": "Adams (calf) is out for Monday's game against the Heat.",
             "jogos": 2,
             "minutos": 10,
@@ -18227,7 +18201,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -19295,6 +19269,19 @@
             "pts": 33.25,
             "reb": 4.75,
             "ast": 3.5
+          },
+          {
+            "nome": "Jonathan Kuminga",
+            "situacao": "Dúvida",
+            "motivo": "Shoulder",
+            "retorno": "2026-11-17",
+            "atualizado": "2026-11-17",
+            "comentario": "Kuminga (shoulder) exited in the fourth quarter of Monday's 106-98 win over Portland and did not return. He closed with 13 points (5-12 FG, 1-2 3Pt, 2-2 FT), nine rebounds and one assist across 29 minutes.",
+            "jogos": 13,
+            "minutos": 30.5,
+            "pts": 12.31,
+            "reb": 5.46,
+            "ast": 2.92
           },
           {
             "nome": "Jaylen Clark",
@@ -23055,7 +23042,7 @@
             "situacao": "Fora",
             "motivo": "Foot Plantar Fasciitis",
             "retorno": "2026-11-18",
-            "atualizado": "2026-11-15",
+            "atualizado": "2026-11-17",
             "comentario": "Mathurin (foot) has been ruled out for Monday's game against the Warriors.",
             "jogos": 12,
             "minutos": 15.2,
@@ -24137,7 +24124,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -24918,19 +24905,6 @@
             "pts": 10.4,
             "reb": 2.1,
             "ast": 2.3
-          },
-          {
-            "nome": "Gui Santos",
-            "situacao": "Dúvida",
-            "motivo": "Ankle Inflammation",
-            "retorno": "2026-11-16",
-            "atualizado": "2026-11-15",
-            "comentario": "Santos is questionable for Monday's game against New Orleans due to right ankle inflammation.",
-            "jogos": 10,
-            "minutos": 18.7,
-            "pts": 5.6,
-            "reb": 3.9,
-            "ast": 1.4
           },
           {
             "nome": "Kristaps Porzingis",
