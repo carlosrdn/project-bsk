@@ -246,3 +246,10 @@
 .player-limit input { width: 95px; padding: 6px 8px; color: inherit; background: #101b29; border: 1px solid #445470; border-radius: 6px; }
 .player-limit small { color: #a5b8cb; }
 .match-player-list dl.has-actual { grid-template-columns: repeat(auto-fit, minmax(58px, 1fr)); }
+
+.schedule-list details { width: 100%; }
+.schedule-list summary { cursor: pointer; }
+.schedule-list summary span { margin-left: 8px; }
+.schedule-boxscore { margin: 8px 0; }
+.schedule-boxscore div { display: flex; justify-content: space-between; padding: 4px 0; }
+.schedule-boxscore dd { margin: 0; font-variant-numeric: tabular-nums; }

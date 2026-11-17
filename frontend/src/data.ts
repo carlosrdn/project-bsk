@@ -70,11 +70,11 @@ export function dataUrl(): string {
   // GitHub Pages: /project-bsk/novo/ -> /project-bsk/dados.js
   return new URL('../dados.js', new URL(import.meta.env.BASE_URL, window.location.origin)).toString()
 }
-export async function loadSnapshot(): Promise<DataSnapshot> {
+export async function loadSnapshot(signal?: AbortSignal): Promise<DataSnapshot> {
   const controller = new AbortController()
   const handle = window.setTimeout(() => controller.abort(), 12000)
   try {
-    const response = await fetch(dataUrl(), { cache: 'no-store', signal: controller.signal })
+    const response = await fetch(dataUrl(), { cache: 'no-store', signal: signal ? AbortSignal.any([signal, controller.signal]) : controller.signal })
     if (!response.ok) throw new Error('Não foi possível carregar dados.js (HTTP ' + response.status + ').')
     const raw = (await response.text()).trim()
     const match = raw.match(/^const\s+DADOS\s*=\s*([\s\S]*?);?\s*$/)

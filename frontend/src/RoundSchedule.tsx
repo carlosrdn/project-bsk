@@ -1,5 +1,47 @@
 import { useEffect, useState } from 'react'
 import { loadSchedule, type ScheduledMatch } from './lineup-espn'
+import LiveScore from './LiveScore'
+import { useLiveMatch } from './useLiveMatch'
+import { radarLabels } from './radar-model'
+import type { PlayerStatCategory } from './types'
+
+const categories = Object.keys(radarLabels) as PlayerStatCategory[]
+
+function ScheduleBoxScore({ day, game }: { day: string; game: ScheduledMatch }) {
+  const { live, loading, refresh } = useLiveMatch(day, game.home, game.away)
+  const [category, setCategory] = useState<PlayerStatCategory>('pts')
+  const players = [...live?.players?.values() ?? []]
+  return <>
+    <LiveScore live={live} loading={loading} refresh={refresh}/>
+    {players.length > 0 && <div className="match-players">
+      <div className="player-categories" role="group" aria-label="Estatística dos jogadores">
+        {categories.map(stat => <button type="button" className="refresh-btn" key={stat}
+          aria-pressed={category === stat} onClick={() => setCategory(stat)}>{radarLabels[stat]}</button>)}
+      </div>
+      {[game.away, game.home].map(team => <section className="match-player-team" key={team}>
+        <h4>{team} <small>{team === game.home ? 'Mandante' : 'Visitante'}</small></h4>
+        <dl className="schedule-boxscore">
+          {players.filter(player => player.team === team).map(player =>
+            <div key={player.name}><dt>{player.name}</dt><dd>{player[category] ?? '—'}</dd></div>)}
+        </dl>
+      </section>)}
+    </div>}
+  </>
+}
+
+function ScheduleGame({ day, game }: { day: string; game: ScheduledMatch }) {
+  const [open, setOpen] = useState(false)
+  return <li>
+    <details onToggle={event => setOpen(event.currentTarget.open)}>
+      <summary>
+        <strong>{game.away} {['Em andamento', 'Finalizado'].includes(game.status) && game.awayScore != null && game.homeScore != null
+          ? game.awayScore + ' × ' + game.homeScore : '×'} {game.home}</strong>
+        <span>{new Date(game.start).toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' })} BRT · {game.status}</span>
+      </summary>
+      {open && <ScheduleBoxScore day={day} game={game}/>}
+    </details>
+  </li>
+}
 
 export default function RoundSchedule({ day }: { day: string }) {
   const [games, setGames] = useState<ScheduledMatch[] | null>(null)
@@ -25,10 +67,6 @@ export default function RoundSchedule({ day }: { day: string }) {
       <button type="button" className="refresh-btn" onClick={() => setRevision(value => value + 1)}>Tentar novamente</button></div>}
     {!games ? !error && <p role="status">Consultando agenda…</p> :
       !games.length ? <p>Nenhuma partida na agenda desta rodada.</p> :
-      <ul>{games.map(game => <li key={game.id}>
-        <strong>{game.away} {['Em andamento', 'Finalizado'].includes(game.status) && game.awayScore != null && game.homeScore != null
-          ? game.awayScore + ' × ' + game.homeScore : '×'} {game.home}</strong>
-        <span>{new Date(game.start).toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' })} BRT · {game.status}</span>
-      </li>)}</ul>}
+      <ul>{games.map(game => <ScheduleGame key={game.id} day={day} game={game}/>)}</ul>}
   </section>
 }

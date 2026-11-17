@@ -134,20 +134,40 @@ export default function App() {
  const [error, setError] = useState<string | null>(null)
  const [loading, setLoading] = useState(true)
  const [today, setToday] = useState(nbaToday)
+ const [revision, setRevision] = useState(0)
  const [view, setView] = useState<View>('games')
  const [search, setSearch] = useState('')
  const [sidebar, setSidebar] = useState(false)
  const [onlyAbsences, setOnlyAbsences] = useState(false)
- const reload = async () => {
-  setLoading(true); setError(null)
-  try { setSnapshot(await loadSnapshot()) } catch (e) { setSnapshot(null); setError(e instanceof Error ? e.message : 'Falha inesperada') }
-  finally { setLoading(false) }
- }
  useEffect(() => {
-  const timer = window.setInterval(() => setToday(nbaToday()), 60000)
-  return () => window.clearInterval(timer)
- }, [])
- useEffect(() => { void reload() }, [today])
+  const controller = new AbortController()
+  let inFlight = false
+  async function refresh() {
+   if (inFlight) return
+   inFlight = true
+   setToday(nbaToday())
+   try {
+    const next = await loadSnapshot(controller.signal)
+    if (controller.signal.aborted) return
+    setSnapshot(previous => previous && Date.parse(previous.atualizado_em) >= Date.parse(next.atualizado_em) ? previous : next)
+    setError(null)
+   } catch (error) {
+    if (!controller.signal.aborted) setError(error instanceof Error ? error.message : 'Falha inesperada')
+   } finally {
+    inFlight = false
+    if (!controller.signal.aborted) setLoading(false)
+   }
+  }
+  const onVisible = () => { if (!document.hidden) void refresh() }
+  void refresh()
+  const timer = window.setInterval(onVisible, 30000)
+  document.addEventListener('visibilitychange', onVisible)
+  return () => {
+   controller.abort()
+   window.clearInterval(timer)
+   document.removeEventListener('visibilitychange', onVisible)
+  }
+ }, [revision])
  const matches = useMemo(() => snapshot?.jogos.map(game => ({
   game,
   prediction: predictGame(game, snapshot.media_liga.ataque, { ...DEFAULT_PARAMS, ...snapshot.calibration?.team }),
@@ -180,11 +200,11 @@ export default function App() {
    <div className="side-bottom"><div className="season-block"><div><span className="season-indicator" /> TEMPORADA ATIVA</div><strong>NBA 2026–27</strong><small>Prévia em React</small></div><a className="legacy-link" href={outside('index.html')}><ChevronLeft size={16}/> Voltar ao BSK clássico</a></div>
   </aside>
   <div className="main-column">
-   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
+   <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => { setLoading(true); setRevision(value => value + 1) }} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
    <main className="content">
     <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores e indicações pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
     {view === 'backtest' ? <Backtest snapshot={snapshot}/> : view === 'history' ? <HistoryView/> : <>
-    {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
+    {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>{snapshot ? 'Falha ao atualizar os dados' : 'Dados indisponíveis'}</b><p>{error}</p></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
     {scheduleOnly && <>
      {stale && <section className="notice caution"><CircleAlert size={19}/><div><b>Projeções da rodada pendentes</b><p>A última coleta é de {date(snapshot.data_jogos)}.</p></div></section>}
