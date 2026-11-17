@@ -30,6 +30,6 @@ export function useMarketPicks(date: string | undefined) {
       window.clearInterval(timer)
     }
   }, [])
-  return { available: feed?.date === date && feed !== null,
+  return { clock, available: feed?.date === date && feed !== null,
     picks: feed?.date === date ? feed?.picks.filter(pick => Date.parse(pick.startsAt) > clock) ?? [] : [] }
 }

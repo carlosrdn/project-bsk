@@ -222,6 +222,9 @@
 .match-players h3 { margin: 0 0 10px; font-size: .95rem; }
 .player-categories { display: flex; flex-wrap: wrap; gap: 6px; }
 .player-categories [aria-pressed="true"] { border-color: #6edab3; color: #84edc9; }
+.match-player-team { margin-top: 16px; }
+.match-player-team h4 { margin: 0; font-size: .875rem; }
+.match-player-team h4 small { margin-left: 6px; color: #a5b8cb; font-weight: 400; }
 .match-player-list { list-style: none; padding: 0; margin: 12px 0 0; }
 .match-player-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 1fr); align-items: center; gap: 4px 12px; padding: 8px 0; border-top: 1px solid #26364b; }
 .match-player-list strong { display: block; font-size: .875rem; }

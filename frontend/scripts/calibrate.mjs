@@ -137,9 +137,8 @@ function atomic(path, body) {
   fs.writeFileSync(temp, body)
   fs.renameSync(temp, path)
 }
-const marketReference = evaluateMarketReference(cases, snapshot.data_jogos,
+const marketReference = snapshot.marketReference = evaluateMarketReference(cases, snapshot.data_jogos,
   path.join(path.dirname(snapshotPath), 'mercados-bsk', 'referencia'))
-delete snapshot.marketReference
 atomic(snapshotPath.replace(/jogos\.json$/, 'dados.js'), 'const DADOS = ' + JSON.stringify(snapshot) + ';')
-atomic(snapshotPath, JSON.stringify({ ...snapshot, marketReference }, null, 2) + '\n')
+atomic(snapshotPath, JSON.stringify(snapshot, null, 2) + '\n')
 console.log(JSON.stringify({ ...snapshot.calibrationReport, marketReference }))

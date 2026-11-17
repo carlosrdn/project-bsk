@@ -91,7 +91,7 @@ const statColumns: Record<PlayerStatCategory, string[]> = {
   tres: ['3PT', '3PM', 'FG3M'], blk: ['BLK', 'BLOCKS'], stl: ['STL', 'STEALS']
 }
 
-export type LivePlayerStats = Partial<Record<PlayerStatCategory, number>>
+export type LivePlayerStats = { name: string; team: string } & Partial<Record<PlayerStatCategory, number>>
 export const livePlayerKey = (team: string, name: string) => team + '|' + playerNameKey(name)
 
 export async function loadLiveStats(id: string, signal: AbortSignal) {
@@ -105,14 +105,18 @@ export async function loadLiveStats(id: string, signal: AbortSignal) {
         const name = item.athlete?.displayName || item.athlete?.fullName || item.displayName
         if (!code || !name || item.didNotPlay || !item.stats) continue
         const key = livePlayerKey(code, name)
-        const stats = players.get(key) ?? {}
+        const stats = players.get(key) ?? { name, team: code }
+        let hasStats = players.has(key)
         for (const category of Object.keys(statColumns) as PlayerStatCategory[]) {
           const index = labels.findIndex(label => statColumns[category].includes(label))
           const raw = String(item.stats[index] ?? '').trim()
           const made = category === 'tres' ? raw.match(/^(\d+)-\d+$/)?.[1] ?? raw : raw
-          if (/^\d+$/.test(made)) stats[category] = Number(made)
+          if (/^\d+$/.test(made)) {
+            stats[category] = Number(made)
+            hasStats = true
+          }
         }
-        if (Object.keys(stats).length) players.set(key, stats)
+        if (hasStats) players.set(key, stats)
       }
     }
   }

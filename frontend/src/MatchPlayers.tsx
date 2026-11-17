@@ -19,14 +19,16 @@ export default function MatchPlayers({ match, snapshot, live, picks }: {
 }) {
   const [category, setCategory] = useState<PlayerStatCategory>('pts')
   const { manual } = useManualStatuses()
-  const started = Date.parse(match.game.horario_utc) <= Date.now()
+  const { game } = match
+  const started = Date.parse(live?.event?.start ?? game.horario_utc) <= Date.now()
   const showActual = live?.event?.status === 'Em andamento' || live?.event?.status === 'Finalizado'
+  const actualLabel = live?.event?.status === 'Finalizado' ? 'Final' : 'Ao vivo'
   const players = rankRadar([match], {
     date: snapshot.data_jogos, current: true, injuries: snapshot.lesoes_ok, manual, calibration: snapshot.calibration
   }, category).sort((a, b) => Number(b.eligible) - Number(a.eligible) || b.score - a.score)
 
-  return <section className="match-players" aria-label="Projeções de jogadores">
-    {!started && <>
+  return <section className="match-players" aria-label="Estatísticas e projeções de jogadores">
+    {!started && !showActual && <>
       <h3>Indicações pré-jogo</h3>
       {picks.length ? <MarketPickCards picks={picks}/> : <p className="detail-explain">Sem entrada disponível para este jogo.</p>}
     </>}
@@ -35,21 +37,39 @@ export default function MatchPlayers({ match, snapshot, live, picks }: {
       {categories.map(stat => <button type="button" className="refresh-btn" key={stat}
         aria-pressed={category === stat} onClick={() => setCategory(stat)}>{radarLabels[stat]}</button>)}
     </div>
-    {started && <p className="detail-explain">O horário previsto de início já passou. Os valores abaixo são estimativas da coleta.</p>}
-    {players.length ? <ul className="match-player-list">
-      {players.slice(0, 18).map(pick => <li key={JSON.stringify([pick.team.sigla, pick.player])}>
-        <div><BackToBack active={pick.backToBack} player/><strong>{pick.player}</strong><small>{pick.team.sigla} · {pick.sample.jogos} jogos</small></div>
-        <dl className={showActual ? 'has-actual' : undefined}>
-          {showActual && <div className="match-player-actual"><dt>{live?.event?.status === 'Finalizado' ? 'Final' : 'Ao vivo'}</dt>
-            <dd>{number(live?.players?.get(livePlayerKey(pick.team.sigla, pick.player))?.[category])}</dd></div>}
-          <div><dt>Projeção</dt><dd>{number(pick.projected)}</dd></div>
-          <div><dt>Média</dt><dd>{number(pick.sample.media)}</dd></div>
-          <div><dt>Últimos 5</dt><dd>{number(pick.sample.ultimos5)}</dd></div>
-        </dl>
-        <small className={pick.eligible ? 'player-eligible' : undefined}>
-          {pick.eligible ? 'Histórico consistente' : pick.alerts.join(' · ') || 'Variação histórica elevada'}
-        </small>
-      </li>)}
-    </ul> : <p className="detail-explain">Nenhum jogador disponível com pelo menos cinco jogos nesta estatística.</p>}
+    {[game.visitante, game.casa].map(team => {
+      const rows = players.filter(pick => pick.team.sigla === team.sigla).map(pick => ({
+        key: livePlayerKey(team.sigla, pick.player), name: pick.player, projection: pick
+      }))
+      const projectedKeys = new Set(rows.map(row => row.key))
+      const actualOnly = showActual ? [...live?.players?.entries() ?? []]
+        .filter(([key, player]) => player.team === team.sigla && !projectedKeys.has(key))
+        .map(([key, player]) => ({ key, name: player.name, projection: undefined })) : []
+
+      return <section className="match-player-team" key={team.sigla} aria-label={team.nome}>
+        <h4>{team.nome} <small>{team === game.casa ? 'Mandante' : 'Visitante'}</small></h4>
+        {!rows.length && !actualOnly.length ?
+          <p className="detail-explain">Nenhuma estatística disponível para esta equipe.</p> :
+          <ul className="match-player-list">
+            {[...rows, ...actualOnly].map(({ key, name, projection }) => <li key={key}>
+              <div>
+                <BackToBack active={projection?.backToBack} player/>
+                <strong>{name}</strong>
+                {projection && <small>{projection.sample.jogos} jogos</small>}
+              </div>
+              <dl className={showActual ? 'has-actual' : undefined}>
+                {showActual && <div className="match-player-actual"><dt>{actualLabel}</dt>
+                  <dd>{number(live?.players?.get(key)?.[category])}</dd></div>}
+                <div><dt>Projeção</dt><dd>{number(projection?.projected)}</dd></div>
+                <div><dt>Média</dt><dd>{number(projection?.sample.media)}</dd></div>
+                <div><dt>Últimos 5</dt><dd>{number(projection?.sample.ultimos5)}</dd></div>
+              </dl>
+              {projection && <small className={projection.eligible ? 'player-eligible' : undefined}>
+                {projection.eligible ? 'Histórico consistente' : projection.alerts.join(' · ') || 'Variação histórica elevada'}
+              </small>}
+            </li>)}
+          </ul>}
+      </section>
+    })}
   </section>
 }

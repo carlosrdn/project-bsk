@@ -182,7 +182,7 @@ export default function App() {
   <div className="main-column">
    <header className="topbar"><div className="topbar-left"><button className="mobile-menu" onClick={() => setSidebar(true)} aria-label="Abrir menu"><Menu size={21}/></button><span className="breadcrumb">Project BSK</span><ChevronRight size={15}/><strong>{links.find(link => link.view === view)?.label}</strong></div><div className="topbar-right"><span className="season-tag">2026–27</span>{view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn" onClick={() => void reload()} disabled={loading}><RefreshCw size={16} className={loading ? 'spin' : ''}/> <span>Atualizar</span></button>}</div></header>
    <main className="content">
-    <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores com base na última coleta e nos ajustes manuais salvos.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
+    <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores e indicações pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
     {view === 'backtest' ? <Backtest snapshot={snapshot}/> : view === 'history' ? <HistoryView/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>Dados indisponíveis</b><p>{error}</p><small>O protótipo não substitui dados ausentes por valores fictícios.</small></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
@@ -195,12 +195,8 @@ export default function App() {
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
      <div className="snapshot-line"><span><Database size={15}/> Base: {date(snapshot.data_jogos)}</span></div>
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
-      <Radar picks={market.picks} available={market.available} validated={!!snapshot && !stale && (
-        ['pts', 'reb', 'ast', 'tres'].some(stat => {
-          const category = stat as 'pts' | 'reb' | 'ast' | 'tres'
-          return !!snapshot.calibration?.thresholds[category] || snapshot.marketReference?.categories[category]?.approved === true
-        })
-      )}/>
+      <Radar picks={market.picks} available={market.available} snapshot={snapshot}
+        matches={matches} current={!stale} clock={market.clock}/>
      </> : <>
      <dl className="round-summary" aria-label="Resumo da rodada">
       <div><dt>Partidas</dt><dd>{totalGames}</dd></div>

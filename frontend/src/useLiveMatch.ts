@@ -5,6 +5,7 @@ import type { LivePlayerStats, ScheduledMatch } from './lineup-espn'
 export interface LiveMatch {
   event?: ScheduledMatch
   players?: Map<string, LivePlayerStats>
+  updatedAt?: number
   issue?: string
 }
 
@@ -32,12 +33,12 @@ export function useLiveMatch(day: string, home: string, away: string) {
           setLive({ event })
           return
         }
-        setLive(previous => ({ event, players: previous?.event?.id === event.id ? previous.players : undefined }))
+        setLive(previous => previous?.event?.id === event.id ? { ...previous, event } : { event })
         try {
           const players = await loadLiveStats(event.id, signal)
           if (signal.aborted) return
           if (!players.size) throw new Error('Box score vazio')
-          setLive({ event, players })
+          setLive({ event, players, updatedAt: Date.now() })
           completed = event.status === 'Finalizado'
         } catch {
           if (!signal.aborted) setLive(previous => ({ ...previous, issue: 'Estatísticas da ESPN indisponíveis nesta atualização.' }))
@@ -47,7 +48,7 @@ export function useLiveMatch(day: string, home: string, away: string) {
       } finally {
         if (!signal.aborted) {
           setLoading(false)
-          if (!completed) timer = window.setTimeout(refresh, 30000)
+          if (!completed) timer = window.setTimeout(refresh, 15000)
         }
       }
     }

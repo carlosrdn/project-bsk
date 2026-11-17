@@ -17,6 +17,7 @@ export default function LiveScore({ live, loading, refresh }: {
           <> · {event.away} {event.awayScore} × {event.homeScore} {event.home}</>}
         {event.status === 'Em andamento' && event.detail && <> · {event.detail}</>}
       </p>}
+      {live?.updatedAt != null && <p>Estatísticas atualizadas às {new Date(live.updatedAt).toLocaleTimeString('pt-BR')}</p>}
       {loading && !event && <p>Consultando ESPN…</p>}
       {live?.issue && <p>{live.issue}{live.players?.size ? ' Últimas estatísticas disponíveis exibidas.' : ''}</p>}
     </div>
