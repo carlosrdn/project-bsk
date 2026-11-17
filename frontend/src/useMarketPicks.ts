@@ -1,3 +1,4 @@
+import { isRadarSignal } from './radar-signal'
 import { useEffect, useState } from 'react'
 
 export type MarketPick = {
@@ -31,5 +32,5 @@ export function useMarketPicks(date: string | undefined) {
     }
   }, [])
   return { clock, available: feed?.date === date && feed !== null,
-    picks: feed?.date === date ? feed?.picks.filter(pick => Date.parse(pick.startsAt) > clock) ?? [] : [] }
+    picks: feed?.date === date ? feed?.picks.filter(pick => pick && Date.parse(pick.startsAt) > clock && isRadarSignal(pick)) ?? [] : [] }
 }

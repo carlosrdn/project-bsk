@@ -16,6 +16,7 @@ const marketCode = source('market-lines.ts')
 const { predictGame, DEFAULT_PARAMS } = await import(moduleUrl(compile(modelCode)))
 const { selectRecommendations } = await import(moduleUrl(compile(marketCode)
   .replace("'./radar-model'", JSON.stringify(moduleUrl(compile(radarCode))))))
+const { isRadarSignal } = await import(moduleUrl(compile(source('radar-signal.ts'))))
 const { validateSnapshot, nbaToday } = await import(moduleUrl(compile(source('data.ts'))))
 
 const snapshot = validateSnapshot(JSON.parse(fs.readFileSync(snapshotFile, 'utf8')))
@@ -32,7 +33,7 @@ fs.mkdirSync(directory, { recursive: true })
 const archive = fs.existsSync(history) ? JSON.parse(fs.readFileSync(history, 'utf8')) : {
   date: snapshot.data_jogos, picks: []
 }
-const frozen = new Set(archive.picks.map(pick => pick.game))
+const frozen = new Set(archive.picks.filter(isRadarSignal).map(pick => pick.game))
 const gameKey = game => JSON.stringify([game.horario_utc, game.casa.sigla, game.visitante.sigla])
 const pending = snapshot.jogos.filter(game => {
   const start = Date.parse(game.horario_utc)
@@ -53,6 +54,7 @@ const fallback = reference.filter(pick => approved.includes(pick.stat) && !froze
 const chosen = new Map()
 const official = selectRecommendations(matches, snapshot, feed, now)
 for (const pick of [...official, ...fallback]) {
+  if (!isRadarSignal({ ...pick, projection: pick.projected, sample: pick.sample.jogos })) continue
   const key = JSON.stringify([gameKey(pick.game), pick.team.sigla, pick.player])
   if (!chosen.has(key)) chosen.set(key, pick)
 }
@@ -88,5 +90,5 @@ if (picks.length) {
   archive.picks.push(...picks)
   write(history, archive)
 }
-write(path.join(outputDirectory, 'atual.json'), { ...archive, updatedAt: nowIso })
+write(path.join(outputDirectory, 'atual.json'), { ...archive, picks: archive.picks.filter(isRadarSignal), updatedAt: nowIso })
 console.log(`${picks.length} novas indicações pré-jogo registradas.`)

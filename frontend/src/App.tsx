@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useState } from 'react'
 import {
  Activity, BarChart3, CalendarDays,
  ChevronDown, CircleAlert, Clock3, History,
- RefreshCw, Search, SlidersHorizontal, Sparkles,
+ Moon, RefreshCw, Search, SlidersHorizontal, Sparkles,
  TrendingUp, Users, X
 } from 'lucide-react'
 import Radar from './Radar'
@@ -126,6 +126,30 @@ function Detail({ match }: { match: MatchView }) {
   </div>
  </div>
 }
+type Theme = 'system' | 'light' | 'dark'
+
+function ThemeSelect() {
+ const [theme, setTheme] = useState<Theme>(() => {
+  try {
+   const stored = localStorage.getItem('bsk-theme')
+   if (stored === 'light' || stored === 'dark') return stored
+  } catch { /* Use the device theme when storage is unavailable. */ }
+  return 'system'
+ })
+
+ useEffect(() => {
+  document.documentElement.dataset.theme = theme
+  try { localStorage.setItem('bsk-theme', theme) } catch { /* Keep the selected theme for this session. */ }
+ }, [theme])
+
+ return <label className="theme-select">
+  <Moon size={16} aria-hidden="true"/>
+  <select aria-label="Tema do site" value={theme} onChange={event => setTheme(event.target.value as Theme)}>
+   <option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Escuro</option>
+  </select>
+ </label>
+}
+
 export default function App() {
  const [snapshot, setSnapshot] = useState<DataSnapshot | null>(null)
  const [error, setError] = useState<string | null>(null)
@@ -195,14 +219,15 @@ export default function App() {
      <button type="button" key={l.view} className="nav-item" aria-current={view === l.view ? 'page' : undefined}
       onClick={() => setView(l.view)}><l.icon size={16} aria-hidden="true"/>{l.view === 'games' ? 'Jogos' : l.label}</button>
     )}</nav>
+    <div className="header-controls"><ThemeSelect/>
     {view !== 'history' && view !== 'backtest' && <button type="button" className="refresh-btn header-refresh" aria-label="Atualizar dados"
      onClick={() => { setLoading(true); setRevision(value => value + 1) }} disabled={loading}>
      <RefreshCw size={16} className={loading ? 'spin' : ''} aria-hidden="true"/><span>Atualizar</span>
-    </button>}
+    </button>}</div>
    </div>
   </header>
    <main className="content">
-    <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Projeções de jogadores e indicações pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
+    <div className="page-heading"><div><h1>{view === 'backtest' ? 'Backtest do motor' : view === 'history' ? 'Histórico de projeções' : view === 'lineups' ? 'Escalações da rodada' : view === 'radar' ? 'Radar da rodada' : 'Jogos da rodada'}</h1><p>{view === 'backtest' ? 'Desempenho do motor React em partidas anteriores.' : view === 'history' ? 'Projeções registradas antes dos jogos, resultados e métricas de desempenho.' : view === 'lineups' ? 'Titulares confirmados, quintetos projetados e desfalques por confronto.' : view === 'radar' ? 'Acima ou abaixo das linhas pré-jogo da rodada.' : 'Projeções baseadas nos dados da temporada 2026–27.'}</p></div></div>
     {view === 'backtest' ? <Backtest snapshot={snapshot}/> : view === 'history' ? <HistoryView/> : <>
     {error && <section className="notice error-notice"><CircleAlert size={20}/><div><b>{snapshot ? 'Falha ao atualizar os dados' : 'Dados indisponíveis'}</b><p>{error}</p></div></section>}
     {loading && <section className="loading-card"><RefreshCw className="spin" size={24}/><p>Carregando dados e calculando projeções…</p></section>}
@@ -215,7 +240,7 @@ export default function App() {
      {(stale || missingInjuryData) && <section className="notice caution"><CircleAlert size={19}/><div><b>{stale ? 'Arquivo de outra rodada' : 'Verificação de lesões indisponível'}</b><p>{stale ? 'A coleta disponível é de ' + date(snapshot.data_jogos) + '. Estes números são uma visualização do snapshot, não previsões atualizadas para hoje.' : 'Desfalques podem estar incompletos. Confira antes de usar estas projeções.'}</p></div></section>}
      {view === 'lineups' ? <Lineups key={snapshot.data_jogos} snapshot={snapshot} current={!stale}/> : view === 'radar' ? <>
       <Radar picks={market.picks} available={market.available} snapshot={snapshot}
-        matches={matches} current={!stale} clock={market.clock}/>
+        current={!stale} clock={market.clock}/>
      </> : <>
      <dl className="round-summary" aria-label="Resumo da rodada">
       <div><dt>Partidas</dt><dd>{totalGames}</dd></div>
