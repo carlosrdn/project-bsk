@@ -131,8 +131,7 @@
 
 .lineups { display: grid; gap: 16px; }
 .lineup-toolbar { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
-.lineup-toolbar label { display: grid; gap: 5px; }
-.lineups select {
+.lineup-correction select {
   border: 1px solid currentColor;
   border-radius: 7px;
   padding: 7px 10px;
@@ -235,7 +234,6 @@
 
 .lineups, .history-view { gap: 10px; }
 .lineup-grid { gap: 10px; }
-.lineup-toolbar label { font-size: .8rem; }
 .lineup-team-header { border-bottom: 1px solid var(--line); padding-bottom: 8px; }
 .lineup-team h2 { font-size: 1rem; }
 .lineup-team-header p { color: var(--muted); margin: 4px 0 0; font-size: .78rem; }
@@ -422,3 +420,21 @@ button:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visib
 }
 .radar h2 { margin: 0; font-size: 1.15rem; }
 @media (max-width: 560px) { .header-refresh span { display: none; } .site-logo small { display: none; } }
+
+.lineup-fixtures { display: grid; gap: 8px; }
+.lineup-fixtures h2 { margin: 0; font-size: .82rem; color: var(--muted); }
+.lineup-fixture-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.lineup-fixture {
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: .87rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.lineup-fixture span { margin-inline: 3px; color: var(--muted); font-weight: 500; }
+.lineup-fixture:hover { background: var(--subtle); }
+.lineup-fixture[aria-pressed="true"] { color: var(--accent); background: var(--selected); border-color: var(--accent-border); }

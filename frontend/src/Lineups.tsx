@@ -58,12 +58,16 @@ export default function Lineups({ snapshot, current }: { snapshot: DataSnapshot;
   const keys = teams.flatMap(team => team.jogadores.map(player => playerKey(snapshot.data_jogos, team.sigla, player.nome)))
   const corrections = keys.filter(key => manual[key]).length
   return <section className="lineups" aria-label="Escalações">
+    <div className="lineup-fixtures">
+      <h2>Confronto</h2>
+      <div className="lineup-fixture-list" role="group" aria-label="Escolher confronto">
+        {games.map(({ game, key }) => <button type="button" className="lineup-fixture" key={key}
+          aria-pressed={key === match.key} onClick={() => setSelected(key)}>
+          {game.visitante.sigla} <span>×</span> {game.casa.sigla}
+        </button>)}
+      </div>
+    </div>
     <div className="lineup-toolbar">
-      <label>Confronto
-        <select value={match.key} onChange={event => setSelected(event.target.value)}>
-          {games.map(({ game, key }) => <option key={key} value={key}>{game.visitante.sigla} × {game.casa.sigla}</option>)}
-        </select>
-      </label>
       <button type="button" className="refresh-btn" disabled={loading} onClick={() => setRefresh(value => value + 1)}>
         <RefreshCw size={16} className={loading ? 'spin' : ''}/> Atualizar ESPN
       </button>
