@@ -1,0 +1,68 @@
+{
+  "collectedAt": "2026-11-17T02:08:01.902681+00:00",
+  "lines": [
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "NYK",
+      "player": "Jalen Brunson",
+      "stat": "ast",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "NYK",
+      "player": "Jalen Brunson",
+      "stat": "pts",
+      "line": 25.5
+    },
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "pts",
+      "line": 20.5
+    },
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "NYK",
+      "player": "Jalen Brunson",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-18T00:30:00.000Z",
+      "home": "TOR",
+      "away": "NYK",
+      "team": "NYK",
+      "player": "Jalen Brunson",
+      "stat": "tres",
+      "line": 2.5
+    }
+  ]
+}
