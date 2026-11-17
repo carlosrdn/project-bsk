@@ -55,42 +55,13 @@ assert(collector.includes("home_points:arred(r.sc)")&&collector.includes("away_p
  "Guardar pontos pré-jogo das duas equipes");
 assert(collector.includes("total_points_error")&&collector.includes("winner_correct"),
  "Confrontar pontos totais, margem e vencedor com resultado final");
-const page=fs.readFileSync("historico.html","utf8");
-assert(page.includes('<details class="game-history"'),
- "Cada confronto precisa de um menu recolhível");
-assert(page.includes("Histórico de acertos do jogo")&&page.includes("Histórico dos jogadores"),
- "Menu precisa ter as duas opções solicitadas");
-// Regressão: renderização não pode sombrear o objeto "result" dentro do .map(g).
-// A falha antiga "const result=(result?.games...)" descartava todas as partidas.
-const pagina=fs.readFileSync("historico.html","utf8");
-assert(!pagina.includes("const result=(result?.games||[])"),"Não acessar variável let/const antes da inicialização");
-assert(pagina.includes("const resultadoJogo=(result?.games||[])"),"Ler resultado do evento a partir do JSON externo");
-assert(page.includes('async function atualizarResultadosESPN()'),
- "Histórico deve consultar resultados finais diretamente no navegador");
-assert(page.includes('scoreboard?dates=')&&page.includes('summary?event='),
- "ESPN deve fornecer o status, placar e boxscore dos jogadores");
-assert(page.includes('espnFinal(ev)')&&page.includes('compararPlacar(g,home,away)'),
- "Não apurar projeções de jogo antes da confirmação de encerramento");
-assert(page.includes('statisticaESPN(group,pick.player,pick.market)'),
- "Apuração individual deve usar o boxscore do jogador correto");
-const historyUI=fs.readFileSync("historico.html","utf8");
-assert(historyUI.includes('statusLimite(alvo,acertou,final)'),"Exibir acerto de limite separado de erro");
-const uiCode=historyUI.split("<script>")[1].split("</script>")[0];
-const uiCtx=vm.createContext({document:{getElementById:()=>({addEventListener(){}})},fetch:()=>Promise.resolve({ok:false,status:404}),
- setTimeout:()=>1,clearTimeout:()=>{},AbortController:class{},console});
-vm.runInContext(uiCode.replace("carregar();",""),uiCtx);
-assert(uiCtx.statusLimite({direction:"acima_de",threshold:112},true,true).includes("ACERTOU"),
- "Se a previsão era passar de 112 e marcou 115, deve ser acerto");
-assert(uiCtx.statusLimite({direction:"acima_de",threshold:112},false,true).includes("NÃO ACERTOU"));
-assert.equal(uiCtx.statusLimite(null,true,true),"","Sem limite pré-jogo não inventar acerto");
-assert(uiCtx.compararPlacar({home:"UTA",away:"ORL",prediction:{
- home_points:112.5,away_points:108,total_points:220.5,home_margin:4.5,favorite:"UTA",
- targets:{home_points:{direction:"acima_de",threshold:112},away_points:{direction:"acima_de",threshold:108},
- total_points:{direction:"acima_de",threshold:220}}
-}},115,105).targets_correct.home_points===true);
-assert(uiCtx.compararPlacar({home:"UTA",away:"ORL",prediction:{
- home_points:112.5,away_points:108,total_points:220.5,home_margin:4.5,favorite:"UTA",
- targets:{home_points:{direction:"acima_de",threshold:112},away_points:{direction:"acima_de",threshold:108},
- total_points:{direction:"acima_de",threshold:220}}
-}},115,105).targets_correct.away_points===false);
-console.log("OK: histórico BSK, feed ESPN, DNP, NBA timezone, seleção do radar");
+const redirect=fs.readFileSync("historico.html","utf8");
+assert(redirect.includes("url=novo/#historico"),"O link clássico abre o histórico atual");
+const page=fs.readFileSync("frontend/src/History.tsx","utf8");
+assert(page.includes("history-match history-result") && page.includes("<details"),
+ "Cada confronto tem um menu recolhível no histórico atual");
+assert(page.includes("Projeção</th>") && page.includes("Resultado</th>"),
+ "A interface compara projeção e resultado");
+assert(page.includes("r?.target_correct") && page.includes("r?.status === 'apurado'"),
+ "Exibir acerto individual após apuração");
+console.log("OK: histórico BSK, feed ESPN, DNP, fuso da NBA e página atual");
