@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: mercados-bsk-novo
+  group: bsk-publicacao-dados
   cancel-in-progress: false
 jobs:
   mercado:

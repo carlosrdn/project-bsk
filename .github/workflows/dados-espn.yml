@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: dados-espn-melhorias-modelo-nba
+  group: bsk-publicacao-dados
   cancel-in-progress: false
 
 jobs:
