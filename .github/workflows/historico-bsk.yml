@@ -11,6 +11,9 @@ on:
       - "test_metricas.js"
       - ".github/workflows/historico-bsk.yml"
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Atualizar dados.js pela ESPN", "Linhas NBA do BSK novo"]
+    types: [completed]
   schedule:
     - cron: "7,37 * * * *"
 
