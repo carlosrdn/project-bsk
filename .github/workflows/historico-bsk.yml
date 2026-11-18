@@ -20,7 +20,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: historico-bsk-melhorias-modelo-nba
+  group: bsk-publicacao-dados
   cancel-in-progress: false
 
 jobs:
