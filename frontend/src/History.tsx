@@ -115,16 +115,29 @@ export default function HistoryView() {
   const searchInput = useRef<HTMLInputElement>(null)
   useEffect(() => {
     const controller = new AbortController()
-    setLoading(true)
-    setError('')
-    loadHistory(controller.signal).then(data => {
-      if (!controller.signal.aborted) setArchive(data)
-    }).catch(reason => {
-      if (!controller.signal.aborted) setError(reason instanceof Error ? reason.message : 'Falha ao carregar histórico.')
-    }).finally(() => {
-      if (!controller.signal.aborted) setLoading(false)
-    })
-    return () => controller.abort()
+    let running = false
+    async function update() {
+      if (running) return
+      running = true
+      try {
+        const data = await loadHistory(controller.signal)
+        if (!controller.signal.aborted) { setArchive(data); setError('') }
+      } catch (reason) {
+        if (!controller.signal.aborted) setError(reason instanceof Error ? reason.message : 'Falha ao carregar histórico.')
+      } finally {
+        running = false
+        if (!controller.signal.aborted) setLoading(false)
+      }
+    }
+    const visible = () => { if (!document.hidden) void update() }
+    void update()
+    const timer = window.setInterval(visible, 60000)
+    document.addEventListener('visibilitychange', visible)
+    return () => {
+      controller.abort()
+      window.clearInterval(timer)
+      document.removeEventListener('visibilitychange', visible)
+    }
   }, [revision])
 
   const allGames = archive?.games ?? []

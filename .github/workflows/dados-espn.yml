@@ -6,8 +6,8 @@ on:
     paths: [atualizar_dados_espn.py, boletim_nba.py, gerar_dados.py, .github/workflows/dados-espn.yml]
   workflow_dispatch:
   schedule:
-    # 06h17, 09h17, 12h17, 16h17, 19h17 e 21h17 em Brasília.
-    - cron: "17 0,9,12,15,19,22 * * *"
+    # Repetição por hora para recuperar execuções atrasadas ou omitidas.
+    - cron: "23 * * * *"
 
 permissions:
   contents: write
@@ -19,7 +19,7 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,6 +45,23 @@ jobs:
           npm --prefix frontend install --no-audit --no-fund
           node frontend/scripts/calibrate.mjs "$RUNNER_TEMP/bsk-replay.json" jogos.json
           npm --prefix frontend test
+      - name: Capturar projeções no histórico
+        id: capturar
+        continue-on-error: true
+        run: node historico_bsk.js capturar
+      - name: Apurar resultados do histórico
+        id: apurar
+        continue-on-error: true
+        run: node historico_bsk.js apurar
+      - name: Atualizar indicações do Radar
+        id: mercados
+        continue-on-error: true
+        env:
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+          BSK_MARKET_LINES_PATH: ${{ runner.temp }}/linhas-bsk.json
+        run: |
+          python3 frontend/scripts/collect-market-lines.py
+          node frontend/scripts/freeze-market-picks.mjs jogos.json "$BSK_MARKET_LINES_PATH" mercados-bsk
       - uses: actions/cache/save@v4
         if: always()
         with:
@@ -54,8 +71,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dados.js jogos.json
+          git add dados.js jogos.json historico/ mercados-bsk/
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Atualizar dados NBA pela ESPN"
           git pull --rebase origin melhorias-modelo-nba
           git push origin HEAD:melhorias-modelo-nba
+      - name: Sinalizar falha parcial após publicar os dados disponíveis
+        if: steps.capturar.outcome == 'failure' || steps.apurar.outcome == 'failure' || steps.mercados.outcome == 'failure'
+        run: |
+          echo '::error::Uma atualização de Histórico ou Radar falhou. Consulte a etapa correspondente. Os dados válidos foram publicados.'
+          exit 1
