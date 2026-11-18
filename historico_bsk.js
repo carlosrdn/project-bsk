@@ -88,6 +88,10 @@ function serializar(q,classe,motor){
   score:Number(q.score.toFixed(5)),warnings:[...q.risco],
   target:{direction:"acima_de",threshold:Math.floor(q.proj)},
   context:{
+   ...(Number.isInteger(q.p.plus_minus_amostra_ultimos5)?{
+    plus_minus_last5:q.p.plus_minus_ultimos5,
+    plus_minus_last5_sample:q.p.plus_minus_amostra_ultimos5,
+   }:{}),
    expected_minutes:Number.isFinite(Number(q.d.minutos_ultimos5))&&Number(q.d.minutos_ultimos5)>0?
     Number(q.d.minutos_ultimos5):Number.isFinite(Number(q.p.minutos))?Number(q.p.minutos):null,
    team_absences:(q.t.ausencias||[]).filter(a=>a.situacao==="Fora").map(a=>a.nome),
