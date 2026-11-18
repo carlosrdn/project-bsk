@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-17T22:00:51+00:00",
+  "atualizado_em": "2026-11-18T01:38:17+00:00",
   "data_jogos": "2026-11-17",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 205,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-17_04_45PM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-17_08_30PM.pdf"
   },
   "jogos": [
     {
@@ -24,7 +24,7 @@
         "espn_id": "28",
         "ultimo_jogo_espn": "401909990",
         "boletim_nba": {
-          "Scottie Barnes": "Dúvida",
+          "Scottie Barnes": "Disponível",
           "Nate Bittle": "Fora",
           "Kawhi Leonard": "Fora",
           "Kevin McCullar Jr.": "Fora",
@@ -335,7 +335,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -1693,7 +1693,7 @@
         "ausencias": [
           {
             "nome": "Scottie Barnes",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "Injury/Illness - Illness",
             "retorno": null,
             "atualizado": "2026-11-17",
@@ -3450,9 +3450,9 @@
         "back_to_back": true,
         "vitorias": 10,
         "derrotas": 4,
-        "ataque": 112.94,
-        "defesa": 102.09,
-        "ritmo": 103.21,
+        "ataque": 112.87,
+        "defesa": 102.02,
+        "ritmo": 103.29,
         "vitorias_ultimos_10": 7,
         "nivel": "forte",
         "jogadores": [
@@ -3761,7 +3761,7 @@
             "jogos": 14,
             "minutos": 31.1,
             "pts": 17.79,
-            "reb": 4.64,
+            "reb": 4.71,
             "ast": 3.36,
             "stl": 1.29,
             "blk": 0.43,
@@ -3792,9 +3792,9 @@
                 }
               },
               "reb": {
-                "media": 4.64,
-                "ultimos5": 3.4,
-                "desvio": 3.18,
+                "media": 4.71,
+                "ultimos5": 3.6,
+                "desvio": 3.17,
                 "minutos_media": 31.07,
                 "minutos_ultimos5": 31.8,
                 "jogos": 14,
@@ -3808,7 +3808,7 @@
                     "jogos": 6
                   },
                   "fraca": {
-                    "media": 5.8,
+                    "media": 6,
                     "jogos": 5
                   }
                 }
@@ -5200,7 +5200,7 @@
         "espn_id": "22",
         "ultimo_jogo_espn": "401909999",
         "boletim_nba": {
-          "Deni Avdija": "Dúvida",
+          "Deni Avdija": "Fora",
           "Branden Carlson": "Disponível",
           "Vit Krejci": "Fora",
           "Ja Morant": "Fora",
@@ -5362,7 +5362,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -7020,7 +7020,7 @@
         "ausencias": [
           {
             "nome": "Deni Avdija",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-17",
