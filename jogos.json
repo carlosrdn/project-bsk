@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-18T18:08:08+00:00",
+  "atualizado_em": "2026-11-18T19:25:08+00:00",
   "data_jogos": "2026-11-18",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 210,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-18_01_00PM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-18_02_15PM.pdf"
   },
   "jogos": [
     {
@@ -27,9 +27,9 @@
           "Sam Merrill": "Dúvida",
           "Evan Mobley": "Fora",
           "Nae'Qwan Tomlin": "Fora",
-          "Jaylon Tyson": "Provável ausência",
-          "Jr., Ernest Udeh": "Fora",
-          "Peyton Watson": "Dúvida"
+          "Jaylon Tyson": "Fora",
+          "Ernest Udeh Jr.": "Fora",
+          "Peyton Watson": "Provável ausência"
         },
         "back_to_back": false,
         "vitorias": 8,
@@ -636,7 +636,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -1086,7 +1086,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -1858,7 +1858,7 @@
           },
           {
             "nome": "Peyton Watson",
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "motivo": "Injury/Illness - Low Back Contusion",
             "retorno": null,
             "atualizado": "2026-11-18",
@@ -1872,7 +1872,7 @@
           },
           {
             "nome": "Jaylon Tyson",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-18",
@@ -1912,7 +1912,7 @@
             "ast": 0
           },
           {
-            "nome": "Jr., Ernest Udeh",
+            "nome": "Ernest Udeh Jr.",
             "situacao": "Fora",
             "motivo": "G League - Two-Way",
             "retorno": null,
@@ -9072,6 +9072,7 @@
           "Kam Jones": "Fora",
           "Bogoljub Markovic": "Fora",
           "Pete Nance": "Fora",
+          "Ryan Rollins": "Fora",
           "Cormac Ryan": "Fora"
         },
         "back_to_back": false,
@@ -9829,7 +9830,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -10885,6 +10886,20 @@
           }
         ],
         "ausencias": [
+          {
+            "nome": "Ryan Rollins",
+            "situacao": "Fora",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
+            "jogos": 13,
+            "minutos": 23.9,
+            "pts": 10.54,
+            "reb": 5.08,
+            "ast": 3.92,
+            "posicao": "G"
+          },
           {
             "nome": "Ousmane Dieng",
             "situacao": "Fora",
@@ -16343,9 +16358,9 @@
         "back_to_back": false,
         "vitorias": 3,
         "derrotas": 10,
-        "ataque": 106.5,
-        "defesa": 117.01,
-        "ritmo": 106.76,
+        "ataque": 106.58,
+        "defesa": 117.09,
+        "ritmo": 106.69,
         "vitorias_ultimos_10": 2,
         "nivel": "fraca",
         "jogadores": [
@@ -17256,7 +17271,7 @@
             "pts": 7.83,
             "reb": 3.17,
             "ast": 2,
-            "stl": 1,
+            "stl": 0.83,
             "blk": 0.5,
             "fg": 48.6,
             "tres": 36.8,
@@ -17373,15 +17388,15 @@
                 }
               },
               "stl": {
-                "media": 1,
-                "ultimos5": 1.2,
-                "desvio": 1.26,
+                "media": 0.83,
+                "ultimos5": 1,
+                "desvio": 0.98,
                 "minutos_media": 22.67,
                 "minutos_ultimos5": 23.2,
                 "jogos": 6,
                 "por_nivel": {
                   "forte": {
-                    "media": 1,
+                    "media": 0.7,
                     "jogos": 3
                   },
                   "media": {
@@ -18168,7 +18183,7 @@
           {
             "nome": "Patrick Williams",
             "situacao": "Provável",
-            "motivo": "",
+            "motivo": "Injury/Illness - Right Finger",
             "retorno": null,
             "atualizado": "2026-11-18",
             "comentario": "",
@@ -23664,7 +23679,16 @@
         "jogos": 13,
         "espn_id": "8",
         "ultimo_jogo_espn": "401910004",
-        "boletim_nba": {},
+        "boletim_nba": {
+          "Cade Cunningham": "Dúvida",
+          "Jalen Duren": "Fora",
+          "Ronald Holland II": "Fora",
+          "Isaiah Joe": "Dúvida",
+          "Ebuka Okorie": "Fora",
+          "Ugonna Onyenso": "Fora",
+          "Taurean Prince": "Fora",
+          "Duncan Robinson": "Fora"
+        },
         "back_to_back": true,
         "vitorias": 9,
         "derrotas": 4,
@@ -23820,7 +23844,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": true,
             "posicao": "G"
           },
@@ -25320,19 +25344,33 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "G"
           }
         ],
         "ausencias": [
           {
+            "nome": "Cade Cunningham",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Right Knee Soreness",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
+            "jogos": 13,
+            "minutos": 35,
+            "pts": 25.77,
+            "reb": 5.15,
+            "ast": 7.77,
+            "posicao": "G"
+          },
+          {
             "nome": "Jalen Duren",
             "situacao": "Fora",
-            "motivo": "Hamstring Strain",
-            "retorno": "2026-11-24",
-            "atualizado": "2026-11-08",
-            "comentario": "Duren (hamstring) has begun on-court activity and will be re-evaluated in two weeks, Hunter Patterson of The Athletic reports.",
+            "motivo": "Injury/Illness - Right Hamstring Strain",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
             "jogos": 2,
             "minutos": 19,
             "pts": 13,
@@ -25343,10 +25381,10 @@
           {
             "nome": "Duncan Robinson",
             "situacao": "Fora",
-            "motivo": "Quadriceps Strain",
-            "retorno": "2026-11-27",
-            "atualizado": "2026-11-17",
-            "comentario": "Robinson will be re-evaluated in one week due to a left quadriceps strain, Coty M. Davis of The Detroit News reports.",
+            "motivo": "Injury/Illness - Left Quadriceps Strain",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
             "jogos": 12,
             "minutos": 30.6,
             "pts": 17.42,
@@ -25357,10 +25395,10 @@
           {
             "nome": "Ronald Holland II",
             "situacao": "Fora",
-            "motivo": "Knee Bruise",
-            "retorno": "2026-11-18",
+            "motivo": "",
+            "retorno": null,
             "atualizado": "2026-11-18",
-            "comentario": "Holland is out for Tuesday's game against San Antonio due to a left knee contusion.",
+            "comentario": "",
             "jogos": 12,
             "minutos": 16,
             "pts": 4.92,
@@ -25370,11 +25408,11 @@
           },
           {
             "nome": "Isaiah Joe",
-            "situacao": "Fora",
-            "motivo": "Hip Bruise",
-            "retorno": "2026-11-18",
-            "atualizado": "2026-11-17",
-            "comentario": "Joe (hip) is out for Tuesday's game against the Spurs.",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Right Hip Contusion",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
             "jogos": 3,
             "minutos": 13.7,
             "pts": 7.33,
@@ -25383,18 +25421,45 @@
             "posicao": "G"
           },
           {
+            "nome": "Ebuka Okorie",
+            "situacao": "Fora",
+            "motivo": "G League - On Assignment",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
+            "jogos": 5,
+            "minutos": 4.2,
+            "pts": 2.2,
+            "reb": 0.4,
+            "ast": 0.6,
+            "posicao": "G"
+          },
+          {
             "nome": "Taurean Prince",
             "situacao": "Fora",
-            "motivo": "Knee Soreness",
-            "retorno": "2026-11-18",
+            "motivo": "Injury/Illness - Right Knee Soreness",
+            "retorno": null,
             "atualizado": "2026-11-18",
-            "comentario": "Prince (knee) has been ruled out for Tuesday's game against the Spurs.",
+            "comentario": "",
             "jogos": 3,
             "minutos": 7,
             "pts": 2,
             "reb": 0.67,
             "ast": 0.33,
             "posicao": "F"
+          },
+          {
+            "nome": "Ugonna Onyenso",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-18",
+            "comentario": "",
+            "jogos": 0,
+            "minutos": 0,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0
           }
         ]
       }
@@ -27303,7 +27368,7 @@
         "espn_id": "1",
         "ultimo_jogo_espn": "401909992",
         "boletim_nba": {
-          "Rafael Castro": "Provável ausência",
+          "Rafael Castro": "Fora",
           "Kingston Flemings": "Fora",
           "Mouhamed Gueye": "Fora",
           "Jock Landale": "Fora",
@@ -29206,7 +29271,7 @@
           },
           {
             "nome": "Rafael Castro",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "G League - Two-Way",
             "retorno": null,
             "atualizado": "2026-11-18",
@@ -29402,11 +29467,11 @@
             "jogos": 14,
             "minutos": 31.4,
             "pts": 13.5,
-            "reb": 6.79,
+            "reb": 6.71,
             "ast": 1.29,
             "stl": 0.57,
             "blk": 0.93,
-            "fg": 40,
+            "fg": 40.3,
             "tres": 33.3,
             "pts_5": 9.4,
             "props": {
@@ -29433,9 +29498,9 @@
                 }
               },
               "reb": {
-                "media": 6.79,
-                "ultimos5": 5.2,
-                "desvio": 2.99,
+                "media": 6.71,
+                "ultimos5": 5,
+                "desvio": 3.07,
                 "minutos_media": 31.36,
                 "minutos_ultimos5": 25.4,
                 "jogos": 14,
@@ -29445,7 +29510,7 @@
                     "jogos": 7
                   },
                   "media": {
-                    "media": 8.8,
+                    "media": 8.5,
                     "jogos": 4
                   },
                   "fraca": {
@@ -33059,7 +33124,7 @@
           {
             "nome": "Moses Moody",
             "situacao": "Fora",
-            "motivo": "",
+            "motivo": "Injury/Illness - Left Patellar Tendon",
             "retorno": null,
             "atualizado": "2026-11-18",
             "comentario": "",
@@ -43541,24 +43606,6 @@
       }
     }
   ],
-  "calibrationReport": {
-    "games": 132,
-    "days": 18,
-    "trainGames": 92,
-    "validationGames": 40,
-    "validationFrom": "2026-11-12",
-    "validationThrough": "2026-11-17",
-    "status": "promovido",
-    "lastEvaluationThrough": "2026-11-17",
-    "promoted": [
-      "limite:pts",
-      "limite:reb",
-      "limite:ast",
-      "limite:tres",
-      "limite:blk",
-      "limite:stl"
-    ]
-  },
   "calibration": {
     "players": {},
     "thresholds": {
@@ -44172,6 +44219,17 @@
     "trainedThrough": "2026-11-11",
     "validatedThrough": "2026-11-17",
     "version": "66e9153631e5"
+  },
+  "calibrationReport": {
+    "games": 132,
+    "days": 18,
+    "trainGames": 0,
+    "validationGames": 0,
+    "validationFrom": null,
+    "validationThrough": null,
+    "status": "amostra_insuficiente",
+    "lastEvaluationThrough": "2026-11-17",
+    "promoted": []
   },
   "marketReference": {
     "version": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733",
