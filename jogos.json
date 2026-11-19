@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-19T10:27:43+00:00",
+  "atualizado_em": "2026-11-19T19:30:32+00:00",
   "data_jogos": "2026-11-19",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 222,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-19_05_15AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-19_02_30PM.pdf"
   },
   "jogos": [
     {
@@ -23,7 +23,14 @@
         "jogos": 15,
         "espn_id": "29",
         "ultimo_jogo_espn": "401910007",
-        "boletim_nba": {},
+        "boletim_nba": {
+          "Zach Edey": "Fora",
+          "GG Jackson": "Fora",
+          "Ty Jerome": "Fora",
+          "Scotty Pippen Jr.": "Fora",
+          "Richie Saunders": "Fora",
+          "Isaiah Stewart": "Dúvida"
+        },
         "back_to_back": true,
         "vitorias": 11,
         "derrotas": 4,
@@ -1229,7 +1236,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "C"
           },
@@ -1379,7 +1386,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -1838,10 +1845,10 @@
           {
             "nome": "Ty Jerome",
             "situacao": "Fora",
-            "motivo": "Hip",
-            "retorno": "2026-11-19",
-            "atualizado": "2026-11-17",
-            "comentario": "Jerome (hip) has been ruled out for Wednesday's game in Cleveland.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 11,
             "minutos": 30.6,
             "pts": 25.36,
@@ -1850,12 +1857,26 @@
             "posicao": "G"
           },
           {
-            "nome": "Isaiah Stewart",
+            "nome": "Zach Edey",
             "situacao": "Fora",
-            "motivo": "Illness",
-            "retorno": "2026-11-19",
-            "atualizado": "2026-11-17",
-            "comentario": "Stewart (illness) won't play Wednesday against the Cavs.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
+            "jogos": 12,
+            "minutos": 20.8,
+            "pts": 9.17,
+            "reb": 7.42,
+            "ast": 0.92,
+            "posicao": "C"
+          },
+          {
+            "nome": "Isaiah Stewart",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 10,
             "minutos": 18.1,
             "pts": 10.9,
@@ -1866,10 +1887,10 @@
           {
             "nome": "Scotty Pippen Jr.",
             "situacao": "Fora",
-            "motivo": "Back Soreness",
-            "retorno": "2026-11-25",
-            "atualizado": "2026-11-16",
-            "comentario": "Pippen (back) is progressing in his recovery but is still considered week-to-week.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 5,
             "minutos": 16.2,
             "pts": 6.4,
@@ -1880,10 +1901,10 @@
           {
             "nome": "GG Jackson",
             "situacao": "Fora",
-            "motivo": "Foot Surgery",
-            "retorno": "2027-01-18",
-            "atualizado": "2026-11-17",
-            "comentario": "Jackson underwent a procedure Wednesday to repair a broken fifth metatarsal in his left foot. He is expected to recover fully and will be re-evaluated in approximately three months.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 12,
             "minutos": 15,
             "pts": 6.67,
@@ -1894,10 +1915,10 @@
           {
             "nome": "Richie Saunders",
             "situacao": "Fora",
-            "motivo": "Knee Surgery",
-            "retorno": "2026-12-01",
-            "atualizado": "2026-11-07",
-            "comentario": "Saunders signed a two-way contract with the Grizzlies on Saturday, Shams Charania of ESPN reports.",
+            "motivo": "Injury/Illness - Right Knee Surgery",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -1912,7 +1933,15 @@
         "jogos": 15,
         "espn_id": "9",
         "ultimo_jogo_espn": "401910016",
-        "boletim_nba": {},
+        "boletim_nba": {
+          "Jimmy Butler III": "Fora",
+          "LJ Cryer": "Dúvida",
+          "Stephen Curry": "Fora",
+          "Draymond Green": "Fora",
+          "Moses Moody": "Fora",
+          "Kristaps Porzingis": "Fora",
+          "Brandon Williams": "Fora"
+        },
         "back_to_back": true,
         "vitorias": 8,
         "derrotas": 7,
@@ -2518,7 +2547,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -3268,7 +3297,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -3727,10 +3756,10 @@
           {
             "nome": "Stephen Curry",
             "situacao": "Fora",
-            "motivo": "Abdomen",
-            "retorno": "2026-12-12",
-            "atualizado": "2026-11-12",
-            "comentario": "Curry has been diagnosed with an oblique abdominal tear and will be re-evaluated in two weeks, Shams Charania of ESPN reports.",
+            "motivo": "Injury/Illness - Right Oblique Tear",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 10,
             "minutos": 26.5,
             "pts": 27.8,
@@ -3741,10 +3770,10 @@
           {
             "nome": "Brandon Williams",
             "situacao": "Fora",
-            "motivo": "Hamstring Strain",
-            "retorno": "2026-11-22",
-            "atualizado": "2026-11-18",
-            "comentario": "Williams (hamstring) has progressed to on-court activities and will be re-evaluated Saturday.",
+            "motivo": "Injury/Illness - Left Hamstring Strain",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 10,
             "minutos": 16.2,
             "pts": 10.4,
@@ -3753,26 +3782,40 @@
             "posicao": "G"
           },
           {
-            "nome": "Al Horford",
+            "nome": "Draymond Green",
             "situacao": "Fora",
-            "motivo": "Back",
-            "retorno": "2026-11-19",
-            "atualizado": "2026-11-18",
-            "comentario": "Horford (back) is out for Wednesday's game against the Mavericks, but will play Thursday against the Grizzlies, Nick Friedell of The Athletic reports.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
+            "jogos": 13,
+            "minutos": 25.6,
+            "pts": 3.15,
+            "reb": 4.69,
+            "ast": 6.54,
+            "posicao": "F"
+          },
+          {
+            "nome": "LJ Cryer",
+            "situacao": "Dúvida",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 12,
-            "minutos": 16.9,
-            "pts": 3.92,
-            "reb": 3.75,
+            "minutos": 11.2,
+            "pts": 6.42,
+            "reb": 0.5,
             "ast": 1.83,
-            "posicao": "C"
+            "posicao": "G"
           },
           {
             "nome": "Kristaps Porzingis",
             "situacao": "Fora",
-            "motivo": "Illness",
-            "retorno": "2027-01-02",
-            "atualizado": "2026-11-06",
-            "comentario": "Porzingis announced on his social media that he's stepping away from basketball.",
+            "motivo": "Not With Team",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -3782,10 +3825,10 @@
           {
             "nome": "Moses Moody",
             "situacao": "Fora",
-            "motivo": "Knee Surgery",
-            "retorno": "2026-12-01",
-            "atualizado": "2026-10-16",
-            "comentario": "Moody (knee) is progressing toward a potential return between December and January after rupturing his left patellar tendon in March, Anthony Slater of ESPN reports.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -3795,10 +3838,10 @@
           {
             "nome": "Jimmy Butler III",
             "situacao": "Fora",
-            "motivo": "Knee Surgery",
-            "retorno": "2027-01-02",
-            "atualizado": "2026-10-16",
-            "comentario": "Butler (knee) could return sometime between January and February as he continues recovering from a torn right ACL, Anthony Slater of ESPN reports.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -3816,7 +3859,11 @@
         "jogos": 15,
         "espn_id": "15",
         "ultimo_jogo_espn": "401910009",
-        "boletim_nba": {},
+        "boletim_nba": {
+          "Ousmane Dieng": "Fora",
+          "Kyle Kuzma": "Fora",
+          "Myles Turner": "Fora"
+        },
         "back_to_back": true,
         "vitorias": 1,
         "derrotas": 14,
@@ -4272,7 +4319,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -4422,7 +4469,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "C"
           },
@@ -4572,7 +4619,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -5629,26 +5676,40 @@
         ],
         "ausencias": [
           {
-            "nome": "Ryan Rollins",
+            "nome": "Kyle Kuzma",
             "situacao": "Fora",
-            "motivo": "Illness",
-            "retorno": "2026-11-19",
-            "atualizado": "2026-11-18",
-            "comentario": "Rollins (illness) has been ruled out for Wednesday's game at Miami.",
-            "jogos": 13,
-            "minutos": 23.9,
-            "pts": 10.54,
-            "reb": 5.08,
-            "ast": 3.92,
-            "posicao": "G"
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
+            "jogos": 15,
+            "minutos": 27.1,
+            "pts": 12.27,
+            "reb": 5.27,
+            "ast": 2.4,
+            "posicao": "F"
+          },
+          {
+            "nome": "Myles Turner",
+            "situacao": "Fora",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
+            "jogos": 14,
+            "minutos": 26.6,
+            "pts": 7.14,
+            "reb": 5.93,
+            "ast": 2.71,
+            "posicao": "C"
           },
           {
             "nome": "Ousmane Dieng",
             "situacao": "Fora",
-            "motivo": "Finger Surgery",
-            "retorno": "2026-12-14",
-            "atualizado": "2026-11-15",
-            "comentario": "Dieng will undergo a procedure to repair a fractured left finger Monday, Justin Garcia of the Milwaukee Bucks Radio Network reports.",
+            "motivo": "Injury/Illness - Left Finger Fracture",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
             "jogos": 10,
             "minutos": 12,
             "pts": 3.9,
@@ -7613,7 +7674,7 @@
           "Donte DiVincenzo": "Fora",
           "Anthony Edwards": "Fora",
           "Jonathan Kuminga": "Dúvida",
-          "Zyon Pullin": "Dúvida"
+          "Zyon Pullin": "Disponível"
         },
         "back_to_back": false,
         "vitorias": 11,
@@ -9330,6 +9391,20 @@
             "pts": 4.5,
             "reb": 2.08,
             "ast": 0.75,
+            "posicao": "G"
+          },
+          {
+            "nome": "Zyon Pullin",
+            "situacao": "Disponível",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-19",
+            "comentario": "",
+            "jogos": 3,
+            "minutos": 3.7,
+            "pts": 1.33,
+            "reb": 0.67,
+            "ast": 0,
             "posicao": "G"
           },
           {
