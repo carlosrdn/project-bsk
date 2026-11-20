@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-20T10:07:48+00:00",
+  "atualizado_em": "2026-11-20T18:38:58+00:00",
   "data_jogos": "2026-11-20",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 226,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-20_05_00AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-20_01_30PM.pdf"
   },
   "jogos": [
     {
@@ -11387,7 +11387,7 @@
         "boletim_nba": {
           "Cade Cunningham": "Provável",
           "Jalen Duren": "Fora",
-          "Ronald Holland II": "Fora",
+          "Ronald Holland II": "Provável ausência",
           "Ebuka Okorie": "Fora",
           "Ugonna Onyenso": "Fora",
           "Taurean Prince": "Fora",
@@ -12898,7 +12898,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -13098,7 +13098,7 @@
           },
           {
             "nome": "Ronald Holland II",
-            "situacao": "Fora",
+            "situacao": "Provável ausência",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-20",
@@ -14926,6 +14926,7 @@
           "Noa Essengue": "Provável",
           "Orlando Robinson": "Fora",
           "Jaylin Sellers": "Fora",
+          "Jalen Smith": "Dúvida",
           "Dailyn Swain": "Fora",
           "Caleb Wilson": "Fora"
         },
@@ -15684,7 +15685,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -16752,6 +16753,20 @@
             "pts": 18.9,
             "reb": 6.2,
             "ast": 1.9,
+            "posicao": "F"
+          },
+          {
+            "nome": "Jalen Smith",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Gastrointestinal Illness",
+            "retorno": null,
+            "atualizado": "2026-11-20",
+            "comentario": "",
+            "jogos": 13,
+            "minutos": 24.6,
+            "pts": 13.38,
+            "reb": 7.92,
+            "ast": 2.15,
             "posicao": "F"
           },
           {

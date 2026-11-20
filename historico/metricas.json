@@ -8,7 +8,7 @@
     "erros": 489,
     "sem_limite": 0,
     "taxa_acerto": 0.441,
-    "erro_absoluto_medio": 4.147
+    "erro_absoluto_medio": 4.146
   },
   "destaques": {
     "total": 40,
@@ -50,7 +50,7 @@
       "erros": 196,
       "sem_limite": 0,
       "taxa_acerto": 0.374,
-      "erro_absoluto_medio": 2.383
+      "erro_absoluto_medio": 2.38
     },
     "tres": {
       "total": 19,
@@ -68,7 +68,7 @@
       "erros": 440,
       "sem_limite": 0,
       "taxa_acerto": 0.441,
-      "erro_absoluto_medio": 4.215
+      "erro_absoluto_medio": 4.214
     },
     "desfalques_adversario": {
       "total": 792,
@@ -92,7 +92,7 @@
       "erros": 249,
       "sem_limite": 0,
       "taxa_acerto": 0.44,
-      "erro_absoluto_medio": 4.337
+      "erro_absoluto_medio": 4.335
     },
     "minutos_acima": {
       "total": 126,
