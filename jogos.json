@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-19T19:30:32+00:00",
+  "atualizado_em": "2026-11-20T01:47:43+00:00",
   "data_jogos": "2026-11-19",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 222,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-19_02_30PM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-19_08_30PM.pdf"
   },
   "jogos": [
     {
@@ -29,7 +29,7 @@
           "Ty Jerome": "Fora",
           "Scotty Pippen Jr.": "Fora",
           "Richie Saunders": "Fora",
-          "Isaiah Stewart": "Dúvida"
+          "Isaiah Stewart": "Disponível"
         },
         "back_to_back": true,
         "vitorias": 11,
@@ -1386,7 +1386,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -1872,7 +1872,7 @@
           },
           {
             "nome": "Isaiah Stewart",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "Injury/Illness - Illness",
             "retorno": null,
             "atualizado": "2026-11-19",
@@ -1935,7 +1935,7 @@
         "ultimo_jogo_espn": "401910016",
         "boletim_nba": {
           "Jimmy Butler III": "Fora",
-          "LJ Cryer": "Dúvida",
+          "LJ Cryer": "Disponível",
           "Stephen Curry": "Fora",
           "Draymond Green": "Fora",
           "Moses Moody": "Fora",
@@ -3797,7 +3797,7 @@
           },
           {
             "nome": "LJ Cryer",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-19",
@@ -5726,8 +5726,8 @@
         "espn_id": "22",
         "ultimo_jogo_espn": "401910003",
         "boletim_nba": {
-          "Deni Avdija": "Dúvida",
-          "Toumani Camara": "Dúvida",
+          "Deni Avdija": "Fora",
+          "Toumani Camara": "Disponível",
           "Branden Carlson": "Disponível",
           "Vit Krejci": "Fora",
           "Ja Morant": "Fora",
@@ -5890,7 +5890,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -6190,7 +6190,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -7548,7 +7548,7 @@
         "ausencias": [
           {
             "nome": "Deni Avdija",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-19",
@@ -7576,7 +7576,7 @@
           },
           {
             "nome": "Toumani Camara",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "Injury/Illness - Abdominal Soreness",
             "retorno": null,
             "atualizado": "2026-11-19",
@@ -7673,7 +7673,7 @@
           "Jaylen Clark": "Fora",
           "Donte DiVincenzo": "Fora",
           "Anthony Edwards": "Fora",
-          "Jonathan Kuminga": "Dúvida",
+          "Jonathan Kuminga": "Disponível",
           "Zyon Pullin": "Disponível"
         },
         "back_to_back": false,
@@ -8281,7 +8281,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -9353,7 +9353,7 @@
           },
           {
             "nome": "Jonathan Kuminga",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-19",
@@ -9396,7 +9396,7 @@
           {
             "nome": "Zyon Pullin",
             "situacao": "Disponível",
-            "motivo": "",
+            "motivo": "Injury/Illness - Right Quadriceps",
             "retorno": null,
             "atualizado": "2026-11-19",
             "comentario": "",
@@ -12471,7 +12471,7 @@
           {
             "nome": "Dylan Harper",
             "situacao": "Fora",
-            "motivo": "Injury/Illness - Left Hip Soreness",
+            "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-19",
             "comentario": "",
