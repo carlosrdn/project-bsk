@@ -1,0 +1,4073 @@
+{
+  "collectedAt": "2026-11-21T00:19:44.139140+00:00",
+  "lines": [
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Day'Ron Sharpe",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Egor Demin",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "ast",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Julius Randle",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Michael Porter Jr.",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Mikel Brown Jr.",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Nolan Traore",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "pts",
+      "line": 16.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Danny Wolf",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Day'Ron Sharpe",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "pts",
+      "line": 19.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Egor Demin",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "pts",
+      "line": 24.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Julius Randle",
+      "stat": "pts",
+      "line": 19.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Michael Porter Jr.",
+      "stat": "pts",
+      "line": 20.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Mikel Brown Jr.",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Moritz Wagner",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Nolan Traore",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Danny Wolf",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Day'Ron Sharpe",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Egor Demin",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Goga Bitadze",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Julius Randle",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Michael Porter Jr.",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Mikel Brown Jr.",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Moritz Wagner",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Noah Clowney",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Nolan Traore",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "tres",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Egor Demin",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Julius Randle",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Michael Porter Jr.",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Mikel Brown Jr.",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Moritz Wagner",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "BKN",
+      "player": "Nolan Traore",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "BKN",
+      "away": "ORL",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Ausar Thompson",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "ast",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Immanuel Quickley",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Ja'Kobe Walter",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jakob Poeltl",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamal Shead",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamison Battle",
+      "stat": "ast",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Paul Reed",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Allen Graves",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Ausar Thompson",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "pts",
+      "line": 26.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "pts",
+      "line": 15.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Immanuel Quickley",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Ja'Kobe Walter",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jakob Poeltl",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamal Shead",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamison Battle",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Javonte Green",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Paul Reed",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "pts",
+      "line": 22.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Ausar Thompson",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Immanuel Quickley",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Ja'Kobe Walter",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jakob Poeltl",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamal Shead",
+      "stat": "reb",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamison Battle",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Javonte Green",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Paul Reed",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Immanuel Quickley",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Ja'Kobe Walter",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamal Shead",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Jamison Battle",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Javonte Green",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "DET",
+      "away": "TOR",
+      "team": "TOR",
+      "player": "Scottie Barnes",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Aaron Nesmith",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Andrew Nembhard",
+      "stat": "ast",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Donovan Mitchell",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Ivica Zubac",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "James Harden",
+      "stat": "ast",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Jarrett Allen",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Kelly Oubre Jr.",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Meleek Thomas",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Obi Toppin",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Pascal Siakam",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Peyton Watson",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Quenton Jackson",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Sam Merrill",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "T.J. McConnell",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Tyrese Proctor",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Aaron Nesmith",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Andrew Nembhard",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Ivica Zubac",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "James Harden",
+      "stat": "pts",
+      "line": 17.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Jarrett Allen",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Kelly Oubre Jr.",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Meleek Thomas",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Obi Toppin",
+      "stat": "pts",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Pascal Siakam",
+      "stat": "pts",
+      "line": 22.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Peyton Watson",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Quenton Jackson",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Sam Merrill",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "T.J. McConnell",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Tyrese Proctor",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Aaron Nesmith",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Andrew Nembhard",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Donovan Mitchell",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Ivica Zubac",
+      "stat": "reb",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "James Harden",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Jarrett Allen",
+      "stat": "reb",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Kelly Oubre Jr.",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Meleek Thomas",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Obi Toppin",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Pascal Siakam",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Peyton Watson",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Quenton Jackson",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Sam Merrill",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "T.J. McConnell",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Tyrese Proctor",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Aaron Nesmith",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Andrew Nembhard",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Donovan Mitchell",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "James Harden",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Kelly Oubre Jr.",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Meleek Thomas",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Obi Toppin",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Pascal Siakam",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Peyton Watson",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "Quenton Jackson",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Sam Merrill",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "IND",
+      "player": "T.J. McConnell",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T00:30:00.000Z",
+      "home": "CLE",
+      "away": "IND",
+      "team": "CLE",
+      "player": "Tyrese Proctor",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "AJ Dybantsa",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Alexandre Sarr",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Anthony Davis",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Buddy Hield",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Isaac Okoro",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Josh Giddey",
+      "stat": "ast",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Khris Middleton",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Kyshawn George",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Matas Buzelis",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Nic Claxton",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Norman Powell",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Trae Young",
+      "stat": "ast",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Tre Jones",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "AJ Dybantsa",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Alexandre Sarr",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Anthony Davis",
+      "stat": "pts",
+      "line": 24.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Bilal Coulibaly",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Buddy Hield",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Isaac Okoro",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Josh Giddey",
+      "stat": "pts",
+      "line": 13.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Khris Middleton",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Kyshawn George",
+      "stat": "pts",
+      "line": 16.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Matas Buzelis",
+      "stat": "pts",
+      "line": 17.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Nic Claxton",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Norman Powell",
+      "stat": "pts",
+      "line": 23.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Trae Young",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Tre Jones",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "AJ Dybantsa",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Alexandre Sarr",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Anthony Davis",
+      "stat": "reb",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Bilal Coulibaly",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Buddy Hield",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Isaac Okoro",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Khris Middleton",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Kyshawn George",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Matas Buzelis",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Nic Claxton",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Norman Powell",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Trae Young",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Tre Jones",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "AJ Dybantsa",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Alexandre Sarr",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Anthony Davis",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Bilal Coulibaly",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Buddy Hield",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Isaac Okoro",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Josh Giddey",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Khris Middleton",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Kyshawn George",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Matas Buzelis",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Norman Powell",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "WAS",
+      "player": "Trae Young",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "CHI",
+      "away": "WAS",
+      "team": "CHI",
+      "player": "Tre Jones",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Aday Mara",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Ajay Mitchell",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Derik Queen",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Isaiah Hartenstein",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jared McCain",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jaylin Williams",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Jeremiah Fears",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Kenrich Williams",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Shai Gilgeous-Alexander",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Trey Murphy III",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Zion Williamson",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Aday Mara",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Ajay Mitchell",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Bennett Stirtz",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Derik Queen",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Herb Jones",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Isaiah Hartenstein",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jared McCain",
+      "stat": "pts",
+      "line": 15.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jaylin Williams",
+      "stat": "pts",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Jeremiah Fears",
+      "stat": "pts",
+      "line": 15.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Jordan Poole",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Kenrich Williams",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Saddiq Bey",
+      "stat": "pts",
+      "line": 15.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Shai Gilgeous-Alexander",
+      "stat": "pts",
+      "line": 32.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Trey Murphy III",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Yves Missi",
+      "stat": "pts",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Zion Williamson",
+      "stat": "pts",
+      "line": 19.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Aday Mara",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Ajay Mitchell",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Derik Queen",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Herb Jones",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Isaiah Hartenstein",
+      "stat": "reb",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jared McCain",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jaylin Williams",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Jeremiah Fears",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Kenrich Williams",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Saddiq Bey",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Shai Gilgeous-Alexander",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Trey Murphy III",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Yves Missi",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Zion Williamson",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Ajay Mitchell",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Bennett Stirtz",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Herb Jones",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jared McCain",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Jaylin Williams",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Jeremiah Fears",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Kenrich Williams",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Saddiq Bey",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "OKC",
+      "player": "Shai Gilgeous-Alexander",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T01:00:00.000Z",
+      "home": "OKC",
+      "away": "NOP",
+      "team": "NOP",
+      "player": "Trey Murphy III",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Ace Bailey",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Collin Gillespie",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Darryn Peterson",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Devin Booker",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Dillon Brooks",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jalen Green",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Jaxson Hayes",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jordan Goodwin",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Keyonte George",
+      "stat": "ast",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Miles Bridges",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Oso Ighodaro",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Ace Bailey",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Brice Sensabaugh",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Collin Gillespie",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Darryn Peterson",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Dillon Brooks",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jalen Green",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Jaxson Hayes",
+      "stat": "pts",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jordan Goodwin",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Josh Green",
+      "stat": "pts",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Keyonte George",
+      "stat": "pts",
+      "line": 23.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Miles Bridges",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Mo Bamba",
+      "stat": "pts",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Oso Ighodaro",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Ace Bailey",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Brice Sensabaugh",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Collin Gillespie",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Darryn Peterson",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Devin Booker",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Dillon Brooks",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jalen Green",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jordan Goodwin",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Keyonte George",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Miles Bridges",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Mo Bamba",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Oso Ighodaro",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Ace Bailey",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Brice Sensabaugh",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Collin Gillespie",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Darryn Peterson",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Devin Booker",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Dillon Brooks",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jalen Green",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Jordan Goodwin",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "UTA",
+      "player": "Keyonte George",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T02:30:00.000Z",
+      "home": "UTA",
+      "away": "PHX",
+      "team": "PHX",
+      "player": "Miles Bridges",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Collin Sexton",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Darius Acuff",
+      "stat": "ast",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "De'Andre Hunter",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Domantas Sabonis",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Keegan Murray",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Luka Dončić",
+      "stat": "ast",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Malik Monk",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Quentin Grimes",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Sandro Mamukelashvili",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Walker Kessler",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Zach LaVine",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Collin Sexton",
+      "stat": "pts",
+      "line": 13.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Darius Acuff",
+      "stat": "pts",
+      "line": 24.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "De'Andre Hunter",
+      "stat": "pts",
+      "line": 13.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Domantas Sabonis",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Jake LaRavia",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Keegan Murray",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Luka Dončić",
+      "stat": "pts",
+      "line": 36.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Malik Monk",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Matisse Thybulle",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Quentin Grimes",
+      "stat": "pts",
+      "line": 16.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Sandro Mamukelashvili",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Walker Kessler",
+      "stat": "pts",
+      "line": 13.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Zach LaVine",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Ziaire Williams",
+      "stat": "pts",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Collin Sexton",
+      "stat": "reb",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Darius Acuff",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "De'Andre Hunter",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Domantas Sabonis",
+      "stat": "reb",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Jake LaRavia",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Keegan Murray",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Luka Dončić",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Matisse Thybulle",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Quentin Grimes",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Sandro Mamukelashvili",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Walker Kessler",
+      "stat": "reb",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Zach LaVine",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Ziaire Williams",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Collin Sexton",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Darius Acuff",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "De'Andre Hunter",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Jake LaRavia",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Keegan Murray",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Luka Dončić",
+      "stat": "tres",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Malik Monk",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Matisse Thybulle",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Quentin Grimes",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Sandro Mamukelashvili",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "SAC",
+      "player": "Zach LaVine",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "LAL",
+      "away": "SAC",
+      "team": "LAL",
+      "player": "Ziaire Williams",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Aaron Gordon",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Alperen Sengun",
+      "stat": "ast",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Amen Thompson",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Cameron Johnson",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "DeMar DeRozan",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Fred VanVleet",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Jabari Smith Jr.",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Jamal Murray",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Kevin Durant",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Marcus Smart",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Nikola Jokić",
+      "stat": "ast",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Tari Eason",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Aaron Gordon",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Alperen Sengun",
+      "stat": "pts",
+      "line": 19.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Amen Thompson",
+      "stat": "pts",
+      "line": 15.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Cameron Johnson",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Christian Braun",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "DeMar DeRozan",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Fred VanVleet",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Jamal Murray",
+      "stat": "pts",
+      "line": 23.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Kevin Durant",
+      "stat": "pts",
+      "line": 21.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Marcus Smart",
+      "stat": "pts",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Nikola Jokić",
+      "stat": "pts",
+      "line": 25.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Tari Eason",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Aaron Gordon",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Alperen Sengun",
+      "stat": "reb",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Amen Thompson",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Cameron Johnson",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Christian Braun",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Fred VanVleet",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Jabari Smith Jr.",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Jamal Murray",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Kevin Durant",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Nikola Jokić",
+      "stat": "reb",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Tari Eason",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Aaron Gordon",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Alperen Sengun",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Amen Thompson",
+      "stat": "tres",
+      "line": 0.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Cameron Johnson",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Christian Braun",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Fred VanVleet",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Jabari Smith Jr.",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Jamal Murray",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Kevin Durant",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Marcus Smart",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "DEN",
+      "player": "Nikola Jokić",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T03:00:00.000Z",
+      "home": "DEN",
+      "away": "HOU",
+      "team": "HOU",
+      "player": "Tari Eason",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Anfernee Simons",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Brayden Burries",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Jaime Jaquez Jr.",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Joel Embiid",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Kyle Kuzma",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "LeBron James",
+      "stat": "ast",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Myles Turner",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Tyler Herro",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Tyrese Maxey",
+      "stat": "ast",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "VJ Edgecombe",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Anfernee Simons",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Brayden Burries",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Jaime Jaquez Jr.",
+      "stat": "pts",
+      "line": 12.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Joel Embiid",
+      "stat": "pts",
+      "line": 25.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Kasparas Jakucionis",
+      "stat": "pts",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Kentavious Caldwell-Pope",
+      "stat": "pts",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Kyle Kuzma",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "LeBron James",
+      "stat": "pts",
+      "line": 18.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Myles Turner",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Nate Ament",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Tyler Herro",
+      "stat": "pts",
+      "line": 19.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Tyrese Maxey",
+      "stat": "pts",
+      "line": 24.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "VJ Edgecombe",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Anfernee Simons",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Brayden Burries",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Jaime Jaquez Jr.",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Joel Embiid",
+      "stat": "reb",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Kentavious Caldwell-Pope",
+      "stat": "reb",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Kyle Kuzma",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "LeBron James",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Myles Turner",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Nate Ament",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Tyler Herro",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Tyrese Maxey",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "VJ Edgecombe",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Anfernee Simons",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Brayden Burries",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Jaime Jaquez Jr.",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Joel Embiid",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Kasparas Jakucionis",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Kentavious Caldwell-Pope",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Kyle Kuzma",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "LeBron James",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Myles Turner",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "MIL",
+      "player": "Tyler Herro",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "Tyrese Maxey",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-21T18:00:00.000Z",
+      "home": "PHI",
+      "away": "MIL",
+      "team": "PHI",
+      "player": "VJ Edgecombe",
+      "stat": "tres",
+      "line": 1.5
+    }
+  ]
+}
