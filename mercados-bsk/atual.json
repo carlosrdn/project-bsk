@@ -102,7 +102,24 @@
       "snapshotAt": "2026-11-21T08:20:29+00:00",
       "calibration": "66e9153631e5",
       "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-22T03:00:00Z\",\"SAC\",\"BOS\"]",
+      "startsAt": "2026-11-22T03:00:00Z",
+      "player": "Paul George",
+      "team": "BOS",
+      "stat": "ast",
+      "line": 4.5,
+      "side": "Abaixo",
+      "probability": 0.685,
+      "sample": 13,
+      "projection": 3.288885482057304,
+      "capturedAt": "2026-11-21T16:14:33.387Z",
+      "collectedAt": "2026-11-21T16:14:31.890799+00:00",
+      "snapshotAt": "2026-11-21T16:14:19+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
     }
   ],
-  "updatedAt": "2026-11-21T08:20:43.332Z"
+  "updatedAt": "2026-11-21T16:14:33.387Z"
 }

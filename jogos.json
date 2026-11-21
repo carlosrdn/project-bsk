@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-21T08:20:29+00:00",
+  "atualizado_em": "2026-11-21T16:14:19+00:00",
   "data_jogos": "2026-11-21",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 235,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-21_03_15AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-21_11_00AM.pdf"
   },
   "jogos": [
     {
@@ -3501,8 +3501,9 @@
         "espn_id": "18",
         "ultimo_jogo_espn": "401910021",
         "boletim_nba": {
-          "OG Anunoby": "Dúvida",
-          "Jordan Clarkson": "Fora"
+          "OG Anunoby": "Provável ausência",
+          "Jordan Clarkson": "Fora",
+          "Karl-Anthony Towns": "Dúvida"
         },
         "back_to_back": false,
         "vitorias": 9,
@@ -3809,7 +3810,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -3959,7 +3960,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -5016,8 +5017,22 @@
         ],
         "ausencias": [
           {
-            "nome": "OG Anunoby",
+            "nome": "Karl-Anthony Towns",
             "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 15,
+            "minutos": 32.7,
+            "pts": 21.27,
+            "reb": 13.93,
+            "ast": 3.93,
+            "posicao": "C"
+          },
+          {
+            "nome": "OG Anunoby",
+            "situacao": "Provável ausência",
             "motivo": "Injury/Illness - Left Calf Tightness",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -19448,7 +19463,7 @@
             "situacao": "Fora",
             "motivo": "Lower Leg Bruise",
             "retorno": "2026-11-21",
-            "atualizado": "2026-11-20",
+            "atualizado": "2026-11-21",
             "comentario": "Achiuwa (lower leg) has been ruled out for Friday's game against the Lakers.",
             "jogos": 12,
             "minutos": 24.8,
