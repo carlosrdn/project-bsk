@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-21T16:14:19+00:00",
+  "atualizado_em": "2026-11-21T21:41:34+00:00",
   "data_jogos": "2026-11-21",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 235,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-21_11_00AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-21_04_30PM.pdf"
   },
   "jogos": [
     {
@@ -24,11 +24,11 @@
         "espn_id": "20",
         "ultimo_jogo_espn": "401910010",
         "boletim_nba": {
-          "Dominick Barlow": "Provável",
+          "Dominick Barlow": "Disponível",
           "Adem Bona": "Fora",
           "Jaylen Brown": "Fora",
           "Ariel Hukporti": "Fora",
-          "Tyrese Maxey": "Dúvida",
+          "Tyrese Maxey": "Disponível",
           "Dean Wade": "Fora"
         },
         "back_to_back": false,
@@ -186,7 +186,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -1544,7 +1544,7 @@
         "ausencias": [
           {
             "nome": "Tyrese Maxey",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "Injury/Illness - Right Foot Sprain",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -1599,8 +1599,8 @@
             "posicao": "C"
           },
           {
-            "nome": "Dominick Barlow",
-            "situacao": "Provável",
+            "nome": "Ariel Hukporti",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -1612,8 +1612,8 @@
             "ast": 0
           },
           {
-            "nome": "Ariel Hukporti",
-            "situacao": "Fora",
+            "nome": "Dominick Barlow",
+            "situacao": "Disponível",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -6987,7 +6987,7 @@
           "Tobi Lawal": "Fora",
           "Dereck Lively II": "Fora",
           "Caleb Martin": "Disponível",
-          "P.J. Washington": "Dúvida"
+          "P.J. Washington": "Provável ausência"
         },
         "back_to_back": false,
         "vitorias": 8,
@@ -7294,7 +7294,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável ausência",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -8802,8 +8802,8 @@
         "ausencias": [
           {
             "nome": "P.J. Washington",
-            "situacao": "Dúvida",
-            "motivo": "",
+            "situacao": "Provável ausência",
+            "motivo": "Injury/Illness - Illness",
             "retorno": null,
             "atualizado": "2026-11-21",
             "comentario": "",
@@ -10505,6 +10505,7 @@
           "Jaylen Clark": "Fora",
           "Donte DiVincenzo": "Fora",
           "Anthony Edwards": "Fora",
+          "Isaiah Evans": "Dúvida",
           "Rocco Zikarsky": "Fora"
         },
         "back_to_back": false,
@@ -12249,7 +12250,7 @@
           "Cameron Boozer": "Fora",
           "Jerami Grant": "Fora",
           "GG Jackson": "Fora",
-          "Ty Jerome": "Provável",
+          "Ty Jerome": "Disponível",
           "Scotty Pippen Jr.": "Fora",
           "Richie Saunders": "Fora",
           "Javon Small": "Fora"
@@ -12559,7 +12560,7 @@
                 }
               }
             },
-            "situacao": "Provável",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -14067,7 +14068,7 @@
         "ausencias": [
           {
             "nome": "Ty Jerome",
-            "situacao": "Provável",
+            "situacao": "Disponível",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -15767,7 +15768,15 @@
         "jogos": 17,
         "espn_id": "3",
         "ultimo_jogo_espn": "401909310",
-        "boletim_nba": {},
+        "boletim_nba": {
+          "Malik Dia": "Fora",
+          "Bennedict Mathurin": "Fora",
+          "Bryce McGowens": "Fora",
+          "Trey Murphy III": "Fora",
+          "Dejounte Murray": "Fora",
+          "Julian Reese": "Fora",
+          "Trendon Watford": "Fora"
+        },
         "back_to_back": true,
         "vitorias": 5,
         "derrotas": 12,
@@ -16073,7 +16082,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -17580,12 +17589,26 @@
         ],
         "ausencias": [
           {
+            "nome": "Trey Murphy III",
+            "situacao": "Fora",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 10,
+            "minutos": 32.4,
+            "pts": 15.7,
+            "reb": 4.7,
+            "ast": 3.3,
+            "posicao": "F"
+          },
+          {
             "nome": "Dejounte Murray",
             "situacao": "Fora",
-            "motivo": "Ankle",
-            "retorno": "2026-11-27",
-            "atualizado": "2026-11-13",
-            "comentario": "Murray (ankle) is out for Friday's game against Memphis.",
+            "motivo": "Injury/Illness - Left Ankle Sprain",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
             "jogos": 9,
             "minutos": 31.4,
             "pts": 13.44,
@@ -17596,10 +17619,10 @@
           {
             "nome": "Trendon Watford",
             "situacao": "Fora",
-            "motivo": "Ankle Sprain",
-            "retorno": "2026-11-27",
-            "atualizado": "2026-11-19",
-            "comentario": "Watford (ankle) has been ruled out for Friday's game against Oklahoma City.",
+            "motivo": "Injury/Illness - Right Ankle Sprain",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
             "jogos": 6,
             "minutos": 17.8,
             "pts": 7.17,
@@ -17610,10 +17633,10 @@
           {
             "nome": "Bennedict Mathurin",
             "situacao": "Fora",
-            "motivo": "Foot Plantar Fasciitis",
-            "retorno": "2026-11-27",
-            "atualizado": "2026-11-19",
-            "comentario": "Mathurin (foot) has been ruled out for Friday's game against the Thunder.",
+            "motivo": "Injury/Illness - Left Plantar Fasciitis",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
             "jogos": 12,
             "minutos": 15.2,
             "pts": 5.5,
@@ -17624,16 +17647,44 @@
           {
             "nome": "Bryce McGowens",
             "situacao": "Fora",
-            "motivo": "Elbow Infection",
-            "retorno": "2026-11-27",
-            "atualizado": "2026-11-19",
-            "comentario": "McGowens (elbow) has been ruled out for Friday's game against the Thunder.",
+            "motivo": "Injury/Illness - Left Elbow Infection",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
             "jogos": 7,
             "minutos": 10.6,
             "pts": 3.71,
             "reb": 0.71,
             "ast": 0.57,
             "posicao": "G"
+          },
+          {
+            "nome": "Malik Dia",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 2,
+            "minutos": 4.5,
+            "pts": 2,
+            "reb": 0.5,
+            "ast": 1,
+            "posicao": "F"
+          },
+          {
+            "nome": "Julian Reese",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 6,
+            "minutos": 5.2,
+            "pts": 1,
+            "reb": 1,
+            "ast": 0.17,
+            "posicao": "F"
           }
         ]
       }
@@ -17646,7 +17697,13 @@
         "jogos": 15,
         "espn_id": "23",
         "ultimo_jogo_espn": "401909313",
-        "boletim_nba": {},
+        "boletim_nba": {
+          "Precious Achiuwa": "Dúvida",
+          "Jonathan Mogbo": "Fora",
+          "Sean Pedulla": "Fora",
+          "Maxime Raynaud": "Fora",
+          "Ben Simmons": "Fora"
+        },
         "back_to_back": true,
         "vitorias": 1,
         "derrotas": 14,
@@ -18552,7 +18609,7 @@
                 }
               }
             },
-            "situacao": "Fora",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -19302,7 +19359,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -19460,11 +19517,11 @@
         "ausencias": [
           {
             "nome": "Precious Achiuwa",
-            "situacao": "Fora",
-            "motivo": "Lower Leg Bruise",
-            "retorno": "2026-11-21",
+            "situacao": "Dúvida",
+            "motivo": "",
+            "retorno": null,
             "atualizado": "2026-11-21",
-            "comentario": "Achiuwa (lower leg) has been ruled out for Friday's game against the Lakers.",
+            "comentario": "",
             "jogos": 12,
             "minutos": 24.8,
             "pts": 9.5,
@@ -19473,12 +19530,26 @@
             "posicao": "F"
           },
           {
+            "nome": "Jonathan Mogbo",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 5,
+            "minutos": 14.2,
+            "pts": 3,
+            "reb": 2.2,
+            "ast": 0.8,
+            "posicao": "F"
+          },
+          {
             "nome": "Maxime Raynaud",
             "situacao": "Fora",
-            "motivo": "Knee Dislocated",
-            "retorno": "2026-11-25",
-            "atualizado": "2026-11-18",
-            "comentario": "Raynaud (knee) will remain on the inactive list for Wednesday's game against the Suns.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -19488,10 +19559,23 @@
           {
             "nome": "Ben Simmons",
             "situacao": "Fora",
-            "motivo": "Achilles Surgery",
-            "retorno": "2027-10-01",
-            "atualizado": "2026-10-21",
-            "comentario": "Simmons underwent successful surgery Tuesday to repair a torn right Achilles tendon, James Ham of ESPN 1320 Sacramento reports.",
+            "motivo": "",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 0,
+            "minutos": 0,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0
+          },
+          {
+            "nome": "Sean Pedulla",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
             "jogos": 0,
             "minutos": 0,
             "pts": 0,
@@ -19508,8 +19592,9 @@
         "ultimo_jogo_espn": "401910015",
         "boletim_nba": {
           "Dillon Mitchell": "Fora",
-          "Jayson Tatum": "Dúvida",
-          "Derrick White": "Dúvida",
+          "Mitchell Robinson": "Fora",
+          "Jayson Tatum": "Fora",
+          "Derrick White": "Fora",
           "Amari Williams": "Fora"
         },
         "back_to_back": false,
@@ -19667,7 +19752,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -19817,7 +19902,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -20717,7 +20802,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -21175,7 +21260,7 @@
         "ausencias": [
           {
             "nome": "Jayson Tatum",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Rest",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -21189,7 +21274,7 @@
           },
           {
             "nome": "Derrick White",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -21200,6 +21285,20 @@
             "reb": 3,
             "ast": 5,
             "posicao": "G"
+          },
+          {
+            "nome": "Mitchell Robinson",
+            "situacao": "Fora",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 14,
+            "minutos": 17.5,
+            "pts": 5.14,
+            "reb": 5.36,
+            "ast": 0.86,
+            "posicao": "C"
           },
           {
             "nome": "Dillon Mitchell",
