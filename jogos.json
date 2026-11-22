@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-22T09:52:40+00:00",
+  "atualizado_em": "2026-11-22T17:52:15+00:00",
   "data_jogos": "2026-11-22",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 241,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-22_04_45AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-22_12_45PM.pdf"
   },
   "jogos": [
     {
@@ -7252,6 +7252,7 @@
         "espn_id": "27",
         "ultimo_jogo_espn": "401909309",
         "boletim_nba": {
+          "Deandre Ayton": "Dúvida",
           "Reece Beekman": "Fora",
           "Justin Champagnie": "Fora",
           "Felix Okpara": "Dúvida",
@@ -8913,7 +8914,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           }
@@ -8932,6 +8933,20 @@
             "reb": 7.5,
             "ast": 1.25,
             "posicao": "F"
+          },
+          {
+            "nome": "Deandre Ayton",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-22",
+            "comentario": "",
+            "jogos": 17,
+            "minutos": 12.9,
+            "pts": 3.82,
+            "reb": 4.12,
+            "ast": 0.71,
+            "posicao": "C"
           },
           {
             "nome": "Tristan Vukcevic",
@@ -10828,7 +10843,7 @@
           {
             "nome": "Izaiyah Nelson",
             "situacao": "Fora",
-            "motivo": "",
+            "motivo": "Injury/Illness - Left Ankle injury",
             "retorno": null,
             "atualizado": "2026-11-22",
             "comentario": "",
@@ -10864,10 +10879,11 @@
         "ultimo_jogo_espn": "401909309",
         "boletim_nba": {
           "Tobe Awaka": "Fora",
+          "Nic Claxton": "Dúvida",
           "Norman Powell": "Dúvida",
-          "Orlando Robinson": "Fora",
+          "Orlando Robinson": "Disponível",
           "Jaylin Sellers": "Fora",
-          "Jalen Smith": "Dúvida",
+          "Jalen Smith": "Provável",
           "Patrick Williams": "Provável",
           "Caleb Wilson": "Fora"
         },
@@ -11626,7 +11642,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -12076,7 +12092,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -12712,7 +12728,7 @@
           },
           {
             "nome": "Jalen Smith",
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "motivo": "Injury/Illness - Gastrointestinal Illness",
             "retorno": null,
             "atualizado": "2026-11-22",
@@ -12723,6 +12739,20 @@
             "reb": 7.92,
             "ast": 2.15,
             "posicao": "F"
+          },
+          {
+            "nome": "Nic Claxton",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-22",
+            "comentario": "",
+            "jogos": 6,
+            "minutos": 20.7,
+            "pts": 9.33,
+            "reb": 4.83,
+            "ast": 1.67,
+            "posicao": "C"
           },
           {
             "nome": "Patrick Williams",
@@ -12768,8 +12798,8 @@
           },
           {
             "nome": "Orlando Robinson",
-            "situacao": "Fora",
-            "motivo": "G League - On Assignment",
+            "situacao": "Disponível",
+            "motivo": "-",
             "retorno": null,
             "atualizado": "2026-11-22",
             "comentario": "",
@@ -18244,7 +18274,7 @@
             "situacao": "Fora",
             "motivo": "Illness",
             "retorno": "2026-11-22",
-            "atualizado": "2026-11-21",
+            "atualizado": "2026-11-22",
             "comentario": "Washington (illness/shoulder) is listed as out for Saturday's game against the Clippers.",
             "jogos": 15,
             "minutos": 30.9,
@@ -18272,7 +18302,7 @@
             "situacao": "Fora",
             "motivo": "Groin",
             "retorno": "2026-11-22",
-            "atualizado": "2026-11-21",
+            "atualizado": "2026-11-22",
             "comentario": "Lawal (groin) is out for Saturday's game against the Clippers.",
             "jogos": 8,
             "minutos": 4.6,
@@ -23653,7 +23683,7 @@
           {
             "nome": "Jimmy Butler III",
             "situacao": "Fora",
-            "motivo": "",
+            "motivo": "Injury/Illness - Right ACL Repair /",
             "retorno": null,
             "atualizado": "2026-11-22",
             "comentario": "",
@@ -25488,7 +25518,7 @@
             "situacao": "Fora",
             "motivo": "Rest",
             "retorno": "2026-11-22",
-            "atualizado": "2026-11-21",
+            "atualizado": "2026-11-22",
             "comentario": "Tatum (rest) has been ruled out for Saturday's game against the Kings.",
             "jogos": 14,
             "minutos": 34.1,
@@ -25502,7 +25532,7 @@
             "situacao": "Fora",
             "motivo": "Shoulder",
             "retorno": "2026-11-22",
-            "atualizado": "2026-11-21",
+            "atualizado": "2026-11-22",
             "comentario": "White (shoulder) has been ruled out for Saturday's game against Sacramento.",
             "jogos": 15,
             "minutos": 29.9,
@@ -25516,7 +25546,7 @@
             "situacao": "Fora",
             "motivo": "Illness",
             "retorno": "2026-11-22",
-            "atualizado": "2026-11-21",
+            "atualizado": "2026-11-22",
             "comentario": "Robinson (illness) has been ruled out for Saturday's game against the Kings, Keith Smith of Spotrac.com reports.",
             "jogos": 14,
             "minutos": 17.5,

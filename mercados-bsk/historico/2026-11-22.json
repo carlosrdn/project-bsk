@@ -102,6 +102,57 @@
       "snapshotAt": "2026-11-22T09:52:40+00:00",
       "calibration": "66e9153631e5",
       "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-23T00:00:00Z\",\"CHI\",\"DEN\"]",
+      "startsAt": "2026-11-23T00:00:00Z",
+      "player": "Tre Jones",
+      "team": "CHI",
+      "stat": "reb",
+      "line": 2.5,
+      "side": "Abaixo",
+      "probability": 0.735,
+      "sample": 15,
+      "projection": 1.811824919039846,
+      "capturedAt": "2026-11-22T17:52:30.868Z",
+      "collectedAt": "2026-11-22T17:52:28.970066+00:00",
+      "snapshotAt": "2026-11-22T17:52:15+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-23T00:00:00Z\",\"WAS\",\"ORL\"]",
+      "startsAt": "2026-11-23T00:00:00Z",
+      "player": "Desmond Bane",
+      "team": "ORL",
+      "stat": "tres",
+      "line": 3.5,
+      "side": "Acima",
+      "probability": 0.715,
+      "sample": 14,
+      "projection": 4.754633802538591,
+      "capturedAt": "2026-11-22T17:52:30.868Z",
+      "collectedAt": "2026-11-22T17:52:28.970066+00:00",
+      "snapshotAt": "2026-11-22T17:52:15+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-23T00:00:00Z\",\"CHI\",\"DEN\"]",
+      "startsAt": "2026-11-23T00:00:00Z",
+      "player": "Josh Giddey",
+      "team": "CHI",
+      "stat": "pts",
+      "line": 12.5,
+      "side": "Abaixo",
+      "probability": 0.7050000000000001,
+      "sample": 15,
+      "projection": 9.753357902860959,
+      "capturedAt": "2026-11-22T17:52:30.868Z",
+      "collectedAt": "2026-11-22T17:52:28.970066+00:00",
+      "snapshotAt": "2026-11-22T17:52:15+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
     }
   ]
 }
