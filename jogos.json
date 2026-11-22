@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-21T21:41:34+00:00",
+  "atualizado_em": "2026-11-22T02:18:43+00:00",
   "data_jogos": "2026-11-21",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 235,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-21_04_30PM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-21_09_15PM.pdf"
   },
   "jogos": [
     {
@@ -3501,9 +3501,9 @@
         "espn_id": "18",
         "ultimo_jogo_espn": "401910021",
         "boletim_nba": {
-          "OG Anunoby": "Provável ausência",
+          "OG Anunoby": "Fora",
           "Jordan Clarkson": "Fora",
-          "Karl-Anthony Towns": "Dúvida"
+          "Karl-Anthony Towns": "Fora"
         },
         "back_to_back": false,
         "vitorias": 9,
@@ -3810,7 +3810,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -3960,7 +3960,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -5018,7 +5018,7 @@
         "ausencias": [
           {
             "nome": "Karl-Anthony Towns",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Injury/Illness - Illness",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -5032,7 +5032,7 @@
           },
           {
             "nome": "OG Anunoby",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "Injury/Illness - Left Calf Tightness",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -5067,7 +5067,7 @@
         "espn_id": "22",
         "ultimo_jogo_espn": "401910020",
         "boletim_nba": {
-          "Deni Avdija": "Dúvida",
+          "Deni Avdija": "Disponível",
           "Branden Carlson": "Disponível",
           "Vit Krejci": "Fora",
           "Ja Morant": "Fora",
@@ -5229,7 +5229,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -6887,7 +6887,7 @@
         "ausencias": [
           {
             "nome": "Deni Avdija",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "Injury/Illness - Left Foot Contusion",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -6981,13 +6981,13 @@
         "ultimo_jogo_espn": "401910016",
         "boletim_nba": {
           "Tarik Biberovic": "Fora",
-          "Walter Clayton Jr.": "Dúvida",
+          "Walter Clayton Jr.": "Disponível",
           "Sergio de Larrea": "Fora",
-          "Jett Howard": "Dúvida",
+          "Jett Howard": "Fora",
           "Tobi Lawal": "Fora",
           "Dereck Lively II": "Fora",
           "Caleb Martin": "Disponível",
-          "P.J. Washington": "Provável ausência"
+          "P.J. Washington": "Fora"
         },
         "back_to_back": false,
         "vitorias": 8,
@@ -7294,7 +7294,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -8194,7 +8194,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8802,7 +8802,7 @@
         "ausencias": [
           {
             "nome": "P.J. Washington",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "Injury/Illness - Illness",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -8816,7 +8816,7 @@
           },
           {
             "nome": "Walter Clayton Jr.",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "Injury/Illness - Left Patellar Tendinitis",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -8869,6 +8869,20 @@
             "reb": 1.12,
             "ast": 0.38,
             "posicao": "F"
+          },
+          {
+            "nome": "Jett Howard",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 7,
+            "minutos": 3.6,
+            "pts": 2.14,
+            "reb": 0.14,
+            "ast": 0.14,
+            "posicao": "G"
           },
           {
             "nome": "Dereck Lively II",
@@ -10505,7 +10519,7 @@
           "Jaylen Clark": "Fora",
           "Donte DiVincenzo": "Fora",
           "Anthony Edwards": "Fora",
-          "Isaiah Evans": "Dúvida",
+          "Isaiah Evans": "Disponível",
           "Rocco Zikarsky": "Fora"
         },
         "back_to_back": false,
@@ -12224,6 +12238,20 @@
             "reb": 1,
             "ast": 0,
             "posicao": "C"
+          },
+          {
+            "nome": "Isaiah Evans",
+            "situacao": "Disponível",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 7,
+            "minutos": 3.4,
+            "pts": 0.29,
+            "reb": 0.29,
+            "ast": 0.29,
+            "posicao": "F"
           },
           {
             "nome": "Donte DiVincenzo",
@@ -15775,7 +15803,8 @@
           "Trey Murphy III": "Fora",
           "Dejounte Murray": "Fora",
           "Julian Reese": "Fora",
-          "Trendon Watford": "Fora"
+          "Trendon Watford": "Fora",
+          "Zion Williamson": "Fora"
         },
         "back_to_back": true,
         "vitorias": 5,
@@ -15932,7 +15961,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Fora",
             "back_to_back": true,
             "posicao": "F"
           },
@@ -17589,6 +17618,20 @@
         ],
         "ausencias": [
           {
+            "nome": "Zion Williamson",
+            "situacao": "Fora",
+            "motivo": "Injury/Illness - Left Thigh Contusion",
+            "retorno": null,
+            "atualizado": "2026-11-21",
+            "comentario": "",
+            "jogos": 16,
+            "minutos": 32.4,
+            "pts": 21.69,
+            "reb": 5.44,
+            "ast": 2.81,
+            "posicao": "F"
+          },
+          {
             "nome": "Trey Murphy III",
             "situacao": "Fora",
             "motivo": "",
@@ -17698,7 +17741,7 @@
         "espn_id": "23",
         "ultimo_jogo_espn": "401909313",
         "boletim_nba": {
-          "Precious Achiuwa": "Dúvida",
+          "Precious Achiuwa": "Disponível",
           "Jonathan Mogbo": "Fora",
           "Sean Pedulla": "Fora",
           "Maxime Raynaud": "Fora",
@@ -18609,7 +18652,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "back_to_back": false,
             "posicao": "F"
           },
@@ -19517,7 +19560,7 @@
         "ausencias": [
           {
             "nome": "Precious Achiuwa",
-            "situacao": "Dúvida",
+            "situacao": "Disponível",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-21",
@@ -19546,7 +19589,7 @@
           {
             "nome": "Maxime Raynaud",
             "situacao": "Fora",
-            "motivo": "",
+            "motivo": "Injury/Illness - Right Patella",
             "retorno": null,
             "atualizado": "2026-11-21",
             "comentario": "",
