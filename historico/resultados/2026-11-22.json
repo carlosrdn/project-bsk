@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "date": "2026-11-22",
-  "updated_at": "2026-11-22T09:52:51.109Z",
+  "updated_at": "2026-11-22T22:27:43.110Z",
   "source": "ESPN",
   "games": [
     {
@@ -58,9 +58,9 @@
         "away_injury_impact": 0.728,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "pre",
-      "home_score": 0,
-      "away_score": 0,
+      "status": "in",
+      "home_score": 84,
+      "away_score": 85,
       "comparison": null,
       "espn_event_id": "401910029"
     },
@@ -421,7 +421,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.108Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|aaron wiggins|pts",
@@ -429,7 +429,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|onyeka okongwu|pts",
@@ -437,7 +437,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|paul reed|reb",
@@ -445,7 +445,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|dyson daniels|pts",
@@ -453,7 +453,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|ausar thompson|pts",
@@ -461,7 +461,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|luguentz dort|pts",
@@ -469,7 +469,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|john collins|reb",
@@ -477,7 +477,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|daniss jenkins|pts",
@@ -485,7 +485,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|jalen johnson|pts",
@@ -493,7 +493,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|kevin huerter|pts",
@@ -501,7 +501,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|cade cunningham|ast",
@@ -509,7 +509,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|kingston flemings|ast",
@@ -517,7 +517,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|zuby ejiofor|reb",
@@ -525,7 +525,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|DET|ronald holland|reb",
@@ -533,7 +533,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T20:30:00Z|ATL|corey kispert|pts",
@@ -541,7 +541,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|isaiah hartenstein|reb",
@@ -549,7 +549,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|davion mitchell|pts",
@@ -557,7 +557,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|jared mccain|pts",
@@ -565,7 +565,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|bam adebayo|reb",
@@ -573,7 +573,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|aday mara|pts",
@@ -581,7 +581,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|andrew wiggins|pts",
@@ -589,7 +589,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|bobby portis|reb",
@@ -597,7 +597,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|ajay mitchell|pts",
@@ -605,7 +605,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|shai gilgeousalexander|pts",
@@ -613,7 +613,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|klay thompson|pts",
@@ -621,7 +621,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|kenrich williams|pts",
@@ -629,7 +629,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|OKC|bennett stirtz|pts",
@@ -637,7 +637,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|giannis antetokounmpo|pts",
@@ -645,7 +645,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|pelle larsson|pts",
@@ -653,7 +653,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-22T23:00:00Z|MIA|ryan conwell|pts",
@@ -661,7 +661,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|kyshawn george|pts",
@@ -669,7 +669,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|trae young|ast",
@@ -677,7 +677,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|wendell carter|reb",
@@ -685,7 +685,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|franz wagner|pts",
@@ -693,7 +693,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|anthony davis|pts",
@@ -701,7 +701,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|alex sarr|reb",
@@ -709,7 +709,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|bilal coulibaly|reb",
@@ -717,7 +717,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|desmond bane|pts",
@@ -725,7 +725,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|aj dybantsa|pts",
@@ -733,7 +733,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|tristan da silva|pts",
@@ -741,7 +741,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|anthony black|pts",
@@ -749,7 +749,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|tre johnson|pts",
@@ -757,7 +757,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|bub carrington|ast",
@@ -765,7 +765,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|WAS|deandre ayton|reb",
@@ -773,7 +773,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|goga bitadze|reb",
@@ -781,7 +781,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|jamal cain|reb",
@@ -789,7 +789,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|jalen suggs|reb",
@@ -797,7 +797,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|ORL|jevon carter|tres",
@@ -805,7 +805,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|tre jones|pts",
@@ -813,7 +813,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|nikola jokic|pts",
@@ -821,7 +821,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|matas buzelis|pts",
@@ -829,7 +829,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|josh giddey|ast",
@@ -837,7 +837,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|jamal murray|pts",
@@ -845,7 +845,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|aaron gordon|pts",
@@ -853,7 +853,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|christian braun|reb",
@@ -861,7 +861,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|demar derozan|pts",
@@ -869,7 +869,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|trevon brazile|reb",
@@ -877,7 +877,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|norman powell|pts",
@@ -885,7 +885,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|jalen smith|pts",
@@ -893,7 +893,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|buddy hield|pts",
@@ -901,7 +901,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|cameron johnson|pts",
@@ -909,7 +909,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|noa essengue|reb",
@@ -917,7 +917,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DEN|marvin bagley|reb",
@@ -925,7 +925,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|leonard miller|pts",
@@ -933,7 +933,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|CHI|nic claxton|reb",
@@ -941,7 +941,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|darryn peterson|pts",
@@ -949,7 +949,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|ace bailey|reb",
@@ -957,7 +957,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|keyonte george|pts",
@@ -965,7 +965,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|zaccharie risacher|reb",
@@ -973,7 +973,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|cooper flagg|pts",
@@ -981,7 +981,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|daniel gafford|reb",
@@ -989,7 +989,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|jaxson hayes|reb",
@@ -997,7 +997,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|kyrie irving|pts",
@@ -1005,7 +1005,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|brice sensabaugh|reb",
@@ -1013,7 +1013,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|naji marshall|pts",
@@ -1021,7 +1021,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|walter clayton|ast",
@@ -1029,7 +1029,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|morez johnson|reb",
@@ -1037,7 +1037,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|isaiah collier|ast",
@@ -1045,7 +1045,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|UTA|mo bamba|reb",
@@ -1053,7 +1053,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|caleb martin|reb",
@@ -1061,7 +1061,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|max christie|reb",
@@ -1069,7 +1069,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T00:00:00Z|DAL|marcus sasser|pts",
@@ -1077,7 +1077,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|NYK|jalen brunson|pts",
@@ -1085,7 +1085,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|NYK|landry shamet|pts",
@@ -1093,7 +1093,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|quenton jackson|reb",
@@ -1101,7 +1101,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|kelly oubre|pts",
@@ -1109,7 +1109,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|aaron nesmith|pts",
@@ -1117,7 +1117,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|obi toppin|pts",
@@ -1125,7 +1125,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|NYK|josh hart|reb",
@@ -1133,7 +1133,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|andrew nembhard|pts",
@@ -1141,7 +1141,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|pascal siakam|pts",
@@ -1149,7 +1149,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|jarace walker|reb",
@@ -1157,7 +1157,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|NYK|andre drummond|reb",
@@ -1165,7 +1165,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|NYK|miles mcbride|tres",
@@ -1173,7 +1173,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|NYK|tyler kolek|ast",
@@ -1181,7 +1181,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|ivica zubac|reb",
@@ -1189,7 +1189,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|jalen slawson|reb",
@@ -1197,7 +1197,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:00:00Z|IND|jay huff|pts",
@@ -1205,7 +1205,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|yaxel lendeborg|pts",
@@ -1213,7 +1213,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|BOS|payton pritchard|ast",
@@ -1221,7 +1221,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|BOS|sam hauser|pts",
@@ -1229,7 +1229,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|deanthony melton|reb",
@@ -1237,7 +1237,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|BOS|neemias queta|reb",
@@ -1245,7 +1245,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|brandin podziemski|pts",
@@ -1253,7 +1253,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|BOS|paul george|reb",
@@ -1261,7 +1261,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|draymond green|reb",
@@ -1269,7 +1269,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|BOS|baylor scheierman|reb",
@@ -1277,7 +1277,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|will richard|pts",
@@ -1285,7 +1285,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|gui santos|reb",
@@ -1293,7 +1293,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|al horford|reb",
@@ -1301,7 +1301,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|GSW|charles bassey|pts",
@@ -1309,7 +1309,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     },
     {
       "id": "2026-11-23T01:30:00Z|BOS|luka garza|reb",
@@ -1317,7 +1317,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-22T09:52:51.109Z"
+      "updated_at": "2026-11-22T22:27:43.109Z"
     }
   ]
 }
