@@ -3,54 +3,54 @@
   "metodologia": "Avaliação por limite congelado pré-jogo; contextos associados, sem causalidade; sem odds",
   "periodo_dias": 12,
   "geral": {
-    "total": 1115,
-    "acertos": 492,
-    "erros": 623,
+    "total": 1131,
+    "acertos": 500,
+    "erros": 631,
     "sem_limite": 0,
-    "taxa_acerto": 0.441,
-    "erro_absoluto_medio": 4.197
+    "taxa_acerto": 0.442,
+    "erro_absoluto_medio": 4.213
   },
   "destaques": {
-    "total": 50,
-    "acertos": 27,
-    "erros": 23,
+    "total": 52,
+    "acertos": 28,
+    "erros": 24,
     "sem_limite": 0,
-    "taxa_acerto": 0.54,
-    "erro_absoluto_medio": 5.289
+    "taxa_acerto": 0.538,
+    "erro_absoluto_medio": 5.299
   },
   "jogos": {
-    "total": 71,
-    "vencedor_acertado": 48,
+    "total": 72,
+    "vencedor_acertado": 49,
     "vencedor_errado": 23,
-    "taxa_acerto_vencedor": 0.676,
+    "taxa_acerto_vencedor": 0.681,
     "limites_atingidos": 109,
-    "limites_nao_atingidos": 104,
-    "mae_pontos_equipes": 10.047
+    "limites_nao_atingidos": 107,
+    "mae_pontos_equipes": 10.054
   },
   "mercados": {
     "pts": {
-      "total": 624,
-      "acertos": 304,
-      "erros": 320,
+      "total": 634,
+      "acertos": 308,
+      "erros": 326,
       "sem_limite": 0,
-      "taxa_acerto": 0.487,
-      "erro_absoluto_medio": 5.686
+      "taxa_acerto": 0.486,
+      "erro_absoluto_medio": 5.71
     },
     "ast": {
-      "total": 63,
-      "acertos": 23,
+      "total": 65,
+      "acertos": 25,
       "erros": 40,
       "sem_limite": 0,
-      "taxa_acerto": 0.365,
-      "erro_absoluto_medio": 2.336
+      "taxa_acerto": 0.385,
+      "erro_absoluto_medio": 2.402
     },
     "reb": {
-      "total": 403,
-      "acertos": 156,
-      "erros": 247,
+      "total": 407,
+      "acertos": 158,
+      "erros": 249,
       "sem_limite": 0,
-      "taxa_acerto": 0.387,
-      "erro_absoluto_medio": 2.368
+      "taxa_acerto": 0.388,
+      "erro_absoluto_medio": 2.354
     },
     "tres": {
       "total": 25,
@@ -63,52 +63,52 @@
   },
   "contextos": {
     "desfalques_time": {
-      "total": 1027,
-      "acertos": 453,
-      "erros": 574,
+      "total": 1043,
+      "acertos": 461,
+      "erros": 582,
       "sem_limite": 0,
-      "taxa_acerto": 0.441,
-      "erro_absoluto_medio": 4.253
+      "taxa_acerto": 0.442,
+      "erro_absoluto_medio": 4.27
     },
     "desfalques_adversario": {
-      "total": 1032,
-      "acertos": 462,
-      "erros": 570,
+      "total": 1048,
+      "acertos": 470,
+      "erros": 578,
       "sem_limite": 0,
       "taxa_acerto": 0.448,
-      "erro_absoluto_medio": 4.213
+      "erro_absoluto_medio": 4.23
     },
     "desfalque_rotacao_adversaria": {
-      "total": 622,
-      "acertos": 267,
-      "erros": 355,
+      "total": 638,
+      "acertos": 275,
+      "erros": 363,
       "sem_limite": 0,
-      "taxa_acerto": 0.429,
-      "erro_absoluto_medio": 4.232
+      "taxa_acerto": 0.431,
+      "erro_absoluto_medio": 4.26
     },
     "desfalque_rotacao_importante": {
-      "total": 582,
-      "acertos": 249,
-      "erros": 333,
+      "total": 598,
+      "acertos": 257,
+      "erros": 341,
       "sem_limite": 0,
-      "taxa_acerto": 0.428,
-      "erro_absoluto_medio": 4.354
+      "taxa_acerto": 0.43,
+      "erro_absoluto_medio": 4.38
     },
     "minutos_acima": {
-      "total": 158,
-      "acertos": 120,
+      "total": 160,
+      "acertos": 122,
       "erros": 38,
       "sem_limite": 0,
-      "taxa_acerto": 0.759,
-      "erro_absoluto_medio": 5.679
+      "taxa_acerto": 0.763,
+      "erro_absoluto_medio": 5.699
     },
     "minutos_abaixo": {
-      "total": 178,
-      "acertos": 19,
-      "erros": 159,
+      "total": 181,
+      "acertos": 20,
+      "erros": 161,
       "sem_limite": 0,
-      "taxa_acerto": 0.107,
-      "erro_absoluto_medio": 4.514
+      "taxa_acerto": 0.11,
+      "erro_absoluto_medio": 4.543
     },
     "placar_elastico": {
       "total": 215,
