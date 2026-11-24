@@ -3,112 +3,112 @@
   "metodologia": "Avaliação por limite congelado pré-jogo; contextos associados, sem causalidade; sem odds",
   "periodo_dias": 13,
   "geral": {
-    "total": 1354,
-    "acertos": 600,
-    "erros": 754,
+    "total": 1385,
+    "acertos": 614,
+    "erros": 771,
     "sem_limite": 0,
     "taxa_acerto": 0.443,
-    "erro_absoluto_medio": 4.202
+    "erro_absoluto_medio": 4.17
   },
   "destaques": {
-    "total": 61,
+    "total": 62,
     "acertos": 32,
-    "erros": 29,
+    "erros": 30,
     "sem_limite": 0,
-    "taxa_acerto": 0.525,
-    "erro_absoluto_medio": 5.516
+    "taxa_acerto": 0.516,
+    "erro_absoluto_medio": 5.457
   },
   "jogos": {
-    "total": 86,
-    "vencedor_acertado": 59,
+    "total": 88,
+    "vencedor_acertado": 61,
     "vencedor_errado": 27,
-    "taxa_acerto_vencedor": 0.686,
-    "limites_atingidos": 137,
-    "limites_nao_atingidos": 121,
-    "mae_pontos_equipes": 10.05
+    "taxa_acerto_vencedor": 0.693,
+    "limites_atingidos": 140,
+    "limites_nao_atingidos": 124,
+    "mae_pontos_equipes": 9.997
   },
   "mercados": {
     "pts": {
-      "total": 758,
-      "acertos": 367,
-      "erros": 391,
+      "total": 768,
+      "acertos": 372,
+      "erros": 396,
       "sem_limite": 0,
       "taxa_acerto": 0.484,
-      "erro_absoluto_medio": 5.677
+      "erro_absoluto_medio": 5.656
     },
     "ast": {
-      "total": 79,
-      "acertos": 32,
-      "erros": 47,
+      "total": 82,
+      "acertos": 33,
+      "erros": 49,
       "sem_limite": 0,
-      "taxa_acerto": 0.405,
-      "erro_absoluto_medio": 2.434
+      "taxa_acerto": 0.402,
+      "erro_absoluto_medio": 2.448
     },
     "reb": {
-      "total": 487,
-      "acertos": 191,
-      "erros": 296,
+      "total": 502,
+      "acertos": 198,
+      "erros": 304,
       "sem_limite": 0,
-      "taxa_acerto": 0.392,
-      "erro_absoluto_medio": 2.377
+      "taxa_acerto": 0.394,
+      "erro_absoluto_medio": 2.37
     },
     "tres": {
-      "total": 30,
-      "acertos": 10,
-      "erros": 20,
+      "total": 33,
+      "acertos": 11,
+      "erros": 22,
       "sem_limite": 0,
       "taxa_acerto": 0.333,
-      "erro_absoluto_medio": 1.214
+      "erro_absoluto_medio": 1.238
     }
   },
   "contextos": {
     "desfalques_time": {
-      "total": 1266,
-      "acertos": 561,
-      "erros": 705,
+      "total": 1297,
+      "acertos": 575,
+      "erros": 722,
       "sem_limite": 0,
       "taxa_acerto": 0.443,
-      "erro_absoluto_medio": 4.248
+      "erro_absoluto_medio": 4.213
     },
     "desfalques_adversario": {
-      "total": 1271,
-      "acertos": 570,
-      "erros": 701,
+      "total": 1302,
+      "acertos": 584,
+      "erros": 718,
       "sem_limite": 0,
-      "taxa_acerto": 0.448,
-      "erro_absoluto_medio": 4.215
+      "taxa_acerto": 0.449,
+      "erro_absoluto_medio": 4.181
     },
     "desfalque_rotacao_adversaria": {
-      "total": 790,
-      "acertos": 342,
-      "erros": 448,
+      "total": 815,
+      "acertos": 352,
+      "erros": 463,
       "sem_limite": 0,
-      "taxa_acerto": 0.433,
-      "erro_absoluto_medio": 4.196
+      "taxa_acerto": 0.432,
+      "erro_absoluto_medio": 4.147
     },
     "desfalque_rotacao_importante": {
-      "total": 745,
-      "acertos": 327,
-      "erros": 418,
+      "total": 767,
+      "acertos": 337,
+      "erros": 430,
       "sem_limite": 0,
       "taxa_acerto": 0.439,
-      "erro_absoluto_medio": 4.294
+      "erro_absoluto_medio": 4.253
     },
     "minutos_acima": {
-      "total": 186,
-      "acertos": 140,
+      "total": 189,
+      "acertos": 143,
       "erros": 46,
       "sem_limite": 0,
-      "taxa_acerto": 0.753,
-      "erro_absoluto_medio": 5.762
+      "taxa_acerto": 0.757,
+      "erro_absoluto_medio": 5.755
     },
     "minutos_abaixo": {
-      "total": 217,
-      "acertos": 27,
-      "erros": 190,
+      "total": 223,
+      "acertos": 30,
+      "erros": 193,
       "sem_limite": 0,
-      "taxa_acerto": 0.124,
-      "erro_absoluto_medio": 4.538
+      "taxa_acerto": 0.135,
+      "erro_absoluto_medio": 4.448
     },
     "placar_elastico": {
       "total": 250,
