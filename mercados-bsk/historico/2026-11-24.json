@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-24",
+  "picks": [
+    {
+      "game": "[\"2026-11-25T01:00:00Z\",\"WAS\",\"BOS\"]",
+      "startsAt": "2026-11-25T01:00:00Z",
+      "player": "AJ Dybantsa",
+      "team": "WAS",
+      "stat": "tres",
+      "line": 1.5,
+      "side": "Abaixo",
+      "probability": 0.795,
+      "sample": 14,
+      "projection": 0.8895813332511019,
+      "capturedAt": "2026-11-24T15:57:40.324Z",
+      "collectedAt": "2026-11-24T15:57:38.817350+00:00",
+      "snapshotAt": "2026-11-24T15:57:24+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-25T01:00:00Z\",\"WAS\",\"BOS\"]",
+      "startsAt": "2026-11-25T01:00:00Z",
+      "player": "Derrick White",
+      "team": "BOS",
+      "stat": "tres",
+      "line": 2.5,
+      "side": "Abaixo",
+      "probability": 0.745,
+      "sample": 16,
+      "projection": 1.89338294239865,
+      "capturedAt": "2026-11-24T15:57:40.324Z",
+      "collectedAt": "2026-11-24T15:57:38.817350+00:00",
+      "snapshotAt": "2026-11-24T15:57:24+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-25T03:00:00Z\",\"DEN\",\"DAL\"]",
+      "startsAt": "2026-11-25T03:00:00Z",
+      "player": "Naji Marshall",
+      "team": "DAL",
+      "stat": "reb",
+      "line": 3.5,
+      "side": "Abaixo",
+      "probability": 0.725,
+      "sample": 14,
+      "projection": 2.6277006055001833,
+      "capturedAt": "2026-11-24T15:57:40.324Z",
+      "collectedAt": "2026-11-24T15:57:38.817350+00:00",
+      "snapshotAt": "2026-11-24T15:57:24+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    },
+    {
+      "game": "[\"2026-11-25T01:00:00Z\",\"WAS\",\"BOS\"]",
+      "startsAt": "2026-11-25T01:00:00Z",
+      "player": "Neemias Queta",
+      "team": "BOS",
+      "stat": "ast",
+      "line": 1.5,
+      "side": "Acima",
+      "probability": 0.695,
+      "sample": 16,
+      "projection": 2.3458530650020983,
+      "capturedAt": "2026-11-24T15:57:40.324Z",
+      "collectedAt": "2026-11-24T15:57:38.817350+00:00",
+      "snapshotAt": "2026-11-24T15:57:24+00:00",
+      "calibration": "66e9153631e5",
+      "model": "640e28848d574e8c55503a7991221e6f1a7e0fdab1edfe5783908e514df5c733"
+    }
+  ]
+}
