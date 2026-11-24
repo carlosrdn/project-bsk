@@ -1,0 +1,401 @@
+{
+  "collectedAt": "2026-11-24T04:06:25.321543+00:00",
+  "lines": [
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Ausar Thompson",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "ast",
+      "line": 8.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "ast",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "ast",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "ast",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "ast",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "ast",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "pts",
+      "line": 14.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Ausar Thompson",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "pts",
+      "line": 24.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "pts",
+      "line": 15.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "pts",
+      "line": 17.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Isaiah Joe",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "pts",
+      "line": 11.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Paul Reed",
+      "stat": "pts",
+      "line": 9.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "pts",
+      "line": 10.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Ausar Thompson",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Daniss Jenkins",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "reb",
+      "line": 6.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "reb",
+      "line": 4.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "reb",
+      "line": 5.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "reb",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "reb",
+      "line": 7.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Anthony Black",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Cade Cunningham",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Desmond Bane",
+      "stat": "tres",
+      "line": 3.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Franz Wagner",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Isaiah Joe",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Jalen Suggs",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "John Collins",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "DET",
+      "player": "Kevin Huerter",
+      "stat": "tres",
+      "line": 1.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Tristan da Silva",
+      "stat": "tres",
+      "line": 2.5
+    },
+    {
+      "start": "2026-11-25T00:00:00.000Z",
+      "home": "ORL",
+      "away": "DET",
+      "team": "ORL",
+      "player": "Wendell Carter Jr.",
+      "stat": "tres",
+      "line": 0.5
+    }
+  ]
+}
