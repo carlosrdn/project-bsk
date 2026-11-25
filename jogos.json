@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-24T15:57:24+00:00",
+  "atualizado_em": "2026-11-25T00:50:26+00:00",
   "data_jogos": "2026-11-24",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 258,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-24_10_45AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-24_07_45PM.pdf"
   },
   "jogos": [
     {
@@ -1917,9 +1917,9 @@
         "espn_id": "8",
         "ultimo_jogo_espn": "401910029",
         "boletim_nba": {
-          "Cade Cunningham": "Provável",
+          "Cade Cunningham": "Fora",
           "Jalen Duren": "Fora",
-          "Isaac Jones": "Dúvida",
+          "Isaac Jones": "Fora",
           "Ebuka Okorie": "Fora",
           "Ugonna Onyenso": "Fora",
           "Taurean Prince": "Fora",
@@ -2080,7 +2080,7 @@
                 }
               }
             },
-            "situacao": "Provável",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -3588,7 +3588,7 @@
         "ausencias": [
           {
             "nome": "Cade Cunningham",
-            "situacao": "Provável",
+            "situacao": "Fora",
             "motivo": "Injury/Illness - Right Knee Soreness",
             "retorno": null,
             "atualizado": "2026-11-24",
@@ -3657,6 +3657,20 @@
             "posicao": "F"
           },
           {
+            "nome": "Isaac Jones",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-24",
+            "comentario": "",
+            "jogos": 6,
+            "minutos": 2.7,
+            "pts": 0.33,
+            "reb": 1,
+            "ast": 0.17,
+            "posicao": "C"
+          },
+          {
             "nome": "Ugonna Onyenso",
             "situacao": "Fora",
             "motivo": "G League - Two-Way",
@@ -3683,7 +3697,8 @@
         "boletim_nba": {
           "Reece Beekman": "Fora",
           "Justin Champagnie": "Fora",
-          "Felix Okpara": "Dúvida",
+          "Tre Mann": "Disponível",
+          "Felix Okpara": "Fora",
           "Tristan Vukcevic": "Fora",
           "Jamir Watkins": "Fora"
         },
@@ -5360,6 +5375,34 @@
             "pts": 7.25,
             "reb": 7.5,
             "ast": 1.25,
+            "posicao": "F"
+          },
+          {
+            "nome": "Tre Mann",
+            "situacao": "Disponível",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-24",
+            "comentario": "",
+            "jogos": 8,
+            "minutos": 5.1,
+            "pts": 1.25,
+            "reb": 0.12,
+            "ast": 0.5,
+            "posicao": "G"
+          },
+          {
+            "nome": "Felix Okpara",
+            "situacao": "Fora",
+            "motivo": "G League - Two-Way",
+            "retorno": null,
+            "atualizado": "2026-11-24",
+            "comentario": "",
+            "jogos": 3,
+            "minutos": 2,
+            "pts": 1,
+            "reb": 0.67,
+            "ast": 0,
             "posicao": "F"
           },
           {
@@ -11469,11 +11512,11 @@
   "calibrationReport": {
     "games": 180,
     "days": 24,
-    "trainGames": 132,
-    "validationGames": 48,
-    "validationFrom": "2026-11-18",
-    "validationThrough": "2026-11-23",
-    "status": "sem_ganho",
+    "trainGames": 0,
+    "validationGames": 0,
+    "validationFrom": null,
+    "validationThrough": null,
+    "status": "amostra_insuficiente",
     "lastEvaluationThrough": "2026-11-23",
     "promoted": []
   },
