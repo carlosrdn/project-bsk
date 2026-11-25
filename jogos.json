@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-25T09:54:26+00:00",
+  "atualizado_em": "2026-11-25T19:58:09+00:00",
   "data_jogos": "2026-11-25",
   "lesoes_ok": true,
   "media_liga": {
@@ -12,7 +12,7 @@
     "temporada": "2026-27",
     "jogos_finalizados": 261,
     "ratings": "posses estimadas",
-    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-25_04_45AM.pdf"
+    "boletim_nba": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-25_02_45PM.pdf"
   },
   "jogos": [
     {
@@ -3458,10 +3458,10 @@
         "ultimo_jogo_espn": "401910036",
         "boletim_nba": {
           "Michael Ajayi": "Fora",
-          "Grayson Allen": "Dúvida",
+          "Grayson Allen": "Fora",
           "Kylan Boswell": "Fora",
           "Sion James": "Provável",
-          "Ryan Kalkbrenner": "Provável ausência",
+          "Ryan Kalkbrenner": "Fora",
           "Kon Knueppel": "Fora",
           "Dennis Schroder": "Fora"
         },
@@ -4370,7 +4370,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -4970,7 +4970,7 @@
                 }
               }
             },
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -5278,7 +5278,7 @@
         "ausencias": [
           {
             "nome": "Grayson Allen",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "Concussion Protocol",
             "retorno": null,
             "atualizado": "2026-11-25",
@@ -5320,7 +5320,7 @@
           },
           {
             "nome": "Ryan Kalkbrenner",
-            "situacao": "Provável ausência",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-25",
@@ -5383,7 +5383,6 @@
         "boletim_nba": {
           "Tobe Awaka": "Fora",
           "Norman Powell": "Fora",
-          "Orlando Robinson": "Fora",
           "Jaylin Sellers": "Fora",
           "Jalen Smith": "Dúvida",
           "Caleb Wilson": "Fora"
@@ -7268,19 +7267,6 @@
             "reb": 0.86,
             "ast": 1.71,
             "posicao": "G"
-          },
-          {
-            "nome": "Orlando Robinson",
-            "situacao": "Fora",
-            "motivo": "Not With Team",
-            "retorno": null,
-            "atualizado": "2026-11-25",
-            "comentario": "",
-            "jogos": 0,
-            "minutos": 0,
-            "pts": 0,
-            "reb": 0,
-            "ast": 0
           }
         ]
       }
@@ -7295,10 +7281,11 @@
         "ultimo_jogo_espn": "401910034",
         "boletim_nba": {
           "OG Anunoby": "Fora",
+          "Jalen Brunson": "Dúvida",
           "Jordan Clarkson": "Fora",
-          "Josh Hart": "Dúvida",
-          "Miles McBride": "Dúvida",
-          "Karl-Anthony Towns": "Dúvida"
+          "Josh Hart": "Provável",
+          "Miles McBride": "Fora",
+          "Karl-Anthony Towns": "Provável"
         },
         "back_to_back": false,
         "vitorias": 11,
@@ -7455,7 +7442,7 @@
                 }
               }
             },
-            "situacao": "Disponível",
+            "situacao": "Dúvida",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -7755,7 +7742,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "back_to_back": false,
             "posicao": "C"
           },
@@ -7905,7 +7892,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8355,7 +8342,7 @@
                 }
               }
             },
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "back_to_back": false,
             "posicao": "G"
           },
@@ -8963,7 +8950,7 @@
         "ausencias": [
           {
             "nome": "Karl-Anthony Towns",
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-25",
@@ -8974,6 +8961,20 @@
             "reb": 13.88,
             "ast": 4,
             "posicao": "C"
+          },
+          {
+            "nome": "Jalen Brunson",
+            "situacao": "Dúvida",
+            "motivo": "Injury/Illness - Illness",
+            "retorno": null,
+            "atualizado": "2026-11-25",
+            "comentario": "",
+            "jogos": 17,
+            "minutos": 34.2,
+            "pts": 26.53,
+            "reb": 3.12,
+            "ast": 5.94,
+            "posicao": "G"
           },
           {
             "nome": "OG Anunoby",
@@ -8991,7 +8992,7 @@
           },
           {
             "nome": "Josh Hart",
-            "situacao": "Dúvida",
+            "situacao": "Provável",
             "motivo": "Injury/Illness - Right Shoulder Sprain",
             "retorno": null,
             "atualizado": "2026-11-25",
@@ -9005,7 +9006,7 @@
           },
           {
             "nome": "Miles McBride",
-            "situacao": "Dúvida",
+            "situacao": "Fora",
             "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-25",
@@ -14530,7 +14531,7 @@
           {
             "nome": "Anthony Edwards",
             "situacao": "Fora",
-            "motivo": "",
+            "motivo": "Injury/Illness - Right Knee",
             "retorno": null,
             "atualizado": "2026-11-25",
             "comentario": "",
@@ -16505,7 +16506,8 @@
         "boletim_nba": {
           "Bradley Beal": "Fora",
           "Nick Martinelli": "Fora",
-          "Jordan Miller": "Fora"
+          "Jordan Miller": "Fora",
+          "Jalen Pickett": "Dúvida"
         },
         "back_to_back": false,
         "vitorias": 4,
@@ -18198,7 +18200,7 @@
           {
             "nome": "Jordan Miller",
             "situacao": "Fora",
-            "motivo": "Injury/Illness - Left Rotator Cuff",
+            "motivo": "",
             "retorno": null,
             "atualizado": "2026-11-25",
             "comentario": "",
