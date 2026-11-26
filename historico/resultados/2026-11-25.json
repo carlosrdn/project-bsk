@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "date": "2026-11-25",
-  "updated_at": "2026-11-26T05:28:32.455Z",
+  "updated_at": "2026-11-26T12:45:54.252Z",
   "source": "ESPN",
   "games": [
     {
@@ -598,11 +598,24 @@
         "away_injury_impact": 2.383,
         "model": "BSK analisar() · parâmetros padrão gravados antes da partida"
       },
-      "status": "in",
-      "home_score": 109,
-      "away_score": 105,
-      "comparison": null,
-      "espn_event_id": "401909325"
+      "status": "finalizado",
+      "home_score": 116,
+      "away_score": 111,
+      "comparison": {
+        "home_points_error": -3.603,
+        "away_points_error": 0.905,
+        "total_points_error": -2.698,
+        "home_margin_error": -4.508,
+        "targets_correct": {
+          "home_points": true,
+          "away_points": false,
+          "total_points": true
+        },
+        "winner_correct": true
+      },
+      "espn_event_id": "401909325",
+      "actual_margin": 5,
+      "blowout": false
     }
   ],
   "results": [
@@ -612,7 +625,7 @@
       "actual": 30,
       "absolute_error": 4.543,
       "signed_error": -4.543,
-      "updated_at": "2026-11-26T05:28:32.447Z",
+      "updated_at": "2026-11-26T12:45:54.246Z",
       "context": {
         "actual_minutes": 37
       },
@@ -641,7 +654,7 @@
       "actual": 18,
       "absolute_error": 3.083,
       "signed_error": -3.083,
-      "updated_at": "2026-11-26T05:28:32.448Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 36
       },
@@ -670,7 +683,7 @@
       "actual": 20,
       "absolute_error": 3.354,
       "signed_error": -3.354,
-      "updated_at": "2026-11-26T05:28:32.448Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 40
       },
@@ -699,7 +712,7 @@
       "actual": 6,
       "absolute_error": 15.99,
       "signed_error": 15.99,
-      "updated_at": "2026-11-26T05:28:32.448Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 17
       },
@@ -734,7 +747,7 @@
       "actual": 11,
       "absolute_error": 3.189,
       "signed_error": -3.189,
-      "updated_at": "2026-11-26T05:28:32.448Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 35
       },
@@ -763,7 +776,7 @@
       "actual": 6,
       "absolute_error": 6.199,
       "signed_error": 6.199,
-      "updated_at": "2026-11-26T05:28:32.448Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 15
       },
@@ -798,7 +811,7 @@
       "actual": 8,
       "absolute_error": 1.385,
       "signed_error": 1.385,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 24
       },
@@ -827,7 +840,7 @@
       "actual": 25,
       "absolute_error": 7.645,
       "signed_error": -7.645,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 35
       },
@@ -856,7 +869,7 @@
       "actual": 5,
       "absolute_error": 0.073,
       "signed_error": 0.073,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 15
       },
@@ -885,7 +898,7 @@
       "actual": 7,
       "absolute_error": 7.364,
       "signed_error": 7.364,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 31
       },
@@ -920,7 +933,7 @@
       "actual": 8,
       "absolute_error": 2.84,
       "signed_error": 2.84,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.247Z",
       "context": {
         "actual_minutes": 28
       },
@@ -949,7 +962,7 @@
       "actual": 32,
       "absolute_error": 4.914,
       "signed_error": -4.914,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 36
       },
@@ -978,7 +991,7 @@
       "actual": 4,
       "absolute_error": 1.554,
       "signed_error": 1.554,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 26
       },
@@ -1007,7 +1020,7 @@
       "actual": 7,
       "absolute_error": 2.45,
       "signed_error": 2.45,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 17
       },
@@ -1036,7 +1049,7 @@
       "actual": 7,
       "absolute_error": 3.84,
       "signed_error": 3.84,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 18
       },
@@ -1071,7 +1084,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.449Z"
+      "updated_at": "2026-11-26T12:45:54.248Z"
     },
     {
       "id": "2026-11-25T22:00:00Z|PHI|adem bona|reb",
@@ -1079,7 +1092,7 @@
       "actual": 6,
       "absolute_error": 0.819,
       "signed_error": -0.819,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 13
       },
@@ -1108,7 +1121,7 @@
       "actual": 10,
       "absolute_error": 1.459,
       "signed_error": 1.459,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 20
       },
@@ -1149,7 +1162,7 @@
       "actual": 5,
       "absolute_error": 0.157,
       "signed_error": -0.157,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 34
       },
@@ -1190,7 +1203,7 @@
       "actual": 18,
       "absolute_error": 3.033,
       "signed_error": 3.033,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 35
       },
@@ -1231,7 +1244,7 @@
       "actual": 7,
       "absolute_error": 2.615,
       "signed_error": 2.615,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 34
       },
@@ -1278,7 +1291,7 @@
       "actual": 10,
       "absolute_error": 0.463,
       "signed_error": -0.463,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 31
       },
@@ -1319,7 +1332,7 @@
       "actual": 14,
       "absolute_error": 1.796,
       "signed_error": -1.796,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 38
       },
@@ -1360,7 +1373,7 @@
       "actual": 35,
       "absolute_error": 15.589,
       "signed_error": -15.589,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 34
       },
@@ -1407,7 +1420,7 @@
       "actual": 9,
       "absolute_error": 4.256,
       "signed_error": 4.256,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 27
       },
@@ -1448,7 +1461,7 @@
       "actual": 0,
       "absolute_error": 1.897,
       "signed_error": 1.897,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 23
       },
@@ -1489,7 +1502,7 @@
       "actual": 5,
       "absolute_error": 0.244,
       "signed_error": -0.244,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 26
       },
@@ -1530,7 +1543,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.449Z"
+      "updated_at": "2026-11-26T12:45:54.248Z"
     },
     {
       "id": "2026-11-26T00:00:00Z|CHA|grayson allen|pts",
@@ -1538,7 +1551,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.449Z"
+      "updated_at": "2026-11-26T12:45:54.248Z"
     },
     {
       "id": "2026-11-26T00:00:00Z|CHA|tidjane salaun|reb",
@@ -1546,7 +1559,7 @@
       "actual": 1,
       "absolute_error": 3.009,
       "signed_error": 3.009,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 8
       },
@@ -1593,7 +1606,7 @@
       "actual": 4,
       "absolute_error": 1.154,
       "signed_error": -1.154,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 28
       },
@@ -1640,7 +1653,7 @@
       "actual": 11,
       "absolute_error": 5.853,
       "signed_error": 5.853,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 25
       },
@@ -1681,7 +1694,7 @@
       "actual": 0,
       "absolute_error": 3.591,
       "signed_error": 3.591,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 11
       },
@@ -1722,7 +1735,7 @@
       "actual": 2,
       "absolute_error": 2.828,
       "signed_error": 2.828,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 29
       },
@@ -1769,7 +1782,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.449Z"
+      "updated_at": "2026-11-26T12:45:54.248Z"
     },
     {
       "id": "2026-11-26T00:30:00Z|NYK|jalen brunson|pts",
@@ -1777,7 +1790,7 @@
       "actual": 19,
       "absolute_error": 9.318,
       "signed_error": 9.318,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 36
       },
@@ -1818,7 +1831,7 @@
       "actual": 30,
       "absolute_error": 5.614,
       "signed_error": -5.614,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 34
       },
@@ -1859,7 +1872,7 @@
       "actual": 5,
       "absolute_error": 1.549,
       "signed_error": 1.549,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 36
       },
@@ -1900,7 +1913,7 @@
       "actual": 11,
       "absolute_error": 3.327,
       "signed_error": 3.327,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 30
       },
@@ -1941,7 +1954,7 @@
       "actual": 8,
       "absolute_error": 4.108,
       "signed_error": 4.108,
-      "updated_at": "2026-11-26T05:28:32.449Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 16
       },
@@ -1988,7 +2001,7 @@
       "actual": 3,
       "absolute_error": 3.3,
       "signed_error": 3.3,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 10
       },
@@ -2035,7 +2048,7 @@
       "actual": 5,
       "absolute_error": 3.944,
       "signed_error": 3.944,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 32
       },
@@ -2076,7 +2089,7 @@
       "actual": 8,
       "absolute_error": 1.696,
       "signed_error": 1.696,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.248Z",
       "context": {
         "actual_minutes": 27
       },
@@ -2117,7 +2130,7 @@
       "actual": 10,
       "absolute_error": 4.962,
       "signed_error": 4.962,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 33
       },
@@ -2158,7 +2171,7 @@
       "actual": 2,
       "absolute_error": 6.988,
       "signed_error": 6.988,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 9
       },
@@ -2205,7 +2218,7 @@
       "actual": 2,
       "absolute_error": 8.757,
       "signed_error": 8.757,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 16
       },
@@ -2252,7 +2265,7 @@
       "actual": 7,
       "absolute_error": 0.012,
       "signed_error": 0.012,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 36
       },
@@ -2293,7 +2306,7 @@
       "actual": 1,
       "absolute_error": 0.447,
       "signed_error": 0.447,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 24
       },
@@ -2334,7 +2347,7 @@
       "actual": 2,
       "absolute_error": 2.449,
       "signed_error": 2.449,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 7
       },
@@ -2381,7 +2394,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.450Z"
+      "updated_at": "2026-11-26T12:45:54.249Z"
     },
     {
       "id": "2026-11-26T00:30:00Z|CLE|thomas bryant|pts",
@@ -2389,7 +2402,7 @@
       "actual": 5,
       "absolute_error": 4.481,
       "signed_error": 4.481,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 16
       },
@@ -2430,7 +2443,7 @@
       "actual": 6,
       "absolute_error": 1.872,
       "signed_error": 1.872,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 29
       },
@@ -2471,7 +2484,7 @@
       "actual": 32,
       "absolute_error": 12.707,
       "signed_error": -12.707,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 37
       },
@@ -2512,7 +2525,7 @@
       "actual": 32,
       "absolute_error": 1.637,
       "signed_error": 1.637,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 37
       },
@@ -2553,7 +2566,7 @@
       "actual": 16,
       "absolute_error": 5.409,
       "signed_error": -5.409,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 31
       },
@@ -2594,7 +2607,7 @@
       "actual": 16,
       "absolute_error": 1.634,
       "signed_error": 1.634,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 35
       },
@@ -2635,7 +2648,7 @@
       "actual": 19,
       "absolute_error": 2.899,
       "signed_error": -2.899,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 29
       },
@@ -2676,7 +2689,7 @@
       "actual": 9,
       "absolute_error": 6.191,
       "signed_error": 6.191,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 28
       },
@@ -2717,7 +2730,7 @@
       "actual": 7,
       "absolute_error": 6.908,
       "signed_error": 6.908,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 32
       },
@@ -2758,7 +2771,7 @@
       "actual": 7,
       "absolute_error": 3.002,
       "signed_error": 3.002,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 32
       },
@@ -2799,7 +2812,7 @@
       "actual": 5,
       "absolute_error": 1.127,
       "signed_error": 1.127,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 16
       },
@@ -2840,7 +2853,7 @@
       "actual": 25,
       "absolute_error": 9.575,
       "signed_error": -9.575,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 31
       },
@@ -2881,7 +2894,7 @@
       "actual": 10,
       "absolute_error": 5.81,
       "signed_error": -5.81,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 23
       },
@@ -2922,7 +2935,7 @@
       "actual": 13,
       "absolute_error": 3.388,
       "signed_error": -3.388,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 25
       },
@@ -2963,7 +2976,7 @@
       "actual": 8,
       "absolute_error": 6.866,
       "signed_error": 6.866,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 20
       },
@@ -3010,7 +3023,7 @@
       "actual": 6,
       "absolute_error": 3.539,
       "signed_error": 3.539,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 24
       },
@@ -3051,7 +3064,7 @@
       "actual": 9,
       "absolute_error": 1.268,
       "signed_error": 1.268,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 17
       },
@@ -3092,7 +3105,7 @@
       "actual": 2,
       "absolute_error": 1.848,
       "signed_error": 1.848,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 26
       },
@@ -3133,7 +3146,7 @@
       "actual": 7,
       "absolute_error": 3.196,
       "signed_error": -3.196,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 25
       },
@@ -3174,7 +3187,7 @@
       "actual": 10,
       "absolute_error": 2.487,
       "signed_error": -2.487,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 26
       },
@@ -3209,7 +3222,7 @@
       "actual": 12,
       "absolute_error": 9.489,
       "signed_error": 9.489,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 29
       },
@@ -3244,7 +3257,7 @@
       "actual": 16,
       "absolute_error": 1.85,
       "signed_error": -1.85,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 24
       },
@@ -3279,7 +3292,7 @@
       "actual": 19,
       "absolute_error": 8.585,
       "signed_error": -8.585,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 27
       },
@@ -3314,7 +3327,7 @@
       "actual": 6,
       "absolute_error": 2.451,
       "signed_error": -2.451,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 22
       },
@@ -3349,7 +3362,7 @@
       "actual": 12,
       "absolute_error": 2.139,
       "signed_error": -2.139,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 21
       },
@@ -3384,7 +3397,7 @@
       "actual": 4,
       "absolute_error": 4.857,
       "signed_error": 4.857,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 23
       },
@@ -3419,7 +3432,7 @@
       "actual": 3,
       "absolute_error": 2.14,
       "signed_error": 2.14,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 18
       },
@@ -3460,7 +3473,7 @@
       "actual": 14,
       "absolute_error": 0.377,
       "signed_error": 0.377,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 37
       },
@@ -3501,7 +3514,7 @@
       "actual": 4,
       "absolute_error": 2.974,
       "signed_error": 2.974,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 9
       },
@@ -3542,7 +3555,7 @@
       "actual": 17,
       "absolute_error": 7.201,
       "signed_error": 7.201,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 25
       },
@@ -3577,7 +3590,7 @@
       "actual": 1,
       "absolute_error": 3.589,
       "signed_error": 3.589,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 7
       },
@@ -3618,7 +3631,7 @@
       "actual": 3,
       "absolute_error": 0.505,
       "signed_error": 0.505,
-      "updated_at": "2026-11-26T05:28:32.450Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 14
       },
@@ -3653,7 +3666,7 @@
       "actual": 0,
       "absolute_error": 9.546,
       "signed_error": 9.546,
-      "updated_at": "2026-11-26T05:28:32.453Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 21
       },
@@ -3688,7 +3701,7 @@
       "actual": 1,
       "absolute_error": 5.274,
       "signed_error": 5.274,
-      "updated_at": "2026-11-26T05:28:32.453Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 17
       },
@@ -3729,7 +3742,7 @@
       "actual": 5,
       "absolute_error": 5.672,
       "signed_error": 5.672,
-      "updated_at": "2026-11-26T05:28:32.453Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 25
       },
@@ -3764,7 +3777,7 @@
       "actual": 21,
       "absolute_error": 8.779,
       "signed_error": -8.779,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 35
       },
@@ -3793,7 +3806,7 @@
       "actual": 28,
       "absolute_error": 4.245,
       "signed_error": -4.245,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 39
       },
@@ -3816,7 +3829,7 @@
       "actual": 28,
       "absolute_error": 4.797,
       "signed_error": -4.797,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 37
       },
@@ -3845,7 +3858,7 @@
       "actual": 3,
       "absolute_error": 3.781,
       "signed_error": 3.781,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 22
       },
@@ -3868,7 +3881,7 @@
       "actual": 2,
       "absolute_error": 8.746,
       "signed_error": 8.746,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 19
       },
@@ -3891,7 +3904,7 @@
       "actual": 3,
       "absolute_error": 2.318,
       "signed_error": 2.318,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 31
       },
@@ -3914,7 +3927,7 @@
       "actual": 14,
       "absolute_error": 6.212,
       "signed_error": -6.212,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 31
       },
@@ -3937,7 +3950,7 @@
       "actual": 14,
       "absolute_error": 7.056,
       "signed_error": -7.056,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 22
       },
@@ -3960,7 +3973,7 @@
       "actual": 6,
       "absolute_error": 0.638,
       "signed_error": 0.638,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 26
       },
@@ -3983,7 +3996,7 @@
       "actual": 12,
       "absolute_error": 7.019,
       "signed_error": 7.019,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 34
       },
@@ -4006,7 +4019,7 @@
       "actual": 2,
       "absolute_error": 8.771,
       "signed_error": 8.771,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 4
       },
@@ -4035,7 +4048,7 @@
       "actual": 5,
       "absolute_error": 0.682,
       "signed_error": -0.682,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 27
       },
@@ -4058,7 +4071,7 @@
       "actual": 8,
       "absolute_error": 0.9,
       "signed_error": 0.9,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.249Z",
       "context": {
         "actual_minutes": 21
       },
@@ -4081,7 +4094,7 @@
       "actual": 6,
       "absolute_error": 6.784,
       "signed_error": 6.784,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 23
       },
@@ -4104,7 +4117,7 @@
       "actual": 3,
       "absolute_error": 0.915,
       "signed_error": 0.915,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 12
       },
@@ -4133,7 +4146,7 @@
       "actual": 0,
       "absolute_error": 2.324,
       "signed_error": 2.324,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 5
       },
@@ -4162,7 +4175,7 @@
       "actual": 5,
       "absolute_error": 7.254,
       "signed_error": 7.254,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 19
       },
@@ -4191,7 +4204,7 @@
       "actual": 15,
       "absolute_error": 2.382,
       "signed_error": -2.382,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 25
       },
@@ -4214,7 +4227,7 @@
       "actual": 20,
       "absolute_error": 1.505,
       "signed_error": 1.505,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 33
       },
@@ -4243,7 +4256,7 @@
       "actual": 13,
       "absolute_error": 1.286,
       "signed_error": 1.286,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 32
       },
@@ -4272,7 +4285,7 @@
       "actual": 18,
       "absolute_error": 1.228,
       "signed_error": -1.228,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 36
       },
@@ -4301,7 +4314,7 @@
       "actual": 11,
       "absolute_error": 2.765,
       "signed_error": -2.765,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 32
       },
@@ -4330,7 +4343,7 @@
       "actual": 2,
       "absolute_error": 12.213,
       "signed_error": 12.213,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 25
       },
@@ -4359,7 +4372,7 @@
       "actual": 25,
       "absolute_error": 1.395,
       "signed_error": -1.395,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 36
       },
@@ -4388,7 +4401,7 @@
       "actual": 2,
       "absolute_error": 4.052,
       "signed_error": 4.052,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 15
       },
@@ -4423,7 +4436,7 @@
       "actual": 12,
       "absolute_error": 2.629,
       "signed_error": 2.629,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 31
       },
@@ -4452,7 +4465,7 @@
       "actual": 16,
       "absolute_error": 2.018,
       "signed_error": -2.018,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 35
       },
@@ -4487,7 +4500,7 @@
       "actual": 6,
       "absolute_error": 1.2,
       "signed_error": -1.2,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 25
       },
@@ -4522,7 +4535,7 @@
       "actual": 13,
       "absolute_error": 0.988,
       "signed_error": 0.988,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 34
       },
@@ -4551,7 +4564,7 @@
       "actual": 5,
       "absolute_error": 6.802,
       "signed_error": 6.802,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 22
       },
@@ -4580,7 +4593,7 @@
       "actual": 8,
       "absolute_error": 0.174,
       "signed_error": 0.174,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 19
       },
@@ -4609,7 +4622,7 @@
       "actual": 2,
       "absolute_error": 3.59,
       "signed_error": 3.59,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 20
       },
@@ -4638,7 +4651,7 @@
       "actual": 7,
       "absolute_error": 1.737,
       "signed_error": 1.737,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 15
       },
@@ -4667,7 +4680,7 @@
       "actual": 0,
       "absolute_error": 1.302,
       "signed_error": 1.302,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 18
       },
@@ -4696,7 +4709,7 @@
       "actual": 5,
       "absolute_error": 0.174,
       "signed_error": 0.174,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 17
       },
@@ -4725,7 +4738,7 @@
       "actual": 2,
       "absolute_error": 2.314,
       "signed_error": 2.314,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 10
       },
@@ -4760,7 +4773,7 @@
       "actual": 5,
       "absolute_error": 3.914,
       "signed_error": 3.914,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 10
       },
@@ -4795,7 +4808,7 @@
       "actual": 22,
       "absolute_error": 1.851,
       "signed_error": 1.851,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 37
       },
@@ -4830,7 +4843,7 @@
       "actual": 10,
       "absolute_error": 3.053,
       "signed_error": 3.053,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 37
       },
@@ -4871,7 +4884,7 @@
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "updated_at": "2026-11-26T12:45:54.250Z"
     },
     {
       "id": "2026-11-26T03:00:00Z|GSW|deanthony melton|reb",
@@ -4879,7 +4892,7 @@
       "actual": 4,
       "absolute_error": 0.679,
       "signed_error": -0.679,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 27
       },
@@ -4914,7 +4927,7 @@
       "actual": 13,
       "absolute_error": 2.303,
       "signed_error": 2.303,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 32
       },
@@ -4949,7 +4962,7 @@
       "actual": 7,
       "absolute_error": 1.947,
       "signed_error": -1.947,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 39
       },
@@ -4984,7 +4997,7 @@
       "actual": 4,
       "absolute_error": 0.569,
       "signed_error": 0.569,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 26
       },
@@ -5019,7 +5032,7 @@
       "actual": 3,
       "absolute_error": 1.67,
       "signed_error": 1.67,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 24
       },
@@ -5054,7 +5067,7 @@
       "actual": 2,
       "absolute_error": 1.288,
       "signed_error": 1.288,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 13
       },
@@ -5089,7 +5102,7 @@
       "actual": 3,
       "absolute_error": 7.205,
       "signed_error": 7.205,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 17
       },
@@ -5130,7 +5143,7 @@
       "actual": 8,
       "absolute_error": 0.745,
       "signed_error": -0.745,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 31
       },
@@ -5165,7 +5178,7 @@
       "actual": 4,
       "absolute_error": 0.38,
       "signed_error": 0.38,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 13
       },
@@ -5206,7 +5219,7 @@
       "actual": 11,
       "absolute_error": 2.386,
       "signed_error": -2.386,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 17
       },
@@ -5241,7 +5254,7 @@
       "actual": 10,
       "absolute_error": 1.91,
       "signed_error": 1.91,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 22
       },
@@ -5276,7 +5289,7 @@
       "actual": 18,
       "absolute_error": 5.969,
       "signed_error": -5.969,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 42
       },
@@ -5317,7 +5330,7 @@
       "actual": 4,
       "absolute_error": 0.941,
       "signed_error": -0.941,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 20
       },
@@ -5352,7 +5365,7 @@
       "actual": 3,
       "absolute_error": 2.948,
       "signed_error": 2.948,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 9
       },
@@ -5393,7 +5406,7 @@
       "actual": 14,
       "absolute_error": 1.59,
       "signed_error": -1.59,
-      "updated_at": "2026-11-26T05:28:32.454Z",
+      "updated_at": "2026-11-26T12:45:54.250Z",
       "context": {
         "actual_minutes": 13
       },
@@ -5424,123 +5437,609 @@
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|keldon johnson|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 12,
+      "absolute_error": 6.697,
+      "signed_error": -6.697,
+      "updated_at": "2026-11-26T12:45:54.250Z",
+      "context": {
+        "actual_minutes": 33
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 9,
+            "texto": "Atuou 9 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|damian lillard|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 29,
+      "absolute_error": 9.274,
+      "signed_error": -9.274,
+      "updated_at": "2026-11-26T12:45:54.250Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|donovan clingan|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 4.172,
+      "signed_error": 4.172,
+      "updated_at": "2026-11-26T12:45:54.250Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_abaixo",
+            "tipo": "observado",
+            "valor": -7,
+            "texto": "Atuou 7 min abaixo da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|stephon castle|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 6,
+      "absolute_error": 0.63,
+      "signed_error": -0.63,
+      "updated_at": "2026-11-26T12:45:54.250Z",
+      "context": {
+        "actual_minutes": 34
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|jrue holiday|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 11,
+      "absolute_error": 3.976,
+      "signed_error": 3.976,
+      "updated_at": "2026-11-26T12:45:54.250Z",
+      "context": {
+        "actual_minutes": 32
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|toumani camara|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 8,
+      "absolute_error": 2.694,
+      "signed_error": 2.694,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 31
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|deni avdija|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 33,
+      "absolute_error": 8.31,
+      "signed_error": -8.31,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 36
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|sidy cissoko|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.005,
+      "signed_error": 0.005,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 30
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|julian champagnie|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 4,
+      "absolute_error": 0.615,
+      "signed_error": 0.615,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 37
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 9.4,
+            "texto": "Atuou 9.4 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|devin vassell|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 18,
+      "absolute_error": 6.565,
+      "signed_error": -6.565,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 38
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "minutos_acima",
+            "tipo": "observado",
+            "valor": 6,
+            "texto": "Atuou 6 min acima da referência pré-jogo"
+          },
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|scoot henderson|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 10,
+      "absolute_error": 1.024,
+      "signed_error": 1.024,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 23
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|luke kornet|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 5,
+      "absolute_error": 0.511,
+      "signed_error": -0.511,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 13
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|POR|robert williams|reb",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 3,
+      "absolute_error": 3.085,
+      "signed_error": 3.085,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 21
+      },
+      "target_correct": false,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|victor wembanyama|pts",
-      "status": "jogo_nao_finalizado",
-      "actual": null,
-      "absolute_error": null,
-      "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "status": "apurado",
+      "actual": 44,
+      "absolute_error": 15.334,
+      "signed_error": -15.334,
+      "updated_at": "2026-11-26T12:45:54.251Z",
+      "context": {
+        "actual_minutes": 35
+      },
+      "target_correct": true,
+      "analysis": {
+        "fatores": [
+          {
+            "id": "desfalques_time",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 3,
+            "texto": "3 ausência(s) registrada(s) na equipe antes do jogo"
+          },
+          {
+            "id": "desfalques_adversario",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 4,
+            "texto": "4 ausência(s) no adversário antes do jogo"
+          },
+          {
+            "id": "desfalque_rotacao_importante",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 atleta(s) fora com média pré-jogo de ≥25 minutos"
+          },
+          {
+            "id": "desfalque_rotacao_adversaria",
+            "tipo": "contexto_pre_jogo",
+            "quantidade": 1,
+            "texto": "1 ausência(s) de ≥25 min/jogo no adversário"
+          }
+        ],
+        "resumo": "Fatores associados ao resultado; não demonstram causalidade."
+      }
     },
     {
       "id": "2026-11-26T03:00:00Z|SAS|deaaron fox|pts",
-      "status": "jogo_nao_finalizado",
+      "status": "jogador_nao_localizado",
       "actual": null,
       "absolute_error": null,
       "signed_error": null,
-      "updated_at": "2026-11-26T05:28:32.454Z"
+      "updated_at": "2026-11-26T12:45:54.251Z"
     }
   ]
 }
