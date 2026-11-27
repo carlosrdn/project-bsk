@@ -264,6 +264,10 @@ def melhores_jogadores(team_id, elenco, elenco5, quantidade=12):
             "tres": round(j["FG3_PCT"] * 100, 1),
             "pts_5": r["PTS"] if r else None,
             "props": props_do_jogador(j["PLAYER_ID"]),
+            **({
+                "plus_minus_ultimos5": r["PLUS_MINUS"],
+                "plus_minus_amostra_ultimos5": r["PLUS_MINUS_GP"],
+            } if r and "PLUS_MINUS" in r else {}),
         })
     return lista
 

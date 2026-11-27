@@ -73,7 +73,9 @@ def player_row(athlete, columns):
     player = athlete["athlete"]
     fg, fga = shooting(cells["FG"])
     threes, attempts = shooting(cells["3PT"])
+    plus_minus = cells.get("+/-")
     return {
+        "PLUS_MINUS": None if plus_minus in (None, "", "--", "—") else int(plus_minus),
         "PLAYER_ID": player["id"], "PLAYER_NAME": player["displayName"],
         "MIN": int(minutes) + int(seconds or 0) / 60,
         "POS": (player.get("position") or {}).get("abbreviation"),
@@ -127,7 +129,7 @@ def atomic_write(path, text):
 
 def read_game(event, cache):
     event_id = str(int(event["id"]))
-    path = cache / (event_id + ".json")
+    path = cache / (event_id + "-v2.json")
     try:
         return json.loads(path.read_text())
     except (OSError, ValueError):
@@ -188,6 +190,9 @@ def aggregate(events, games):
         result = {key: latest[key] for key in ("TEAM_ID", "PLAYER_ID", "PLAYER_NAME", "POS")}
         for key in ("MIN", *ESTATISTICAS.values()):
             result[key] = round(media([row[key] for row in logs]), 2)
+        plus_minus = [row["PLUS_MINUS"] for row in logs if row["PLUS_MINUS"] is not None]
+        result["PLUS_MINUS"] = round(media(plus_minus), 2) if plus_minus else None
+        result["PLUS_MINUS_GP"] = len(plus_minus)
         for key, made, attempts in (("FG_PCT", "FGM", "FGA"), ("FG3_PCT", "FG3M", "FG3A")):
             shots = sum(row[attempts] for row in logs)
             result[key] = sum(row[made] for row in logs) / shots if shots else 0
