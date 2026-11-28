@@ -4,12 +4,22 @@
   "note": "Arquivo de projeções pré-jogo do BSK e resultados reais ESPN",
   "days": [
     {
+      "date": "2026-11-28",
+      "captured_at": "2026-11-28T07:57:17.768Z",
+      "games": 5,
+      "recommendations": 86,
+      "settled": 0,
+      "finished_games": 0,
+      "snapshot": "historico/snapshots/2026-11-28.json",
+      "results": "historico/resultados/2026-11-28.json"
+    },
+    {
       "date": "2026-11-27",
       "captured_at": "2026-11-27T05:06:21.598Z",
       "games": 11,
       "recommendations": 194,
-      "settled": 0,
-      "finished_games": 0,
+      "settled": 180,
+      "finished_games": 11,
       "snapshot": "historico/snapshots/2026-11-27.json",
       "results": "historico/resultados/2026-11-27.json"
     },
@@ -164,5 +174,5 @@
       "results": "historico/resultados/2026-11-11.json"
     }
   ],
-  "updated_at": "2026-11-27T05:06:23.457Z"
+  "updated_at": "2026-11-28T07:57:19.489Z"
 }
